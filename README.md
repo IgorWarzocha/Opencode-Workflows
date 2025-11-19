@@ -52,6 +52,12 @@ Use everything inside `At/` as prefix instructions during development sessions:
 - **`@coding-ts`** (`At/CODING-TS.MD`): Universal engineering guidelines emphasizing DRY principles,
   type safety, and clean architecture. Reference it in prompts (e.g., “Implement feature X following @coding-ts principles”) before starting any new feature or refactor so the LLM stays aligned. These reference files are meant for direct @ mentions in user instructions and are not invoked by subagents.
 
+### MCP Configurations
+
+- **Authenticated Chrome DevTools MCP** (`MCP configs/Authenticated Chrome Dev Tools MCP/`) – Enables Chrome DevTools MCP to work with authenticated browser sessions. Normally Chromium blocks Google account login in automated browsers, and concurrent sessions can interfere with existing Chrome processes, potentially closing background windows. This wrapper creates a temporary "shadow profile" that clones your cookies, sessions, and login data, allowing AI agents to access your logged-in context without disrupting your main browser.
+
+**⚠️ Security Warning**: This enables agentic AI to access all your browser's data including logged-in accounts, cookies, and session information. Use with extreme caution.
+
 ### Other Opencode Projects
 
 - **Agent Swarm Demo** ([repo](https://github.com/IgorWarzocha/opencode-agent-swarm-demo)) – Shows how to launch a multi-server

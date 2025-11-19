@@ -1,0 +1,102 @@
+#!/bin/bash
+set -e
+
+# Configuration
+CHROME_BIN=/usr/bin/chromium
+REAL_PROFILE_DIR="$HOME/.config/chromium"
+# We assume 'Default' is the active profile directory. Adjust if using 'Profile 1' etc.
+SOURCE_PROFILE="$REAL_PROFILE_DIR/Default"
+# Shadow profile location
+SHADOW_PROFILE_DIR="/tmp/chromium-mcp-shadow-$USER"
+PORT=9222
+
+# Log function to stderr
+log() {
+    echo "$@" >&2
+}
+
+# 1. Check if port 9222 is already open (User manually started debug browser)
+if nc -z 127.0.0.1 $PORT; then
+    log "Port $PORT is open. Connecting to existing debug instance..."
+else
+    log "Port $PORT is closed."
+    
+    # 2. Check if Chromium is running without debug
+    if pgrep -x "chromium" > /dev/null; then
+        log "Detected running Chromium instance (locked)."
+        log "Creating a temporary shadow profile to mirror your session..."
+        
+        # Ensure shadow dir exists and is clean
+        rm -rf "$SHADOW_PROFILE_DIR"
+        mkdir -p "$SHADOW_PROFILE_DIR/Default"
+        
+        # Copy essential session data (Cookies, Local Storage, Sessions, Preferences)
+        # We use -r for directories and ignore errors (e.g. locks)
+        log "Cloning session data..."
+        
+        # List of files to copy from Default
+        FILES_TO_COPY=(
+            "Cookies" "Cookies-journal"
+            "Login Data" "Login Data-journal" 
+            "Web Data" "Web Data-journal"
+            "Preferences"
+            "Local Storage"
+            "Session Storage"
+            "Sessions"
+        )
+        
+        for file in "${FILES_TO_COPY[@]}"; do
+            if [ -e "$SOURCE_PROFILE/$file" ]; then
+                cp -r "$SOURCE_PROFILE/$file" "$SHADOW_PROFILE_DIR/Default/" || true
+            fi
+        done
+
+        # Also copy the "Local State" from the root config dir
+        if [ -f "$REAL_PROFILE_DIR/Local State" ]; then
+            cp "$REAL_PROFILE_DIR/Local State" "$SHADOW_PROFILE_DIR/" || true
+        fi
+        
+        log "Shadow profile created at $SHADOW_PROFILE_DIR"
+        
+        # Launch Chromium using the shadow profile
+        nohup "$CHROME_BIN" \
+            --remote-debugging-port=$PORT \
+            --user-data-dir="$SHADOW_PROFILE_DIR" \
+            --no-first-run \
+            --no-default-browser-check \
+            --restore-last-session \
+            >/dev/null 2>&1 &
+            
+        PID=$!
+        disown $PID
+        log "Launched Shadow Chromium (PID $PID)."
+
+    else
+        log "Chromium not running. Launching standard debug instance..."
+        # Launch standard instance
+        nohup "$CHROME_BIN" \
+            --remote-debugging-port=$PORT \
+            --user-data-dir="$REAL_PROFILE_DIR" \
+            --no-first-run \
+            --no-default-browser-check \
+            --restore-last-session \
+            >/dev/null 2>&1 &
+            
+        PID=$!
+        disown $PID
+        log "Launched Chromium (PID $PID)."
+    fi
+
+    # Wait for connection
+    log "Waiting for connection..."
+    for i in {1..20}; do
+        if nc -z 127.0.0.1 $PORT; then
+            log "Connected!"
+            break
+        fi
+        sleep 0.5
+    done
+fi
+
+# Launch the MCP server
+exec npx -y chrome-devtools-mcp@latest --browser-url=http://127.0.0.1:$PORT
