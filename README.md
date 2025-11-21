@@ -19,14 +19,21 @@ and usage guidance.
 
 ### Agent Catalog
 
-Reusable agents that pair with Opencode commands:
-- **agent-architect** – Refines agents with research-backed prompts (best after running `opencode agent create`).
-- **repo-navigator-creator** – Builds lean AGENTS.md navigation guides.
-- **subagent-orchestrator** – Dispatches specialists and enforces scope isolation.
-- **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents for executing OpenSpec proposals (requires [OpenSpec](https://openspec.dev/) installed and `openspec init`).
+Agents are organized into two collections under `Agents/`:
 
-All four are designed as primary agents to be installed globally in `~/.config/opencode/agent/`
-so they can be reused across projects.
+- **Generic/** – Reusable global agents that belong in `~/.config/opencode/agent/`:
+  - **agent-architect** – Refines agents with research-backed prompts (best after running `opencode agent create`).
+  - **repo-navigator-creator** – Builds lean AGENTS.md navigation guides.
+  - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation.
+  - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents for executing OpenSpec proposals (requires [OpenSpec](https://openspec.dev/) installed and `openspec init`).
+- **Vite-React-TS-Convex-Tailwind/** – Stack-specific experts for the modern Vite + React 19.2 + TS 5.9 + Tailwind 4.1 + Convex stack. Each agent references its matching documentation file (`CONVEX.md`, `REACT19.md`, `TAILWIND4.md`, `TS59.MD`) so it can cite authoritative answers on demand:
+  - **vite-react-convex-expert** – Master coordinator for the entire stack, orchestrating subagents.
+  - **convex-database-expert** – Schema/query/mutation/action specialist grounded in Convex docs.
+  - **react-19-master** – React 19.2 implementation reviewer focused on Server Components, Actions, and compiler rules.
+  - **tailwind-41-architect** – Tailwind CSS 4.1 designer that enforces the CSS-first workflow.
+  - **typescript-59-engineer** – Strict TS 5.9 engineer who guards erasable syntax and configuration hygiene.
+
+See `Agents/README.md` for full tables, usage details, and the complete directory tree.
 
 ### Commands Catalog
 
