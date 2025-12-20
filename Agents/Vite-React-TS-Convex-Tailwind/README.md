@@ -12,6 +12,8 @@ A specialized collection of Opencode agents for building modern full-stack web a
 
 *Note: this will also work with Bun. Just make sure to initialise your project with Bun rather than Vite.*
 
+![VRTCT](VRTCT.jpg)
+
 ## Available Agents
 
 ### Core Technology Agents
