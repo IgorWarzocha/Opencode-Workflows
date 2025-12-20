@@ -18,6 +18,7 @@ Each collection demonstrates how to scope agents for a domain, define guardrails
 | Agent | Description |
 | --- | --- |
 | `agent-architect` | Designs or refines Opencode agents using grounded research and concise prompts. Works best when refining agents created via `opencode agent create`. |
+| `build` | A "no fluff" enhancement for Opencode's built-in build agent. Appends strict implementation standards and intentional minimalism to help models stay on track. |
 | `repo-navigator-creator` | Produces lean AGENTS.md navigation guides so LLMs can traverse repositories without context overload. |
 | `subagent-orchestrator` | Dispatches specialized agents, partitions scopes, and manages parallel/sequential execution plans. |
 | `openspec-orchestrator` | Enforces strict OpenSpec formatting, runs validations, and coordinates specialists across proposal, implementation, and archive workflows. Requires [OpenSpec](https://openspec.dev/) plus `openspec init`. |
@@ -64,6 +65,7 @@ Mix and match as needed: commands launch processes, agents keep the reasoning sh
     │   └── .opencode/
     │       └── agent/
     │           ├── agent-architect.md
+    │           ├── build.md
     │           ├── repo-navigator-creator.md
     │           ├── subagent-orchestrator.md
     │           └── openspec-orchestrator.md
