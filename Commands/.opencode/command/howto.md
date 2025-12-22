@@ -1,6 +1,5 @@
 ---
 description: Generate exhaustive repository guide for assistance
-subtask: true
 ---
 
 Analyze this repository and create an AGENTS.md file for assisting users with setup, running, and troubleshooting. This is NOT for development - it's for user assistance.
