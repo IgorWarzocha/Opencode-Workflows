@@ -4,16 +4,16 @@ A focused catalog of agent prompts and orchestration patterns designed for Openc
 
 ## Architecture Overview
 
-The `Agents/` directory contains specialized agent collections, complemented by universal engineering guidelines in the root `At/` directory.
+The `agents/` directory contains specialized agent collections, complemented by universal engineering guidelines in the root `at/` directory.
 
-- **Generic/** – Canonical, globally useful agents that pair well with any Opencode repo. Install these into `~/.config/opencode/agent/` to make them universally available.
-- **Vite-React-TS-Convex-Tailwind/** – A stack-specific toolkit that bundles five specialists plus stack documentation files (`CONVEX.md`, `REACT19.md`, `TAILWIND4.md`, `TS59.MD`). Each expert agent explicitly references its matching doc so it can cite authoritative guidance when reasoning.
+- **generic/** – Canonical, globally useful agents that pair well with any Opencode repo. Install these into `~/.config/opencode/agent/` to make them universally available.
+- **vite-react-ts-convex-tailwind/** – A stack-specific toolkit that bundles five specialists plus stack documentation files (`CONVEX.md`, `REACT19.md`, `TAILWIND4.md`, `TS59.MD`). Each expert agent explicitly references its matching doc so it can cite authoritative guidance when reasoning.
 
 Each collection demonstrates how to scope agents for a domain, define guardrails in YAML frontmatter, and ship reusable workflows alongside optional documentation.
 
 ## Agent Collections
 
-### Generic Global Agents (`Agents/Generic/.opencode/agent/`)
+### Generic Global Agents (`agents/generic/.opencode/agent/`)
 
 | Agent | Description |
 | --- | --- |
@@ -25,7 +25,7 @@ Each collection demonstrates how to scope agents for a domain, define guardrails
 
 Install these globally whenever you want standard orchestration helpers available in every session.
 
-### Vite + React + TS + Tailwind + Convex Pack (`Agents/Vite-React-TS-Convex-Tailwind/.opencode/agent/`)
+### Vite + React + TS + Tailwind + Convex Pack (`agents/vite-react-ts-convex-tailwind/.opencode/agent/`)
 
 | Agent | Description |
 | --- | --- |
@@ -43,13 +43,13 @@ Each specialist reminds downstream assistants that the relevant reference docume
 2. Reference the relevant agent file in `.opencode/agent/` and review its YAML frontmatter for `mode`, guardrails, and tool constraints.
 3. Follow the instruction block exactly—these steps are tuned for autonomous execution.
 4. When using stack-specific experts, open the accompanying doc (`CONVEX.md`, etc.) if you need deeper citations or confirmation.
-5. Reference `@coding-ts` (`At/CODING-TS.MD`) for universal engineering standards and clean architecture principles.
+5. Reference `@coding-ts` (`at/CODING-TS.MD`) for universal engineering standards and clean architecture principles.
 
 ## Relationship to Commands
 
 Agents complement Opencode commands:
 
-- **Commands** in `.opencode/command/` describe end-to-end workflows (see `Commands2Skills/README.md`).
+- **Commands** in `.opencode/command/` describe end-to-end workflows (see `commands2skills/README.md`).
 - **Agents** in `.opencode/agent/` provide targeted reasoning, research, or orchestration within those workflows.
 
 Mix and match as needed: commands launch processes, agents keep the reasoning sharp.
@@ -58,10 +58,10 @@ Mix and match as needed: commands launch processes, agents keep the reasoning sh
 
 ```
 .
-├── At/                      # Global standards (@coding-ts)
-└── Agents/
+├── at/                      # Global standards (@coding-ts)
+└── agents/
     ├── README.md
-    ├── Generic/
+    ├── generic/
     │   └── .opencode/
     │       └── agent/
     │           ├── agent-architect.md
@@ -69,7 +69,7 @@ Mix and match as needed: commands launch processes, agents keep the reasoning sh
     │           ├── repo-navigator-creator.md
     │           ├── subagent-orchestrator.md
     │           └── openspec-orchestrator.md
-    └── Vite-React-TS-Convex-Tailwind/
+    └── vite-react-ts-convex-tailwind/
         ├── CONVEX.md
         ├── REACT19.md
         ├── TAILWIND4.md
