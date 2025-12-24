@@ -4,6 +4,30 @@ A collection of Opencode-based command templates, global agent prompts, and
 workflow patterns for building sophisticated command-driven projects.
 
 ![opencode-workflows](https://github.com/user-attachments/assets/72872e42-b388-45a4-9948-5063350fb381)
+## Start Here: Opencode Configurator
+
+The **Opencode Configurator** (`Opencode-Configurator/`) is a meta-configuration system that makes setting up OpenCode effortless. Just ask naturally:
+
+- *"Is there a plugin for reducing token usage?"*
+- *"Set up permissions so destructive commands require approval"*
+- *"Create a /review command that analyzes code without making changes"*
+- *"I want to build a skill for working with our internal API"*
+
+The configurator agent draws on five specialized skills:
+
+| Skill | What it does |
+|-------|--------------|
+| **plugin-installer** | Find and install community plugins, maintain a local catalog |
+| **opencode-config** | Edit `opencode.json` with guided setup for models, permissions, providers |
+| **command-creator** | Build custom `/slash` commands through interactive Q&A |
+| **skill-creator** | Scaffold new skills with proper structure, scripts, and references |
+| **agent-architect** | Design agents with research-backed prompt engineering patterns |
+
+**Installation**: Drop the `skill/` and `agent/` folders into `~/.config/opencode/`.
+
+See `Opencode-Configurator/README.md` for full details.
+
+---
 
 ## Currently Included
 
