@@ -1,10 +1,10 @@
-# OpenCode Configurator Pack
+# OpenCode ConFIGurator Pack
 
 A meta-configuration system for [OpenCode](https://opencode.ai). Ask questions about plugins, create custom commands, build agents, design skills — all through natural conversation.
 
 ![opencode-configurator](https://github.com/user-attachments/assets/6b93df7d-a870-431c-829d-59afd765ce98)
 
-## The Configurator Agent
+## The ConFIGurator Agent
 
 Your OpenCode power user on demand. It knows the official documentation and will fetch the latest when it needs to. It can validate your `opencode.json`, explain what options do, and fix issues. When you're hunting for plugins, it'll search the web and npm, then document anything useful for next time.
 
