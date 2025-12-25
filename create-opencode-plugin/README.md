@@ -2,6 +2,8 @@
 
 This workflow pack enables OpenCode to generate its own TypeScript plugins. It bundles the SDK documentation, a slash command that triggers the workflow, and a required agent profile.
 
+![plugin-creator](https://github.com/user-attachments/assets/9b9e7c64-cd2c-4136-8133-e41d020db914)
+
 ## Installation
 
 Clone the OpenCode source repo and copy this pack into it. The scripts and paths assume the OpenCode repo layout and will not work as a global install.
