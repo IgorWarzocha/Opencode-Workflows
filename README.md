@@ -43,6 +43,12 @@ See `create-opencode-plugin/README.md` for full details.
 
 ---
 
+## Plugins
+
+- **Gemini/GLM Focused Mode** (`plugins/gemini-glm-focused-mode/`) – Injects a rigorous system prompt for GLM-4.7 and Gemini models to enforce precise, grounded, and persistent coding behavior. Activates based on model name matching. Install by copying `index.ts` to a local folder and adding the file path to your global `opencode.json` plugin array.
+
+---
+
 ## Included Packs
 
 ### Commands2Skills Template
