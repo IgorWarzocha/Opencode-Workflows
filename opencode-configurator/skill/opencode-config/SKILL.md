@@ -166,11 +166,13 @@ OpenCode supports JSONC (JSON with comments). Comment out unused configs instead
 
 ### Validate After Major Changes
 
-After editing opencode.json, **test the config**:
+After editing opencode.json, **the assistant MUST run this validation** (not just suggest it):
 
 ```bash
 opencode run "test"
 ```
+
+**Execute it yourself** using the Bash tool before telling the user the change is complete.
 
 If broken, you'll see a clear error with line number:
 ```
