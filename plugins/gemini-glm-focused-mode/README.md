@@ -39,3 +39,9 @@ Other models are unaffected.
 ```
 
 Adjust the path to match your actual installation location.
+
+## Performance & Configuration
+
+Using the Anthropic adapter seems to be faster, more reliable with tool calls, and the model seems to be smarter.
+
+**Note:** Opencode caps output tokens to 32k by default. The provided settings are a hack to get GLM to think more. Compaction works, but the token counting is a bit off. Use at your own peril.

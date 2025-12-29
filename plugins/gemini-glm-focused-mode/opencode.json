@@ -1,0 +1,30 @@
+{
+  "provider": {
+    "zai-coding-plan": {
+      "npm": "@ai-sdk/anthropic",
+      "options": {
+        "baseURL": "https://api.z.ai/api/anthropic/v1"
+      },
+      "models": {
+        "glm-4.7": {
+          "reasoning": true,
+          "interleaved": true,
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          },
+          "options": {
+            "temperature": 1,
+            "top_k": 40,
+            "top_p": 0.95,
+            "maxOutputTokens": 128000,
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 64000
+            }
+          }
+        }
+      }
+    }
+  }
+}
