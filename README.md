@@ -49,6 +49,13 @@ See `create-opencode-plugin/README.md` for full details.
 ## Plugins
 
 - **Gemini/GLM Focused Mode** (`plugins/gemini-glm-focused-mode/`) – Injects a rigorous system prompt for GLM-4.7 and Gemini models to enforce precise, grounded, and persistent coding behavior. Activates based on model name matching. Install by copying `index.ts` to a local folder and adding the file path to your global `opencode.json` plugin array.
+- **GPT Oath Prompt Enhancer** (`plugins/gpt-oath-prompt-enhancer/`) – Injects OpenCode environment context and CLI formatting guidelines into GPT model conversations. Ensures GPT models follow CLI-specific Markdown rendering conventions and understand the AGENTS.md discovery system. Activates for any model ID containing "gpt". Install by copying `src/` folder locally and adding `index.ts` path to your global `opencode.json` plugin array.
+
+---
+
+## Configuration Examples
+
+- **Thinking Levels Variants** (`thinking-variants config/thinking-levels-opencode.json`) – OpenCode configuration with model variants for Ctrl+T thinking level switching. Supports OpenAI OAuth plugins (GPT-5.2, GPT-5.2 Codex), Mirrorwell's Antigravity Proxy (Gemini 3 Pro/Flash, Claude 4.5), and GLM coding plan (GLM-4.7). Enables dynamic reasoning effort and thinking budget adjustment directly from the UI.
 
 ---
 

@@ -1,6 +1,7 @@
 {
   "provider": {
     "zai-coding-plan": {
+      "whitelist": ["glm-4.7", "glm-4.6v", "glm-4.6v-flash"],
       "npm": "@ai-sdk/anthropic",
       "options": {
         "baseURL": "https://api.z.ai/api/anthropic/v1"
@@ -21,6 +22,37 @@
             "thinking": {
               "type": "enabled",
               "budgetTokens": 64000
+            }
+          },
+          "variants": {
+            "none": {
+              "thinking": {
+                "type": "disabled"
+              }
+            },
+            "low": {
+              "thinking": {
+                "type": "enabled",
+                "budgetTokens": 8000
+              }
+            },
+            "medium": {
+              "thinking": {
+                "type": "enabled",
+                "budgetTokens": 24000
+              }
+            },
+            "high": {
+              "thinking": {
+                "type": "enabled",
+                "budgetTokens": 48000
+              }
+            },
+            "max": {
+              "thinking": {
+                "type": "enabled",
+                "budgetTokens": 64000
+              }
             }
           }
         }

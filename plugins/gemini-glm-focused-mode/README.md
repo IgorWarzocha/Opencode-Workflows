@@ -40,8 +40,29 @@ Other models are unaffected.
 
 Adjust the path to match your actual installation location.
 
-## Performance & Configuration
+## Bonus: Provider Configuration
 
-Using the Anthropic adapter seems to be faster, more reliable with tool calls, and the model seems to be smarter.
+The `opencode.json` file included here is my personal setup. It configures GLM models to use the Anthropic adapter endpoint, which I've found to be faster and more reliable with tool calls - the model just seems smarter through this adapter.
 
-**Note:** Opencode caps output tokens to 32k by default. The provided settings are a hack to get GLM to think more. Compaction works, but the token counting is a bit off. Use at your own peril.
+**Quirks I've run into:**
+
+- Token counting is broken, so you need to manually control session lenght compaction (best used for subagents with specific tasks)
+- If you stay within OpenCode's normal limits (max output is always 32k, so the reasonable thinking budget would be 24k), everything's compliant but GLM won't attempt hard thinking
+- It could theoretically overextend into deep thinking modes and cause issues, but that's never happened to me
+
+The default thinking budget is set to 64000 tokens since I use GLM for my `general`, `compaction`, and `explore` subagents where I prefer thinking enabled. The issue here is that you can't use variants in this part of the config. You define models for these agents in your `opencode.json` file, e.g.:
+
+```"agent": {
+    "plan": { "model": "local/antigravity/gemini-3-pro" },
+    "general": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "explore": {
+      "model": "zai-coding-plan/glm-4.7"
+    },
+    "compaction": {
+      "model": "zai-coding-plan/glm-4.7"
+    }
+```
+
+Your mileage may vary, but I've found this tradeoff worth it. Adapt the config to your own risk tolerance.
