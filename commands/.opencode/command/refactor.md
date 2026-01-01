@@ -2,36 +2,52 @@
 description: Refactor code (strict modularity, no slop, clean headers)
 ---
 
-Refactor the following targets: $ARGUMENTS
+<context>
+Targets: $ARGUMENTS
 
-**Context**: If no targets are specified above, identify and refactor files created within this session, or scan for worst offenders in the codebase - normally, it's the files with 250+ lines of code.
+If no targets specified, identify files created this session or scan for worst offenders (250+ lines).
+</context>
 
-**Objective**: Modularise and clean up the code according to these strict standards.
+<objective>
+Modularise and clean up code according to strict standards.
+</objective>
 
-### 1. File Structure & Modularity
-- **Small Files**: Break large files into focused, single-purpose modules.
-- **Barrel Exports**: Use `index.ts` files to cleanly expose public APIs from directories.
-- **File Headers**: Every file MUST start with a non-verbose 2-3 sentence block comment explaining its specific purpose - no generic headers allowed.
-  ```typescript
-  /**
-   * utils/formatting.ts
-   * Provides currency and date formatting utilities for the billing dashboard.
-   * Handles locale detection and fallback states.
-   */
-  ```
+<instructions>
 
-### 2. Code Hygiene ("No Slop")
-- **Remove Emojis**: Delete ALL emojis from comments, strings, and UI text unless strictly necessary for the feature.
-- **Concise Comments**: Remove "chatty" or redundant comments. Comment ONLY major sections or complex logic.
-- **No Defensive Clutter**: Remove excessive `try/catch` or defensive checks (like `if (obj && obj.prop)`) if the data path is trusted or already validated.
-- **Type Safety**: Strictly no `any` casts. Fix the types.
+## File Structure & Modularity
 
-### 3. Core Principles
-- **DRY**: If you see a pattern twice, abstract it.
-- **Fail Fast**: Throw errors clearly; do not hide them.
-- **No Console Logs**: Remove `console.log` entirely.
+- MUST break large files into focused, single-purpose modules
+- SHOULD use barrel exports (`index.ts`) to expose public APIs
+- MUST start every file with a 2-3 sentence block comment explaining its purpose:
 
-**Execution:**
-1. Analyze the files against these rules.
-2. Refactor to improve structure (splitting files if needed).
-3. Clean up the code (remove slop, add headers, fix types).
+```typescript
+/**
+ * utils/formatting.ts
+ * Provides currency and date formatting utilities for the billing dashboard.
+ * Handles locale detection and fallback states.
+ */
+```
+
+## Code Hygiene
+
+- MUST remove ALL emojis from comments, strings, and UI text unless strictly necessary
+- MUST remove chatty or redundant comments; comment ONLY major sections or complex logic
+- SHOULD remove excessive defensive checks if data path is trusted or validated
+- MUST NOT use `any` casts; fix the types properly
+- MUST remove all `console.log` statements
+
+## Core Principles
+
+- MUST abstract patterns seen twice (DRY)
+- MUST throw errors clearly; MUST NOT hide failures
+- SHOULD fail fast with clear error messages
+
+</instructions>
+
+<workflow>
+
+1. Analyze files against these rules
+2. Refactor structure (split files if needed)
+3. Clean up code (remove slop, add headers, fix types)
+
+</workflow>
