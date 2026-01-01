@@ -7,13 +7,17 @@ description: Create custom OpenCode slash commands. Use when user asks to "creat
 
 Create custom slash commands for repetitive tasks in OpenCode.
 
-## Core Approach
+<core_approach>
 
 **Command creation is conversational, not transactional.**
 
-- Don't assume what the user wants—ask
-- Start simple, add complexity only if needed
-- Show drafts and iterate based on feedback
+- MUST NOT assume what the user wants—ask
+- SHOULD start simple, add complexity only if needed
+- MUST show drafts and iterate based on feedback
+
+</core_approach>
+
+<reference>
 
 ## Command Locations
 
@@ -22,9 +26,69 @@ Create custom slash commands for repetitive tasks in OpenCode.
 | Project | `.opencode/command/<name>.md` |
 | Global | `~/.config/opencode/command/<name>.md` |
 
-## Creation Workflow (Interactive Q&A)
+## Command File Format
 
-### Phase 1: Understand the Task
+```markdown
+---
+description: What this command does (shown in /help)
+agent: build              # Optional: build, plan, or custom agent
+model: provider/model-id  # Optional: override model
+subtask: true             # Optional: run as subagent
+---
+
+Template body goes here.
+```
+
+## Frontmatter Options
+
+| Field | Purpose | Required |
+|-------|---------|----------|
+| `description` | Shown in command list | RECOMMENDED |
+| `agent` | Route to specific agent | No |
+| `model` | Override model | No |
+| `subtask` | Force subagent invocation | No |
+
+## Template Placeholders
+
+| Placeholder | Description | Example |
+|-------------|-------------|---------|
+| `$ARGUMENTS` | All arguments passed | `/cmd foo bar` → "foo bar" |
+| `$1`, `$2`, `$3` | Positional arguments | `/cmd foo bar` → $1="foo", $2="bar" |
+| `` `!command` `` | Shell output (runs bash) | `` `!git status` `` |
+| `@filename` | Include file content | `@src/index.ts` |
+
+## Shell Commands in Templates
+
+Use backticks with `!` to run shell commands and include output:
+
+```markdown
+Review the current changes:
+
+`!git diff --staged`
+
+Suggest improvements.
+```
+
+## File References
+
+Use `@` to include file content:
+
+```markdown
+Given the schema in @prisma/schema.prisma, generate a migration for $ARGUMENTS.
+```
+
+## Built-in Commands
+
+| Command | Description | Subtask |
+|---------|-------------|---------|
+| `/init` | Create/update AGENTS.md | No |
+| `/review` | Review git changes (defaults to uncommitted) | Yes |
+
+</reference>
+
+<workflow>
+
+## Phase 1: Understand the Task
 
 1. **"What task do you want to automate?"**
    - Get the repetitive prompt/workflow
@@ -34,7 +98,7 @@ Create custom slash commands for repetitive tasks in OpenCode.
    - Get the actual prompt they'd type
    - This becomes the template body
 
-### Phase 2: Inputs & Routing
+## Phase 2: Inputs & Routing
 
 3. **"Does it need arguments?"**
    - If they mention "this file", "a name", "the function" → yes
@@ -52,74 +116,19 @@ Create custom slash commands for repetitive tasks in OpenCode.
    - Project → `.opencode/command/`
    - Global → `~/.config/opencode/command/`
 
-### Phase 3: Review & Refine
+## Phase 3: Review & Refine
 
 7. **Show the draft command, ask for feedback**
    - "Here's what I've created. Want to adjust anything?"
    - Iterate until user is satisfied
 
-**Be flexible:** If user provides lots of info upfront, adapt—don't rigidly ask every question.
+**Be flexible:** If user provides lots of info upfront, adapt—MUST NOT rigidly ask every question.
 
----
+</workflow>
 
-## Command File Format
+<examples>
 
-```markdown
----
-description: What this command does (shown in /help)
-agent: build              # Optional: build, plan, or custom agent
-model: provider/model-id  # Optional: override model
-subtask: true             # Optional: run as subagent
----
-
-Template body goes here.
-```
-
-### Frontmatter Options
-
-| Field | Purpose | Required |
-|-------|---------|----------|
-| `description` | Shown in command list | Recommended |
-| `agent` | Route to specific agent | No |
-| `model` | Override model | No |
-| `subtask` | Force subagent invocation | No |
-
----
-
-## Template Placeholders
-
-| Placeholder | Description | Example |
-|-------------|-------------|---------|
-| `$ARGUMENTS` | All arguments passed | `/cmd foo bar` → "foo bar" |
-| `$1`, `$2`, `$3` | Positional arguments | `/cmd foo bar` → $1="foo", $2="bar" |
-| `` `!command` `` | Shell output (runs bash) | `` `!git status` `` |
-| `@filename` | Include file content | `@src/index.ts` |
-
-### Shell Commands in Templates
-
-Use backticks with `!` to run shell commands and include output:
-
-```markdown
-Review the current changes:
-
-`!git diff --staged`
-
-Suggest improvements.
-```
-
-### File References
-
-Use `@` to include file content:
-
-```markdown
-Given the schema in @prisma/schema.prisma, generate a migration for $ARGUMENTS.
-```
-
----
-
-## Example Commands
-
-### /test - Run and Fix Tests
+## /test - Run and Fix Tests
 
 ```markdown
 ---
@@ -133,7 +142,7 @@ Run the full test suite. For any failures:
 4. Re-run to verify
 ```
 
-### /review - Code Review (Read-Only)
+## /review - Code Review (Read-Only)
 
 ```markdown
 ---
@@ -149,7 +158,7 @@ Review $ARGUMENTS for:
 Provide actionable feedback without making changes.
 ```
 
-### /commit - Smart Commit with Prefixes
+## /commit - Smart Commit with Prefixes
 
 ```markdown
 ---
@@ -163,7 +172,7 @@ description: Stage and commit with conventional prefix
 5. Stage relevant files and commit
 ```
 
-### /spellcheck - Check Spelling
+## /spellcheck - Check Spelling
 
 ```markdown
 ---
@@ -178,7 +187,7 @@ Check spelling in all unstaged markdown files:
 Report any spelling errors found.
 ```
 
-### /issues - Search GitHub Issues
+## /issues - Search GitHub Issues
 
 ```markdown
 ---
@@ -194,7 +203,7 @@ Search GitHub issues matching: $ARGUMENTS
 Summarize the relevant issues.
 ```
 
-### /component - Create Component
+## /component - Create Component
 
 ```markdown
 ---
@@ -209,7 +218,7 @@ Create a React component named $1 in $2 with:
 
 Usage: `/component UserProfile src/components`
 
-### /migrate - Database Migration
+## /migrate - Database Migration
 
 ```markdown
 ---
@@ -221,29 +230,23 @@ Given the schema in @prisma/schema.prisma:
 Generate a migration for: $ARGUMENTS
 ```
 
----
+</examples>
 
-## Built-in Commands
-
-| Command | Description | Subtask |
-|---------|-------------|---------|
-| `/init` | Create/update AGENTS.md | No |
-| `/review` | Review git changes (defaults to uncommitted) | Yes |
-
----
-
-## Quality Checklist
+<quality_checklist>
 
 Before delivering:
+
 - [ ] Asked what task to automate
 - [ ] Got example of how they'd normally prompt it
 - [ ] Determined if arguments needed ($ARGUMENTS vs $1, $2)
 - [ ] Set appropriate agent (plan for read-only)
 - [ ] Considered subtask for long-running work
 - [ ] Chose project vs global scope
-- [ ] **Showed draft and got feedback**
+- [ ] Showed draft and got feedback
 
-## Best Practices
+</quality_checklist>
+
+<best_practices>
 
 | Do | Don't |
 |----|-------|
@@ -253,3 +256,5 @@ Before delivering:
 | Use `@file` for config/schema refs | Copy-paste file contents |
 | Set `agent: plan` for read-only | Forget agent for reviews |
 | Set `subtask: true` for parallel work | Block main session unnecessarily |
+
+</best_practices>

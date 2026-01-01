@@ -2,7 +2,14 @@
 name: security-vite
 description: Vite security audit patterns. Load when reviewing Vite apps (vite.config.ts present). Covers VITE_* exposure, build-time secrets, dev server security, and SPA-specific issues.
 ---
-# Vite Security Audit
+
+<overview>
+
+Security audit patterns for Vite applications focusing on environment variable exposure, build-time secrets, and SPA-specific vulnerabilities.
+
+</overview>
+
+<rules>
 
 ## Environment Variable Exposure
 
@@ -16,8 +23,8 @@ No prefix → Only available in vite.config.ts → Safe for secrets
 1. `grep -r "VITE_" . -g "*.env*"`
 2. Check `import.meta.env.VITE_*` usage in source
 3. Common mistakes:
-   - `VITE_API_SECRET` (should be server-only)
-   - `VITE_DATABASE_URL` (never!)
+   - `VITE_API_SECRET` (SHOULD be server-only)
+   - `VITE_DATABASE_URL` (MUST NOT use)
    - `VITE_STRIPE_SECRET_KEY` (only publishable keys)
 
 ### Env Files Priority
@@ -33,7 +40,11 @@ Vite loads in this order (later overrides earlier):
 
 ### envPrefix Overrides
 
-If `envPrefix` is configured, Vite will expose any variables with those prefixes. Treat `envPrefix` as a security-sensitive setting.
+If `envPrefix` is configured, Vite exposes any variables with those prefixes. Treat `envPrefix` as a security-sensitive setting.
+
+</rules>
+
+<vulnerabilities>
 
 ## Build-Time vs Runtime
 
@@ -121,6 +132,10 @@ export default defineConfig({
 });
 ```
 
+</vulnerabilities>
+
+<severity_table>
+
 ## Common Vulnerabilities
 
 | Issue | Where to Look | Severity |
@@ -131,6 +146,10 @@ export default defineConfig({
 | Dev server exposed | `vite.config.ts` server.host | MEDIUM |
 | Client-only auth | Route guards without API auth | HIGH |
 | API keys in bundle | `dist/` directory | CRITICAL |
+
+</severity_table>
+
+<commands>
 
 ## Quick Audit Commands
 
@@ -151,6 +170,10 @@ rg -a "(sk_live|AKIA|ghp_|api[_-]?key['\"]?\s*[:=])" dist/
 fd '\.map$' dist/
 ```
 
+</commands>
+
+<checklist>
+
 ## Hardening Checklist
 
 - [ ] No secrets in `VITE_*` variables
@@ -159,3 +182,5 @@ fd '\.map$' dist/
 - [ ] `server.host` is not `0.0.0.0` or `true` (unless intentional)
 - [ ] All sensitive API calls go through a backend (not direct from browser)
 - [ ] No secrets in `vite.config.ts` define block
+
+</checklist>

@@ -2,7 +2,14 @@
 name: security-express
 description: Express.js security audit patterns. Load when reviewing Express apps. Covers Helmet.js, CORS, body-parser limits, auth middleware, and common Express security mistakes.
 ---
-# Express.js Security Audit
+
+<overview>
+
+Security audit patterns for Express.js applications covering essential security middleware, CORS configuration, auth patterns, and common vulnerabilities.
+
+</overview>
+
+<rules>
 
 ## Essential Security Middleware
 
@@ -75,6 +82,10 @@ app.use(express.json());
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({ extended: true, limit: '100kb' }));
 ```
+
+</rules>
+
+<vulnerabilities>
 
 ## Auth Middleware Patterns
 
@@ -207,6 +218,10 @@ app.post('/api/register', authLimiter, registerHandler);
 app.post('/api/forgot-password', authLimiter, forgotPasswordHandler);
 ```
 
+</vulnerabilities>
+
+<commands>
+
 ## Quick Audit Commands
 
 ```bash
@@ -220,21 +235,25 @@ rg -n "x-powered-by" . -g "*.js" -g "*.ts"
 ```bash
 # Check for helmet
 rg "helmet" package.json
-rg "require\(['\"]helmet" .
+rg "require\\(['\"]helmet" .
 rg "from ['\"]helmet" .
 
 # Find CORS config
-rg "cors\(" . -g "*.js" -g "*.ts" -A 5
+rg "cors\\(" . -g "*.js" -g "*.ts" -A 5
 
 # Find routes without auth middleware
-rg "app\.(get|post|put|delete|patch)\(" . -A 1 | grep -v "require.*[Aa]uth"
+rg "app\\.(get|post|put|delete|patch)\\(" . -A 1 | grep -v "require.*[Aa]uth"
 
 # Find string interpolation in queries
-rg "(query|find|findOne|exec).*\`" . -g "*.js" -g "*.ts"
+rg "(query|find|findOne|exec).*\\`" . -g "*.js" -g "*.ts"
 
 # Check session config
-rg "session\(" . -A 10
+rg "session\\(" . -A 10
 ```
+
+</commands>
+
+<checklist>
 
 ## Hardening Checklist
 
@@ -248,3 +267,5 @@ rg "session\(" . -A 10
 - [ ] Error handler doesn't leak stack traces
 - [ ] Input validation on all user input
 - [ ] Parameterized queries (no string concat)
+
+</checklist>

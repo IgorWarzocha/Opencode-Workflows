@@ -7,6 +7,8 @@ description: Configure OpenCode settings and rules. Use when user asks to "confi
 
 Help users configure OpenCode through guided setup of config files and rules.
 
+<reference>
+
 ## File Locations
 
 | Type | Global | Project |
@@ -16,7 +18,9 @@ Help users configure OpenCode through guided setup of config files and rules.
 
 **Precedence:** Project > Global. Configs are merged, not replaced.
 
-## Configuration Workflow
+</reference>
+
+<workflow>
 
 Ask the user what they want to configure:
 
@@ -26,7 +30,9 @@ Ask the user what they want to configure:
 
 Then guide them through the relevant section below.
 
----
+</workflow>
+
+<config_file>
 
 ## Config File (opencode.json)
 
@@ -105,7 +111,9 @@ Include additional instruction files:
 
 **Full schema reference:** See `references/config-schema.md`
 
----
+</config_file>
+
+<rules_file>
 
 ## Rules (AGENTS.md)
 
@@ -138,18 +146,18 @@ This is a [framework] project using [language].
 
 ### Tips
 
-- Be specific about your project's patterns
-- Include common commands
-- Document any non-obvious conventions
-- Keep it concise (agents have limited context)
+- SHOULD be specific about your project's patterns
+- SHOULD include common commands
+- SHOULD document any non-obvious conventions
+- SHOULD keep it concise (agents have limited context)
 
----
+</rules_file>
 
-## Config Tips
+<config_tips>
 
-### Comment Out, Don't Delete
+## Comment Out, Don't Delete
 
-OpenCode supports JSONC (JSON with comments). Comment out unused configs instead of deleting:
+OpenCode supports JSONC (JSON with comments). SHOULD comment out unused configs instead of deleting:
 
 ```jsonc
 {
@@ -164,9 +172,9 @@ OpenCode supports JSONC (JSON with comments). Comment out unused configs instead
 
 **Why:** You might want to re-enable later. Keeps a record of what you've tried.
 
-### Validate After Major Changes
+## Validate After Major Changes
 
-After editing opencode.json, **the assistant MUST run this validation** (not just suggest it):
+After editing opencode.json, you MUST run this validation (not just suggest it):
 
 ```bash
 opencode run "test"
@@ -189,11 +197,11 @@ Common JSONC mistakes:
 - Trailing comma before `}`
 - Unclosed brackets
 
----
+</config_tips>
 
-## Common Configurations
+<common_configurations>
 
-### Minimal Safe Config
+## Minimal Safe Config
 
 ```jsonc
 {
@@ -206,7 +214,7 @@ Common JSONC mistakes:
 }
 ```
 
-### Power User Config
+## Power User Config
 
 ```jsonc
 {
@@ -225,7 +233,7 @@ Common JSONC mistakes:
 }
 ```
 
-### Team Project Config
+## Team Project Config
 
 ```jsonc
 {
@@ -239,15 +247,17 @@ Common JSONC mistakes:
 }
 ```
 
----
+</common_configurations>
 
-## Troubleshooting
+<troubleshooting>
 
 | Issue | Solution |
 |-------|----------|
 | Config not loading | Check JSON syntax, ensure valid path |
 | Skill not found | Verify `SKILL.md` (uppercase), check frontmatter |
 | Permission denied unexpectedly | Check global vs project config precedence |
+
+</troubleshooting>
 
 ## References
 

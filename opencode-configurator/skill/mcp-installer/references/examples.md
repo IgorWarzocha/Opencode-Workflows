@@ -1,6 +1,6 @@
 # Common MCP Servers
 
-## Context7
+<context7>
 
 Docs search. Requires API key.
 
@@ -18,7 +18,9 @@ Docs search. Requires API key.
 }
 ```
 
-## Grep (gh_grep)
+</context7>
+
+<gh_grep>
 
 GitHub code search. No auth.
 
@@ -33,7 +35,9 @@ GitHub code search. No auth.
 }
 ```
 
-## Sentry
+</gh_grep>
+
+<sentry>
 
 Error tracking. OAuth.
 
@@ -51,7 +55,9 @@ Error tracking. OAuth.
 
 Then: `opencode mcp auth sentry`
 
-## Filesystem
+</sentry>
+
+<filesystem>
 
 Local file access.
 
@@ -71,7 +77,9 @@ Local file access.
 }
 ```
 
-## GitHub
+</filesystem>
+
+<github>
 
 GitHub API. High context usage.
 
@@ -91,8 +99,12 @@ GitHub API. High context usage.
 
 Use per-agent config to manage context.
 
-## Finding More
+</github>
+
+<finding_more>
 
 - https://github.com/modelcontextprotocol/servers
 - `@modelcontextprotocol/server-*` on npm
 - `references/mcps/*.md` for documented servers
+
+</finding_more>

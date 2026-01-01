@@ -7,16 +7,20 @@ description: Research-backed creation and enhancement of opencode agents. Use wh
 
 Create and refine opencode agents through a guided Q&A process.
 
-## Core Approach
+<core_approach>
 
 **Agent creation is conversational, not transactional.**
 
-- Don't assume what the user wants—ask
-- Start with broad questions, drill into details only if needed
-- Users can skip configuration they don't care about
-- Always show drafts and iterate based on feedback
+- MUST NOT assume what the user wants—ask
+- SHOULD start with broad questions, drill into details only if needed
+- Users MAY skip configuration they don't care about
+- MUST always show drafts and iterate based on feedback
 
 The goal is to help users create agents that fit their needs, not to dump every possible configuration option on them.
+
+</core_approach>
+
+<reference>
 
 ## Agent Locations
 
@@ -49,11 +53,11 @@ System prompt in markdown body (second person).
 | `subagent` | Only callable via `task` tool |
 | `all` | Both primary and subagent (default) |
 
-## Creation Workflow (Interactive Q&A)
+</reference>
 
-Agent creation is a **conversational process**. Don't assume configuration—ask the user step by step, from broad strokes to details. Users can skip questions they don't care about.
+<workflow>
 
-### Phase 1: Core Purpose (Required)
+## Phase 1: Core Purpose (Required)
 
 Ask these first—they shape everything else:
 
@@ -69,20 +73,20 @@ Ask these first—they shape everything else:
    - Tone, boundaries, specialization
    - Shapes the system prompt
 
-### Phase 1.5: Research the Domain
+## Phase 1.5: Research the Domain
 
-**Never assume you know everything.** After understanding the broad strokes:
+**MUST NOT assume knowledge is current.** After understanding the broad strokes:
 
-- **Search for current best practices** in the domain
-- **Check for updates** to frameworks, tools, or APIs the agent will work with
-- **Look up documentation** for any unfamiliar technologies mentioned
-- **Find examples** of how experts approach similar tasks
+- Search for current best practices in the domain
+- Check for updates to frameworks, tools, or APIs the agent will work with
+- Look up documentation for any unfamiliar technologies mentioned
+- Find examples of how experts approach similar tasks
 
 This research informs better questions in Phase 2 and produces a more capable agent.
 
 **Example:** User wants an agent for "Next.js deployments" → Research current Next.js deployment patterns, Vercel vs self-hosted, App Router vs Pages Router, common pitfalls, etc.
 
-### Phase 2: Capabilities (Ask broadly, then drill down)
+## Phase 2: Capabilities (Ask broadly, then drill down)
 
 4. **"Does this agent need shell access? Web access? File editing?"**
    - If yes to shell: "Any commands that should be blocked or require approval?"
@@ -98,25 +102,27 @@ This research informs better questions in Phase 2 and produces a more capable ag
    - Subagent = only called via `task` tool
    - Sets `mode`
 
-### Phase 3: Details (Optional—user may skip)
+## Phase 3: Details (Optional—user MAY skip)
 
 7. **"Any specific model preference?"** (most users skip)
-8. **"Custom temperature/sampling?"** (most users skip)  
+8. **"Custom temperature/sampling?"** (most users skip)
 9. **"Maximum steps before stopping?"** (most users skip)
 
-### Phase 4: Review & Refine
+## Phase 4: Review & Refine
 
 10. **Show the draft config and prompt, ask for feedback**
     - "Here's what I've created. Anything you'd like to change?"
     - Iterate until user is satisfied
 
-**Key principle:** Start broad, get specific only where the user shows interest. Don't overwhelm with options like `top_p` unless asked.
+**Key principle:** Start broad, get specific only where the user shows interest. MUST NOT overwhelm with options like `top_p` unless asked.
 
-**Be flexible:** If the user provides lots of info upfront, don't rigidly follow the phases—adapt to what they've already told you. If they say "I want a code review agent that can't run shell commands", you already have answers to multiple questions.
+**Be flexible:** If the user provides lots of info upfront, adapt—MUST NOT rigidly follow the phases. If they say "I want a code review agent that can't run shell commands", you already have answers to multiple questions.
 
-## System Prompt Structure
+</workflow>
 
-Use this recommended structure:
+<system_prompt_structure>
+
+## Recommended Structure
 
 ```markdown
 # Role and Objective
@@ -146,7 +152,7 @@ Specify exact format expected.
 </examples>
 ```
 
-## Using XML Tags (Recommended)
+## XML Tags (Recommended)
 
 XML tags improve clarity and parseability across all models:
 
@@ -174,7 +180,7 @@ XML tags improve clarity and parseability across all models:
 
 ## Description Field (Critical)
 
-The `description` determines when the agent triggers. Be specific:
+The `description` determines when the agent triggers. MUST be specific:
 
 **Good:**
 ```
@@ -196,9 +202,11 @@ Find the balance between too rigid and too vague:
 | Hardcoded if-else logic | Clear heuristics + flexibility | "Be helpful" |
 | "If X then always Y" | "Generally prefer X, but use judgment" | No guidance |
 
-## Agentic Prompt Components
+</system_prompt_structure>
 
-For agents that use tools in a loop, include these reminders:
+<agentic_components>
+
+For agents that use tools in a loop, SHOULD include these reminders:
 
 ```markdown
 # Persistence
@@ -214,7 +222,9 @@ Think step-by-step before each action. Reflect on results before
 proceeding.
 ```
 
-## Permissions
+</agentic_components>
+
+<permissions>
 
 Control what agents can access:
 
@@ -234,7 +244,7 @@ permission:
 
 **Full reference:** See `references/opencode-config.md`
 
-### Tool Access Control
+## Tool Access Control
 
 Disable specific tools:
 
@@ -245,33 +255,9 @@ tools:
   task: false       # Cannot spawn subagents
 ```
 
-## Requirements Checklist (Internal Reference)
+</permissions>
 
-Use this to ensure you've covered the essentials—but gather info through Q&A, not a form:
-
-| Question to Ask User | Informs |
-|---------------------|----------|
-| "What should this agent do?" | System prompt focus |
-| "What should trigger it?" | `description` field |
-| "What persona/expertise?" | Tone and boundaries |
-| "Shell/web/file access needed?" | `tools` config |
-| "Any commands to restrict?" | `permission.bash` |
-| "Which skills should it use?" | `permission.skill` |
-| "Primary agent or helper?" | `mode` |
-| "Any edge cases to handle?" | System prompt details |
-
-## System Prompt Guidelines
-
-| Do | Don't |
-|----|-------|
-| Use second person ("You are...") | Use first person |
-| Be specific about boundaries | Be vague about scope |
-| Include self-verification steps | Assume correctness |
-| Define output format explicitly | Leave format ambiguous |
-| Handle edge cases explicitly | Ignore failure modes |
-| Use XML tags to structure sections | Dump everything in prose |
-
-## Enhancing Existing Agents (Q&A Process)
+<enhancement_workflow>
 
 When improving an agent, diagnose through questions:
 
@@ -289,11 +275,13 @@ Then propose targeted fixes:
 | Executes dangerous commands | Loose bash permissions | Restrict with patterns |
 | Uses wrong skills | No skill restrictions | Configure `permission.skill` |
 
-**Always show proposed changes and ask for confirmation before applying.**
+MUST show proposed changes and ask for confirmation before applying.
 
-## Example Agents
+</enhancement_workflow>
 
-### Restricted Code Review Agent
+<examples>
+
+## Restricted Code Review Agent
 
 ```yaml
 ---
@@ -310,7 +298,7 @@ You are a code review specialist. Analyze code for bugs, security issues,
 and improvements. Never modify files directly.
 ```
 
-### Deployment Subagent
+## Deployment Subagent
 
 ```yaml
 ---
@@ -329,18 +317,23 @@ permission:
 You are a deployment specialist...
 ```
 
-## Quality Checklist (Before Delivering)
+</examples>
+
+<quality_checklist>
 
 Before showing the final agent to the user:
+
 - [ ] Asked about core purpose and triggers
-- [ ] **Researched the domain** (didn't assume knowledge is current)
+- [ ] Researched the domain (MUST NOT assume knowledge is current)
 - [ ] `description` has concrete trigger examples
 - [ ] `mode` discussed and set appropriately
 - [ ] System prompt uses second person
-- [ ] Asked about tool/permission needs (didn't assume)
+- [ ] Asked about tool/permission needs (MUST NOT assume)
 - [ ] Output format is specified if relevant
-- [ ] **Showed draft to user and got feedback**
+- [ ] Showed draft to user and got feedback
 - [ ] User confirmed they're happy with result
+
+</quality_checklist>
 
 ## References
 

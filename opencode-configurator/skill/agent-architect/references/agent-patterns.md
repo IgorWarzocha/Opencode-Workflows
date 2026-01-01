@@ -1,6 +1,6 @@
 # Agent Design Patterns
 
-## Single-Agent Patterns
+<single_agent_patterns>
 
 | Pattern | How it works | Best for |
 |---------|--------------|----------|
@@ -8,7 +8,9 @@
 | Self-Refine | Generate → Critique → Refine | Quality-focused (writing, review) |
 | Reflexion | Reflect on failures → Improve | Adaptive/learning tasks |
 
-## Multi-Agent Patterns
+</single_agent_patterns>
+
+<multi_agent_patterns>
 
 | Pattern | How it works | Best for |
 |---------|--------------|----------|
@@ -16,13 +18,17 @@
 | Router | Analyze request → Route to right agent | Diverse request types |
 | Sub-agents | Main agent spawns focused sub-agents | Long-horizon tasks, parallel exploration |
 
-## Agentic Behavior Levels
+</multi_agent_patterns>
+
+<agentic_behavior_levels>
 
 1. **Output** - Agent decides what to output
 2. **Task** - Agent decides how (tool selection, ordering)
 3. **Process** - Agent decides overall approach and strategy
 
-## Prompt Structure Template
+</agentic_behavior_levels>
+
+<prompt_structure>
 
 From OpenAI/Anthropic research, this structure works well:
 
@@ -44,7 +50,9 @@ From OpenAI/Anthropic research, this structure works well:
 # Final reminders
 ```
 
-## XML Tags for Structure
+</prompt_structure>
+
+<xml_tags>
 
 XML outperforms JSON for long context and complex prompts:
 
@@ -69,9 +77,11 @@ Return findings as JSON: {"bugs": [], "security": [], "suggestions": []}
 </output_format>
 ```
 
-## Agentic Prompt Reminders
+</xml_tags>
 
-Include these for tool-using agents:
+<agentic_reminders>
+
+For tool-using agents, SHOULD include these:
 
 | Reminder | Purpose | Example |
 |----------|---------|---------|
@@ -79,7 +89,9 @@ Include these for tool-using agents:
 | Tool-calling | Use tools, don't guess | "If unsure, use tools to verify" |
 | Planning | Think between actions | "Plan before each tool call, reflect after" |
 
-## Context Engineering Tips
+</agentic_reminders>
+
+<context_engineering>
 
 | Principle | Bad | Good |
 |-----------|-----|------|
@@ -88,7 +100,9 @@ Include these for tool-using agents:
 | Minimal context | Dump everything | Only what's needed for the task |
 | Clear structure | Wall of text | XML tags or markdown sections |
 
-## Prompt Engineering Quick Reference
+</context_engineering>
+
+<prompt_techniques>
 
 | Technique | When to use |
 |-----------|-------------|
@@ -99,7 +113,9 @@ Include these for tool-using agents:
 | Self-verification | High-stakes outputs |
 | Output format spec | Structured responses needed |
 
-## Common Failure Modes
+</prompt_techniques>
+
+<failure_modes>
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
@@ -108,3 +124,5 @@ Include these for tool-using agents:
 | Over-explaining | No brevity instruction | "Be concise, no prose" |
 | Wrong format | Format not specified | Add explicit format section |
 | Premature completion | No persistence reminder | Add "keep going until done" |
+
+</failure_modes>

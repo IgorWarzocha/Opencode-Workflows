@@ -2,7 +2,14 @@
 name: security-docker
 description: Docker/container security audit patterns. Load when Dockerfile or docker-compose.yml present. Covers secrets in layers, port exposure, non-root users, multi-stage builds, and compose security.
 ---
-# Docker Security Audit
+
+<overview>
+
+Security audit patterns for Docker and container deployments covering secrets in images, port exposure, user privileges, and compose security.
+
+</overview>
+
+<vulnerabilities>
 
 ## Secrets in Images (Critical)
 
@@ -107,7 +114,7 @@ services:
 
 secrets:
   db_password:
-    file: ./secrets/db_password.txt  # Not in git!
+    file: ./secrets/db_password.txt  # MUST NOT be in git!
 ```
 
 ## Non-Root User
@@ -224,6 +231,10 @@ trivy image <image>
 grype <image>
 ```
 
+</vulnerabilities>
+
+<commands>
+
 ## Quick Audit Commands
 
 ```bash
@@ -246,6 +257,10 @@ grep "^USER" Dockerfile
 cat .dockerignore | grep -E "(env|key|secret|pem)"
 ```
 
+</commands>
+
+<checklist>
+
 ## Hardening Checklist
 
 - [ ] No secrets in ENV/ARG instructions
@@ -259,3 +274,5 @@ cat .dockerignore | grep -E "(env|key|secret|pem)"
 - [ ] No docker.sock mount (unless required)
 - [ ] Base images are official and recent
 - [ ] Images scanned for vulnerabilities
+
+</checklist>

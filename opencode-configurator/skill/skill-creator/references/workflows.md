@@ -1,6 +1,6 @@
 # Workflow Patterns
 
-## Sequential Workflows
+<sequential>
 
 List steps at the start of SKILL.md:
 
@@ -13,7 +13,9 @@ PDF form filling:
 5. Verify → run `verify_output.py`
 ```
 
-## Conditional Workflows
+</sequential>
+
+<conditional>
 
 Use decision trees:
 
@@ -25,3 +27,5 @@ Use decision trees:
 2. Creation workflow: [steps]
 3. Editing workflow: [steps]
 ```
+
+</conditional>

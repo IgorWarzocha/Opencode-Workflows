@@ -1,6 +1,6 @@
 # MCP Configuration Reference
 
-## Config Structure
+<config_structure>
 
 ```jsonc
 {
@@ -12,7 +12,9 @@
 }
 ```
 
-## Local MCP
+</config_structure>
+
+<local_mcp>
 
 ```jsonc
 {
@@ -26,7 +28,9 @@
 }
 ```
 
-## Remote MCP
+</local_mcp>
+
+<remote_mcp>
 
 ```jsonc
 {
@@ -41,7 +45,9 @@
 }
 ```
 
-## OAuth
+</remote_mcp>
+
+<oauth>
 
 **Automatic** (most servers):
 ```bash
@@ -66,7 +72,9 @@ opencode mcp auth server-name
 }
 ```
 
-## Tool Management
+</oauth>
+
+<tool_management>
 
 ```jsonc
 {
@@ -84,7 +92,9 @@ opencode mcp auth server-name
 }
 ```
 
-## Environment Variables
+</tool_management>
+
+<environment_variables>
 
 Use `{env:VAR_NAME}` in config. Set in shell:
 
@@ -93,3 +103,5 @@ export VAR_NAME=value
 ```
 
 Or in `.env` file in project root.
+
+</environment_variables>

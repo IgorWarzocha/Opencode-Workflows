@@ -7,9 +7,9 @@ description: Help users find and install OpenCode plugins. Use when user asks "i
 
 Help users discover, evaluate, and install OpenCode plugins from the community catalog.
 
-## Workflow
+<workflow>
 
-### 1. List Available Plugins
+## 1. List Available Plugins
 
 Run the catalog script to see what's available:
 
@@ -19,7 +19,7 @@ python3 ~/.config/opencode/skill/plugin-installer/scripts/list_plugins.py
 
 Output shows `name: description` with path to detailed file.
 
-### 2. Read Plugin Details
+## 2. Read Plugin Details
 
 For relevant matches, read the full plugin file:
 
@@ -33,12 +33,16 @@ Each file contains:
 - Features and caveats
 - Links to docs
 
-### 3. Recommend and Install
+## 3. Recommend and Install
 
 Show the user:
 - What the plugin does
 - Install snippet for `opencode.json`
 - Any setup steps (OAuth, config files, etc.)
+
+</workflow>
+
+<installation>
 
 ## Installation Format
 
@@ -59,7 +63,7 @@ Add to `plugin` array in opencode.json:
 ## Version Pinning
 
 ```jsonc
-// Pin version (recommended)
+// Pin version (RECOMMENDED)
 "plugin": ["package@1.2.3"]
 
 // Auto-update on restart
@@ -74,9 +78,13 @@ Force update when stuck:
 rm -rf ~/.cache/opencode/node_modules ~/.cache/opencode/bun.lock
 ```
 
+</installation>
+
+<documenting_new_plugins>
+
 ## Adding New Plugins to the Catalog
 
-When you discover a new OpenCode plugin (from web search, GitHub, npm, user mention), document it for future reference.
+When you discover a new OpenCode plugin (from web search, GitHub, npm, user mention), you MUST document it for future reference.
 
 ### Step 1: Gather Plugin Information
 
@@ -148,16 +156,22 @@ After creating, run the listing script to confirm it appears:
 python3 ~/.config/opencode/skill/plugin-installer/scripts/list_plugins.py
 ```
 
-### Frontmatter Requirements
+</documenting_new_plugins>
+
+<frontmatter_requirements>
 
 | Field | Required | Purpose |
 |-------|----------|---------|
 | `name` | Yes | Package name exactly as used in `"plugin": []` |
 | `description` | Yes | One-liner shown in catalog listings |
 
-**Important:** The `name` must match the npm package name exactly (including scope if any). This is what users will copy into their `opencode.json`.
+**Important:** The `name` MUST match the npm package name exactly (including scope if any). This is what users will copy into their `opencode.json`.
 
-### Example: Documenting a New Plugin
+</frontmatter_requirements>
+
+<example>
+
+## Documenting a New Plugin
 
 Say you found `@cooldev/opencode-metrics` on npm. Create:
 
@@ -182,3 +196,5 @@ Export your OpenCode usage data to external dashboards...
 
 ...
 ```
+
+</example>

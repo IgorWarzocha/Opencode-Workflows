@@ -2,7 +2,7 @@
 
 Complete `opencode.json` / `opencode.jsonc` options.
 
-## Top-Level Options
+<top_level_options>
 
 ```jsonc
 {
@@ -40,9 +40,11 @@ Complete `opencode.json` / `opencode.jsonc` options.
 }
 ```
 
-## Model Configuration
+</top_level_options>
 
-### model / small_model
+<model_configuration>
+
+## model / small_model
 
 ```jsonc
 {
@@ -53,7 +55,7 @@ Complete `opencode.json` / `opencode.jsonc` options.
 
 Format: `provider/model-id`. Run `opencode models` to list available models.
 
-### provider
+## provider
 
 Configure custom providers or override settings:
 
@@ -70,7 +72,7 @@ Configure custom providers or override settings:
 }
 ```
 
-### disabled_providers
+## disabled_providers
 
 Prevent providers from loading even if credentials exist:
 
@@ -80,7 +82,9 @@ Prevent providers from loading even if credentials exist:
 }
 ```
 
-## Tools Configuration
+</model_configuration>
+
+<tools_configuration>
 
 Enable/disable tools globally:
 
@@ -113,9 +117,11 @@ Wildcards supported for MCP tools:
 }
 ```
 
-## Permissions
+</tools_configuration>
 
-### Simple Permissions
+<permissions>
+
+## Simple Permissions
 
 ```jsonc
 {
@@ -126,7 +132,7 @@ Wildcards supported for MCP tools:
 }
 ```
 
-### Pattern-Based Bash Permissions
+## Pattern-Based Bash Permissions
 
 ```jsonc
 {
@@ -143,7 +149,7 @@ Wildcards supported for MCP tools:
 }
 ```
 
-### Skill Permissions
+## Skill Permissions
 
 ```jsonc
 {
@@ -157,7 +163,9 @@ Wildcards supported for MCP tools:
 }
 ```
 
-## Agent Configuration
+</permissions>
+
+<agent_configuration>
 
 Define agents in config:
 
@@ -183,7 +191,9 @@ Define agents in config:
 }
 ```
 
-## Commands
+</agent_configuration>
+
+<commands>
 
 Custom slash commands:
 
@@ -202,7 +212,9 @@ Custom slash commands:
 
 Use `$ARGUMENTS` for user input after command.
 
-## Instructions
+</commands>
+
+<instructions>
 
 Include additional instruction files:
 
@@ -219,7 +231,9 @@ Include additional instruction files:
 
 Supports glob patterns.
 
-## Formatters
+</instructions>
+
+<formatters>
 
 Configure code formatters:
 
@@ -238,7 +252,9 @@ Configure code formatters:
 }
 ```
 
-## MCP Servers
+</formatters>
+
+<mcp_servers>
 
 Configure Model Context Protocol servers:
 
@@ -254,9 +270,11 @@ Configure Model Context Protocol servers:
 }
 ```
 
-## Variable Substitution
+</mcp_servers>
 
-### Environment Variables
+<variable_substitution>
+
+## Environment Variables
 
 ```jsonc
 {
@@ -271,7 +289,7 @@ Configure Model Context Protocol servers:
 }
 ```
 
-### File Contents
+## File Contents
 
 ```jsonc
 {
@@ -289,6 +307,10 @@ Configure Model Context Protocol servers:
   }
 }
 ```
+
+</variable_substitution>
+
+<misc_options>
 
 ## TUI Options
 
@@ -311,3 +333,5 @@ Configure Model Context Protocol servers:
 - `manual` - Share via `/share` command (default)
 - `auto` - Auto-share new conversations
 - `disabled` - No sharing
+
+</misc_options>

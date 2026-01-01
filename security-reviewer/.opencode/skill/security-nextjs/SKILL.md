@@ -2,7 +2,14 @@
 name: security-nextjs
 description: Next.js security audit patterns. Load when reviewing Next.js apps (next.config.js present). Covers NEXT_PUBLIC_* exposure, Server Actions, middleware auth, API routes, and App Router security.
 ---
-# Next.js Security Audit
+
+<overview>
+
+Security audit patterns for Next.js applications covering environment variable exposure, Server Actions, middleware auth, API routes, and App Router security.
+
+</overview>
+
+<rules>
 
 ## Environment Variable Exposure
 
@@ -16,8 +23,8 @@ No prefix     → Server-only → Safe for secrets
 1. `grep -r "NEXT_PUBLIC_" . -g "*.env*"`
 2. For each var, ask: "Would I be OK if this was in view-source?"
 3. Common mistakes:
-   - `NEXT_PUBLIC_API_KEY` (should be server-only)
-   - `NEXT_PUBLIC_DATABASE_URL` (never!)
+   - `NEXT_PUBLIC_API_KEY` (SHOULD be server-only)
+   - `NEXT_PUBLIC_DATABASE_URL` (MUST NOT use)
    - `NEXT_PUBLIC_STRIPE_SECRET_KEY` (use `STRIPE_SECRET_KEY`)
 
 **Safe pattern:**
@@ -41,6 +48,10 @@ module.exports = {
   },
 };
 ```
+
+</rules>
+
+<vulnerabilities>
 
 ## Server Actions Security
 
@@ -120,7 +131,7 @@ export function middleware(request: NextRequest) {
   // ❌ Just checking existence
   if (!token) return NextResponse.redirect("/login");
   
-  // ✓ Should verify token
+  // ✓ SHOULD verify token
   // But middleware can't do async DB calls easily!
   // Solution: Use next-auth middleware or verify JWT
 }
@@ -163,6 +174,10 @@ module.exports = {
 };
 ```
 
+</vulnerabilities>
+
+<severity_table>
+
 ## Common Vulnerabilities
 
 | Issue | Where to Look | Severity |
@@ -175,6 +190,10 @@ module.exports = {
 | IDOR in dynamic routes | `[id]` params without ownership check | HIGH |
 | dangerouslySetInnerHTML | Components | MEDIUM |
 | Missing security headers | `next.config.js` | LOW |
+
+</severity_table>
+
+<commands>
 
 ## Quick Grep Commands
 
@@ -194,3 +213,5 @@ fd 'route\.(ts|js)' app/api/
 # Find dangerouslySetInnerHTML
 rg 'dangerouslySetInnerHTML' . -g "*.tsx" -g "*.jsx"
 ```
+
+</commands>

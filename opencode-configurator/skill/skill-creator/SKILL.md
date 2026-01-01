@@ -7,6 +7,8 @@ description: Guide for creating effective opencode skills. Use when users want t
 
 Create opencode skills that extend agent capabilities with specialized knowledge and workflows.
 
+<overview>
+
 ## What Skills Provide
 
 - **Specialized workflows** - Multi-step procedures for specific domains
@@ -25,6 +27,10 @@ Create opencode skills that extend agent capabilities with specialized knowledge
 - **Global skills**: Personal tools for all projects (e.g., `pdf-editor`, `commit-helper`)
 
 For project paths, OpenCode walks up from cwd to git worktree root.
+
+</overview>
+
+<structure>
 
 ## Skill Structure
 
@@ -46,7 +52,7 @@ description: What it does + when to trigger it. Be comprehensive.
 # Instructions here (markdown body)
 ```
 
-**Critical**: The `description` field determines when the skill triggers. Include:
+**Critical**: The `description` field determines when the skill triggers. MUST include:
 - What the skill does
 - Specific trigger phrases and contexts
 - File types or domains it handles
@@ -61,7 +67,11 @@ Example: `"Document creation and editing for .docx files. Use for: creating docu
 | `references/` | Docs, schemas, API specs | Info agent needs while working |
 | `assets/` | Templates, images, fonts | Files used in output (not loaded) |
 
-**Do NOT include**: README.md, CHANGELOG.md, INSTALLATION_GUIDE.md, or other auxiliary docs. Skills contain only what the agent needs to do the job.
+**MUST NOT include**: README.md, CHANGELOG.md, INSTALLATION_GUIDE.md, or other auxiliary docs. Skills contain only what the agent needs to do the job.
+
+</structure>
+
+<principles>
 
 ## Core Principles
 
@@ -71,7 +81,7 @@ The context window is shared. Only add info the agent doesn't already have.
 
 - Challenge each paragraph: "Does this justify its token cost?"
 - Prefer examples over explanations
-- Keep SKILL.md under 500 lines
+- SHOULD keep SKILL.md under 500 lines
 
 ### Match Freedom to Fragility
 
@@ -99,6 +109,10 @@ cloud-deploy/
     └── azure.md
 ```
 Agent loads only the relevant provider file.
+
+</principles>
+
+<workflow>
 
 ## Creation Process
 
@@ -147,10 +161,10 @@ Creates:
 ### Step 4: Edit
 
 **Writing guidelines:**
-- Use imperative form ("Run the script", not "You should run")
-- Use bullet points over prose
-- Link to references for detailed info
-- Test all scripts before including
+- MUST use imperative form ("Run the script", not "You should run")
+- SHOULD use bullet points over prose
+- SHOULD link to references for detailed info
+- MUST test all scripts before including
 
 **Design pattern references:**
 - `references/workflows.md` - Sequential and conditional workflows
@@ -180,6 +194,10 @@ After real usage:
 2. Update SKILL.md or resources
 3. Re-package and test
 
+</workflow>
+
+<permissions>
+
 ## Agent Permissions
 
 Control skill access per-agent in agent config:
@@ -193,3 +211,5 @@ Control skill access per-agent in agent config:
 ```
 
 Values: `"allow"`, `"deny"`, `"ask"`. Use `"*"` as wildcard default.
+
+</permissions>

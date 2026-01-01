@@ -1,12 +1,14 @@
 # OpenCode Agent Configuration Reference
 
-## File Locations
+<file_locations>
 
 Agent definitions are markdown files in:
 - `.opencode/agent/<name>.md` (project)
 - `~/.config/opencode/agent/<name>.md` (global)
 
-## Complete Frontmatter Schema
+</file_locations>
+
+<frontmatter_schema>
 
 ```yaml
 ---
@@ -48,7 +50,9 @@ permission:
 ---
 ```
 
-## Agent Mode Types
+</frontmatter_schema>
+
+<agent_modes>
 
 | Mode | Description |
 |------|-------------|
@@ -56,9 +60,11 @@ permission:
 | `subagent` | Only callable via `task` tool by other agents |
 | `all` | Both primary and subagent (default) |
 
-## Permission System
+</agent_modes>
 
-### Permission Values
+<permissions>
+
+## Permission Values
 
 | Value | Behavior |
 |-------|----------|
@@ -66,12 +72,12 @@ permission:
 | `"ask"` | Prompt user for approval |
 | `"deny"` | Automatically reject |
 
-### Permission Categories
+## Permission Categories
 
-#### `edit`
+### `edit`
 Controls `edit` and `write` tools.
 
-#### `bash`
+### `bash`
 Controls command execution. Supports wildcard patterns:
 
 ```yaml
@@ -82,7 +88,7 @@ bash:
   "rm *": "deny"          # Block deletion
 ```
 
-#### `skill`
+### `skill`
 Controls skill access:
 
 ```yaml
@@ -91,13 +97,13 @@ skill:
   "my-skill": "allow"     # Allow specific skill
 ```
 
-#### `webfetch`
+### `webfetch`
 Controls web fetching. `"ask"` prompts for each URL.
 
-#### `doom_loop`
+### `doom_loop`
 Controls doom loop detection (agent stuck in repetitive patterns).
 
-#### `external_directory`
+### `external_directory`
 Controls access to files outside working directory. Affects:
 - bash commands referencing external paths
 - read/edit/write for external files
@@ -116,11 +122,11 @@ permission:
   external_directory: "ask"
 ```
 
----
+</permissions>
 
-## Available Tools
+<available_tools>
 
-### File Operations
+## File Operations
 
 | Tool | Purpose | Key Parameters |
 |------|---------|----------------|
@@ -128,7 +134,7 @@ permission:
 | `edit` | String replacement in files | `filePath`, `oldString`, `newString`, `replaceAll` |
 | `write` | Create/overwrite files | `filePath`, `content` |
 
-### Search & Navigation
+## Search & Navigation
 
 | Tool | Purpose | Key Parameters |
 |------|---------|----------------|
@@ -136,7 +142,7 @@ permission:
 | `grep` | Search file contents (regex) | `pattern`, `path`, `include` |
 | `list` | List directory contents | `path` |
 
-### Command Execution
+## Command Execution
 
 | Tool | Purpose | Key Parameters |
 |------|---------|----------------|
@@ -144,7 +150,7 @@ permission:
 
 Default timeout: 120000ms. Permissions: `bash`, `external_directory`.
 
-### Web & External
+## Web & External
 
 | Tool | Purpose | Key Parameters |
 |------|---------|----------------|
@@ -152,7 +158,7 @@ Default timeout: 120000ms. Permissions: `bash`, `external_directory`.
 | `websearch` | Web search via Exa AI | `query`, `numResults` |
 | `codesearch` | Code/SDK documentation search | `query`, `tokensNum` |
 
-### Task Management
+## Task Management
 
 | Tool | Purpose | Key Parameters |
 |------|---------|----------------|
@@ -160,7 +166,7 @@ Default timeout: 120000ms. Permissions: `bash`, `external_directory`.
 | `todowrite` | Update todo list | `todos` array |
 | `todoread` | Read todo list | (none) |
 
-### Other Tools
+## Other Tools
 
 | Tool | Purpose | Notes |
 |------|---------|-------|
@@ -168,9 +174,9 @@ Default timeout: 120000ms. Permissions: `bash`, `external_directory`.
 | `batch` | Parallel tool execution | Experimental: `config.experimental.batch_tool` |
 | `lsp` | Language Server Protocol | Experimental: `OPENCODE_EXPERIMENTAL_LSP_TOOL` |
 
----
+</available_tools>
 
-## Tool Access Control
+<tool_access_control>
 
 Disable specific tools for an agent:
 
@@ -183,11 +189,11 @@ tools:
 
 All tools inherit from global `config.tools` by default.
 
----
+</tool_access_control>
 
-## Examples
+<examples>
 
-### Restricted Code Review Agent
+## Restricted Code Review Agent
 
 ```yaml
 ---
@@ -204,7 +210,7 @@ permission:
 You are a code review specialist...
 ```
 
-### Research Subagent
+## Research Subagent
 
 ```yaml
 ---
@@ -218,7 +224,7 @@ permission:
 You are a research specialist...
 ```
 
-### Deployment Agent with Specific Commands
+## Deployment Agent with Specific Commands
 
 ```yaml
 ---
@@ -236,3 +242,5 @@ permission:
 ---
 You are a deployment specialist...
 ```
+
+</examples>

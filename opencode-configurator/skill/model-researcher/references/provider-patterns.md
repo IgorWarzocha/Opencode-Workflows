@@ -2,11 +2,11 @@
 
 Quick reference for common provider setups.
 
-## Built-in Providers
+<builtin_providers>
 
 These providers are pre-configured in OpenCode. Just add the model.
 
-### OpenAI
+## OpenAI
 
 ```jsonc
 {
@@ -23,7 +23,7 @@ These providers are pre-configured in OpenCode. Just add the model.
 }
 ```
 
-### Anthropic
+## Anthropic
 
 ```jsonc
 {
@@ -40,7 +40,7 @@ These providers are pre-configured in OpenCode. Just add the model.
 }
 ```
 
-### Google (Generative AI)
+## Google (Generative AI)
 
 ```jsonc
 {
@@ -57,7 +57,7 @@ These providers are pre-configured in OpenCode. Just add the model.
 }
 ```
 
-### xAI
+## xAI
 
 ```jsonc
 {
@@ -74,7 +74,7 @@ These providers are pre-configured in OpenCode. Just add the model.
 }
 ```
 
-### DeepSeek
+## DeepSeek
 
 ```jsonc
 {
@@ -91,11 +91,13 @@ These providers are pre-configured in OpenCode. Just add the model.
 }
 ```
 
-## Aggregator Providers
+</builtin_providers>
+
+<aggregator_providers>
 
 Route through model aggregators for access to many models.
 
-### OpenRouter
+## OpenRouter
 
 ```jsonc
 {
@@ -136,7 +138,7 @@ With provider routing:
 }
 ```
 
-### Together AI
+## Together AI
 
 ```jsonc
 {
@@ -153,9 +155,11 @@ With provider routing:
 }
 ```
 
-## Custom / Self-Hosted
+</aggregator_providers>
 
-### Generic OpenAI-Compatible
+<custom_providers>
+
+## Generic OpenAI-Compatible
 
 ```jsonc
 {
@@ -177,7 +181,7 @@ With provider routing:
 }
 ```
 
-### Ollama (Local)
+## Ollama (Local)
 
 ```jsonc
 {
@@ -199,7 +203,7 @@ With provider routing:
 }
 ```
 
-### LM Studio
+## LM Studio
 
 ```jsonc
 {
@@ -220,7 +224,7 @@ With provider routing:
 }
 ```
 
-### vLLM Server
+## vLLM Server
 
 ```jsonc
 {
@@ -242,9 +246,11 @@ With provider routing:
 }
 ```
 
-## Enterprise / Proxy Setups
+</custom_providers>
 
-### Azure OpenAI
+<enterprise_setups>
+
+## Azure OpenAI
 
 ```jsonc
 {
@@ -262,7 +268,7 @@ With provider routing:
 
 Note: Requires `AZURE_RESOURCE_NAME` env var and model deployment matching model name.
 
-### Cloudflare AI Gateway
+## Cloudflare AI Gateway
 
 ```jsonc
 {
@@ -279,7 +285,7 @@ Note: Requires `AZURE_RESOURCE_NAME` env var and model deployment matching model
 
 Note: Requires `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_GATEWAY_ID` env vars.
 
-### Custom Headers (e.g., auth proxy)
+## Custom Headers (e.g., auth proxy)
 
 ```jsonc
 {
@@ -302,9 +308,11 @@ Note: Requires `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_GATEWAY_ID` env vars.
 }
 ```
 
-## Model Options
+</enterprise_setups>
 
-### Reasoning / Thinking Modes
+<model_options>
+
+## Reasoning / Thinking Modes
 
 OpenAI reasoning models:
 
@@ -331,7 +339,7 @@ Anthropic extended thinking:
 }
 ```
 
-### Custom Variants
+## Custom Variants
 
 Create named variants of the same model:
 
@@ -356,7 +364,9 @@ Create named variants of the same model:
 }
 ```
 
-## Token Limits Reference
+</model_options>
+
+<token_limits>
 
 Common context window sizes:
 
@@ -368,4 +378,6 @@ Common context window sizes:
 | XL | 200,000 | Claude 3.5/4 |
 | XXL | 1,000,000+ | Gemini 1.5/2 Pro |
 
-Always verify actual limits from official docs - these change frequently.
+MUST verify actual limits from official docs - these change frequently.
+
+</token_limits>

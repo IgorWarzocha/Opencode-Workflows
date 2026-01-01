@@ -2,14 +2,25 @@
 name: security-ai-keys
 description: AI API key leakage review patterns. Use when code integrates AI providers (OpenAI, OpenRouter, Anthropic, Google/Gemini/Vertex, AWS Bedrock, Azure OpenAI, Mistral, Cohere, Groq, Replicate, Together, Perplexity, Fireworks, Hugging Face) or when env vars/keys are present. Focuses on client-side exposure, logging/redaction, and build artifacts.
 ---
-# AI API Key Leakage Review
+
+<overview>
+
+Security audit patterns for AI API key leakage in applications integrating AI providers.
+
+</overview>
+
+<rules>
 
 ## Core Principles
 
-- Treat AI API keys as secrets and keep them server-side.
-- Never ship keys to browsers or mobile clients.
-- Avoid logging keys; redact before logging or error reporting.
-- Rotate keys immediately if exposure is suspected.
+- MUST treat AI API keys as secrets and keep them server-side.
+- MUST NOT ship keys to browsers or mobile clients.
+- SHOULD avoid logging keys; redact before logging or error reporting.
+- MUST rotate keys immediately if exposure is suspected.
+
+</rules>
+
+<vulnerabilities>
 
 ## Common Leak Paths
 
@@ -24,6 +35,10 @@ description: AI API key leakage review patterns. Use when code integrates AI pro
 ### 3) Logs and Telemetry
 - `console.log` / logger statements that include key values
 - Error tracking payloads (Sentry, Datadog) with headers included
+
+</vulnerabilities>
+
+<commands>
 
 ## Quick Audit Commands
 
@@ -41,6 +56,10 @@ rg -a "sk-[A-Za-z0-9]{20,}|sk-ant-[A-Za-z0-9-]{20,}|sk-or-[A-Za-z0-9-]{20,}|AIza
 rg -n "\"type\"\s*:\s*\"service_account\"|GOOGLE_APPLICATION_CREDENTIALS|AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY|AZURE_OPENAI_API_KEY" . -g "*.env*" -g "*.json"
 ```
 
+</commands>
+
+<checklist>
+
 ## Hardening Checklist
 
 - [ ] AI provider keys only in server runtime (never in browser)
@@ -49,6 +68,12 @@ rg -n "\"type\"\s*:\s*\"service_account\"|GOOGLE_APPLICATION_CREDENTIALS|AWS_ACC
 - [ ] Build artifacts scanned before deploy
 - [ ] Keys rotated if exposure suspected
 
+</checklist>
+
+<scripts>
+
 ## Scripts
 
 - `scripts/scan.sh` - First-pass AI key leakage scan
+
+</scripts>

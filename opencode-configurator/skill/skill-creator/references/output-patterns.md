@@ -1,6 +1,6 @@
 # Output Patterns
 
-## Template Pattern
+<template_pattern>
 
 **Strict (API responses, data formats):**
 
@@ -29,7 +29,9 @@ Default format (adjust as needed):
 ## Recommendations
 ```
 
-## Examples Pattern
+</template_pattern>
+
+<examples_pattern>
 
 Show input/output pairs:
 
@@ -52,3 +54,5 @@ fix(reports): correct date timezone conversion
 ```
 
 Examples > descriptions for showing desired style.
+
+</examples_pattern>

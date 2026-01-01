@@ -2,11 +2,19 @@
 name: security-fastapi
 description: FastAPI security audit patterns. Use when reviewing FastAPI apps (fastapi imports, main.py/app.py, requirements/pyproject with fastapi, uvicorn). Covers auth dependencies, CORS configuration, TrustedHost/HTTPS middleware, and common FastAPI/Starlette security footguns.
 ---
-# FastAPI Security Audit
+
+<overview>
+
+Security audit patterns for FastAPI applications covering authentication dependencies, CORS configuration, and middleware security.
+
+</overview>
+
+<vulnerabilities>
 
 ## Core Risks to Check
 
 ### Missing Auth on Routes
+
 FastAPI expects authentication/authorization via dependencies on routes or routers. If no `Depends()`/`Security()` usage exists, review every route for unintended public access.
 
 ```python
@@ -22,7 +30,8 @@ async def scoped_route(user=Security(get_current_user, scopes=["items"])):
 ```
 
 ### API Key Schemes
-If using API keys, prefer header-based schemes (`APIKeyHeader`) and validate the key server-side.
+
+If using API keys, SHOULD prefer header-based schemes (`APIKeyHeader`) and validate the key server-side.
 
 ```python
 from fastapi import Depends, FastAPI
@@ -36,7 +45,8 @@ async def read_items(key: str = Depends(api_key)):
 ```
 
 ### CORS: Avoid Wildcards with Credentials
-Using `allow_origins=["*"]` excludes credentialed requests (cookies/Authorization). For authenticated browser clients, explicitly list allowed origins.
+
+Using `allow_origins=["*"]` excludes credentialed requests (cookies/Authorization). For authenticated browser clients, MUST explicitly list allowed origins.
 
 ```python
 from fastapi.middleware.cors import CORSMiddleware
@@ -51,7 +61,8 @@ app.add_middleware(
 ```
 
 ### Host Header and HTTPS Enforcement
-Use Starlette middleware to prevent host-header attacks and enforce HTTPS in production.
+
+SHOULD use Starlette middleware to prevent host-header attacks and enforce HTTPS in production.
 
 ```python
 from starlette.middleware.trustedhost import TrustedHostMiddleware
@@ -60,6 +71,10 @@ from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=["example.com", "*.example.com"])
 app.add_middleware(HTTPSRedirectMiddleware)
 ```
+
+</vulnerabilities>
+
+<commands>
 
 ## Quick Audit Commands
 
@@ -80,6 +95,10 @@ rg -n "CORSMiddleware|allow_origins|allow_credentials" . -g "*.py"
 rg -n "TrustedHostMiddleware|HTTPSRedirectMiddleware" . -g "*.py"
 ```
 
+</commands>
+
+<checklist>
+
 ## Hardening Checklist
 
 - [ ] All sensitive routes require `Depends()` or `Security()` auth dependencies
@@ -88,6 +107,12 @@ rg -n "TrustedHostMiddleware|HTTPSRedirectMiddleware" . -g "*.py"
 - [ ] `TrustedHostMiddleware` configured for production domains
 - [ ] `HTTPSRedirectMiddleware` enabled in production (or enforced by proxy)
 
+</checklist>
+
+<scripts>
+
 ## Scripts
 
 - `scripts/scan.sh` - First-pass FastAPI security scan
+
+</scripts>

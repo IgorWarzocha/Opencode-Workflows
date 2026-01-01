@@ -2,11 +2,18 @@
 name: security-bun
 description: Bun runtime security audit patterns. Load when reviewing Bun apps (bun.lockb, bunfig.toml, or bun:* imports present). Covers Bun shell injection, bun:sqlite SQL injection, Bun.serve, Bun.spawn, file operations, and Bun-specific footguns.
 ---
-# Bun Security Audit
+
+<overview>
+
+Security audit patterns for Bun runtime applications covering shell injection, SQL injection, server security, and Bun-specific vulnerabilities.
+
+</overview>
+
+<rules>
 
 ## The #1 Bun Footgun: Shell Escaping vs Raw Shell
 
-Bun’s shell `$` is a tagged template that escapes by default. If you bypass escaping (via raw mode), user input can become command injection.
+Bun's shell `$` is a tagged template that escapes by default. If you bypass escaping (via raw mode), user input can become command injection.
 
 ```typescript
 import { $ } from "bun";
@@ -84,6 +91,10 @@ stmt.get(userInput);
 // ✓ SAFE: Query with parameters
 db.query("SELECT * FROM users WHERE email = ?").get(userInput);
 ```
+
+</rules>
+
+<vulnerabilities>
 
 ## Bun.serve() Security
 
@@ -339,11 +350,15 @@ Bun.serve({
 });
 ```
 
+</vulnerabilities>
+
+<severity_table>
+
 ## Common Vulnerabilities Summary
 
 | Issue | Pattern to Find | Severity |
 |-------|-----------------|----------|
-| Shell injection (function call) | `$(`...`)` or `$("..."` | CRITICAL |
+| Shell injection (function call) | `$(`...`)` or `$("...")` | CRITICAL |
 | SQL injection (function call) | `sql(`...`)` | CRITICAL |
 | SQL string interpolation | `` `...${var}...` `` in SQL | CRITICAL |
 | Argument injection | User input starting with `-` | HIGH |
@@ -352,6 +367,10 @@ Bun.serve({
 | Open CORS | `Access-Control-Allow-Origin: *` | MEDIUM |
 | Network exposure | `hostname: "0.0.0.0"` | MEDIUM |
 | Missing WebSocket auth | `server.upgrade` without auth check | HIGH |
+
+</severity_table>
+
+<commands>
 
 ## Quick Audit Commands
 
@@ -381,6 +400,10 @@ rg 'Access-Control-Allow-Origin' . -g "*.ts" -g "*.js"
 rg 'server\.upgrade' . -g "*.ts" -g "*.js" -B 5
 ```
 
+</commands>
+
+<checklist>
+
 ## Hardening Checklist
 
 - [ ] All `$` shell usage is tagged template (no parentheses)
@@ -394,3 +417,5 @@ rg 'server\.upgrade' . -g "*.ts" -g "*.js" -B 5
 - [ ] WebSocket connections authenticated before upgrade
 - [ ] Bun.password.hash used for passwords (not plaintext)
 - [ ] bunfig.toml reviewed for suspicious settings
+
+</checklist>

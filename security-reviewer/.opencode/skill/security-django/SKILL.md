@@ -2,7 +2,14 @@
 name: security-django
 description: Django security audit patterns. Load when reviewing Django apps (settings.py or manage.py present). Covers SECRET_KEY, ALLOWED_HOSTS, DEBUG, CSRF, SecurityMiddleware, and Django-specific issues.
 ---
-# Django Security Audit
+
+<overview>
+
+Security audit patterns for Django applications covering critical settings, security middleware, CSRF protection, and common vulnerabilities.
+
+</overview>
+
+<rules>
 
 ## Critical Settings (settings.py)
 
@@ -50,7 +57,7 @@ ALLOWED_HOSTS = ['example.com', 'www.example.com']
 ### Required Middleware
 ```python
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',  # Must be first!
+    'django.middleware.security.SecurityMiddleware',  # MUST be first!
     # ...
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -72,6 +79,10 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 ```
 
+</rules>
+
+<vulnerabilities>
+
 ## CSRF Protection
 
 ### Disabled CSRF (Critical)
@@ -83,11 +94,11 @@ MIDDLEWARE = [
 
 # ❌ HIGH: Decorator abuse
 @csrf_exempt
-def payment_webhook(request):  # Maybe OK for webhooks with other auth
+def payment_webhook(request):  # MAY be OK for webhooks with other auth
     ...
 
 @csrf_exempt
-def update_profile(request):  # NOT OK!
+def update_profile(request):  # MUST NOT do this!
     ...
 ```
 
@@ -191,6 +202,10 @@ REST_FRAMEWORK = {
 }
 ```
 
+</vulnerabilities>
+
+<commands>
+
 ## Quick Audit Commands
 
 ```bash
@@ -216,6 +231,10 @@ rg "^def " views.py | head -20  # Then check which have decorators
 rg "shell\s*=\s*True" . -g "*.py"
 ```
 
+</commands>
+
+<checklist>
+
 ## Hardening Checklist
 
 - [ ] SECRET_KEY from environment, not hardcoded
@@ -230,3 +249,5 @@ rg "shell\s*=\s*True" . -g "*.py"
 - [ ] All views have appropriate auth decorators
 - [ ] No raw SQL with string formatting
 - [ ] DRF has IsAuthenticated as default permission
+
+</checklist>

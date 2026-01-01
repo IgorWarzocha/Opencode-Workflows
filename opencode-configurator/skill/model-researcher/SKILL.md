@@ -8,16 +8,20 @@ description: |
 
 Add new or custom AI models to opencode.json with verified specifications.
 
-## When This Applies
+<when_to_use>
 
 - Model is too new for models.dev
 - Non-standard or custom provider (self-hosted, proxy, enterprise)
 - User heard about a new release and wants to use it immediately
 - Model exists but with non-default configuration needs
 
-## Critical Rule: Verify Before Configure
+</when_to_use>
 
-**NEVER hallucinate model specifications.** Models have precise identifiers, context limits, and API requirements. A wrong value means broken requests or wasted tokens.
+<critical_rule>
+
+## Verify Before Configure
+
+**MUST NOT hallucinate model specifications.** Models have precise identifiers, context limits, and API requirements. A wrong value means broken requests or wasted tokens.
 
 Before ANY configuration:
 1. Confirm the model actually exists
@@ -25,15 +29,17 @@ Before ANY configuration:
 3. Get verified context and output token limits
 4. Identify required provider configuration
 
-## Workflow
+</critical_rule>
 
-### Step 1: Clarify What the User Wants
+<workflow>
+
+## Step 1: Clarify What the User Wants
 
 Ask if unclear:
 - "Which provider will you access this through?" (direct API, OpenRouter, Together, self-hosted, etc.)
 - "Do you have API access already, or do you need setup help?"
 
-### Step 2: Research the Model
+## Step 2: Research the Model
 
 Use web search to find authoritative sources:
 
@@ -52,11 +58,11 @@ websearch("${MODEL_NAME} model ID API identifier ${PROVIDER}")
 **Red flags - search more if you only find:**
 - Reddit speculation
 - Tweets without official confirmation
-- Your own training data (may be outdated)
+- Your own training data (MAY be outdated)
 
-### Step 3: Confirm Findings with User
+## Step 3: Confirm Findings with User
 
-Before touching config, present your research:
+Before touching config, MUST present your research:
 
 ```
 I found the following for [MODEL]:
@@ -72,9 +78,9 @@ Source: [URL]
 Does this match what you expected? Should I add this to your config?
 ```
 
-**Do not proceed without user confirmation.**
+**MUST NOT proceed without user confirmation.**
 
-### Step 4: Apply Configuration
+## Step 4: Apply Configuration
 
 Read the current config first:
 ```
@@ -83,7 +89,7 @@ read ~/.config/opencode/opencode.json
 
 Then apply using surgical edits. Choose the right pattern:
 
-#### Pattern A: Built-in Provider, New Model
+### Pattern A: Built-in Provider, New Model
 
 For new models on existing providers (OpenAI, Anthropic, etc.):
 
@@ -105,7 +111,7 @@ For new models on existing providers (OpenAI, Anthropic, etc.):
 }
 ```
 
-#### Pattern B: Custom Provider (OpenAI-compatible)
+### Pattern B: Custom Provider (OpenAI-compatible)
 
 For self-hosted, proxy, or unlisted providers:
 
@@ -132,7 +138,7 @@ For self-hosted, proxy, or unlisted providers:
 }
 ```
 
-#### Pattern C: Model Variant with Custom Options
+### Pattern C: Model Variant with Custom Options
 
 For models that need specific options (reasoning, thinking budget, etc.):
 
@@ -157,7 +163,7 @@ For models that need specific options (reasoning, thinking budget, etc.):
 }
 ```
 
-### Step 5: Validate
+## Step 5: Validate
 
 After editing, remind user to test:
 
@@ -173,7 +179,9 @@ If you see errors, check:
 - Context limits aren't higher than the model actually supports
 ```
 
-## Common Research Queries
+</workflow>
+
+<research_queries>
 
 | Scenario | Search Query |
 |----------|--------------|
@@ -184,7 +192,9 @@ If you see errors, check:
 | Together AI availability | `"${MODEL}" site:together.ai` |
 | Self-hosted specs | `"${MODEL}" context length output tokens huggingface` |
 
-## Model Specification Checklist
+</research_queries>
+
+<spec_checklist>
 
 Before configuring, ensure you have:
 
@@ -196,7 +206,9 @@ Before configuring, ensure you have:
 - [ ] **Special options**: Vision, reasoning modes, thinking budgets
 - [ ] **Availability**: Is it actually accessible (not waitlist-only)?
 
-## Handling Uncertainty
+</spec_checklist>
+
+<handling_uncertainty>
 
 If you cannot verify specifications:
 
@@ -204,6 +216,8 @@ If you cannot verify specifications:
 2. **Provide best guess with source**: "Based on [source], it appears to be 128k, but this isn't confirmed."
 3. **Suggest conservative defaults**: "I'll configure with 100k context as a safe starting point. You can increase it once you confirm the actual limit."
 4. **Recommend checking**: "Try the provider's /models endpoint or documentation for exact specs."
+
+</handling_uncertainty>
 
 ## References
 

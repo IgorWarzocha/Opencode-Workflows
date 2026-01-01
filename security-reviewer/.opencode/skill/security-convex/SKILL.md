@@ -2,7 +2,14 @@
 name: security-convex
 description: Convex security audit patterns. Load when reviewing Convex apps (convex/ directory present). Covers query/mutation auth, row-level security, public vs authenticated functions, validators, and Convex-specific issues.
 ---
-# Convex Security Audit
+
+<overview>
+
+Security audit patterns for Convex applications covering authentication, authorization, input validation, and Convex-specific vulnerabilities.
+
+</overview>
+
+<rules>
 
 ## The #1 Vibecoding Mistake: Unauthenticated Functions
 
@@ -82,6 +89,10 @@ export const sensitiveData = query({
   },
 });
 ```
+
+</rules>
+
+<vulnerabilities>
 
 ## Authorization: The IDOR Problem
 
@@ -353,6 +364,10 @@ export const callStripe = action({
 
 **Note:** Environment variables are only available in actions, not queries/mutations.
 
+</vulnerabilities>
+
+<severity_table>
+
 ## Common Vulnerabilities Summary
 
 | Issue | Where to Look | Severity |
@@ -365,6 +380,10 @@ export const callStripe = action({
 | HTTP action without auth | `httpAction(` | HIGH |
 | Subscription data leak | Queries returning collections | MEDIUM |
 | Raw query/mutation (no custom fn) | Not using userQuery/userMutation | MEDIUM |
+
+</severity_table>
+
+<commands>
 
 ## Quick Audit Commands
 
@@ -390,6 +409,10 @@ rg "httpAction" convex/
 rg "internalMutation|internalQuery|internalAction" convex/
 ```
 
+</commands>
+
+<checklist>
+
 ## Hardening Checklist
 
 - [ ] All queries/mutations have auth checks (or use custom functions)
@@ -401,3 +424,5 @@ rg "internalMutation|internalQuery|internalAction" convex/
 - [ ] Real-time subscriptions filter by user access
 - [ ] Custom functions (userQuery/userMutation) used consistently
 - [ ] ESLint rules prevent importing raw query/mutation
+
+</checklist>

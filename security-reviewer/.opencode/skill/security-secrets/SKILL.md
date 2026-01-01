@@ -2,7 +2,14 @@
 name: security-secrets
 description: Secret detection patterns and scanning workflow. Auto-loaded by security-reviewer agent for all security audits. Contains regex patterns for 25+ secret types (AWS, Google, GitHub, Stripe, etc.) and CLI scanning commands.
 ---
-# Secret Detection Patterns
+
+<overview>
+
+High-signal regex patterns for detecting secrets in codebases.
+
+</overview>
+
+<patterns>
 
 ## High-Signal Regex Patterns
 
@@ -43,6 +50,10 @@ description: Secret detection patterns and scanning workflow. Auto-loaded by sec
 | JWT Secret | `(?i)(jwt[_-]?secret|token[_-]?secret)['"]?\s*[:=]\s*['"][^'"]+['"]` | Config files |
 | Generic Secret | `(?i)(password|passwd|secret|api_key|apikey|access_token|auth_token)['"]?\s*[:=]\s*['"][^'"]{8,}['"]` | Catch-all |
 
+</patterns>
+
+<commands>
+
 ## CLI Scanning Commands
 
 ```bash
@@ -57,6 +68,10 @@ semgrep scan --config p/secrets --error
 trufflehog filesystem . --only-verified
 ```
 
+</commands>
+
+<priority_files>
+
 ## Files to Prioritize
 
 | File Pattern | Risk Level | Why |
@@ -69,9 +84,13 @@ trufflehog filesystem . --only-verified
 | `*test*`, `*spec*`, `*fixture*` | MEDIUM | Test data with real creds |
 | `*.pem`, `*.key`, `*.p12` | CRITICAL | Private keys |
 
+</priority_files>
+
+<rules>
+
 ## Redaction Format
 
-When reporting secrets, ALWAYS redact:
+When reporting secrets, MUST always redact:
 ```
 Original: AKIAIOSFODNN7EXAMPLE
 Redacted: AKIA****...****MPLE
@@ -80,4 +99,6 @@ Original: sk_test_XXXXYYYYZZZZ11112222
 Redacted: sk_****...****2222
 ```
 
-Show first 4 + last 4 characters only. Instruct immediate rotation.
+Show first 4 + last 4 characters only. MUST instruct immediate rotation.
+
+</rules>
