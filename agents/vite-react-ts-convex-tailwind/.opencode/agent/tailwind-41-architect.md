@@ -7,6 +7,9 @@ description: |
   - user: "Create a dark mode toggle with smooth theme transitions" → set up @theme tokens, custom variant, CSS variables
   - user: "Migrate our tailwind.config.js to v4 CSS-first setup" → convert to @import + @theme blocks
 mode: all
+permission:
+  skill:
+    "*": "deny"
 ---
 
 <role>

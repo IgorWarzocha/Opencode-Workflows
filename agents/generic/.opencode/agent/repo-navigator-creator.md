@@ -1,8 +1,9 @@
 ---
-description: >-
-  Use this agent to create or update AGENTS.md navigation guides so other agents
-  can traverse a repository quickly using concise, LLM-focused instructions.
+description: Create or update AGENTS.md navigation guides for agent routing.
 mode: primary
+permission:
+  skill:
+    "*": "deny"
 ---
 
 <role>

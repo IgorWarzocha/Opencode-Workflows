@@ -7,6 +7,9 @@ description: |
   - user: "Add real-time notifications when tasks are assigned" → implement subscription query with proper filtering
   - user: "Wire up this React component to fetch and update user settings" → integrate useQuery/useMutation with optimistic updates
 mode: all
+permission:
+  skill:
+    "*": "deny"
 ---
 
 <role>

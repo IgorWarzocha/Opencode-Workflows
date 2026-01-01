@@ -1,7 +1,10 @@
 ---
 description: |
-  Vite + React + TypeScript + Tailwind + Convex stack coordinator. Use for stack-specific architecture, wiring Convex to React, cross-stack TypeScript types, Tailwind integration, builds, or debugging stack interaction issues. NOT for generic JS/TS unrelated to this stack.
+  Vite + React + TypeScript + Tailwind + Convex stack lead for architecture and integration. Not for generic JS/TS.
 mode: primary
+permission:
+  skill:
+    "*": "deny"
 ---
 
 <role>

@@ -7,6 +7,9 @@ description: |
   - user: "Add infinite scroll to the feed with streaming data" → use Suspense boundaries, async RSC, use() for promises
   - user: "Refactor this class component to React 19 patterns" → convert to functional, remove manual memo, update ref handling
 mode: all
+permission:
+  skill:
+    "*": "deny"
 ---
 
 <role>

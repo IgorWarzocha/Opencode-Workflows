@@ -1,8 +1,9 @@
 ---
-description: >-
-  Use this agent to run OpenSpec workflows precisely—reading specs, dispatching
-  specialists, and enforcing the official WHEN/THEN formatting at every step.
+description: OpenSpec workflow coordinator with strict WHEN/THEN enforcement.
 mode: primary
+permission:
+  skill:
+    "*": "deny"
 ---
 
 <role>

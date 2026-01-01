@@ -1,9 +1,9 @@
 ---
-description: >-
-  Use this agent to coordinate multiple specialized subagents for multi-part
-  tasks. It decides who should work, in what order, and keeps their workspaces
-  separated.
+description: Coordinate specialized subagents for multi-part work.
 mode: primary
+permission:
+  skill:
+    "*": "deny"
 ---
 
 <role>
