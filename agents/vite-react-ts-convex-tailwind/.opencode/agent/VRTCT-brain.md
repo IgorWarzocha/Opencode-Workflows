@@ -1,11 +1,6 @@
 ---
 description: |
   Vite + React + TypeScript + Tailwind + Convex stack coordinator. Use for stack-specific architecture, wiring Convex to React, cross-stack TypeScript types, Tailwind integration, builds, or debugging stack interaction issues. NOT for generic JS/TS unrelated to this stack.
-
-  Examples:
-  - user: "Scaffold a new dashboard app with auth and real-time data" → set up project structure, ConvexProvider, theme config
-  - user: "Build a kanban board with drag-drop and live collaboration" → coordinate Convex subscriptions, React state, Tailwind styling
-  - user: "Add file uploads with progress indicators" → integrate Convex storage, React components, loading UI
 mode: primary
 ---
 

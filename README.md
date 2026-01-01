@@ -63,6 +63,9 @@ See `create-opencode-plugin/README.md` for full details.
 
 ### Commands2Skills Template
 
+> [!NOTE]
+> **Partially Deprecated**: OpenCode now supports [Skills](https://opencode.ai/docs/skills/) natively. This template remains useful if you want agents to discover and execute `/commands` agentically via a COMMANDS.md index file injected at session start. For new projects, consider using Skills instead.
+
 A universal command template with:
 - **Command Integration Pattern**: 4-part architecture for command-to-tool interfaces (still works, but deprecated - OC now supports skills natively)
 - **Template Structure**: Organized framework for command-based projects

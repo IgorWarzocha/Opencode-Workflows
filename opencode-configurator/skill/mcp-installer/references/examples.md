@@ -2,7 +2,9 @@
 
 <context7>
 
-Docs search. Requires API key.
+## Context7 - Documentation Search
+
+Remote server for searching library/framework docs. Requires API key.
 
 ```jsonc
 {
@@ -18,11 +20,15 @@ Docs search. Requires API key.
 }
 ```
 
+- MUST set `CONTEXT7_API_KEY` environment variable
+
 </context7>
 
 <gh_grep>
 
-GitHub code search. No auth.
+## gh_grep - GitHub Code Search
+
+Remote server for searching GitHub code. No auth required.
 
 ```jsonc
 {
@@ -39,7 +45,9 @@ GitHub code search. No auth.
 
 <sentry>
 
-Error tracking. OAuth.
+## Sentry - Error Tracking
+
+Remote server with OAuth authentication.
 
 ```jsonc
 {
@@ -53,13 +61,15 @@ Error tracking. OAuth.
 }
 ```
 
-Then: `opencode mcp auth sentry`
+- MUST run `opencode mcp auth sentry` after adding
 
 </sentry>
 
 <filesystem>
 
-Local file access.
+## Filesystem - Local File Access
+
+Local server for file operations.
 
 ```jsonc
 {
@@ -77,11 +87,16 @@ Local file access.
 }
 ```
 
+- MUST specify allowed paths as arguments
+- SHOULD restrict to project directories
+
 </filesystem>
 
 <github>
 
-GitHub API. High context usage.
+## GitHub - Repository API
+
+Local server for GitHub API access. High context usage.
 
 ```jsonc
 {
@@ -97,14 +112,17 @@ GitHub API. High context usage.
 }
 ```
 
-Use per-agent config to manage context.
+- MUST set `GITHUB_TOKEN` environment variable
+- SHOULD disable globally and enable per-agent to manage context
 
 </github>
 
 <finding_more>
 
-- https://github.com/modelcontextprotocol/servers
-- `@modelcontextprotocol/server-*` on npm
-- `references/mcps/*.md` for documented servers
+## Finding More Servers
+
+- Official registry: https://github.com/modelcontextprotocol/servers
+- npm packages: `@modelcontextprotocol/server-*`
+- This skill's catalog: `references/mcps/*.md`
 
 </finding_more>

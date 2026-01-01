@@ -2,7 +2,9 @@
 
 <template_pattern>
 
-**Strict (API responses, data formats):**
+## Template Outputs
+
+**Strict format** (for API responses, data formats):
 
 ```markdown
 ALWAYS use this structure:
@@ -18,7 +20,10 @@ ALWAYS use this structure:
 2. Action 2
 ```
 
-**Flexible (when adaptation useful):**
+- MUST use exact structure for strict templates
+- MUST NOT deviate from specified headings
+
+**Flexible format** (when adaptation useful):
 
 ```markdown
 Default format (adjust as needed):
@@ -29,11 +34,16 @@ Default format (adjust as needed):
 ## Recommendations
 ```
 
+- SHOULD follow default structure
+- MAY adjust based on content needs
+
 </template_pattern>
 
 <examples_pattern>
 
-Show input/output pairs:
+## Example-Based Outputs
+
+Show input/output pairs when output style matters:
 
 ```markdown
 **Example 1:**
@@ -53,6 +63,7 @@ fix(reports): correct date timezone conversion
 ```
 ```
 
-Examples > descriptions for showing desired style.
+- SHOULD use examples over descriptions for style guidance
+- SHOULD include 2-3 examples covering different cases
 
 </examples_pattern>

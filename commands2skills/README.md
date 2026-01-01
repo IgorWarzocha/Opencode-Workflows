@@ -1,5 +1,8 @@
 # Opencode Commands Template
 
+> [!NOTE]
+> **Partially Deprecated**: OpenCode now supports [Skills](https://opencode.ai/docs/skills/) natively, which provide a more powerful way to extend agent capabilities. This template remains useful if you want agents to discover and execute your `/commands` agentically via a COMMANDS.md index file. For new projects, consider using Skills instead.
+
 A universal template for creating Opencode-based projects with structured commands, tool integration, and automated documentation maintenance.
 
 ## Architecture Overview

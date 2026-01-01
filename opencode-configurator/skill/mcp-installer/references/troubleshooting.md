@@ -2,66 +2,104 @@
 
 <mcp_not_appearing>
 
-- Check `"enabled": true` in MCP config
-- Check not disabled in `"tools"` section
-- Test remote URL: `curl https://mcp.example.com/mcp`
-- Test local command: `npx -y @package/name`
+## MCP Not Appearing
+
+1. Check `"enabled": true` in MCP config
+2. Verify not disabled in `"tools"` section
+3. Test connectivity:
+
+```bash
+# Remote
+curl https://mcp.example.com/mcp
+
+# Local
+npx -y @package/name
+```
+
+- MUST restart OpenCode after config changes
 
 </mcp_not_appearing>
 
 <auth_failures>
 
+## Authentication Failures
+
 ```bash
-opencode mcp list
-opencode mcp debug server-name
-opencode mcp logout server-name
-opencode mcp auth server-name
+opencode mcp list          # Check status
+opencode mcp debug name    # Debug specific server
+opencode mcp logout name   # Clear credentials
+opencode mcp auth name     # Re-authenticate
 ```
+
+- SHOULD clear and re-auth if tokens are stale
 
 </auth_failures>
 
 <oauth_issues>
 
-- Verify server supports RFC 7591
-- Use pre-registered OAuth if auto fails
-- Check browser console for errors
-- Clear tokens: `rm ~/.local/share/opencode/mcp-auth.json`
+## OAuth Issues
+
+- Verify server supports RFC 7591 (Dynamic Client Registration)
+- Use pre-registered OAuth if automatic fails
+- Check browser console for popup errors
+- Clear tokens manually:
+
+```bash
+rm ~/.local/share/opencode/mcp-auth.json
+```
+
+- SHOULD use pre-registered credentials for enterprise servers
 
 </oauth_issues>
 
 <context_limits>
 
-MCPs add to context. Solutions:
+## Context Limit Issues
+
+MCPs add tool definitions to context. Solutions:
 
 - Disable unused: `"tools": { "my-mcp": false }`
-- Per-agent enable: `agent.my-agent.tools`
+- Enable per-agent: `agent.my-agent.tools`
 - Use lightweight alternatives (gh_grep vs github)
+
+- SHOULD prefer remote MCPs over local for lower context
+- SHOULD disable high-context MCPs globally
 
 </context_limits>
 
 <env_variables>
 
+## Environment Variable Issues
+
 ```bash
-echo $MY_VAR  # Check if set
-export MY_VAR=value  # Set in shell
+echo $MY_VAR              # Check if set
+export MY_VAR=value       # Set in shell
 ```
 
 Or add to `.env` file in project root.
+
+- MUST set variables before starting OpenCode
+- SHOULD use `.env` for project-specific values
 
 </env_variables>
 
 <local_command_issues>
 
+## Local Command Issues
+
 ```bash
-which npx  # Check in PATH
-npx -y @package/name  # Test manually
+which npx                 # Check in PATH
+npx -y @package/name      # Test manually
 ```
 
-Use absolute paths if needed.
+- SHOULD use absolute paths if PATH issues persist
+- MAY increase timeout for slow-starting servers
 
 </local_command_issues>
 
 <remote_connection>
+
+## Remote Connection Issues
 
 ```bash
 curl https://mcp.example.com/mcp  # Test URL
@@ -73,5 +111,8 @@ Increase timeout if slow:
   "timeout": 30000
 }
 ```
+
+- SHOULD check firewall/proxy settings
+- MAY need VPN for enterprise servers
 
 </remote_connection>
