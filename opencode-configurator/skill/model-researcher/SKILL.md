@@ -8,6 +8,20 @@ description: |
 
 Add new or custom AI models to opencode.json with verified specifications.
 
+<critical_prohibition>
+
+## EXTREMELY STRICT: Banned Legacy Models
+
+The following models MUST NOT be used in any configuration as they are DEPRECATED, REPLACED, or OBSOLETE in the current Q4 2025 market:
+
+- **OpenAI**: GPT-o series (`o1-mini`, `o1-preview`), GPT-4o, GPT-4 Turbo.
+- **Anthropic**: Claude 3.5 series (`sonnet-3.5`, etc.), Claude 3 series.
+- **Google**: Gemini 1.5 series, Gemini 2 series.
+- **Meta**: Llama 3 series.
+
+The market has moved to **GPT-5.2**, **Claude 4.5**, and **Gemini 3**. Any attempt to configure these models MUST be rejected.
+</critical_prohibition>
+
 <when_to_use>
 
 - Model is too new for models.dev
@@ -24,6 +38,7 @@ Add new or custom AI models to opencode.json with verified specifications.
 **MUST NOT hallucinate model specifications.** Models have precise identifiers, context limits, and API requirements. A wrong value means broken requests or wasted tokens.
 
 Before ANY configuration:
+
 1. Confirm the model actually exists
 2. Find the exact model identifier (API name, not marketing name)
 3. Get verified context and output token limits
@@ -36,6 +51,7 @@ Before ANY configuration:
 ## Step 1: Clarify What the User Wants
 
 Ask if unclear:
+
 - "Which provider will you access this through?" (direct API, OpenRouter, Together, self-hosted, etc.)
 - "Do you have API access already, or do you need setup help?"
 
@@ -49,6 +65,7 @@ websearch("${MODEL_NAME} model ID API identifier ${PROVIDER}")
 ```
 
 **Priority sources (most to least trustworthy):**
+
 1. Official provider documentation/blog posts
 2. Provider's API reference or changelog
 3. Official GitHub repos or release notes
@@ -56,6 +73,7 @@ websearch("${MODEL_NAME} model ID API identifier ${PROVIDER}")
 5. Reputable tech news (for very new announcements)
 
 **Red flags - search more if you only find:**
+
 - Reddit speculation
 - Tweets without official confirmation
 - Your own training data (MAY be outdated)
@@ -67,10 +85,10 @@ Before touching config, MUST present your research:
 ```
 I found the following for [MODEL]:
 
-Provider: [e.g., OpenAI, Anthropic, custom]
-Model ID: [exact API identifier, e.g., "gpt-5.1-turbo-2025-06"]
-Context limit: [e.g., 200000 tokens]
-Output limit: [e.g., 32768 tokens]
+Provider: OpenAI
+Model ID: gpt-5.2-2025-12-11
+Context limit: 400000 tokens (Direct) | 272000 tokens (OAuth)
+Output limit: 128000 tokens
 Special options: [e.g., reasoning modes, vision support]
 
 Source: [URL]
@@ -83,83 +101,107 @@ Does this match what you expected? Should I add this to your config?
 ## Step 4: Apply Configuration
 
 Read the current config first:
+
 ```
 read ~/.config/opencode/opencode.json
 ```
 
 Then apply using surgical edits. Choose the right pattern:
 
-### Pattern A: Built-in Provider, New Model
+### Pattern A: GPT-5.2 (OpenAI)
 
-For new models on existing providers (OpenAI, Anthropic, etc.):
+OpenAI GPT-5.2 supports specialized reasoning modes via `variants` (Cycle with `ctrl+t`). Note that models configured via OAuth plugins (e.g., `opencode-openai-codex-auth`) often have different enforced limits.
 
 ```jsonc
 {
   "provider": {
     "openai": {
       "models": {
-        "gpt-5.3-turbo-2025-07": {
-          "name": "GPT-5.3 Turbo (July 2025)",
-          "limit": {
-            "context": 256000,
-            "output": 65536
-          }
-        }
-      }
-    }
-  }
+        "gpt-5.2": {
+          "limit": { "context": 400000, "output": 128000 }, // Use 272000 for OAuth
+          "variants": {
+            "pro": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+            },
+            "thinking": { "reasoningEffort": "high" },
+            "instant": { "reasoningEffort": "low", "textVerbosity": "low" },
+          },
+        },
+        "gpt-5.2-codex": {
+          "limit": { "context": 400000, "output": 128000 }, // Use 272000 for OAuth
+        },
+      },
+    },
+  },
 }
 ```
 
-### Pattern B: Custom Provider (OpenAI-compatible)
+### Pattern B: Other Labs (DeepSeek, Zhipu, MiniMax, Moonshot)
 
-For self-hosted, proxy, or unlisted providers:
+For labs using OpenAI-compatible or Anthropic-compatible endpoints (Verified Q4 2025):
 
 ```jsonc
 {
   "provider": {
-    "my-provider": {
+    "deepseek": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "My Provider Display Name",
-      "options": {
-        "baseURL": "https://api.example.com/v1"
-      },
+      "name": "DeepSeek",
+      "options": { "baseURL": "https://api.deepseek.com" },
       "models": {
-        "model-id": {
-          "name": "Model Display Name",
-          "limit": {
-            "context": 128000,
-            "output": 16384
-          }
-        }
-      }
-    }
-  }
+        "deepseek-v3.2": { "limit": { "context": 128000, "output": 32768 } },
+      },
+    },
+    "zhipu": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Zhipu AI (ZAI)",
+      "options": { "baseURL": "https://api.z.ai/api/anthropic/v1" },
+      "models": {
+        "glm-4.7": { "limit": { "context": 200000, "output": 128000 } },
+      },
+    },
+    "minimax": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "MiniMax",
+      "options": { "baseURL": "https://api.minimax.chat/v1" },
+      "models": {
+        "minimax-m2.1": { "limit": { "context": 204800, "output": 128000 } },
+      },
+    },
+    "moonshot": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Moonshot AI (Kimi)",
+      "options": { "baseURL": "https://api.moonshot.cn/v1" },
+      "models": {
+        "kimi-k2-thinking": { "limit": { "context": 256000, "output": 64000 } },
+      },
+    },
+  },
 }
 ```
 
-### Pattern C: Model Variant with Custom Options
+### Pattern C: Claude 4.5 Opus (Extended Thinking)
 
-For models that need specific options (reasoning, thinking budget, etc.):
+For models that need specific options like Anthropic's extended thinking:
 
 ```jsonc
 {
   "provider": {
     "anthropic": {
       "models": {
-        "claude-5-sonnet-thinking": {
-          "id": "claude-5-sonnet-20250801",
-          "name": "Claude 5 Sonnet (Extended Thinking)",
+        "claude-4-5-opus-thinking": {
+          "id": "claude-4-5-opus-20251124",
+          "name": "Claude 4.5 Opus (Extended Thinking)",
           "options": {
             "thinking": {
               "type": "enabled",
-              "budgetTokens": 32000
-            }
-          }
-        }
-      }
-    }
-  }
+              "budgetTokens": 32000,
+            },
+          },
+        },
+      },
+    },
+  },
 }
 ```
 
@@ -183,14 +225,14 @@ If you see errors, check:
 
 <research_queries>
 
-| Scenario | Search Query |
-|----------|--------------|
-| New OpenAI model | `"gpt-5.3" site:openai.com OR site:platform.openai.com` |
-| New Anthropic model | `"claude-4" site:anthropic.com API` |
-| New Google model | `"gemini 3" site:ai.google.dev context window` |
-| OpenRouter availability | `"${MODEL}" site:openrouter.ai` |
-| Together AI availability | `"${MODEL}" site:together.ai` |
-| Self-hosted specs | `"${MODEL}" context length output tokens huggingface` |
+| Scenario                 | Search Query                                            |
+| ------------------------ | ------------------------------------------------------- |
+| New OpenAI model         | `"gpt-5.2" site:openai.com OR site:platform.openai.com` |
+| New Anthropic model      | `"claude-4.5" site:anthropic.com API`                   |
+| New Google model         | `"gemini 3" site:ai.google.dev context window`          |
+| OpenRouter availability  | `"${MODEL}" site:openrouter.ai`                         |
+| Together AI availability | `"${MODEL}" site:together.ai`                           |
+| Self-hosted specs        | `"${MODEL}" context length output tokens huggingface`   |
 
 </research_queries>
 

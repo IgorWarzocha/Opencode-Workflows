@@ -1,42 +1,58 @@
-# OpenCode Config Schema Reference
+# OpenCode Configuration Schema Reference (Q4 2025)
 
-Complete `opencode.json` / `opencode.jsonc` options.
+<instructions>
+This document defines the schema and valid values for `opencode.json`. You MUST adhere strictly to these definitions. You MUST NOT use deprecated model identifiers.
+</instructions>
+
+<critical_warning>
+
+## STRICTLY PROHIBITED MODELS
+
+The following models are DEPRECATED and MUST NOT be used:
+
+- OpenAI: `gpt-4o`, `gpt-4-turbo`, `o1-mini`, `o1-preview`
+- Anthropic: `claude-3-5-sonnet`, `claude-3-opus`
+- Google: `gemini-1.5-pro`, `gemini-2.0-flash`
+- Meta: `llama-3`, `llama-3.1`
+
+Use current frontier models: **GPT-5.2**, **Claude 4.5**, **Gemini 3**, **GLM-4.7**, **Kimi K2**, **MiniMax M2.1**, **Mistral Large 3**.
+</critical_warning>
 
 <top_level_options>
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  
+
   // Model Configuration
   "model": "provider/model-id",
   "small_model": "provider/model-id",
   "provider": {},
   "disabled_providers": ["openai", "gemini"],
-  
+
   // UI & Updates
   "theme": "opencode",
   "autoupdate": true,
   "tui": { "scroll_speed": 3 },
   "keybinds": {},
-  
+
   // Sharing
-  "share": "manual",  // "manual" | "auto" | "disabled"
-  
+  "share": "manual", // "manual" | "auto" | "disabled"
+
   // Tools & Permissions
   "tools": {},
   "permission": {},
-  
+
   // Agents & Commands
   "agent": {},
   "command": {},
-  
+
   // Instructions & MCP
   "instructions": [],
   "mcp": {},
-  
+
   // Formatters
-  "formatter": {}
+  "formatter": {},
 }
 ```
 
@@ -48,8 +64,8 @@ Complete `opencode.json` / `opencode.jsonc` options.
 
 ```jsonc
 {
-  "model": "anthropic/claude-sonnet-4-20250514",
-  "small_model": "anthropic/claude-3-5-haiku-20241022"
+  "model": "anthropic/claude-4-5-sonnet-20250929",
+  "small_model": "anthropic/claude-4-5-haiku-20251015",
 }
 ```
 
@@ -65,10 +81,10 @@ Configure custom providers or override settings:
     "anthropic": {
       "models": {},
       "options": {
-        "apiKey": "{env:ANTHROPIC_API_KEY}"
-      }
-    }
-  }
+        "apiKey": "{env:ANTHROPIC_API_KEY}",
+      },
+    },
+  },
 }
 ```
 
@@ -78,7 +94,7 @@ Prevent providers from loading even if credentials exist:
 
 ```jsonc
 {
-  "disabled_providers": ["openai", "gemini"]
+  "disabled_providers": ["openai", "gemini"],
 }
 ```
 
@@ -102,8 +118,8 @@ Enable/disable tools globally:
     "webfetch": true,
     "todowrite": true,
     "todoread": true,
-    "skill": true
-  }
+    "skill": true,
+  },
 }
 ```
 
@@ -112,8 +128,8 @@ Wildcards supported for MCP tools:
 ```jsonc
 {
   "tools": {
-    "mymcp_*": false
-  }
+    "mymcp_*": false,
+  },
 }
 ```
 
@@ -126,9 +142,9 @@ Wildcards supported for MCP tools:
 ```jsonc
 {
   "permission": {
-    "edit": "allow",      // "allow" | "ask" | "deny"
-    "webfetch": "ask"
-  }
+    "edit": "allow", // "allow" | "ask" | "deny"
+    "webfetch": "ask",
+  },
 }
 ```
 
@@ -138,14 +154,14 @@ Wildcards supported for MCP tools:
 {
   "permission": {
     "bash": {
-      "*": "allow",           // Default for all
-      "rm *": "ask",          // Ask before delete
-      "rm -rf *": "deny",     // Block recursive delete
-      "sudo *": "deny",       // Block sudo
-      "git push": "ask",      // Ask before push
-      "npm run *": "allow"    // Allow npm scripts
-    }
-  }
+      "*": "allow", // Default for all
+      "rm *": "ask", // Ask before delete
+      "rm -rf *": "deny", // Block recursive delete
+      "sudo *": "deny", // Block sudo
+      "git push": "ask", // Ask before push
+      "npm run *": "allow", // Allow npm scripts
+    },
+  },
 }
 ```
 
@@ -157,9 +173,9 @@ Wildcards supported for MCP tools:
     "skill": {
       "*": "allow",
       "dangerous-*": "deny",
-      "experimental-*": "ask"
-    }
-  }
+      "experimental-*": "ask",
+    },
+  },
 }
 ```
 
@@ -175,19 +191,19 @@ Define agents in config:
     "my-agent": {
       "description": "What triggers this agent",
       "mode": "subagent",
-      "model": "anthropic/claude-sonnet-4-20250514",
+      "model": "anthropic/claude-4-5-sonnet-20250929",
       "prompt": "System prompt or {file:./prompt.txt}",
       "temperature": 0.3,
       "maxSteps": 25,
       "disable": false,
       "tools": {
-        "bash": false
+        "bash": false,
       },
       "permission": {
-        "edit": "ask"
-      }
-    }
-  }
+        "edit": "ask",
+      },
+    },
+  },
 }
 ```
 
@@ -204,9 +220,9 @@ Custom slash commands:
       "template": "Run tests and show failures. $ARGUMENTS",
       "description": "Run test suite",
       "agent": "build",
-      "model": "anthropic/claude-sonnet-4-20250514"
-    }
-  }
+      "model": "anthropic/claude-4-5-sonnet-20250929",
+    },
+  },
 }
 ```
 
@@ -224,8 +240,8 @@ Include additional instruction files:
     "CONTRIBUTING.md",
     "docs/guidelines.md",
     ".cursor/rules/*.md",
-    "packages/*/AGENTS.md"
-  ]
+    "packages/*/AGENTS.md",
+  ],
 }
 ```
 
@@ -241,14 +257,14 @@ Configure code formatters:
 {
   "formatter": {
     "prettier": {
-      "disabled": true
+      "disabled": true,
     },
     "custom": {
       "command": ["npx", "prettier", "--write", "$FILE"],
       "environment": { "NODE_ENV": "development" },
-      "extensions": [".js", ".ts", ".jsx", ".tsx"]
-    }
-  }
+      "extensions": [".js", ".ts", ".jsx", ".tsx"],
+    },
+  },
 }
 ```
 
@@ -262,15 +278,62 @@ Configure Model Context Protocol servers:
 {
   "mcp": {
     "my-server": {
-      "command": "npx",
-      "args": ["-y", "@my/mcp-server"],
-      "env": {}
-    }
-  }
+      "type": "local",
+      "command": ["npx", "-y", "@org/package"],
+      "environment": { "KEY": "VALUE" },
+    },
+    "remote-name": {
+      "type": "remote",
+      "url": "https://api.example.com/mcp",
+      "headers": { "Authorization": "Bearer ..." },
+    },
+  },
 }
 ```
 
 </mcp_servers>
+
+<model_variants>
+
+## Model Variants (ctrl+t)
+
+Variants allow you to define multiple parameter sets for a single model, cycleable via `ctrl+t`.
+
+```jsonc
+{
+  "provider": {
+    "openai": {
+      "models": {
+        "gpt-5.2": {
+          "variants": {
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+            },
+            "low": {
+              "reasoningEffort": "low",
+              "textVerbosity": "low",
+            },
+          },
+        },
+      },
+    },
+  },
+}
+```
+
+### Functional Variant Properties
+
+| Property           | Provider          | Values                                      |
+| ------------------ | ----------------- | ------------------------------------------- | ------- |
+| `reasoningEffort`  | OpenAI/Azure      | `minimal`, `low`, `medium`, `high`, `xhigh` |
+| `reasoningSummary` | OpenAI/Azure      | `auto`, `detailed`                          |
+| `textVerbosity`    | OpenAI Compatible | `low`, `medium`, `high`                     |
+| `thinking`         | Anthropic         | `{ type: "enabled", budgetTokens: number }` |
+| `thinkingLevel`    | Google            | `"low"                                      | "high"` |
+| `include`          | OpenAI/Azure      | `["reasoning.encrypted_content"]`           |
+
+</model_variants>
 
 <variable_substitution>
 
@@ -282,10 +345,10 @@ Configure Model Context Protocol servers:
   "provider": {
     "openai": {
       "options": {
-        "apiKey": "{env:OPENAI_API_KEY}"
-      }
-    }
-  }
+        "apiKey": "{env:OPENAI_API_KEY}",
+      },
+    },
+  },
 }
 ```
 
@@ -295,16 +358,16 @@ Configure Model Context Protocol servers:
 {
   "agent": {
     "custom": {
-      "prompt": "{file:./prompts/custom.txt}"
-    }
+      "prompt": "{file:./prompts/custom.txt}",
+    },
   },
   "provider": {
     "anthropic": {
       "options": {
-        "apiKey": "{file:~/.secrets/anthropic-key}"
-      }
-    }
-  }
+        "apiKey": "{file:~/.secrets/anthropic-key}",
+      },
+    },
+  },
 }
 ```
 
@@ -317,8 +380,8 @@ Configure Model Context Protocol servers:
 ```jsonc
 {
   "tui": {
-    "scroll_speed": 3
-  }
+    "scroll_speed": 3,
+  },
 }
 ```
 
@@ -326,7 +389,7 @@ Configure Model Context Protocol servers:
 
 ```jsonc
 {
-  "share": "manual"  // "manual" | "auto" | "disabled"
+  "share": "manual", // "manual" | "auto" | "disabled"
 }
 ```
 

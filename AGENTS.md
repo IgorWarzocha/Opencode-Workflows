@@ -78,18 +78,21 @@ commands2skills/              # Template for command-based projects
 ├── example-opencode.json   # Template configuration
 ├── calculate.js            # Example tool integration
 └── .opencode/
-    ├── command/
-    │   ├── explore.md       # Repository exploration workflow
-    │   └── calculate.md     # Mathematical calculation workflow
     └── agent/
         └── commands-md-updater.md  # Documentation maintenance
+
+create-opencode-plugin/      # Plugin creation workflow
+mcp-configs/                 # MCP server configurations
+opencode-configurator/       # Configurator skills, agents, and commands
+plugins/                     # Local OpenCode plugins
+security-reviewer/           # Security review tooling
+thinking-variants config/    # Thinking-level configurations
 
 agents/                      # Agent templates catalog
 ├── README.md               # Agent overview and usage guidance
 ├── generic/                # Globally useful agents
 │   └── .opencode/
 │       └── agent/
-│           ├── agent-architect.md           # Agent design/refinement
 │           ├── repo-navigator-creator.md   # AGENTS.md generation
 │           ├── subagent-orchestrator.md    # Multi-agent coordination
 │           └── openspec-orchestrator.md    # OpenSpec workflow enforcement
@@ -100,18 +103,14 @@ agents/                      # Agent templates catalog
     ├── TS59.MD             # TypeScript 5.9 documentation
     └── .opencode/
         └── agent/
-            ├── vite-react-convex-expert.md  # Stack coordinator
-            ├── convex-database-expert.md    # Backend/DB specialist
-            ├── react-19-master.md           # RSC/Actions expert
-            ├── tailwind-41-architect.md     # Utility-first designer
-            └── typescript-59-engineer.md    # Strict TS 5.9 engineer
+            ├── VRTCT-orchestrator.md       # Stack orchestrator
+            ├── VRTCT-brain.md              # Stack knowledge base
+            ├── convex-database-expert.md   # Backend/DB specialist
+            ├── react-19-master.md          # RSC/Actions expert
+            ├── tailwind-41-architect.md    # Utility-first designer
+            └── typescript-59-engineer.md   # Strict TS 5.9 engineer
 
 commands/                    # Additional command examples
-└── .opencode/
-    └── command/
-        ├── howto.md        # How-to command template
-        ├── improve:run.md  # Prompt enhancement and execution
-        └── improve:save.md # Prompt enhancement and saving
 
 scripts/                     # External utility tools
 ├── perplexica-cli.js       # AI search integration tool
