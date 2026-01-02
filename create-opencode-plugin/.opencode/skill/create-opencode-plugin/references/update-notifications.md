@@ -2,22 +2,30 @@
 
 > Pattern for notifying users when a newer plugin version is available
 
-## Overview
+<overview>
 
 When users pin plugins to specific versions (e.g., `my-plugin@1.0.0`), OpenCode won't auto-update them. Plugins can check npm for newer versions and show a toast notification, letting users decide when to update.
+
+</overview>
+
+<guidelines>
 
 ## When to Use
 
 Use this pattern when:
 
 - Your plugin is published to npm
-- Users may pin to specific versions for stability
+- Users MAY pin to specific versions for stability
 - You want to inform users about available updates
 
 **Not needed for:**
 
 - Local/file-based plugins
 - Plugins users always run with `@latest`
+
+</guidelines>
+
+<implementation>
 
 ## Implementation
 
@@ -97,7 +105,7 @@ type UpdateCheckOptions = {
 /**
  * Checks for updates and shows toast if newer version exists.
  *
- * Call during plugin initialization (fire and forget - don't await).
+ * Call during plugin initialization (fire and forget - MUST NOT await).
  */
 export function checkForUpdates(options: UpdateCheckOptions): void {
   const { packageName, currentVersion, pluginName, client, delay = 8000 } = options
@@ -122,6 +130,10 @@ export function checkForUpdates(options: UpdateCheckOptions): void {
 }
 ```
 
+</implementation>
+
+<examples>
+
 ## Usage
 
 ### Basic Usage
@@ -133,7 +145,7 @@ import pkg from "./package.json" with { type: "json" }
 import { checkForUpdates } from "./update-checker"
 
 const plugin: Plugin = async ({ client }) => {
-  // Fire and forget - don't await
+  // Fire and forget - MUST NOT await
   checkForUpdates({
     packageName: "my-opencode-plugin",
     currentVersion: pkg.version,
@@ -199,16 +211,24 @@ The message tells users to update their config, since OpenCode manages installat
 { "plugin": ["my-plugin@1.2.0"] }
 ```
 
+</examples>
+
+<best_practices>
+
 ## Best Practices
 
 | Practice                    | Reason                                |
 | --------------------------- | ------------------------------------- |
-| **Don't await**             | Never block plugin initialization     |
-| **Use 8-10s delay**         | Let TUI fully initialize              |
-| **Fail silently**           | Network issues shouldn't break plugin |
-| **Use `info` variant**      | Updates aren't urgent                 |
-| **Include version numbers** | Show what's available                 |
-| **Add config toggle**       | Respect user preference               |
+| **MUST NOT await**          | Never block plugin initialization     |
+| **SHOULD use 8-10s delay**  | Let TUI fully initialize              |
+| **MUST fail silently**      | Network issues MUST NOT break plugin  |
+| **SHOULD use `info` variant** | Updates aren't urgent               |
+| **SHOULD include version numbers** | Show what's available          |
+| **MAY add config toggle**   | Respect user preference               |
+
+</best_practices>
+
+<alternative>
 
 ## Alternative: Reading Version at Runtime
 
@@ -223,3 +243,5 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const pkg = JSON.parse(readFileSync(join(__dirname, "package.json"), "utf8"))
 const version: string = pkg.version
 ```
+
+</alternative>

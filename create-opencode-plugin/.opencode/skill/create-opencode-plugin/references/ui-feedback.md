@@ -2,9 +2,13 @@
 
 > Reference for displaying persistent status messages in OpenCode chat
 
-## Overview
+<overview>
 
 Plugins can display **inline message boxes** in the chat using the SDK's `session.prompt` API with special flags. This creates visible status updates that persist in the chat without triggering LLM responses.
+
+</overview>
+
+<guidelines>
 
 ## When to Use
 
@@ -12,14 +16,18 @@ Use inline messages when your plugin needs to:
 
 - Show detailed progress or statistics
 - Display multi-line status information
-- Provide data the user may want to reference later
+- Provide data the user MAY want to reference later
 - Confirm actions with details (files processed, tokens saved, etc.)
 
-**Do NOT use for:**
+**SHOULD NOT use for:**
 
 - Brief alerts (use toast notifications instead - see `toast-notifications.md`)
 - High-frequency updates (will spam the chat)
 - Critical errors requiring immediate attention (use toasts)
+
+</guidelines>
+
+<api_reference>
 
 ## The Technique
 
@@ -52,7 +60,11 @@ await client.session.prompt({
 | `noReply: true` | Prevents the LLM from generating a response to this message     |
 | `ignored: true` | Message appears in UI but is excluded from conversation context |
 
-Both flags are required for status-only messages.
+Both flags are REQUIRED for status-only messages.
+
+</api_reference>
+
+<examples>
 
 ## Complete Example
 
@@ -104,11 +116,15 @@ export const StatusPlugin: Plugin = async ({ client }) => {
 }
 ```
 
+</examples>
+
+<formatting>
+
 ## Message Formatting Best Practices
 
 ### Use Visual Prefixes
 
-Use Unicode symbols as visual markers to distinguish plugin messages:
+SHOULD use Unicode symbols as visual markers to distinguish plugin messages:
 
 ```typescript
 const message = "▣ MyPlugin | Status message here"
@@ -165,6 +181,10 @@ function shortenPath(path: string, workingDirectory?: string): string {
 // Usage
 const displayPath = truncate(shortenPath(fullPath, ctx.directory), 60)
 ```
+
+</formatting>
+
+<patterns>
 
 ## Capturing Session Context
 
@@ -250,6 +270,10 @@ export const TrackingPlugin: Plugin = async ({ client }) => {
 }
 ```
 
+</patterns>
+
+<comparison>
+
 ## Inline Messages vs Toasts
 
 | Aspect             | Inline Message            | Toast                  |
@@ -263,12 +287,18 @@ export const TrackingPlugin: Plugin = async ({ client }) => {
 
 Use **inline messages** for detailed status with data. Use **toasts** (see `toast-notifications.md`) for ephemeral alerts.
 
+</comparison>
+
+<constraints>
+
 ## Limitations
 
 | Limitation       | Details                                       |
 | ---------------- | --------------------------------------------- |
 | No styling       | Plain text only, no colors or formatting      |
-| No interactivity | Cannot receive user input                     |
-| Rate limiting    | Avoid sending too frequently                  |
-| Session required | Must have valid sessionID                     |
+| No interactivity | MUST NOT receive user input                   |
+| Rate limiting    | SHOULD avoid sending too frequently           |
+| Session required | MUST have valid sessionID                     |
 | No persistence   | Messages only visible in current session view |
+
+</constraints>

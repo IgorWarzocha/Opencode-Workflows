@@ -2,6 +2,8 @@
 
 > Ready-to-use plugin examples for common use cases
 
+<examples>
+
 ## Notifications Plugin
 
 Send OS notifications when sessions complete:
@@ -145,3 +147,5 @@ export const CustomTool: Plugin = async ({ $ }) => {
   }
 }
 ```
+
+</examples>

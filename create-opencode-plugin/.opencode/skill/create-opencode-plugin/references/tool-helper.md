@@ -3,6 +3,8 @@
 > Auto-generated on 2025-12-26T13:17:55.482Z
 > Source: `packages/plugin/src/tool.ts`
 
+<api_reference>
+
 ## Tool Definition
 
 ```typescript
@@ -54,6 +56,10 @@ export const MyPlugin: Plugin = async (ctx) => {
 }
 ```
 
+</api_reference>
+
+<zod_reference>
+
 ## Zod Schema Methods
 
 `tool.schema` is Zod. Common methods:
@@ -70,6 +76,10 @@ export const MyPlugin: Plugin = async (ctx) => {
 | `.default(val)` | Default value |
 | `.describe("...")` | Add description for LLM |
 
+</zod_reference>
+
+<tool_context>
+
 ## Tool Context
 
 ```typescript
@@ -80,3 +90,5 @@ type ToolContext = {
   abort: AbortSignal
 }
 ```
+
+</tool_context>

@@ -2,9 +2,11 @@
 
 > How to publish plugins to npm
 
+<instructions>
+
 ## Before Publishing - Ask the User
 
-Before creating a publishable package, **always ask the user**:
+Before creating a publishable package, MUST ask the user:
 
 1. **Package name**: What should the npm package be called?
    - Unscoped: `opencode-my-plugin`
@@ -18,7 +20,9 @@ Before creating a publishable package, **always ask the user**:
 
 5. **Description**: One-line description of what the plugin does
 
-Example prompt:
+<example>
+
+**Example prompt:**
 
 > "Before I create the npm package, I need a few details:
 >
@@ -26,6 +30,8 @@ Example prompt:
 > 2. What's your npm username/scope if using a scoped package?
 > 3. Starting version? (default: 0.1.0)
 > 4. License? (default: MIT)"
+
+</example>
 
 ## How OpenCode Manages Plugins
 
@@ -48,7 +54,11 @@ Users simply add the plugin name to their config:
 2. Caches pinned versions until user changes config
 3. For unpinned plugins, resolves `latest` and caches actual version
 
-This means the README should NOT include `npm install` instructions - just tell users to add the plugin to their config.
+This means the README SHOULD NOT include `npm install` instructions - just tell users to add the plugin to their config.
+
+</instructions>
+
+<checklist>
 
 ## Publishing Checklist
 
@@ -102,8 +112,8 @@ This means the README should NOT include `npm install` instructions - just tell 
    ```
 
    Notes:
-   - Use `peerDependencies` for `@opencode-ai/plugin` - OpenCode provides this at runtime
-   - Add `"publishConfig": { "access": "public" }` for scoped packages
+   - MUST use `peerDependencies` for `@opencode-ai/plugin` - OpenCode provides this at runtime
+   - MUST add `"publishConfig": { "access": "public" }` for scoped packages
 
 3. **example-opencode.json:**
 
@@ -126,13 +136,9 @@ This means the README should NOT include `npm install` instructions - just tell 
      "plugin": ["<PACKAGE_NAME>"]
    }
    ```
-   ````
 
    OpenCode automatically installs plugin dependencies at runtime.
-
-   ```
-
-   ```
+   ````
 
 5. **Publish:**
 
@@ -148,11 +154,19 @@ This means the README should NOT include `npm install` instructions - just tell 
    npm publish
    ```
 
+</checklist>
+
+<update_notifications>
+
 ## Update Notifications for Pinned Versions
 
 When users pin to a specific version (e.g., `my-plugin@1.0.0`), they won't see updates automatically.
 
-Include an update checker that shows a toast when newer versions are available. See `references/update-notifications.md` for the full implementation.
+SHOULD include an update checker that shows a toast when newer versions are available. See `references/update-notifications.md` for the full implementation.
+
+</update_notifications>
+
+<common_mistakes>
 
 ## Common Mistakes
 
@@ -163,4 +177,6 @@ Include an update checker that shows a toast when newer versions are available. 
 | Wrong main entry                | Point to compiled JS, not TS         |
 | Missing @opencode-ai/plugin dep | Add as peerDependency                |
 | Scoped package 404              | Add `publishConfig.access: "public"` |
-| Assumed package name            | Always ask user for name/scope first |
+| Assumed package name            | MUST ask user for name/scope first   |
+
+</common_mistakes>

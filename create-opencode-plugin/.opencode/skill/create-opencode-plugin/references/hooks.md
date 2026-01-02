@@ -3,6 +3,8 @@
 > Auto-generated on 2025-12-26T13:17:55.481Z
 > Source: `packages/plugin/src/index.ts`
 
+<api_reference>
+
 ## Plugin Function Signature
 
 ```typescript
@@ -87,6 +89,10 @@ export interface Hooks {
 }
 ```
 
+</api_reference>
+
+<hook_categories>
+
 ## Hook Categories
 
 ### Event Hook
@@ -117,6 +123,10 @@ export interface Hooks {
 - `experimental.chat.system.transform`: Modify system prompt
 - `experimental.session.compacting`: Customize compaction context
 - `experimental.text.complete`: Post-process text output
+
+</hook_categories>
+
+<auth_hook_types>
 
 ## Auth Hook Types
 
@@ -231,3 +241,5 @@ export type AuthOuathResult = { url: string; instructions: string } & (
 )
 
 ```
+
+</auth_hook_types>

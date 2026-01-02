@@ -5,7 +5,11 @@ description: Create OpenCode plugins using @opencode-ai/plugin SDK. Use when use
 
 # Creating OpenCode Plugins
 
-> **IMPORTANT**: Re-read this file periodically during plugin development to refresh context and ensure you're following the correct procedure.
+<critical>
+Re-read this file periodically during plugin development to refresh context and ensure you're following the correct procedure.
+</critical>
+
+<workflow>
 
 ## Procedure Overview
 
@@ -23,7 +27,7 @@ description: Create OpenCode plugins using @opencode-ai/plugin SDK. Use when use
 
 ## Step 1: Verify SDK Reference (REQUIRED)
 
-Before creating any plugin, regenerate the API reference to ensure accuracy:
+Before creating any plugin, MUST regenerate the API reference to ensure accuracy:
 
 ```bash
 bun run .opencode/skill/create-opencode-plugin/scripts/extract-plugin-api.ts
@@ -39,9 +43,9 @@ This generates:
 
 ## Step 2: Validate Feasibility (REQUIRED)
 
-Determine if the user's concept is achievable with available hooks.
+MUST determine if the user's concept is achievable with available hooks.
 
-### ✓ Feasible as plugins:
+### Feasible as plugins:
 
 - Intercepting/blocking tool calls
 - Reacting to events (file edits, session completion, etc.)
@@ -51,7 +55,7 @@ Determine if the user's concept is achievable with available hooks.
 - Customizing session compaction
 - Displaying status messages (toasts, inline)
 
-### ✗ NOT feasible (inform user):
+### NOT feasible (inform user):
 
 - Modifying TUI rendering or layout
 - Adding new built-in tools (requires OC source)
@@ -61,7 +65,7 @@ Determine if the user's concept is achievable with available hooks.
 - Modifying internal file read/write
 - Adding new permission types
 
-**If not feasible**, inform user clearly. Suggest:
+**If not feasible**, MUST inform user clearly. Suggest:
 
 - OC core changes: contribute to `packages/opencode`
 - MCP tools: use MCP server configuration
@@ -73,13 +77,13 @@ Determine if the user's concept is achievable with available hooks.
 
 **READ**: `references/hooks.md` for available hooks, `references/hook-patterns.md` for implementation patterns.
 
-**READ**: `references/CODING-TS.MD` for code architecture principles. Follow these design guidelines:
+**READ**: `references/CODING-TS.MD` for code architecture principles. MUST follow these design guidelines:
 
 - **Modular structure**: Split complex plugins into multiple focused files (types, utilities, hooks, tools)
 - **Single purpose**: Each function does ONE thing well
 - **DRY**: Extract common patterns into shared utilities immediately
 - **Small files**: Keep individual files under 150 lines - split into smaller modules as needed
-- **No monoliths**: Never put all plugin code in a single `index.ts` file
+- **No monoliths**: MUST NOT put all plugin code in a single `index.ts` file
 
 ### Plugin Locations
 
@@ -128,7 +132,7 @@ export const MyPlugin: Plugin = async ({ project, client, $, directory, worktree
 
 ### Plugin Structure (Non-Monolithic)
 
-For complex plugins, use a modular directory structure:
+For complex plugins, MUST use a modular directory structure:
 
 ```
 .opencode/plugin/my-plugin/
@@ -167,7 +171,7 @@ Keep each file under 150 lines. Split as complexity grows.
 | ----------------------------- | --------------------------------------------------- |
 | Using `client.registerTool()` | Use `tool: { name: tool({...}) }`                   |
 | Wrong event property names    | Check `references/events.md`                        |
-| Sync event handler            | Always use `async`                                  |
+| Sync event handler            | MUST use `async`                                    |
 | Not throwing to block         | `throw new Error()` in `tool.execute.before`        |
 | Forgetting TypeScript types   | `import type { Plugin } from "@opencode-ai/plugin"` |
 
@@ -182,12 +186,13 @@ Only if plugin needs user-visible notifications:
 **READ**: `references/ui-feedback.md` for persistent inline status messages
 
 Choose based on:
-| Need | Use |
-|------|-----|
-| Brief alerts, warnings | Toast |
-| Detailed stats, multi-line | Inline message |
-| Config validation errors | Toast |
-| Session completion notice | Toast or inline |
+
+| Need                         | Use            |
+| ---------------------------- | -------------- |
+| Brief alerts, warnings       | Toast          |
+| Detailed stats, multi-line   | Inline message |
+| Config validation errors     | Toast          |
+| Session completion notice    | Toast or inline|
 
 ---
 
@@ -218,7 +223,7 @@ Choose based on:
    opencode
    ```
 
-4. Recommend specific tests based on hook type used.
+4. SHOULD recommend specific tests based on hook type used.
 
 ---
 
@@ -228,7 +233,9 @@ Choose based on:
 
 **READ**: `references/update-notifications.md` for version update toasts (for users with pinned versions).
 
----
+</workflow>
+
+<reference_summary>
 
 ## Reference Files Summary
 
@@ -245,3 +252,5 @@ Choose based on:
 | `testing.md`              | Testing procedure                 | Step 6                    |
 | `publishing.md`           | npm publishing                    | Step 7                    |
 | `update-notifications.md` | Version toast pattern             | Step 7 (for npm plugins)  |
+
+</reference_summary>

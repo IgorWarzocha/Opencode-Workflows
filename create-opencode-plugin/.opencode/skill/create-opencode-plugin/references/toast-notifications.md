@@ -2,9 +2,13 @@
 
 > Reference for showing toast notifications in OpenCode TUI
 
-## Overview
+<overview>
 
 Plugins can display **toast notifications** - temporary popup messages that appear in the TUI corner. These are ideal for brief status updates, confirmations, warnings, or alerts that don't need to persist in the chat.
+
+</overview>
+
+<guidelines>
 
 ## When to Use
 
@@ -16,11 +20,15 @@ Use toasts for:
 - Brief status updates
 - Non-critical alerts
 
-**Do NOT use for:**
+**SHOULD NOT use for:**
 
 - Detailed information (use inline messages instead - see `ui-feedback.md`)
 - Persistent status that user needs to reference later
 - High-frequency updates (will spam the user)
+
+</guidelines>
+
+<api_reference>
 
 ## The API
 
@@ -55,6 +63,10 @@ await client.tui.showToast({
 | `warning` | Configuration issues, caution notices | Yellow/orange styling        |
 | `error`   | Failures or critical problems         | Red styling                  |
 
+</api_reference>
+
+<examples>
+
 ## Complete Example
 
 ```typescript
@@ -84,7 +96,7 @@ export const ToastPlugin: Plugin = async ({ client }) => {
 
 ## Error Handling
 
-Always wrap toast calls in try/catch - the TUI may not be available (e.g., in headless mode):
+MUST wrap toast calls in try/catch - the TUI MAY not be available (e.g., in headless mode):
 
 ```typescript
 async function showToast(
@@ -109,11 +121,15 @@ async function showToast(
 }
 ```
 
+</examples>
+
+<patterns>
+
 ## Practical Patterns
 
 ### Delayed Toast (Avoid Blocking Init)
 
-When showing toasts during plugin initialization, use `setTimeout` to avoid blocking:
+When showing toasts during plugin initialization, SHOULD use `setTimeout` to avoid blocking:
 
 ```typescript
 export const ConfigPlugin: Plugin = async ({ client }) => {
@@ -236,6 +252,10 @@ return {
 }
 ```
 
+</patterns>
+
+<comparison>
+
 ## Toast vs Inline Messages
 
 | Aspect           | Toast                  | Inline Message            |
@@ -248,13 +268,19 @@ return {
 
 Use **toasts** for ephemeral alerts and warnings. Use **inline messages** (see `ui-feedback.md`) for detailed status that users might want to reference.
 
+</comparison>
+
+<constraints>
+
 ## Limitations
 
 | Limitation         | Details                              |
 | ------------------ | ------------------------------------ |
-| No interactivity   | Cannot include buttons or inputs     |
-| Brief content only | Keep to 1-3 lines                    |
+| No interactivity   | MUST NOT include buttons or inputs   |
+| Brief content only | SHOULD keep to 1-3 lines             |
 | No custom styling  | Limited to predefined variants       |
 | TUI only           | Won't appear in web or headless mode |
-| May fail silently  | Always wrap in try/catch             |
-| Rate limiting      | Avoid rapid-fire toasts              |
+| May fail silently  | MUST wrap in try/catch               |
+| Rate limiting      | SHOULD avoid rapid-fire toasts       |
+
+</constraints>

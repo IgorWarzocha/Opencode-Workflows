@@ -2,6 +2,8 @@
 
 > All hook implementation patterns with examples
 
+<patterns>
+
 ## 1. Event Hook (Reactive)
 
 Listen to all events, discriminate by `type`:
@@ -167,6 +169,10 @@ return {
 }
 ```
 
+</patterns>
+
+<quick_reference>
+
 ## Hook Signature Quick Reference
 
 | Hook                  | Signature                      | Mutate             |
@@ -181,3 +187,5 @@ return {
 | `tool.execute.before` | `(input, output) => void`      | Mutate output.args |
 | `tool.execute.after`  | `(input, output) => void`      | Mutate output      |
 | `experimental.*`      | `(input, output) => void`      | Mutate output      |
+
+</quick_reference>

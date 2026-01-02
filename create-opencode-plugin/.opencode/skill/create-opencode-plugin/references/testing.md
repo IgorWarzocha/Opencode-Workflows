@@ -2,6 +2,8 @@
 
 > How to test plugins during development
 
+<workflow>
+
 ## Step 1: Create Test Environment
 
 Create a test folder with an `opencode.json` that loads your plugin from source.
@@ -85,7 +87,11 @@ If your plugin shows toasts or inline messages:
 1. Trigger the condition that shows the notification
 2. Verify toast appears with correct variant/message
 3. Check duration is appropriate
-4. Test error cases (TUI unavailable) don't crash plugin
+4. Test error cases (TUI unavailable) - plugin MUST NOT crash
+
+</workflow>
+
+<example>
 
 ## Example Test Session
 
@@ -114,9 +120,13 @@ opencode
 # (Should be blocked if env-protection plugin works)
 ```
 
+</example>
+
+<unit_testing>
+
 ## Unit Testing (Optional)
 
-For complex plugins, create unit tests with mocked context:
+For complex plugins, MAY create unit tests with mocked context:
 
 ```typescript
 // test-plugin.ts
@@ -160,3 +170,5 @@ Run with:
 ```bash
 bun run test-plugin.ts
 ```
+
+</unit_testing>

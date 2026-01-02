@@ -3,6 +3,8 @@
 > Auto-generated on 2025-12-26T13:17:55.481Z
 > Source: `packages/sdk/js/src/v2/gen/types.gen.ts`
 
+<event_types>
+
 ## Event Union (35 types)
 
 ```typescript
@@ -44,10 +46,14 @@ export type Event =
   | EventGlobalDisposed
 ```
 
+</event_types>
+
+<quick_reference>
+
 ## Quick Reference
 
 | Event Type | TypeScript Type |
-|------------|-----------------|
+|------------|-----------------| 
 | `installation.updated` | `EventInstallationUpdated` |
 | `installation.update-available` | `EventInstallationUpdateAvailable` |
 | `project.updated` | `EventProjectUpdated` |
@@ -83,6 +89,10 @@ export type Event =
 | `pty.deleted` | `EventPtyDeleted` |
 | `server.connected` | `EventServerConnected` |
 | `global.disposed` | `EventGlobalDisposed` |
+
+</quick_reference>
+
+<event_definitions>
 
 ## Events by Category
 
@@ -534,3 +544,4 @@ export type EventVcsBranchUpdated = {
 }
 ```
 
+</event_definitions>
