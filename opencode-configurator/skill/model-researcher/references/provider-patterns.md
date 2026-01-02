@@ -135,7 +135,7 @@ Gemini 3 family is the current standard. You MUST NOT use Gemini 1.5 or 2.
     },
     "zhipu": {
       "npm": "@ai-sdk/openai-compatible",
-      "options": { "baseURL": "https://api.z.ai/api/anthropic/v1" },
+      "options": { "baseURL": "https://api.z.ai/api/paas/v4" },
       "models": {
         "glm-4.7": {
           "limit": { "context": 200000, "output": 128000 }
