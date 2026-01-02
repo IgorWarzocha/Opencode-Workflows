@@ -53,6 +53,29 @@ See `create-opencode-plugin/README.md` for full details.
 
 ---
 
+## Security Reviewer
+
+The **Security Reviewer** (`security-reviewer/`) is a specialized agent for auditing codebases against vibecoding vulnerabilities. It bundles 10 framework-specific security skills:
+
+| Skill | Focus |
+|-------|-------|
+| **security-ai-keys** | AI API key leakage detection |
+| **security-bun** | Bun runtime security patterns |
+| **security-convex** | Convex auth/validators review |
+| **security-django** | Django security settings audit |
+| **security-docker** | Docker/container hardening |
+| **security-express** | Express.js middleware security |
+| **security-fastapi** | FastAPI auth/CORS validation |
+| **security-nextjs** | Next.js Server Actions review |
+| **security-secrets** | 25+ secret type detection |
+| **security-vite** | Vite env var exposure checks |
+
+**Installation**: Copy `.opencode/agent/` and `.opencode/skill/` to your global config or project.
+
+See `security-reviewer/README.md` for full details.
+
+---
+
 ## Configuration Examples
 
 - **Thinking Levels Variants** (`thinking-variants config/thinking-levels-opencode.json`) – OpenCode configuration with model variants for Ctrl+T thinking level switching. Supports OpenAI OAuth plugins (GPT-5.2, GPT-5.2 Codex), Mirrorwell's Antigravity Proxy (Gemini 3 Pro/Flash, Claude 4.5), and GLM coding plan (GLM-4.7). Enables dynamic reasoning effort and thinking budget adjustment directly from the UI.
@@ -69,7 +92,6 @@ See `create-opencode-plugin/README.md` for full details.
 A universal command template with:
 - **Command Integration Pattern**: 4-part architecture for command-to-tool interfaces (still works, but deprecated - OC now supports skills natively)
 - **Template Structure**: Organized framework for command-based projects
-- **Documentation System**: Automated maintenance via specialized agents
 - **Example Commands**: Repository exploration and mathematical calculation tools
 
 See `commands2skills/README.md` for implementation details, architecture overviews,
@@ -80,12 +102,12 @@ and usage guidance.
 Agents are organized into two collections under `agents/`:
 
 - **generic/** – Reusable global agents that belong in `~/.config/opencode/agent/`:
-  - **agent-architect** – Refines agents with research-backed prompts (best after running `opencode agent create`).
   - **repo-navigator-creator** – Builds lean AGENTS.md navigation guides.
   - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation. (might need some tweaks - dumber models hallucinate agents)
   - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents for executing OpenSpec proposals (requires [OpenSpec](https://openspec.dev/) installed and `openspec init`).
 - **vite-react-ts-convex-tailwind/** – Stack-specific experts for the modern Vite + React 19.2 + TS 5.9 + Tailwind 4.1 + Convex stack (also supports Bun). Each agent references its matching documentation file (`CONVEX.md`, `REACT19.md`, `TAILWIND4.md`, `TS59.MD`, `CODING-TS.md`) so it can cite authoritative answers on demand:
-  - **vite-react-convex-expert** – Master coordinator for the entire stack, orchestrating subagents.
+  - **VRTCT-orchestrator** – Master coordinator for the entire stack, orchestrating subagents (does not write code).
+  - **VRTCT-brain** – Stack knowledge base and implementation lead (writes code).
   - **convex-database-expert** – Schema/query/mutation/action specialist grounded in Convex docs.
   - **react-19-master** – React 19.2 implementation reviewer focused on Server Components, Actions, and compiler rules.
   - **tailwind-41-architect** – Tailwind CSS 4.1 designer that enforces the CSS-first workflow.
@@ -105,6 +127,8 @@ Currently available:
 - **`/improve:run`** (`commands/.opencode/command/improve:run.md`): Transforms any task into a production-ready prompt using official prompt engineering guides from OpenAI GPT-5.1/5.1-Codex, Anthropic Claude 4.5, and Google Gemini 3 Pro, then executes it immediately.
 - **`/improve:save`** (`commands/.opencode/command/improve:save.md`): Same enhancement as `/improve:run` but saves the optimized prompt as a markdown file for review and refinement before execution. Runs as a subagent to save context. When finished, @ the prompt file in the main session.
 - **`/refactor`** (`commands/.opencode/command/refactor.md`): Refactors code with strict modularity, file headers, and cleanup. Breaks large files into focused modules, removes slop (emojis, chatty comments, console logs), enforces DRY principles, and adds concise 2-3 sentence file headers. Targets files from current session or worst offenders (250+ lines) if unspecified.
+- **`/init`** (`commands/.opencode/command/init.md`): Creates or enhances AGENTS.md documentation while preserving human-crafted content. Analyzes repository structure and generates navigation guides for LLMs.
+- **`/refactor-rfc-xml`** (`commands/.opencode/command/refactor-rfc-xml.md`): Converts markdown files to RFC 2119 + XML tag structure for precise, machine-readable documentation.
 
 ### Scripts Catalog
 

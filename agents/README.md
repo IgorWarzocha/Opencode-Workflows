@@ -7,7 +7,7 @@ A focused catalog of agent prompts and orchestration patterns designed for Openc
 The `agents/` directory contains specialized agent collections, complemented by universal engineering guidelines in the root `at/` directory.
 
 - **generic/** – Canonical, globally useful agents that pair well with any Opencode repo. Install these into `~/.config/opencode/agent/` to make them universally available.
-- **vite-react-ts-convex-tailwind/** – A stack-specific toolkit that bundles five specialists plus stack documentation files (`CONVEX.md`, `REACT19.md`, `TAILWIND4.md`, `TS59.MD`). Each expert agent explicitly references its matching doc so it can cite authoritative guidance when reasoning.
+- **vite-react-ts-convex-tailwind/** – A stack-specific toolkit that bundles six specialists plus stack documentation files (`CONVEX.md`, `REACT19.md`, `TAILWIND4.md`, `TS59.MD`, `CODING-TS.md`). Each expert agent explicitly references its matching doc so it can cite authoritative guidance when reasoning.
 
 Each collection demonstrates how to scope agents for a domain, define guardrails in YAML frontmatter, and ship reusable workflows alongside optional documentation.
 
@@ -17,8 +17,6 @@ Each collection demonstrates how to scope agents for a domain, define guardrails
 
 | Agent | Description |
 | --- | --- |
-| `agent-architect` | Designs or refines Opencode agents using grounded research and concise prompts. Works best when refining agents created via `opencode agent create`. |
-| `build` | A "no fluff" enhancement for Opencode's built-in build agent. Appends strict implementation standards and intentional minimalism to help models stay on track. |
 | `repo-navigator-creator` | Produces lean AGENTS.md navigation guides so LLMs can traverse repositories without context overload. |
 | `subagent-orchestrator` | Dispatches specialized agents, partitions scopes, and manages parallel/sequential execution plans. |
 | `openspec-orchestrator` | Enforces strict OpenSpec formatting, runs validations, and coordinates specialists across proposal, implementation, and archive workflows. Requires [OpenSpec](https://openspec.dev/) plus `openspec init`. |
@@ -29,7 +27,8 @@ Install these globally whenever you want standard orchestration helpers availabl
 
 | Agent | Description |
 | --- | --- |
-| `vite-react-convex-expert` | Master coordinator for the full stack, orchestrating subagents and enforcing React 19.2, Tailwind 4.1, TS 5.9, and Convex best practices. |
+| `VRTCT-orchestrator` | Master coordinator for the full stack, orchestrating subagents and enforcing React 19.2, Tailwind 4.1, TS 5.9, and Convex best practices. Does not write code. |
+| `VRTCT-brain` | Stack knowledge base and implementation lead. Writes code grounded in the stack documentation. |
 | `convex-database-expert` | Senior Convex engineer covering schema design, queries/mutations/actions, auth, and operational debugging with references to `CONVEX.md`. |
 | `react-19-master` | Deep React 19.2 mentor specializing in Server Components, Server Actions, and new compiler-driven ergonomics, grounded in `REACT19.md`. |
 | `tailwind-41-architect` | Tailwind CSS 4.1 strategist that pushes the CSS-first architecture, container queries, and modern utility set, citing `TAILWIND4.md`. |
@@ -64,23 +63,23 @@ Mix and match as needed: commands launch processes, agents keep the reasoning sh
     ├── generic/
     │   └── .opencode/
     │       └── agent/
-    │           ├── agent-architect.md
-    │           ├── build.md
     │           ├── repo-navigator-creator.md
     │           ├── subagent-orchestrator.md
     │           └── openspec-orchestrator.md
     └── vite-react-ts-convex-tailwind/
+        ├── CODING-TS.md
         ├── CONVEX.md
         ├── REACT19.md
         ├── TAILWIND4.md
         ├── TS59.MD
         └── .opencode/
             └── agent/
+                ├── VRTCT-orchestrator.md
+                ├── VRTCT-brain.md
                 ├── convex-database-expert.md
                 ├── react-19-master.md
                 ├── tailwind-41-architect.md
-                ├── typescript-59-engineer.md
-                └── vite-react-convex-expert.md
+                └── typescript-59-engineer.md
 ```
 
 ## Adding New Agents

@@ -26,11 +26,21 @@ The agent draws on seven specialized skills:
 
 </overview>
 
+<commands>
+
+## The Commands
+
+| Command | What it does |
+|---------|-------------|
+| **refactor-rfc-xml** | Convert markdown files to RFC 2119 + XML tag structure |
+
+</commands>
+
 <installation>
 
 ## Installation
 
-Drop the `skill/` and `agent/` folders into `~/.config/opencode/`.
+Drop the `skill/`, `agent/`, and `command/` folders into `~/.config/opencode/`.
 
 </installation>
 

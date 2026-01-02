@@ -17,9 +17,9 @@ A universal template for creating Opencode-based projects with structured comman
 
 ### Agent Templates Catalog
 A focused collection of reusable agent prompts and orchestration patterns:
-- **agent-architect**: Designs or refines Opencode agents using grounded research
 - **repo-navigator-creator**: Produces lean AGENTS.md navigation guides
 - **subagent-orchestrator**: Dispatches specialized agents and manages execution plans
+- **openspec-orchestrator**: Enforces strict OpenSpec formatting/validation and orchestrates subagents
 
 Agents are designed for global installation in `~/.config/opencode/agent/` for reuse across projects.
 

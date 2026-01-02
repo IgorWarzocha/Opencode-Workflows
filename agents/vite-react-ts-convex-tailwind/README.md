@@ -17,13 +17,15 @@ A specialized collection of Opencode agents for building modern full-stack web a
 ## Available Agents
 
 ### Core Technology Agents
-- **`vite-react-convex-expert.md`** - Integration patterns for the full stack, with focus on orchestrating subagents
+- **`VRTCT-orchestrator.md`** - Master coordinator for the full stack, orchestrating subagents (does not write code)
+- **`VRTCT-brain.md`** - Stack knowledge base and implementation lead (writes code)
 - **`convex-database-expert.md`** - Deep Convex expertise for schema design, queries, mutations, and backend patterns
 - **`react-19-master.md`** - React 19.2 mastery including Server Components, Actions, and Compiler patterns
 - **`typescript-59-engineer.md`** - TypeScript 5.9 expertise with advanced typing and modern patterns
 - **`tailwind-41-architect.md`** - Tailwind CSS 4.1 expertise including new v4 features and theming
 
 ### Reference Documentation
+- **`CODING-TS.md`** - Universal engineering guidelines for TypeScript projects
 - **`CONVEX.md`** - Comprehensive Convex development guide and best practices
 - **`REACT19.md`** - Complete React 19+ reference with modern patterns
 - **`TS59.MD`** - TypeScript 5.9+ language reference and configuration
@@ -38,7 +40,7 @@ These agents are designed for:
 
 Each agent includes YAML frontmatter with usage guidance, mode constraints, and when to invoke the agent.
 
-By default, `vite-react-convex-expert.md` is set up to only be the primary agent, while the rest of them can be used either as main agents or subagents. Otherwise, you're risking all your subagents to be delegated as VRCE.
+By default, `VRTCT-orchestrator.md` is set up to only be the primary agent (coordination only, no code), while `VRTCT-brain.md` handles implementation. The rest can be used either as main agents or subagents. This separation prevents your orchestrator from getting bogged down in implementation details.
 
 ## Recommended changes to frontmatters
 

@@ -20,18 +20,31 @@ Other models are unaffected.
 
 ## Installation
 
-1. Copy the `src/` folder to a local location, e.g.:
+1. Copy this plugin folder to a local location, e.g.:
    ```
    ~/.config/opencode/plugin/gpt-oath-prompt-enhancer/
    ```
 
-2. Add the `index.ts` file path to your global `opencode.json` plugin array:
+2. Add the `src/index.ts` file path to your global `opencode.json` plugin array:
 
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "file:///home/your-user/.config/opencode/plugin/gpt-oath-prompt-enhancer/index.ts"
+    "file:///home/your-user/.config/opencode/plugin/gpt-oath-prompt-enhancer/src/index.ts"
+  ]
+}
+```
+   ~/.config/opencode/plugin/gpt-oath-prompt-enhancer/
+   ```
+
+2. Add the `src/index.ts` file path to your global `opencode.json` plugin array:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "file:///home/your-user/.config/opencode/plugin/gpt-oath-prompt-enhancer/src/index.ts"
   ]
 }
 ```

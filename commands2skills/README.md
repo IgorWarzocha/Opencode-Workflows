@@ -138,8 +138,8 @@ Currently Opencode only supports context injection at session start. A potential
 
 | Model | Performance | Behavior |
 |-------|-------------|----------|
-| GPT-5.1 | Excellent | Reliable execution of all command patterns |
-| GPT-5.1 Codex | Excellent | Strong performance for code-related commands |
+| GPT-5.2 | Excellent | Reliable execution of all command patterns |
+| GPT-5.2 Codex | Excellent | Strong performance for code-related commands |
 | GLM-4.6 | Limited | Erratic behavior with agentic instruction following |
 
 ### Model Requirements
