@@ -38,7 +38,7 @@ These agents are designed for:
 - **Project-specific installation** in `.opencode/agent/` directories
 - **Specialized development** when working with this specific tech stack
 
-Each agent includes YAML frontmatter with usage guidance, mode constraints, and when to invoke the agent.
+Each agent includes YAML frontmatter with usage guidance, mode constraints, and when to invoke the agent. Agent instructions use RFC 2119 keywords and XML tags for unambiguous behavior. Agent instructions use RFC 2119 keywords and XML tags for unambiguous behavior.
 
 By default, `VRTCT-orchestrator.md` is set up to only be the primary agent (coordination only, no code), while `VRTCT-brain.md` handles implementation. The rest can be used either as main agents or subagents. This separation prevents your orchestrator from getting bogged down in implementation details.
 

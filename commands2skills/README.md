@@ -11,8 +11,9 @@ This template demonstrates how to build command-based projects using Opencode wi
 
 - **Structured Commands**: Workflow templates in `.opencode/command/` with YAML frontmatter
 - **Tool Integration**: Commands serving as interfaces to external utilities (JavaScript, Python, CLI tools)
-- **Documentation System**: Automated maintenance via the `commands-md-updater` agent
+- **Documentation System**: Automated maintenance via the `/sync-commands` command
 - **Template Structure**: Ready-to-copy architecture for new projects
+- **RFC+XML Format**: All command files use XML tags and RFC 2119 keywords for precise agent understanding
 
 ## Opencode Compatibility
 
@@ -83,7 +84,7 @@ The `calculate.js` example demonstrates how commands can serve as structured int
    ```
 3. **Modify commands** in `.opencode/command/` to match your project needs
 4. **Create corresponding tools** (JavaScript, Python, etc.) as needed
-5. **Use the `commands-md-updater` agent** to maintain template structure
+5. **Run `/sync-commands`** to keep COMMANDS.md in sync
 
 ### Adding New Commands:
 
@@ -93,11 +94,11 @@ The `calculate.js` example demonstrates how commands can serve as structured int
    - Arguments section
    - Step-by-step workflow
 3. Create supporting tool if needed
-4. Use `commands-md-updater` agent to update documentation
+4. Run `/sync-commands` to update documentation
 
 ## Template Maintenance
 
-The `commands-md-updater` agent maintains Commands2Skills template structure:
+The `/sync-commands` command keeps COMMANDS.md synchronized with your command files:
 
 ### COMMANDS.md
 - Lists all available commands with descriptions
@@ -117,11 +118,10 @@ project/
 ├── example-opencode.json   # Example Opencode configuration
 ├── calculate.js            # Example tool integration
 └── .opencode/
-    ├── command/
-    │   ├── explore.md       # Repository exploration
-    │   └── calculate.md     # Mathematical calculations
-    └── agent/
-        └── commands-md-updater.md  # Template maintenance
+    └── command/
+        ├── explore.md       # Repository exploration
+        ├── calculate.md     # Mathematical calculations
+        └── sync-commands.md # COMMANDS.md synchronization
 ```
 
 ## Model Compatibility

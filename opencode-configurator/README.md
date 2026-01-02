@@ -2,6 +2,10 @@
 
 A meta-configuration system for [OpenCode](https://opencode.ai). Ask questions about plugins, create custom commands, build agents, design skills — all through natural conversation.
 
+All skills use **RFC 2119 keywords** and **XML tags** for structured, unambiguous instructions.
+
+All skills use **RFC 2119 keywords** and **XML tags** for structured, unambiguous instructions.
+
 ![opencode-configurator](https://github.com/user-attachments/assets/6b93df7d-a870-431c-829d-59afd765ce98)
 
 <overview>

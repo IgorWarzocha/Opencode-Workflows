@@ -2,48 +2,46 @@
 description: Perform mathematical calculations with basic arithmetic operations and functions
 ---
 
-## Arguments
-- $ARGUMENTS contains the user-provided argument or is empty
-- If empty, determine appropriate action from context
+<arguments>
+$ARGUMENTS contains the mathematical expression to evaluate.
+If empty, determine appropriate calculation from conversation context.
+</arguments>
 
-**CRITICAL. Always execute these exact steps**
+<instructions>
 
-Steps
-1. Parse calculation request from $ARGUMENTS
-2. Choose appropriate calculation method
-   - Basic arithmetic: +, -, *, /
-   - Power operations: ^
-   - Functions: sqrt(), log(), sin(), cos(), tan()
-3. Execute calculation using calculate.js CLI tool
-4. Format and display results with context
+1. Parse the calculation request from $ARGUMENTS
+2. Execute using the calculate.js CLI tool:
+   ```bash
+   node calculate.js "$EXPRESSION"
+   ```
+3. Format and display the result with context
 
-**Supported operations**
-- Basic: addition, subtraction, multiplication, division
-- Advanced: powers, square roots, logarithms, trigonometric functions
-- Constants: pi, e
+</instructions>
 
-**Usage patterns**
-- **Simple calculations**: "2 + 3" or "10 * 5"
-- **Complex expressions**: "2 + 3 * 4 - 1"
-- **Power operations**: "2 ^ 8" (2 to the power of 8)
-- **Functions**: "sqrt(16)" or "log(100)"
+<supported_operations>
 
-**Command execution template**
-```bash
-node calculate.js "$EXPRESSION"
-```
+| Category | Operations |
+|----------|------------|
+| Basic | `+`, `-`, `*`, `/` |
+| Power | `^` (e.g., `2 ^ 8`) |
+| Functions | `sqrt()`, `log()`, `sin()`, `cos()`, `tan()` |
+| Constants | `pi`, `e` |
 
-**Examples of proper expressions**
-- "15 + 27" - Basic addition
-- "100 / 4" - Division
-- "3.14 * 2" - Decimal multiplication
-- "2 ^ 10" - Power calculation
-- "sqrt(25) + 3" - Square root with addition
-- "50 * sin(30)" - Trigonometric calculation
+</supported_operations>
 
-**Error handling**
+<examples>
+
+- `15 + 27` → Basic addition
+- `2 ^ 10` → Power calculation (1024)
+- `sqrt(25) + 3` → Square root with addition (8)
+- `50 * sin(30)` → Trigonometric calculation
+
+</examples>
+
+<error_handling>
+
 - Invalid expressions return clear error messages
 - Division by zero handled gracefully
 - Unsupported operations flagged with suggestions
 
-Output: Formatted mathematical result with explanation
+</error_handling>

@@ -2,6 +2,10 @@
 
 A specialized agent for auditing codebases against vibecoding vulnerabilities. It automatically detects the technology stack and applies the appropriate security checks.
 
+All security skills use **RFC 2119 keywords** and **XML tags** for structured scanning instructions.
+
+All security skills use **RFC 2119 keywords** and **XML tags** for structured scanning instructions.
+
 ## The Security Reviewer Agent
 
 Your automated security auditor for modern web applications. It identifies common vulnerabilities in AI-integrated codebases, including exposed API keys, insecure configurations, and framework-specific security issues. The agent auto-selects the relevant scanning skills based on detected technologies.

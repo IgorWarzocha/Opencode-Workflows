@@ -2,6 +2,8 @@
 
 A focused catalog of agent prompts and orchestration patterns designed for Opencode projects. Each agent lives in a `.opencode/agent/` directory with YAML metadata plus a purpose-built instruction block tailored to the workflows it supports.
 
+All agent files use **RFC 2119 keywords** (MUST, SHOULD, MAY) and **XML tags** (`<instructions>`, `<workflow>`, `<rules>`) for precise, unambiguous behavior. See `RFC-XML-STYLE-GUIDE.md` in the repository root for the full specification.
+
 ## Architecture Overview
 
 The `agents/` directory contains specialized agent collections, complemented by universal engineering guidelines in the root `at/` directory.
