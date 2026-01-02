@@ -28,3 +28,17 @@ The command triggers the workflow, loading the agent and skill to look up the co
 *   **Command (`/create-plugin`)**: Triggers the workflow and passes your description to the agent.
 *   **Skill (`create-opencode-plugin`)**: Contains the API reference, event types, and TypeScript definitions. This ensures the generated code compiles.
 *   **Agent (`Plugin Creator`)**: Required specialized agent profile tuned for plugin development.
+
+## Skill Configuration
+
+> [!NOTE]
+> The Plugin Creator agent has **1 skill enabled by default**: `create-opencode-plugin`. All other skills are blocked with `"*": "deny"`. This ensures the agent focuses on plugin development without context pollution.
+
+The agent's YAML frontmatter controls skill access:
+
+```yaml
+permission:
+  skill:
+    create-opencode-plugin: allow
+    '*': deny
+```

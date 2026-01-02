@@ -46,6 +46,34 @@ Each specialist reminds downstream assistants that the relevant reference docume
 4. When using stack-specific experts, open the accompanying doc (`CONVEX.md`, etc.) if you need deeper citations or confirmation.
 5. Reference `@coding-ts` (`at/CODING-TS.MD`) for universal engineering standards and clean architecture principles.
 
+## Enabling Skills
+
+> [!IMPORTANT]
+> All agents in this repository have **skills disabled by default**. This prevents context pollution and keeps agent behavior predictable. You MUST explicitly enable the skills you want each agent to use.
+
+### How to Enable Skills
+
+Add a `permission: skill:` section to the agent's YAML frontmatter:
+
+```yaml
+---
+agent: your-agent-name
+description: Your agent description
+mode: primary
+permission:
+  skill:
+    "skill-name-1": "allow"
+    "skill-name-2": "allow"
+    "*": "deny"
+---
+```
+
+- List each skill you want to enable with `"allow"`
+- Always end with `"*": "deny"` to block all other skills
+- Skills MUST be installed in `~/.config/opencode/skill/` or `.opencode/skill/` for the agent to use them
+
+Refer to each agent's documentation for the specific skills it supports.
+
 ## Relationship to Commands
 
 Agents complement Opencode commands:

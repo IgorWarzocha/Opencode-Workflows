@@ -168,6 +168,34 @@ Use everything inside `at/` as prefix instructions during development sessions:
 4. Install [OpenSpec](https://openspec.dev/) and run `openspec init` if you plan to
    use the OpenSpec orchestrator or compatible workflows.
 
+## Enabling Skills
+
+> [!IMPORTANT]
+> All agents in this repository have **skills disabled by default**. This prevents context pollution and keeps agent behavior predictable. You MUST explicitly enable the skills you want each agent to use.
+
+### How to Enable Skills
+
+Add a `permission: skill:` section to the agent's YAML frontmatter:
+
+```yaml
+---
+agent: your-agent-name
+description: Your agent description
+mode: primary
+permission:
+  skill:
+    "skill-name-1": "allow"
+    "skill-name-2": "allow"
+    "*": "deny"
+---
+```
+
+- List each skill you want to enable with `"allow"`
+- Always end with `"*": "deny"` to block all other skills
+- Skills MUST be installed in `~/.config/opencode/skill/` or `.opencode/skill/` for the agent to use them
+
+Refer to each agent's documentation for the specific skills it supports.
+
 ## Additional Documentation
 - `commands2skills/README.md` – command architecture, tooling integration, and
   usage instructions.

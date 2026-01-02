@@ -42,6 +42,34 @@ Each agent includes YAML frontmatter with usage guidance, mode constraints, and 
 
 By default, `VRTCT-orchestrator.md` is set up to only be the primary agent (coordination only, no code), while `VRTCT-brain.md` handles implementation. The rest can be used either as main agents or subagents. This separation prevents your orchestrator from getting bogged down in implementation details.
 
+## Enabling Skills
+
+> [!IMPORTANT]
+> All VRTCT agents have **skills disabled by default**. This prevents context pollution and keeps agent behavior predictable. You MUST explicitly enable the skills you want each agent to use.
+
+### How to Enable Skills
+
+Add a `permission: skill:` section to the agent's YAML frontmatter:
+
+```yaml
+---
+agent: your-agent-name
+description: Your agent description
+mode: primary
+permission:
+  skill:
+    "skill-name-1": "allow"
+    "skill-name-2": "allow"
+    "*": "deny"
+---
+```
+
+- List each skill you want to enable with `"allow"`
+- Always end with `"*": "deny"` to block all other skills
+- Skills MUST be installed in `~/.config/opencode/skill/` or `.opencode/skill/` for the agent to use them
+
+Currently all VRTCT agents have `"*": "deny"` with no skills enabled.
+
 ## Recommended changes to frontmatters
 
 Select your preferred model for the agents. I highly recommend putting a high-context model as the `vite-react-convex-expert.md` agent, since this will be your main subagent orchestrator. Theoretically it should only delegate tasks and verify the outputs, so by using a big context model your session can go for a while without interruption. Consider Gemini 3 Pro for this. Opus or a GPT model for Convex. Gemini 3 Pro knows a bit of Tailwind 4.1, so it's a good contender. GLM is surprisingly good for frontend. The "cheapstack" is the free tier Gemini CLI and GLM for subagents.

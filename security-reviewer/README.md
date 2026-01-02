@@ -36,6 +36,29 @@ The agent dynamically loads the appropriate security skills for each scan:
 
 Drop the `skill/` and `agent/` folders into `~/.config/opencode/`.
 
+> [!NOTE]
+> The security-reviewer agent has **10 security skills enabled by default**: `security-ai-keys`, `security-bun`, `security-convex`, `security-django`, `security-docker`, `security-express`, `security-fastapi`, `security-nextjs`, `security-secrets`, and `security-vite`. All other skills are blocked with `"*": "deny"`. This allows the agent to dynamically load relevant security checks based on detected technologies without context pollution.
+
+### Skill Configuration
+
+The agent's YAML frontmatter controls skill access:
+
+```yaml
+permission:
+  skill:
+    security-ai-keys: allow
+    security-bun: allow
+    security-convex: allow
+    security-django: allow
+    security-docker: allow
+    security-express: allow
+    security-fastapi: allow
+    security-nextjs: allow
+    security-secrets: allow
+    security-vite: allow
+    '*': deny
+```
+
 ## Usage
 
 Simply ask for a security review:
