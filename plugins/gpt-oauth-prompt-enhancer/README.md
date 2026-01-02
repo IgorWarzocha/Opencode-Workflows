@@ -1,4 +1,4 @@
-# GPT Oath Prompt Enhancer
+# GPT OAuth Prompt Enhancer
 
 Injects OpenCode environment context and CLI formatting guidelines into GPT model conversations.
 
