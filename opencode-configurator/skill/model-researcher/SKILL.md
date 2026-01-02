@@ -155,7 +155,7 @@ For labs using OpenAI-compatible or Anthropic-compatible endpoints (Verified Q4 
     "zhipu": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Zhipu AI (ZAI)",
-      "options": { "baseURL": "https://api.z.ai/api/anthropic/v1" },
+      "options": { "baseURL": "https://api.z.ai/api/paas/v4" },
       "models": {
         "glm-4.7": { "limit": { "context": 200000, "output": 128000 } },
       },
