@@ -207,47 +207,4 @@ This repository provides tested Opencode command patterns, global agent prompts,
 and workflow templates that demonstrate best practices for creating maintainable,
 scalable command-based projects with external tool integration.
 
----
 
-## RFC 2119 + XML Tag Structure
-
-All agent prompts, skills, and commands in this repository use **RFC 2119 keywords** and **XML tags** for structure. This isn't arbitrary formatting—it's research-backed prompt engineering.
-
-### Why XML Tags?
-
-XML tags provide clear boundaries that LLMs parse reliably:
-
-- **Clarity**: Distinct separation between instructions, examples, and context reduces misinterpretation
-- **Hierarchy**: Nested tags create logical groupings (e.g., `<workflow>` containing numbered steps)
-- **Consistency**: Standardized tags like `<instructions>`, `<rules>`, `<examples>` work across all models
-- **Parseability**: Structured output can be extracted programmatically when needed
-
-```xml
-<instructions>
-1. Read the file
-2. Apply changes
-</instructions>
-
-<rules>
-- MUST preserve existing formatting
-- SHOULD use surgical edits
-</rules>
-```
-
-### Why RFC 2119 Keywords?
-
-RFC 2119 (BCP 14) defines precise requirement levels used in internet standards since 1997:
-
-| Keyword | Meaning |
-|---------|---------|
-| **MUST** | Absolute requirement. No exceptions. |
-| **MUST NOT** | Absolute prohibition. |
-| **SHOULD** | Strong recommendation, but valid reasons may exist to deviate. |
-| **SHOULD NOT** | Discouraged, but acceptable in specific circumstances. |
-| **MAY** | Truly optional. |
-
-This eliminates ambiguity. "You should validate input" is vague. "The agent SHOULD validate input before processing" is precise—it's strongly recommended but not a hard failure if skipped with reason.
-
-### Style Guide
-
-See `RFC-XML-STYLE-GUIDE.md` for the complete reference, including tag catalogs, keyword definitions, and before/after examples. Use `/refactor-rfc-xml` to convert existing files.
