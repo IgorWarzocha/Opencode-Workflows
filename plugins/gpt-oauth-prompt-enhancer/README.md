@@ -22,7 +22,7 @@ Other models are unaffected.
 
 1. Copy this plugin folder to a local location, e.g.:
    ```
-   ~/.config/opencode/plugin/gpt-oath-prompt-enhancer/
+   ~/.config/opencode/plugin/gpt-oauth-prompt-enhancer/
    ```
 
 2. Add the `src/index.ts` file path to your global `opencode.json` plugin array:
@@ -31,20 +31,7 @@ Other models are unaffected.
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "file:///home/your-user/.config/opencode/plugin/gpt-oath-prompt-enhancer/src/index.ts"
-  ]
-}
-```
-   ~/.config/opencode/plugin/gpt-oath-prompt-enhancer/
-   ```
-
-2. Add the `src/index.ts` file path to your global `opencode.json` plugin array:
-
-```json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "file:///home/your-user/.config/opencode/plugin/gpt-oath-prompt-enhancer/src/index.ts"
+    "file:///home/your-user/.config/opencode/plugin/gpt-oauth-prompt-enhancer/src/index.ts"
   ]
 }
 ```
