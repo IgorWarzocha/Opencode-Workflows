@@ -5,15 +5,12 @@
       "whitelist": ["gpt-5.2", "gpt-5.2-codex"],
       "options": {
         "reasoning": true,
-        "reasoningEffort": "medium",
-        "reasoningSummary": "auto",
-        "textVerbosity": "medium",
         "include": ["reasoning.encrypted_content"],
         "store": false
       },
       "models": {
         "gpt-5.2": {
-          "name": "GPT 5.2",
+          "name": "GPT 5.2 (OAuth)",
           "reasoning": true,
           "limit": {
             "context": 272000,
@@ -55,7 +52,7 @@
           }
         },
         "gpt-5.2-codex": {
-          "name": "GPT 5.2 Codex",
+          "name": "GPT 5.2 Codex (OAuth)",
           "reasoning": true,
           "limit": {
             "context": 272000,
@@ -100,7 +97,7 @@
       }
     },
     "zai-coding-plan": {
-      "whitelist": ["glm-4.7"],
+      "whitelist": ["glm-4.7", "glm-4.6v", "glm-4.6v-flash"],
       "npm": "@ai-sdk/anthropic",
       "options": {
         "baseURL": "https://api.z.ai/api/anthropic/v1"
@@ -117,9 +114,18 @@
             "temperature": 1,
             "top_k": 40,
             "top_p": 0.95,
-            "maxOutputTokens": 128000
+            "maxOutputTokens": 128000,
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 64000
+            }
           },
           "variants": {
+            "none": {
+              "thinking": {
+                "type": "disabled"
+              }
+            },
             "low": {
               "thinking": {
                 "type": "enabled",
@@ -145,91 +151,190 @@
               }
             }
           }
+        },
+        "glm-4.6v": {
+          "reasoning": true,
+          "interleaved": true,
+          "options": {
+            "reasoningEffort": "high",
+            "temperature": 0.8,
+            "top_p": 0.6,
+            "top_k": 2,
+            "repetition_penalty": 1.1,
+            "maxOutputTokens": 16000,
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 16000
+            }
+          }
+        },
+        "glm-4.6v-flash": {
+          "reasoning": true,
+          "interleaved": true,
+          "options": {
+            "reasoningEffort": "high",
+            "temperature": 0.8,
+            "top_p": 0.6,
+            "top_k": 2,
+            "repetition_penalty": 1.1,
+            "maxOutputTokens": 16000,
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 16000
+            }
+          }
         }
       }
     },
-    "local-proxy": {
-      "whitelist": ["gemini-3-pro", "gemini-3-flash", "claude-sonnet-4-5", "claude-opus-4-5"],
+    "local": {
+      "whitelist": [
+        "gemini_cli/gemini-3-pro",
+        "gemini_cli/gemini-3-flash",
+        "antigravity/gemini-3-pro",
+        "antigravity/gemini-3-flash",
+        "antigravity/claude-sonnet-4-5",
+        "antigravity/claude-opus-4-5",
+        "antigravity/gpt-oss-120b-medium"
+      ],
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Local Proxy",
+      "name": "Proxy",
       "options": {
         "baseURL": "http://localhost:8000/v1",
-        "apiKey": "your-api-key",
+        "apiKey": "VerysecretKey",
         "timeout": 300000
       },
       "models": {
-        "gemini-3-pro": {
-          "id": "gemini-3-pro-preview",
-          "name": "Gemini 3 Pro",
+        "gemini_cli/gemini-3-pro": {
+          "id": "gemini_cli/gemini-3-pro-preview",
+          "name": "Gemini 3 Pro (CLI)",
           "limit": {
             "context": 1048576,
             "output": 64000
           },
           "reasoning": true,
           "variants": {
+            "low": {},
             "medium": {
               "disabled": true
-            }
+            },
+            "high": {}
           },
           "modalities": {
             "input": ["image", "text"],
             "output": ["text"]
           }
         },
-        "gemini-3-flash": {
-          "id": "gemini-3-flash-preview",
-          "name": "Gemini 3 Flash",
+        "gemini_cli/gemini-3-flash": {
+          "id": "gemini_cli/gemini-3-flash-preview",
+          "name": "Gemini 3 Flash (CLI)",
           "limit": {
             "context": 1048576,
             "output": 64000
           },
           "reasoning": true,
           "variants": {
-            "medium": {
-              "disabled": true
-            }
+            "disable": {},
+            "low": {},
+            "medium": {},
+            "high": {}
           },
           "modalities": {
             "input": ["image", "text"],
             "output": ["text"]
           }
         },
-        "claude-sonnet-4-5": {
-          "id": "claude-sonnet-4-5",
-          "name": "Claude Sonnet 4.5",
+        "antigravity/gemini-3-pro": {
+          "id": "antigravity/gemini-3-pro-preview",
+          "name": "Gemini 3 Pro (Antigravity)",
           "limit": {
-            "context": 200000,
-            "output": 32000
+            "context": 1048576,
+            "output": 64000
           },
           "reasoning": true,
           "variants": {
+            "low": {},
             "medium": {
               "disabled": true
-            }
+            },
+            "high": {}
           },
           "modalities": {
             "input": ["image", "text"],
             "output": ["text"]
           }
         },
-        "claude-opus-4-5": {
-          "id": "claude-opus-4-5",
-          "name": "Claude Opus 4.5",
+        "antigravity/gemini-3-flash": {
+          "id": "antigravity/gemini-3-flash",
+          "name": "Gemini 3 Flash (Antigravity)",
+          "limit": {
+            "context": 1048576,
+            "output": 64000
+          },
+          "reasoning": true,
+          "variants": {
+            "disable": {},
+            "low": {},
+            "medium": {},
+            "high": {}
+          },
+          "modalities": {
+            "input": ["image", "text"],
+            "output": ["text"]
+          }
+        },
+        "antigravity/claude-sonnet-4-5": {
+          "id": "antigravity/claude-sonnet-4-5",
+          "name": "Claude Sonnet 4.5 (Antigravity)",
           "limit": {
             "context": 200000,
             "output": 32000
           },
           "reasoning": true,
           "variants": {
-            "medium": {
-              "disabled": true
-            }
+            "low": {},
+            "medium": {},
+            "high": {}
+          },
+          "modalities": {
+            "input": ["image", "text"],
+            "output": ["text"]
+          }
+        },
+        "antigravity/claude-opus-4-5": {
+          "id": "antigravity/claude-opus-4-5",
+          "name": "Claude Opus 4.5 (Antigravity)",
+          "limit": {
+            "context": 200000,
+            "output": 32000
+          },
+          "reasoning": true,
+          "variants": {
+            "low": {},
+            "medium": {},
+            "high": {}
           },
           "modalities": {
             "input": ["image", "text"],
             "output": ["text"]
           }
         }
+        // currently is looping endlessly and never stops
+        // "antigravity/gpt-oss-120b-medium": {
+        //   "id": "antigravity/gpt-oss-120b-medium",
+        //   "name": "GPT OSS 120B Medium (Antigravity)",
+        //   "limit": {
+        //     "context": 131072,
+        //     "output": 131072
+        //   },
+        //   "reasoning": true,
+        //   "variants": {
+        //     "medium": {}
+        //   },
+        //   "modalities": {
+        //     "input": ["text"],
+        //     "output": ["text"]
+        //   }
+        // }
       }
     }
   }
