@@ -1,6 +1,6 @@
 ---
 name: prd-authoring
-description: Comprehensive Product Requirement Document (PRD) authoring. Use when: creating PRDs, writing technical specifications, designing system architecture, defining product requirements, planning implementation phases, creating task lists from requirements, or generating code snippets for API designs and schemas.
+description: "Comprehensive Product Requirement Document (PRD) authoring. Use when: creating PRDs, writing technical specifications, designing system architecture, defining product requirements, planning implementation phases, creating task lists from requirements, or generating code snippets for API designs and schemas."
 ---
 
 # PRD Authoring
