@@ -22,18 +22,13 @@ Other models are unaffected.
 
 ## Installation
 
-1. Copy the `index.ts` file to a local folder, e.g.:
-   ```
-   ~/.config/opencode/plugin/gemini-glm-focused-mode/
-   ```
-
-2. Add the file path to your global `opencode.json` plugin array:
+Add the plugin to your global `opencode.json` plugin array:
 
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "file:///home/your-user/.config/opencode/plugin/gemini-glm-focused-mode/index.ts"
+    "@howaboua/opencode-glm-gemini-prompt-enhancer"
   ]
 }
 ```
