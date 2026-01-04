@@ -48,7 +48,7 @@ See `create-opencode-plugin/README.md` for full details.
 
 ## Plugins
 
-- **Gemini/GLM Focused Mode** (`plugins/gemini-glm-focused-mode/`) – Injects a rigorous system prompt for GLM-4.7 and Gemini models to enforce precise, grounded, and persistent coding behavior. Activates based on model name matching. Install by copying `index.ts` to a local folder and adding the file path to your global `opencode.json` plugin array.
+- **Gemini/GLM Focused Mode** (`plugins/gemini-glm-focused-mode/`) – Injects a rigorous system prompt for GLM-4.7 and Gemini models to enforce precise, grounded, and persistent coding behavior. Activates based on model name matching. Install by adding `@howaboua/opencode-glm-gemini-prompt-enhancer@latest` to your global `opencode.json` plugin array.
 - **GPT OAuth Prompt Enhancer** (`plugins/gpt-oauth-prompt-enhancer/`) – Injects OpenCode environment context and CLI formatting guidelines into GPT model conversations. Ensures GPT models follow CLI-specific Markdown rendering conventions and understand the AGENTS.md discovery system. Activates for any model ID containing "gpt". Install by copying `src/` folder locally and adding `index.ts` path to your global `opencode.json` plugin array.
 
 ---
@@ -83,19 +83,6 @@ See `security-reviewer/README.md` for full details.
 ---
 
 ## Included Packs
-
-### Commands2Skills Template
-
-> [!NOTE]
-> **Partially Deprecated**: OpenCode now supports [Skills](https://opencode.ai/docs/skills/) natively. This template remains useful if you want agents to discover and execute `/commands` agentically via a COMMANDS.md index file injected at session start. For new projects, consider using Skills instead.
-
-A universal command template with:
-- **Command Integration Pattern**: 4-part architecture for command-to-tool interfaces (still works, but deprecated - OC now supports skills natively)
-- **Template Structure**: Organized framework for command-based projects
-- **Example Commands**: Repository exploration and mathematical calculation tools
-
-See `commands2skills/README.md` for implementation details, architecture overviews,
-and usage guidance.
 
 ### Agent Catalog
 
@@ -147,6 +134,19 @@ The `scripts/` directory contains utilities that commands or agents can reuse.
 Use everything inside `at/` as prefix instructions during development sessions:
 - **`@coding-ts`** (`at/CODING-TS.MD`): Universal engineering guidelines emphasizing DRY principles,
   type safety, and clean architecture. Reference it in prompts (e.g., “Implement feature X following @coding-ts principles”) before starting any new feature or refactor so the LLM stays aligned. These reference files are meant for direct @ mentions in user instructions and are not invoked by subagents.
+
+### Commands2Skills Template
+
+> [!NOTE]
+> **Partially Deprecated**: OpenCode now supports [Skills](https://opencode.ai/docs/skills/) natively. This template remains useful if you want agents to discover and execute `/commands` agentically via a COMMANDS.md index file injected at session start. For new projects, consider using Skills instead.
+
+A universal command template with:
+- **Command Integration Pattern**: 4-part architecture for command-to-tool interfaces (still works, but deprecated - OC now supports skills natively)
+- **Template Structure**: Organized framework for command-based projects
+- **Example Commands**: Repository exploration and mathematical calculation tools
+
+See `commands2skills/README.md` for implementation details, architecture overviews,
+and usage guidance.
 
 ### MCP Configurations
 
