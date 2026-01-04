@@ -9,6 +9,7 @@ All agent files use **RFC 2119 keywords** (MUST, SHOULD, MAY) and **XML tags** (
 The `agents/` directory contains specialized agent collections, complemented by universal engineering guidelines in the root `at/` directory.
 
 - **generic/** – Canonical, globally useful agents that pair well with any Opencode repo. Install these into `~/.config/opencode/agent/` to make them universally available.
+- **parallel-PRD/** – Parallel PRD planners plus an orchestrator and PRD authoring skill for best-of synthesis.
 - **vite-react-ts-convex-tailwind/** – A stack-specific toolkit that bundles six specialists plus stack documentation files (`CONVEX.md`, `REACT19.md`, `TAILWIND4.md`, `TS59.MD`, `CODING-TS.md`). Each expert agent explicitly references its matching doc so it can cite authoritative guidance when reasoning.
 
 Each collection demonstrates how to scope agents for a domain, define guardrails in YAML frontmatter, and ship reusable workflows alongside optional documentation.
@@ -24,6 +25,15 @@ Each collection demonstrates how to scope agents for a domain, define guardrails
 | `openspec-orchestrator` | Enforces strict OpenSpec formatting, runs validations, and coordinates specialists across proposal, implementation, and archive workflows. Requires [OpenSpec](https://openspec.dev/) plus `openspec init`. |
 
 Install these globally whenever you want standard orchestration helpers available in every session.
+
+### Parallel PRD Pack (`agents/parallel-PRD/.opencode/agent/`)
+
+| Agent | Description |
+| --- | --- |
+| `parallel-prd-orchestrator` | Primary orchestrator that dispatches planners and writes `/prd/[feat][final].md`. |
+| `gemini-pro-planner` | Planner subagent for PRD generation. |
+| `glm-planner` | Planner subagent for PRD generation. |
+| `gemini-flash-planner` | Planner subagent for PRD generation. |
 
 ### Vite + React + TS + Tailwind + Convex Pack (`agents/vite-react-ts-convex-tailwind/.opencode/agent/`)
 
@@ -96,6 +106,21 @@ Mix and match as needed: commands launch processes, agents keep the reasoning sh
     │           ├── repo-navigator-creator.md
     │           ├── subagent-orchestrator.md
     │           └── openspec-orchestrator.md
+    ├── parallel-PRD/
+    │   └── .opencode/
+    │       ├── agent/
+    │       │   ├── parallel-prd-orchestrator.md
+    │       │   ├── gemini-pro-planner.md
+    │       │   ├── glm-planner.md
+    │       │   ├── gemini-flash-planner.md
+    │       │   └── TEMPLATE-planner.md
+    │       ├── command/
+    │       │   └── parallel-prd.md
+    │       └── skill/
+    │           └── prd-authoring/
+    │               ├── SKILL.md
+    │               └── references/
+    │                   └── examples.md
     └── vite-react-ts-convex-tailwind/
         ├── CODING-TS.md
         ├── CONVEX.md

@@ -91,7 +91,7 @@ This research informs better questions in Phase 2 and produces a more capable ag
 4. **"Does this agent need shell access? Web access? File editing?"**
    - If yes to shell: "Any commands that should be blocked or require approval?"
    - If yes to web: "Should it ask before fetching URLs?"
-   - Determines `tools` and `permission` config
+   - Determines `permission` config
 
 5. **"Should this agent use any skills?"**
    - If yes: "Which ones? Should others be blocked?"
@@ -244,16 +244,9 @@ permission:
 
 **Full reference:** See `references/opencode-config.md`
 
-## Tool Access Control
+## Legacy Configuration
 
-Disable specific tools:
-
-```yaml
-tools:
-  bash: false       # No shell access
-  webfetch: false   # No web access
-  task: false       # Cannot spawn subagents
-```
+Agents may occasionally work on legacy projects using outdated frontmatter (e.g., `tools:`, `maxSteps:`). You MUST correct these to the modern `permission:` and `steps:` fields when encountered.
 
 </permissions>
 
@@ -287,11 +280,10 @@ MUST show proposed changes and ask for confirmation before applying.
 ---
 description: Safe code reviewer. Use for "review this code", "check for bugs".
 mode: primary
-tools:
-  bash: false
-  write: false
 permission:
   edit: "ask"
+  bash: "deny"
+  write: "deny"
   external_directory: "deny"
 ---
 You are a code review specialist. Analyze code for bugs, security issues,

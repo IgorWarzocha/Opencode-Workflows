@@ -2,12 +2,10 @@
 description: |
   Vite + React + TypeScript + Tailwind + Convex orchestractly.
 mode: primary
-tools:
-  edit: false
-  write: false
-  bash: false
-  skill: true
 permission:
+  edit: deny
+  write: deny
+  bash: deny
   skill:
     "*": "deny"
 ---

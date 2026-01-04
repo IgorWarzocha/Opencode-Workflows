@@ -7,8 +7,6 @@ description: Configure OpenCode settings and rules. Use when user asks to "confi
 
 Help users configure OpenCode through guided setup of config files and rules.
 
-<reference>
-
 ## File Locations
 
 | Type | Global | Project |
@@ -18,9 +16,7 @@ Help users configure OpenCode through guided setup of config files and rules.
 
 **Precedence:** Project > Global. Configs are merged, not replaced.
 
-</reference>
-
-<workflow>
+## Configuration Workflow
 
 Ask the user what they want to configure:
 
@@ -30,9 +26,7 @@ Ask the user what they want to configure:
 
 Then guide them through the relevant section below.
 
-</workflow>
-
-<config_file>
+---
 
 ## Config File (opencode.json)
 
@@ -57,19 +51,34 @@ Then guide them through the relevant section below.
 | `autoupdate` | Auto-update OpenCode | `true` / `false` |
 | `share` | Session sharing | `"manual"` / `"auto"` / `"disabled"` |
 
+### Tools Configuration
+
+Enable/disable tools globally:
+
+```jsonc
+{
+  "tools": {
+    "bash": true,
+    "write": true,
+    "edit": true,
+    "webfetch": true,
+    "skill": true
+  }
+}
+```
+
 ### Permissions
 
-Control what requires approval using the `permission` field.
+Control what requires approval:
 
 ```jsonc
 {
   "permission": {
     "edit": "allow",           // "allow" | "ask" | "deny"
     "bash": {
-      "npm *": "allow",        // pattern matching
-      "git *": "allow",
+      "*": "allow",
       "rm *": "ask",
-      "*": "ask"               // default for this tool
+      "sudo *": "deny"
     },
     "webfetch": "allow",
     "skill": {
@@ -79,10 +88,6 @@ Control what requires approval using the `permission` field.
   }
 }
 ```
-
-### Legacy Configuration
-
-Agents may occasionally work on legacy projects using outdated configuration fields (e.g., `tools`, `maxSteps`). You MUST correct these to the modern `permission` and `steps` fields when encountered.
 
 ### Custom Instructions
 
@@ -100,9 +105,7 @@ Include additional instruction files:
 
 **Full schema reference:** See `references/config-schema.md`
 
-</config_file>
-
-<rules_file>
+---
 
 ## Rules (AGENTS.md)
 
@@ -135,18 +138,18 @@ This is a [framework] project using [language].
 
 ### Tips
 
-- SHOULD be specific about your project's patterns
-- SHOULD include common commands
-- SHOULD document any non-obvious conventions
-- SHOULD keep it concise (agents have limited context)
+- Be specific about your project's patterns
+- Include common commands
+- Document any non-obvious conventions
+- Keep it concise (agents have limited context)
 
-</rules_file>
+---
 
-<config_tips>
+## Config Tips
 
-## Comment Out, Don't Delete
+### Comment Out, Don't Delete
 
-OpenCode supports JSONC (JSON with comments). SHOULD comment out unused configs instead of deleting:
+OpenCode supports JSONC (JSON with comments). Comment out unused configs instead of deleting:
 
 ```jsonc
 {
@@ -161,15 +164,13 @@ OpenCode supports JSONC (JSON with comments). SHOULD comment out unused configs 
 
 **Why:** You might want to re-enable later. Keeps a record of what you've tried.
 
-## Validate After Major Changes
+### Validate After Major Changes
 
-After editing opencode.json, you MUST run this validation (not just suggest it):
+After editing opencode.json, **test the config**:
 
 ```bash
 opencode run "test"
 ```
-
-**Execute it yourself** using the Bash tool before telling the user the change is complete.
 
 If broken, you'll see a clear error with line number:
 ```
@@ -186,11 +187,11 @@ Common JSONC mistakes:
 - Trailing comma before `}`
 - Unclosed brackets
 
-</config_tips>
+---
 
-<common_configurations>
+## Common Configurations
 
-## Minimal Safe Config
+### Minimal Safe Config
 
 ```jsonc
 {
@@ -203,7 +204,7 @@ Common JSONC mistakes:
 }
 ```
 
-## Power User Config
+### Power User Config
 
 ```jsonc
 {
@@ -222,7 +223,7 @@ Common JSONC mistakes:
 }
 ```
 
-## Team Project Config
+### Team Project Config
 
 ```jsonc
 {
@@ -236,17 +237,15 @@ Common JSONC mistakes:
 }
 ```
 
-</common_configurations>
+---
 
-<troubleshooting>
+## Troubleshooting
 
 | Issue | Solution |
 |-------|----------|
 | Config not loading | Check JSON syntax, ensure valid path |
 | Skill not found | Verify `SKILL.md` (uppercase), check frontmatter |
 | Permission denied unexpectedly | Check global vs project config precedence |
-
-</troubleshooting>
 
 ## References
 

@@ -99,12 +99,13 @@ and usage guidance.
 
 ### Agent Catalog
 
-Agents are organized into two collections under `agents/`:
+Agents are organized into three collections under `agents/`:
 
 - **generic/** – Reusable global agents that belong in `~/.config/opencode/agent/`:
   - **repo-navigator-creator** – Builds lean AGENTS.md navigation guides.
   - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation. (might need some tweaks - dumber models hallucinate agents)
   - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents for executing OpenSpec proposals (requires [OpenSpec](https://openspec.dev/) installed and `openspec init`).
+- **parallel-PRD/** – Parallel PRD planning kit with planner subagents, an orchestrator, and a PRD authoring skill. Produces a final mashup PRD at `/prd/[feat][final].md`.
 - **vite-react-ts-convex-tailwind/** – Stack-specific experts for the modern Vite + React 19.2 + TS 5.9 + Tailwind 4.1 + Convex stack (also supports Bun). Each agent references its matching documentation file (`CONVEX.md`, `REACT19.md`, `TAILWIND4.md`, `TS59.MD`, `CODING-TS.md`) so it can cite authoritative answers on demand:
   - **VRTCT-orchestrator** – Master coordinator for the entire stack, orchestrating subagents (does not write code).
   - **VRTCT-brain** – Stack knowledge base and implementation lead (writes code).

@@ -78,30 +78,34 @@ If you discovered a new MCP server online, you MUST document it for future refer
 
 ## MCP Tool Management
 
-MCPs expose tools. Control via `tools` section:
+MCPs expose tools. Control via the `permission` section using the tool name (usually the MCP name):
 
-**Disable globally:**
+**Global/Agent Permission:**
 ```jsonc
 {
-  "tools": {
-    "my-mcp": false,
-    "my-mcp*": false
+  "permission": {
+    "my-mcp": "deny",          // Disable all tools for this MCP
+    "my-mcp*": "deny"          // Wildcard support
   }
 }
 ```
 
-**Enable per-agent:**
+**Pattern-based control:**
 ```jsonc
 {
-  "agent": {
-    "my-agent": {
-      "tools": {
-        "my-mcp": true
-      }
+  "permission": {
+    "my-mcp": {
+      "safe_tool": "allow",
+      "risky_tool": "ask",
+      "*": "deny"
     }
   }
 }
 ```
+
+## Legacy Configuration
+
+Agents may occasionally work on legacy projects using outdated configuration fields (e.g., `tools:`). You MUST correct these to the modern `permission:` system when encountered.
 
 ## OAuth
 
