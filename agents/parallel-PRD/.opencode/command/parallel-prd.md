@@ -30,15 +30,18 @@ You are running a parallel PRD generation process to:
 </phase>
 
 <phase name="gather_context">
-1. If the user provided repo files or docs, read them.
-2. If the user supplied URLs or requests external references, you MAY use webfetch.
-3. Keep context strictly relevant to the PRD.
+1. You MUST use the `prd-authoring` skill guidance as the primary reference for structure, depth, and task formatting.
+2. If the user provided repo files or docs, read them.
+3. You SHOULD use websearch and webfetch to resolve missing facts or validate assumptions, even if no URLs were supplied.
+4. You MAY proactively pull official docs or standards when they materially improve the PRD.
+5. Keep context strictly relevant to the PRD.
 </phase>
 
 <phase name="prepare_prompt">
 Create a single, detailed prompt that includes:
 - The problem statement from $ARGUMENTS.
 - Any relevant context (tech stack, constraints, goals).
+- A directive to follow the `prd-authoring` skill guidance closely.
 - Request for a comprehensive PRD following the template.
 
 <example>
@@ -78,9 +81,10 @@ Each subagent will:
 
 <phase name="synthesize_results">
 1. Read each generated PRD file.
-2. Synthesize a single best-of PRD that merges the strongest parts.
-3. Save the mashup to `/prd/[feat][final].md`.
-4. Provide a brief comparison summary in your response.
+2. Use the `prd-authoring` skill guidance to validate section completeness and task formatting.
+3. Synthesize a single best-of PRD that merges the strongest parts.
+4. Save the mashup to `/prd/[feat][final].md`.
+5. Provide a brief comparison summary in your response.
 </phase>
 
 </workflow>

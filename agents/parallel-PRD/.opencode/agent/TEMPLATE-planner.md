@@ -9,6 +9,8 @@ model: YOUR-MODEL-HERE
 
 permission:
   bash: "deny"
+  webfetch: "allow"
+  websearch: "allow"
   write:
     "/prd/*.md": "allow"
     "*": "deny"
@@ -155,6 +157,8 @@ Every document you create MUST follow this structure:
 <instructions>
 
 When you receive a prompt:
+You MUST use the `prd-authoring` skill guidance as the primary source of truth for structure, depth, and task formatting.
+You SHOULD use websearch and webfetch to resolve knowledge gaps and validate assumptions.
 
 1. **Analyze the problem space**
    - Identify core requirements
