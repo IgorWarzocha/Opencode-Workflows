@@ -26,8 +26,6 @@ Outputs:
 3. Replace `YOUR-SUFFIX-HERE` in the template (required_output + instructions section).
 4. Update `.opencode/command/parallel-prd.md` to include the new agent in dispatch + synthesis.
 
-## Default Planners
+## Included Planners
 
-- `gemini-pro-planner`
-- `glm-planner`
-- `gemini-flash-planner`
+- `glm-planner` using GLM 4.7 Z-AI coding plan.
