@@ -8,11 +8,11 @@ Parallel PRD workflow: one command dispatches multiple planners and writes a fin
 - `.opencode/agent/` planners plus `parallel-prd-orchestrator.md` and `TEMPLATE-planner.md`
 - `.opencode/skill/prd-authoring/` PRD guidance and example
 
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/1f2f5e58-c9c3-4ab8-9713-6255712eb84a" />
+
 ## Usage
 
-```bash
-opencode run "parallel-prd <problem statement>"
-```
+Drop into your global ./config/opencode/ folder or your repository. Run `opencode models` to find precise identifiers for the template. Copy the template as many times as you want to create your parallel planners. Select the Orchestrator agent in Opencode and invoke `/parallel-prd command`. Watch it fly.
 
 Outputs:
 - `/prd/[feat][<suffix>].md` for each planner
