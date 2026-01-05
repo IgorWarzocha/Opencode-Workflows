@@ -1,5 +1,5 @@
 ---
-description: Initialize or enhance AGENTS.md (preserves existing work)
+description: Smart-manage AGENTS.md
 ---
 
 <context>

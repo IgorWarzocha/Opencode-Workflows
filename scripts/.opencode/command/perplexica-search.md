@@ -1,5 +1,5 @@
 ---
-description: Run Perplexica searches with smart mode selection and structured citations
+description: AI search with citations
 ---
 
 ## Arguments

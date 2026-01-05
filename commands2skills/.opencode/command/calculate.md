@@ -1,5 +1,5 @@
 ---
-description: Perform mathematical calculations with basic arithmetic operations and functions
+description: Quick math via CLI tool
 ---
 
 <arguments>

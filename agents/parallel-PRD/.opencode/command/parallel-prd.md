@@ -1,5 +1,5 @@
 ---
-description: Generate multiple PRD perspectives in parallel and produce a final synthesized PRD
+description: Run a multimodel PRD process
 ---
 
 <arguments>

@@ -1,5 +1,5 @@
 ---
-description: Generate exhaustive repository guide for assistance
+description: Create wiki-style AGENTS.md
 ---
 
 <objective>

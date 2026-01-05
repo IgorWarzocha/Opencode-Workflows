@@ -1,5 +1,5 @@
 ---
-description: Modernize OpenCode configuration and agents to the latest schema
+description: Update permissions config to v1.1.1
 ---
 
 <objective>

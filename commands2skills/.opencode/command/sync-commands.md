@@ -1,5 +1,5 @@
 ---
-description: Sync COMMANDS.md with command files in .opencode/command/
+description: Update command index
 subtask: true
 ---
 

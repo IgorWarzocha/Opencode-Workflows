@@ -1,5 +1,5 @@
 ---
-description: Refactor all markdown files in a folder into RFC 2119 + XML tag structure for better agent understanding
+description: Apply RFC 2119 + XML standards
 ---
 
 Refactor all markdown files in the specified folder into RFC 2119 + XML compliant format.

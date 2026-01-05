@@ -1,5 +1,5 @@
 ---
-description: Transform any task into a production-ready prompt and save it
+description: Create optimized prompt file
 subtask: true
 ---
 

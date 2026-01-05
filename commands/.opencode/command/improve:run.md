@@ -1,5 +1,5 @@
 ---
-description: Transform any task into a production-ready prompt and execute it
+description: Execute optimized prompt
 ---
 
 <role>

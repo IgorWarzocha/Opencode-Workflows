@@ -1,5 +1,5 @@
 ---
-description: Create an OpenCode plugin from a description
+description: Describe and create an OC plugin
 ---
 
 <instructions>

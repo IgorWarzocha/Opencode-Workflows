@@ -1,5 +1,5 @@
 ---
-description: Explore repository structure to understand key files, patterns, and architecture
+description: Map codebase structure
 ---
 
 <arguments>

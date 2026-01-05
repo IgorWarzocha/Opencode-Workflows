@@ -1,5 +1,5 @@
 ---
-description: Refactor code (strict modularity, no slop, clean headers)
+description: Modularise and optimise code
 ---
 
 <context>
