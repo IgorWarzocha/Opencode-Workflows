@@ -1,5 +1,5 @@
 ---
-description: Parallel PRD orchestrator. Use when user asks to generate PRDs in parallel, compare multiple PRDs, or synthesize a best-of PRD.
+description: Orchestrate parallel PRD generation
 mode: primary
 permission:
   edit:

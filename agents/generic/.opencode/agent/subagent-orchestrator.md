@@ -1,5 +1,5 @@
 ---
-description: Coordinate specialized subagents for multi-part work.
+description: Orchestrate specialized subagents
 mode: primary
 permission:
   skill:

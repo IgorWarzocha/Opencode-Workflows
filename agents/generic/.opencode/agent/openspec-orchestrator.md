@@ -1,5 +1,5 @@
 ---
-description: OpenSpec workflow coordinator with strict WHEN/THEN enforcement.
+description: Orchestrate OpenSpec workflows
 mode: primary
 permission:
   skill:

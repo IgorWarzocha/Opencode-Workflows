@@ -1,6 +1,6 @@
 ---
 description: |
-  Vite + React + TypeScript + Tailwind + Convex orchestractly.
+  Orchestrate VRTCT stack
 mode: primary
 permission:
   edit: deny

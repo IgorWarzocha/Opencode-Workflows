@@ -1,6 +1,6 @@
 ---
 description: |
-  Vite + React + TypeScript + Tailwind + Convex stack lead for architecture and integration. Not for generic JS/TS.
+  Orchestrate & Code within VRTCT stack
 mode: primary
 permission:
   skill:

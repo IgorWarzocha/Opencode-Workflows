@@ -1,5 +1,12 @@
 ---
-description: Security auditor for vibecoding vulnerabilities. Use for "security review", "check for secrets", "find vulnerabilities", "is this secure?"
+description: |
+  Security auditor for vibecoding vulnerabilities. Use for "security review", "check for secrets", "find vulnerabilities", "is this secure?"
+
+  Examples:
+  - user: "Do a security review of this codebase" → scan for hardcoded secrets, unsafe env var handling, open ports
+  - user: "Check for API keys in this repo" → grep for common patterns (sk-, api_key, SECRET, token), redact findings
+  - user: "Is this Express server secure?" → audit CORS, middleware, auth, input validation, dependency vulnerabilities
+  - user: "Find security issues in this Convex setup" → check row-level auth, query validation, exposure risks
 permission:
   skill:
     "security-secrets": "allow"

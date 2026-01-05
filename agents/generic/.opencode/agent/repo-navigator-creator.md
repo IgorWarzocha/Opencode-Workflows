@@ -1,5 +1,5 @@
 ---
-description: Create or update AGENTS.md navigation guides for agent routing.
+description: Create AGENTS.md navigation guides
 mode: primary
 permission:
   skill:
