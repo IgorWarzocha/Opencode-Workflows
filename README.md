@@ -4,6 +4,9 @@ A collection of Opencode-based command templates, global agent prompts, and
 workflow patterns for building sophisticated command-driven projects.
 
 ![opencode-workflows](https://github.com/user-attachments/assets/72872e42-b388-45a4-9948-5063350fb381)
+
+---
+
 ## Start Here: Opencode Configurator
 
 The **Opencode Configurator** (`opencode-configurator/`) is a meta-configuration system that makes setting up OpenCode effortless. Just ask naturally:
@@ -29,6 +32,26 @@ The configurator agent draws on seven specialized skills:
 **Installation**: Drop the `skill/` and `agent/` folders into `~/.config/opencode/`.
 
 See `opencode-configurator/README.md` for full details.
+
+---
+
+## The Ralph Wiggum Loop (KISS Method)
+
+The **Ralph Wiggum Loop** (`/loop`) is a high-intensity, autonomous "black box" orchestrator that follows the KISS (Keep It Simple, Stupid) principle: **The technique is deterministically bad in an undeterministic world.**
+
+It puts a specialized task tool subagent in an evolving while-loop, pushing it through repeated layers of implementation and hyper-detailed verification until the task is 100% complete.
+
+See `commands/.opencode/command/loop.md` for full details.
+
+**Key Features:**
+- **Dynamic Checklist Evolution**: As features are implemented, the loop appends granular "Deep Dive" items to the hidden checklist to test for edge cases, polish, and integration.
+- **Autonomous Verification**: No user interaction is allowed until the subagent explicitly reports 100% completion AND the orchestrator verifies it.
+- **Stateful Resumption**: Leverages native `task` tool session persistence (session IDs starting with `ses`) to maintain continuity across dozens of iterations.
+- **Loop Intensity Control**:
+  - `/loop AUTO 5 "Implement feature X"`: Executes 5 evolving verification loops immediately.
+  - `/loop 10 "Implement feature X"`: Presents a hyper-detailed checklist for approval, then attempts 10 autonomous loops.
+
+Ralph will test you. Every time Ralph takes a wrong direction, don't blame the tools; tune the signs. Eventually, all Ralph thinks about is the signs.
 
 ---
 
@@ -117,6 +140,7 @@ Currently available:
 - **`/refactor`** (`commands/.opencode/command/refactor.md`): Refactors code with strict modularity, file headers, and cleanup. Breaks large files into focused modules, removes slop (emojis, chatty comments, console logs), enforces DRY principles, and adds concise 2-3 sentence file headers. Targets files from current session or worst offenders (250+ lines) if unspecified.
 - **`/init`** (`commands/.opencode/command/init.md`): Creates or enhances AGENTS.md documentation while preserving human-crafted content. Analyzes repository structure and generates navigation guides for LLMs.
 - **`/refactor-rfc-xml`** (`commands/.opencode/command/refactor-rfc-xml.md`): Converts markdown files to RFC 2119 + XML tag structure for precise, machine-readable documentation.
+- **`/loop`** (`commands/.opencode/command/loop.md`): The "Ralph Wiggum" loop. An autonomous, multi-stage orchestrator that uses stateful task tool subagent sessions and dynamic checklist evolution to achieve 100% verified completion through sheer persistence.
 
 ### Scripts Catalog
 
@@ -125,8 +149,8 @@ The `scripts/` directory contains utilities that commands or agents can reuse.
   that handles long-running requests (300s timeout), prints answers with sources,
   and exposes focus modes (web, academic, Reddit, YouTube, Wolfram) via `--mode`
   flags. Point it at your Perplexica instance (default `http://localhost:3000/api/search`).
-- **`/perplexica-search`** (`scripts/.opencode/command/perplexica-search.md`) – A specialized 
-  command that orchestrates the CLI to perform research with smart mode selection, 
+- **`/perplexica-search`** (`scripts/.opencode/command/perplexica-search.md`) – A specialized
+  command that orchestrates the CLI to perform research with smart mode selection,
   structured summaries, and full citations.
 
 ### @At Reference Files
@@ -173,6 +197,9 @@ and usage guidance.
 
 > [!IMPORTANT]
 > All agents in this repository have **skills disabled by default**. This prevents context pollution and keeps agent behavior predictable. You MUST explicitly enable the skills you want each agent to use.
+
+> [!IMPORTANT]
+> **Skills Permission System (OC 1.1.2)**: As of OpenCode 1.1.2, the `permission: skill:` filtering system is currently non-functional. Agents can access all installed skills regardless of frontmatter settings. Do not rely on this for security or context isolation until a fix is released.
 
 ### How to Enable Skills
 
