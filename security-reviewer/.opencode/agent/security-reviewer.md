@@ -9,6 +9,7 @@ description: |
   - user: "Find security issues in this Convex setup" → check row-level auth, query validation, exposure risks
 permission:
   skill:
+    "*": "deny"
     "security-secrets": "allow"
     "security-bun": "allow"
     "security-convex": "allow"
@@ -19,7 +20,6 @@ permission:
     "security-docker": "allow"
     "security-fastapi": "allow"
     "security-ai-keys": "allow"
-    "*": "deny"
 ---
 # Role
 

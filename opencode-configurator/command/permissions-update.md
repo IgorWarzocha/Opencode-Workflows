@@ -33,6 +33,24 @@ Scan the current configuration for legacy OpenCode fields and modernize them.
 3. **Subagent Tools**:
    - In agent frontmatter, the agent MUST convert `tools:` to `permission:`.
 
+4. **Skill Permissions**:
+   - The order matters. "*" MUST be the first item in the list, or alall skills will be disabled.
+   - Example OLD - INCORRECT:
+
+`permission:
+    skill:
+      "security-secrets": "allow"
+      "*": "deny"`
+
+  - Example NEW - this enables only specified skills:
+
+`permission:
+    skill:
+      "*": "deny"`
+      "security-secrets": "allow"
+
+
+
 4. **Reference**:
    - When in doubt, cross reference with: https://github.com/anomalyco/opencode/releases/tag/v1.1.1
 

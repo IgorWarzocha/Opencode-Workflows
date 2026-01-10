@@ -3,8 +3,8 @@ description: Create OpenCode plugins
 mode: primary
 permission:
   skill:
-    "create-opencode-plugin": "allow"
     "*": "deny"
+    "create-opencode-plugin": "allow"
 ---
 
 <role>

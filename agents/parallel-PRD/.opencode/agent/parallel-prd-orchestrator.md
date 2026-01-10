@@ -3,17 +3,17 @@ description: Orchestrate parallel PRD generation
 mode: primary
 permission:
   edit:
-    "/prd/*.md": "allow"
     "*": "deny"
+    "/prd/*.md": "allow"
   write:
-    "/prd/*.md": "allow"
     "*": "deny"
+    "/prd/*.md": "allow"
   bash: "deny"
   webfetch: "allow"
   websearch: "allow"
   skill:
-    prd-authoring: "allow"
     "*": "deny"
+    prd-authoring: "allow"
   external_directory: "deny"
 ---
 

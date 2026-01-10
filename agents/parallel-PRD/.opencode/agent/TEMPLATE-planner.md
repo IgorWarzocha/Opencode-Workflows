@@ -5,18 +5,16 @@ mode: subagent
 # Fill in with your model of choice. Use precise output from `opencode models`.
 # Replace `YOUR-SUFFIX-HERE` in required_output and instructions below.
 model: YOUR-MODEL-HERE
-
-
 permission:
   bash: "deny"
   webfetch: "allow"
   websearch: "allow"
   write:
+    "*": "deny"
     "/prd/*.md": "allow"
-    "*": "deny"
   skill:
-    prd-authoring: "allow"
     "*": "deny"
+    prd-authoring: "allow"
 ---
 
 <role>

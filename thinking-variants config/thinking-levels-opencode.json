@@ -98,8 +98,8 @@
         "antigravity/gemini-3-pro",
         "antigravity/gemini-3-flash",
         "antigravity/claude-sonnet-4-5",
-        "antigravity/claude-opus-4-5",
-        "antigravity/gpt-oss-120b-medium"
+        "antigravity/claude-opus-4-5"
+        //"antigravity/gpt-oss-120b-medium"
       ],
       "npm": "@ai-sdk/openai-compatible",
       "name": "Proxy",
