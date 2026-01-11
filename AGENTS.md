@@ -81,21 +81,21 @@ commands2skills/              # Template for command-based projects
     └── agent/
         └── commands-md-updater.md  # Documentation maintenance
 
-create-opencode-plugin/      # Plugin creation workflow
-mcp-configs/                 # MCP server configurations
-opencode-configurator/       # Configurator skills, agents, and commands
-plugins/                     # Local OpenCode plugins
-security-reviewer/           # Security review tooling
 thinking-variants config/    # Thinking-level configurations
 
 agents/                      # Agent templates catalog
 ├── README.md               # Agent overview and usage guidance
+├── component-engineer/      # Expert architecture package
+├── create-opencode-plugin/  # Plugin creation workflow
 ├── generic/                # Globally useful agents
 │   └── .opencode/
 │       └── agent/
 │           ├── repo-navigator-creator.md   # AGENTS.md generation
 │           ├── subagent-orchestrator.md    # Multi-agent coordination
 │           └── openspec-orchestrator.md    # OpenSpec workflow enforcement
+├── opencode-configurator/   # Configurator skills, agents, and commands
+├── parallel-PRD/           # Parallel PRD planning kit
+├── security-reviewer/       # Security review tooling
 └── vite-react-ts-convex-tailwind/ # Stack-specific expert pack
     ├── CONVEX.md           # Convex documentation
     ├── REACT19.md          # React 19 documentation

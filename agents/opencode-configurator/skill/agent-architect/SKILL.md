@@ -37,7 +37,6 @@ description: When to use this agent. Include trigger examples.
 model: anthropic/claude-sonnet-4-20250514  # Optional
 mode: primary | subagent | all             # Default: all
 permission:
-  skill: { "my-skill": "allow", "*": "deny" }
   bash: { "git *": "allow", "*": "ask" }
 ---
 System prompt in markdown body (second person).

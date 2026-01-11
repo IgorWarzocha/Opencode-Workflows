@@ -101,7 +101,7 @@ See `security-reviewer/README.md` for full details.
 
 ## Configuration Examples
 
-- **Thinking Levels Variants** (`thinking-variants config/thinking-levels-opencode.json`) – OpenCode configuration with model variants for Ctrl+T thinking level switching. Supports OpenAI OAuth plugins (GPT-5.2, GPT-5.2 Codex), Mirrorwell's Antigravity Proxy (Gemini 3 Pro/Flash, Claude 4.5), and GLM coding plan (GLM-4.7). Enables dynamic reasoning effort and thinking budget adjustment directly from the UI.
+- **Thinking Levels Variants** (`thinking-variants config/thinking-levels-opencode.json`) – OpenCode configuration with model variants for Ctrl+T thinking level switching. Sup Mirrorwell's Antigravity Proxy (Gemini 3 Pro/Flash, Claude 4.5), and GLM coding plan (GLM-4.7). Enables dynamic reasoning effort and thinking budget adjustment directly from the UI.
 
 ---
 
@@ -109,21 +109,25 @@ See `security-reviewer/README.md` for full details.
 
 ### Agent Catalog
 
-Agents are organized into three collections under `agents/`:
+Agents are organized under `agents/`:
 
 - **generic/** – Reusable global agents that belong in `~/.config/opencode/agent/`:
   - **repo-navigator-creator** – Builds lean AGENTS.md navigation guides.
-  - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation. (might need some tweaks - dumber models hallucinate agents)
-  - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents for executing OpenSpec proposals (requires [OpenSpec](https://openspec.dev/) installed and `openspec init`).
+  - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation.
+  - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents for executing OpenSpec proposals.
 - **parallel-PRD/** – Parallel PRD planning kit with planner subagents, an orchestrator, and a PRD authoring skill. Produces a final mashup PRD at `/prd/[feat][final].md`.
 - **component-engineer/** – Expert architecture package for building professional React components. Includes specialized commands for `/component-review` and `/component-create`, and a deep knowledge-base skill covering accessibility, composition, and attribute-driven styling.
+- **opencode-configurator/** – Meta-configuration system for OpenCode (plugins, commands, agents, skills, models, MCP).
+- **security-reviewer/** – Specialized agent for auditing codebases against vibecoding vulnerabilities.
+- **create-opencode-plugin/** – Workflow bundle for AI-assisted plugin development.
 - **vite-react-ts-convex-tailwind/** – Stack-specific experts for the modern Vite + React 19.2 + TS 5.9 + Tailwind 4.1 + Convex stack (also supports Bun). Includes the **Component Engineering Specification** internalized into core agent workflows:
   - **VRTCT-orchestrator** – Master coordinator for the entire stack, orchestrating subagents (does not write code).
   - **VRTCT-brain** – Stack knowledge base and implementation lead (writes code).
   - **convex-database-expert** – Schema/query/mutation/action specialist grounded in Convex docs.
-  - **react-19-master** – React 19.2 implementation reviewer focused on Server Components, Actions, and compiler rules.
+  - **react-19-master** – React 19.2 implementation reviewer focused on Server Components, Actions, and the Component Engineering Specification (via `component-engineering` skill).
   - **tailwind-41-architect** – Tailwind CSS 4.1 designer that enforces the CSS-first workflow.
   - **typescript-59-engineer** – Strict TS 5.9 engineer who guards erasable syntax and configuration hygiene.
+
 
 See `agents/README.md` for full tables, usage details, and the complete directory tree.
 
@@ -204,7 +208,7 @@ and usage guidance.
 > [!IMPORTANT]
 > **Skills Permission System (OC 1.1.2)**: As of OpenCode 1.1.2, the `permission: skill:` filtering system is currently non-functional. Agents can access all installed skills regardless of frontmatter settings. Do not rely on this for security or context isolation until a fix is released.
 
-### How to Enable Skills
+### How to Disable Skills
 
 Add a `permission: skill:` section to the agent's YAML frontmatter:
 
@@ -215,9 +219,10 @@ description: Your agent description
 mode: primary
 permission:
   skill:
+    "*": "deny"
     "skill-name-1": "allow"
     "skill-name-2": "allow"
-    "*": "deny"
+    
 ---
 ```
 

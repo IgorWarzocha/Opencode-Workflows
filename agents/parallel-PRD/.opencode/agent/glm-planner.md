@@ -11,8 +11,8 @@ permission:
     "/prd/*.md": "allow"
     "*": "deny"
   skill:
-    prd-authoring: "allow"
     "*": "deny"
+    prd-authoring: "allow"
 ---
 
 <role>

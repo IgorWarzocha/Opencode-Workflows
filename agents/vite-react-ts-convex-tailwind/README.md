@@ -61,30 +61,6 @@ By default, `VRTCT-orchestrator.md` is set up to only be the primary agent (coor
 > [!IMPORTANT]
 > All VRTCT agents have **skills disabled by default**. This prevents context pollution and keeps agent behavior predictable. You MUST explicitly enable the skills you want each agent to use.
 
-> [!IMPORTANT]
-> **Skills Permission System (OC 1.1.2)**: As of OpenCode 1.1.2, the `permission: skill:` filtering system is currently non-functional. Agents can access all installed skills regardless of frontmatter settings. Do not rely on this for security or context isolation until a fix is released.
-
-### How to Enable Skills
-
-Add a `permission: skill:` section to the agent's YAML frontmatter:
-
-```yaml
----
-agent: your-agent-name
-description: Your agent description
-mode: primary
-permission:
-  skill:
-    "skill-name-1": "allow"
-    "skill-name-2": "allow"
-    "*": "deny"
----
-```
-
-- List each skill you want to enable with `"allow"`
-- Always end with `"*": "deny"` to block all other skills
-- Skills MUST be installed in `~/.config/opencode/skill/` or `.opencode/skill/` for the agent to use them
-
 Currently all VRTCT agents have `"*": "deny"` with no skills enabled.
 
 ## Recommended changes to frontmatters

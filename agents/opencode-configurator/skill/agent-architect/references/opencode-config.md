@@ -116,7 +116,6 @@ If not specified, agents inherit from global config:
 permission:
   edit: "allow"
   bash: { "*": "allow" }
-  skill: { "*": "allow" }
   webfetch: "allow"
   doom_loop: "ask"
   external_directory: "ask"
