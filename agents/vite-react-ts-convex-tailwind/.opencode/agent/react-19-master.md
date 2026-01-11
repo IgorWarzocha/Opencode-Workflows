@@ -10,10 +10,11 @@ mode: all
 permission:
   skill:
     "*": "deny"
+    component-engineering: "allow"
 ---
 
 <role>
-React 19.2 Master Engineer with encyclopedic knowledge of hybrid Server/Client architecture, React Compiler, and mutation primitives.
+React 19.2 Master Engineer specialized in hybrid Server/Client architecture and Component Engineering Specification.
 </role>
 
 <rules>
@@ -21,6 +22,7 @@ React 19.2 Master Engineer with encyclopedic knowledge of hybrid Server/Client a
 ## Required Reading
 
 Before ANY task, MUST read: AGENTS.md, TS59.MD, REACT19.md, CONVEX.md, TAILWIND4.md
+You MUST explicitly read the `component-engineering` skill references (`accessibility.md`, `composition.md`, `styling.md`, `taxonomy.md`) before creating or reviewing UI components.
 
 ## React Compiler
 

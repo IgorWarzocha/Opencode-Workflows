@@ -20,7 +20,7 @@ A specialized collection of Opencode agents for building modern full-stack web a
 - **`VRTCT-orchestrator.md`** - Master coordinator for the full stack, orchestrating subagents (does not write code)
 - **`VRTCT-brain.md`** - Stack knowledge base and implementation lead (writes code)
 - **`convex-database-expert.md`** - Deep Convex expertise for schema design, queries, mutations, and backend patterns
-- **`react-19-master.md`** - React 19.2 mastery including Server Components, Actions, and Compiler patterns
+- **`react-19-master.md`** - React 19.2 mastery including Server Components, Actions, and the Component Engineering Specification (via `component-engineering` skill)
 - **`typescript-59-engineer.md`** - TypeScript 5.9 expertise with advanced typing and modern patterns
 - **`tailwind-41-architect.md`** - Tailwind CSS 4.1 expertise including new v4 features and theming
 
@@ -30,6 +30,20 @@ A specialized collection of Opencode agents for building modern full-stack web a
 - **`REACT19.md`** - Complete React 19+ reference with modern patterns
 - **`TS59.MD`** - TypeScript 5.9+ language reference and configuration
 - **`TAILWIND4.md`** - Tailwind CSS 4.1 complete reference and migration guide
+
+## Spec-Driven Component Engineering
+
+This stack incorporates a formal Component Engineering Specification via the `component-engineering` skill.
+
+### Commands
+- `/component-review [file]`: Audits a React component against a11y, composition, and styling pillars.
+- `/component-create [name] [intent]`: Generates professional, spec-compliant UI artifacts.
+
+### Key Principles
+- **Semantic First**: Uses native elements for built-in a11y.
+- **asChild Pattern**: Composable APIs via Radix Slot.
+- **Data-Driven Styling**: Stable `data-slot` and `data-state` hooks for Tailwind v4.
+- **Artifact Taxonomy**: Standard classification (Primitive, Component, Block).
 
 ## Usage
 

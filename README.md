@@ -116,7 +116,8 @@ Agents are organized into three collections under `agents/`:
   - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation. (might need some tweaks - dumber models hallucinate agents)
   - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents for executing OpenSpec proposals (requires [OpenSpec](https://openspec.dev/) installed and `openspec init`).
 - **parallel-PRD/** – Parallel PRD planning kit with planner subagents, an orchestrator, and a PRD authoring skill. Produces a final mashup PRD at `/prd/[feat][final].md`.
-- **vite-react-ts-convex-tailwind/** – Stack-specific experts for the modern Vite + React 19.2 + TS 5.9 + Tailwind 4.1 + Convex stack (also supports Bun). Each agent references its matching documentation file (`CONVEX.md`, `REACT19.md`, `TAILWIND4.md`, `TS59.MD`, `CODING-TS.md`) so it can cite authoritative answers on demand:
+- **component-engineer/** – Expert architecture package for building professional React components. Includes specialized commands for `/component-review` and `/component-create`, and a deep knowledge-base skill covering accessibility, composition, and attribute-driven styling.
+- **vite-react-ts-convex-tailwind/** – Stack-specific experts for the modern Vite + React 19.2 + TS 5.9 + Tailwind 4.1 + Convex stack (also supports Bun). Includes the **Component Engineering Specification** internalized into core agent workflows:
   - **VRTCT-orchestrator** – Master coordinator for the entire stack, orchestrating subagents (does not write code).
   - **VRTCT-brain** – Stack knowledge base and implementation lead (writes code).
   - **convex-database-expert** – Schema/query/mutation/action specialist grounded in Convex docs.
@@ -141,6 +142,8 @@ Currently available:
 - **`/init`** (`commands/.opencode/command/init.md`): Creates or enhances AGENTS.md documentation while preserving human-crafted content. Analyzes repository structure and generates navigation guides for LLMs.
 - **`/refactor-rfc-xml`** (`commands/.opencode/command/refactor-rfc-xml.md`): Converts markdown files to RFC 2119 + XML tag structure for precise, machine-readable documentation.
 - **`/loop`** (`commands/.opencode/command/loop.md`): The "Ralph Wiggum" loop. An autonomous, multi-stage orchestrator that uses stateful task tool subagent sessions and dynamic checklist evolution to achieve 100% verified completion through sheer persistence.
+- **`/component-review`** (`agents/component-engineer/.opencode/command/component-review.md`): Performs a rigorous, spec-aligned audit of a React component for a11y, composition, and professional patterns.
+- **`/component-create`** (`agents/component-engineer/.opencode/command/component-create.md`): Generates a professional, spec-compliant React component or block based on high-level intent.
 
 ### Scripts Catalog
 
