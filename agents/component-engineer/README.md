@@ -2,6 +2,8 @@
 
 A comprehensive Opencode package based on the formal specification for modern React components. It provides agents, commands, and skills for building and reviewing high-quality UI artifacts.
 
+![component-engineer](https://github.com/user-attachments/assets/4d4620bd-96d8-4fc8-801d-61ee4ae703d5)
+
 ## Architecture
 
 ### 1. Agent: `component-engineer`
