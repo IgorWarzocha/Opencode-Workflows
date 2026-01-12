@@ -4,13 +4,6 @@ This is the **Opencode Workflows** repository - a collection of Opencode-based c
 
 ## Current Workflows
 
-### Commands2Skills Template
-A universal template for creating Opencode-based projects with structured commands and tool integration. Demonstrates a 4-part architecture:
-- **Command Files**: Workflow templates with YAML frontmatter and structured execution
-- **External Tools**: JavaScript utilities (calculate.js) showing CLI integration patterns
-- **CLI Integration Layer**: Standard patterns for invoking external tools
-- **Documentation System**: Automated maintenance via specialized agents
-
 ### Agent Templates Catalog
 A focused collection of reusable agent prompts and orchestration patterns:
 - **repo-maintainer**: Repository health custodian (audits, doc sync). **NOTE: This root agent is specific to the Opencode-Workflows repo.**
@@ -19,7 +12,6 @@ A focused collection of reusable agent prompts and orchestration patterns:
 - **openspec-orchestrator**: Enforces strict OpenSpec formatting/validation and orchestrates subagents
 
 Agents are designed for global installation in `~/.config/opencode/agent/` for reuse across projects.
-
 
 ### AI Research Tools
 - `scripts/perplexica-cli.js` - External tool for AI search integration with proper timeout handling
@@ -51,18 +43,18 @@ Agents follow Opencode's agent patterns with YAML frontmatter:
 
 ### Configuration System
 - `example-opencode.json` templates for Opencode configuration
-- References to `AGENTS.md` and `COMMANDS.md` in instructions arrays
+- References to `AGENTS.md` in instructions arrays
 - `package.json` in `.opencode/` for Opencode plugin dependencies
 - Follows Opencode schema standards
 
 ## Model Requirements
 
-Commands.md is injected at session start, requiring models with strong:
-- **Context Management**: Maintaining COMMANDS.md throughout session
+Repository intelligence requires models with strong:
+- **Context Management**: Maintaining project-level instructions throughout session
 - **Instruction Following**: Precise execution of multi-step workflows
-- **Agentic Capabilities**: Understanding when/how to use available commands
+- **Agentic Capabilities**: Understanding when/how to use available commands and agents
 
-**Tested Models**: GPT-5.1 and GPT-5.1 Codex (excellent), GLM-4.6 (erratic behavior)
+**Recommended Models**: GPT-5.2, Claude 4.5, Gemini 3.
 
 ## Repository Structure
 
@@ -79,14 +71,6 @@ at/                          # Universal engineering guidelines (@coding-ts)
 │   └── sync-docs.md         # Doc synchronization
 └── skill/
     └── repo-maintenance/    # Maintenance logic & scripts
-
-commands2skills/              # Template for command-based projects
-├── COMMANDS.md              # Command index and LLM usage instructions
-├── example-opencode.json   # Template configuration
-├── calculate.js            # Example tool integration
-└── .opencode/
-    └── agent/
-        └── commands-md-updater.md  # Documentation maintenance
 
 thinking-variants config/    # Thinking-level configurations
 
@@ -129,7 +113,7 @@ scripts/                     # External utility tools
 ## Working with This Repository
 
 ### For Template Usage
-1. Review available workflow templates in commands2skills/, agents/, and commands/
+1. Review available workflow templates in agents/ and commands/
 2. Copy template elements selectively for your projects
 3. Create your own `opencode.json` based on examples
 4. Adapt commands and tools to specific needs
