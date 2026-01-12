@@ -1,53 +1,74 @@
 ---
-description: Modularise and optimise code
+description: Refactor code and structure
 ---
 
-<context>
-Targets: $ARGUMENTS
+Refactor the following targets: $ARGUMENTS
 
-If no targets specified, identify files created this session or scan for worst offenders (250+ lines).
-</context>
+<clarification>
 
-<objective>
-Modularise and clean up code according to strict standards.
-</objective>
+<question_tool>
 
-<instructions>
+**Batching Rule:** Use only for 2+ related questions; single questions use plain text.
 
-## File Structure & Modularity
+**Syntax Constraints:** header max 12 chars, labels 1-5 words, mark defaults with `(Recommended)`.
 
-- MUST break large files into focused, single-purpose modules
-- SHOULD use barrel exports (`index.ts`) to expose public APIs
-- MUST start every file with a 2-3 sentence block comment explaining its purpose:
+**Purpose:** Clarify targets (session files/largest/specific) and priority (modularity/hygiene/both) when `$ARGUMENTS` is empty or ambiguous.
 
-```typescript
-/**
- * utils/formatting.ts
- * Provides currency and date formatting utilities for the billing dashboard.
- * Handles locale detection and fallback states.
- */
+</question_tool>
+
+## Initial Clarification (if targets unclear)
+
+If `$ARGUMENTS` is empty or ambiguous, use the `question` tool:
+
+```json
+{
+  "questions": [
+    { "question": "What should I refactor?", "header": "Targets", "options": [
+      { "label": "Files from this session", "description": "Refactor code created/modified recently" },
+      { "label": "Largest files (Recommended)", "description": "Find and refactor 250+ line files" },
+      { "label": "Let me specify", "description": "I'll provide specific file paths" }
+    ]},
+    { "question": "What's the priority?", "header": "Focus", "options": [
+      { "label": "Modularity", "description": "Split large files, improve structure" },
+      { "label": "Code hygiene", "description": "Remove slop, fix types, clean comments" },
+      { "label": "Both (Recommended)", "description": "Full refactor treatment" }
+    ]}
+  ]
+}
 ```
 
-## Code Hygiene
+If user provided specific file paths, proceed directly.
 
-- MUST remove ALL emojis from comments, strings, and UI text unless strictly necessary
-- MUST remove chatty or redundant comments; comment ONLY major sections or complex logic
-- SHOULD remove excessive defensive checks if data path is trusted or validated
-- MUST NOT use `any` casts; fix the types properly
-- MUST remove all `console.log` statements
+</clarification>
 
-## Core Principles
+**Context**: If no targets are specified above, identify and refactor files created within this session, or scan for worst offenders in the codebase - normally, it's the files with 250+ lines of code.
 
-- MUST abstract patterns seen twice (DRY)
-- MUST throw errors clearly; MUST NOT hide failures
-- SHOULD fail fast with clear error messages
+**Objective**: Modularise and clean up the code according to these strict standards.
 
-</instructions>
+### 1. File Structure & Modularity
+- **Small Files**: Break large files into focused, single-purpose modules.
+- **Barrel Exports**: Use `index.ts` files to cleanly expose public APIs from directories.
+- **File Headers**: Every file MUST start with a non-verbose 2-3 sentence block comment explaining its specific purpose - no generic headers allowed.
+  ```typescript
+  /**
+   * utils/formatting.ts
+   * Provides currency and date formatting utilities for the billing dashboard.
+   * Handles locale detection and fallback states.
+   */
+  ```
 
-<workflow>
+### 2. Code Hygiene ("No Slop")
+- **Remove Emojis**: Delete ALL emojis from comments, strings, and UI text unless strictly necessary for the feature.
+- **Concise Comments**: Remove "chatty" or redundant comments. Comment ONLY major sections or complex logic.
+- **No Defensive Clutter**: Remove excessive `try/catch` or defensive checks (like `if (obj && obj.prop)`) if the data path is trusted or already validated.
+- **Type Safety**: Strictly no `any` casts. Fix the types.
 
-1. Analyze files against these rules
-2. Refactor structure (split files if needed)
-3. Clean up code (remove slop, add headers, fix types)
+### 3. Core Principles
+- **DRY**: If you see a pattern twice, abstract it.
+- **Fail Fast**: Throw errors clearly; do not hide them.
+- **No Console Logs**: Remove `console.log` entirely.
 
-</workflow>
+**Execution:**
+1. Analyze the files against these rules.
+2. Refactor to improve structure (splitting files if needed).
+3. Clean up the code (remove slop, add headers, fix types).

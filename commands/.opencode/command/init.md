@@ -1,5 +1,5 @@
 ---
-description: Smart-manage AGENTS.md
+description: Initialize repository rules
 ---
 
 <context>
@@ -11,10 +11,47 @@ User guidance: $ARGUMENTS
 </context>
 
 <objective>
-Create or intelligently enhance AGENTS.md for this codebase. 
+Create or intelligently enhance AGENTS.md for this codebase.
 
 Philosophy: **ENHANCEMENT over REPLACEMENT**. Human-crafted content is sacred unless explicitly told otherwise.
 </objective>
+
+<clarification>
+
+<question_tool>
+
+**Batching Rule:** Use only for 2+ related questions; single questions use plain text.
+
+**Syntax Constraints:** header max 12 chars, labels 1-5 words, mark defaults with `(Recommended)`.
+
+**Purpose:** Clarify mode (create/enhance/replace) and focus areas when `$ARGUMENTS` is empty or vague.
+
+</question_tool>
+
+## Initial Clarification (unless user provides detailed args)
+
+If `$ARGUMENTS` is empty or vague, use the `question` tool before proceeding:
+
+```json
+{
+  "questions": [
+    { "question": "What kind of AGENTS.md setup do you need?", "header": "Mode", "options": [
+      { "label": "Create new (Recommended)", "description": "Generate fresh AGENTS.md for this repo" },
+      { "label": "Enhance existing", "description": "Improve current AGENTS.md without major rewrites" },
+      { "label": "Replace", "description": "Start from scratch, ignore existing content" }
+    ]},
+    { "question": "Any specific focus areas?", "header": "Focus", "options": [
+      { "label": "Full coverage", "description": "Document entire repo" },
+      { "label": "Build/test commands", "description": "Focus on dev workflow" },
+      { "label": "Code style", "description": "Focus on conventions" }
+    ]}
+  ]
+}
+```
+
+If user provided detailed guidance in `$ARGUMENTS`, MAY proceed directly.
+
+</clarification>
 
 <instructions>
 

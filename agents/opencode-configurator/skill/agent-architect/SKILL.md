@@ -1,6 +1,13 @@
 ---
 name: agent-architect
-description: Research-backed creation and enhancement of opencode agents. Use when creating new agents from requirements, improving underperforming agents, or designing agent configurations. Triggers on "create an agent for X", "improve my Y agent", "design a specialized agent", "my agent isn't working well".
+description: |-
+  Create and refine OpenCode agents via guided Q&A. Use proactively for agent creation, performance improvement, or configuration design.
+  
+  Examples:
+  - user: "Create an agent for code reviews" → ask about scope, permissions, tools, model preferences, generate AGENTS.md frontmatter
+  - user: "My agent ignores context" → analyze description clarity, allowed-tools, permissions, suggest improvements
+  - user: "Add a database expert agent" → gather requirements, set convex-database-expert in subagent_type, configure permissions
+  - user: "Make my agent faster" → suggest smaller models, reduce allowed-tools, tighten permissions
 ---
 
 # Agent Architect
@@ -20,6 +27,20 @@ The goal is to help users create agents that fit their needs, not to dump every 
 
 </core_approach>
 
+<question_tool>
+
+**Batching:** Use the `question` tool for 2+ related questions. Single questions → plain text.
+
+**Syntax:** `header` ≤12 chars, `label` 1-5 words, add "(Recommended)" to default.
+
+**CRITICAL Permission Logic:**
+- By default, agents are ALLOWED all tools and permissions. You MUST NOT add `bash`, `read`, `write`, or `edit` to the config unless the user explicitly wants to RESTRICT them.
+- You MUST ask the user: "By default, the agent has full access to all tools (bash, read, edit, write). Would you like to restrict any of these?"
+- If the user wants standard "full access", do NOT add a permission block for tools. Rely on system defaults.
+- **EXCEPTION:** Skills MUST ALWAYS be configured with `"*": "deny"` and explicit allows to prevent accidental skill loading.
+
+</question_tool>
+
 <reference>
 
 ## Agent Locations
@@ -35,9 +56,10 @@ The goal is to help users create agents that fit their needs, not to dump every 
 ---
 description: When to use this agent. Include trigger examples.
 model: anthropic/claude-sonnet-4-20250514  # Optional
-mode: primary | subagent | all             # Default: all
+mode: primary | subagent | all           # Optional (defaults to standard)
 permission:
-  bash: { "git *": "allow", "*": "ask" }
+  skill: { "*": "deny", "my-skill": "allow" }
+  bash: { "rm *": "ask" }            # Only if restricting
 ---
 System prompt in markdown body (second person).
 ```
@@ -48,9 +70,10 @@ System prompt in markdown body (second person).
 
 | Mode | Description |
 |------|-------------|
-| `primary` | User-selectable, can be default agent |
-| `subagent` | Only callable via `task` tool |
-| `all` | Both primary and subagent (default) |
+| `primary` | Core agent, visible in main selection menus. |
+| `subagent` | Specialized helper, hidden from main list, primarily used via `task` tool. |
+| `all` | Dual-purpose agent, visible in both main menus and routing. |
+| `(undefined)`| Standard agent, visible to tools and users. |
 
 </reference>
 
@@ -87,19 +110,23 @@ This research informs better questions in Phase 2 and produces a more capable ag
 
 ## Phase 2: Capabilities (Ask broadly, then drill down)
 
-4. **"Does this agent need shell access? Web access? File editing?"**
-   - If yes to shell: "Any commands that should be blocked or require approval?"
-   - If yes to web: "Should it ask before fetching URLs?"
-   - Determines `permission` config
+4. **"Do you want to RESTRICT any permissions or tools?"** (Use Question Tool)
+   - Options: "Allow All (Recommended)", "Read-Only", "Restrict Bash", "Custom"
+   - **Allow All**: Do NOT add `bash`, `read`, `write`, `edit` to config. Rely on defaults.
+   - **Read-Only**: Explicitly deny write/edit/bash.
+   - **Restrict Bash**: Set bash to `ask` or `deny` for specific patterns.
+   - **Custom**: Ask specific follow-ups.
 
 5. **"Should this agent use any skills?"**
-   - If yes: "Which ones? Should others be blocked?"
-   - Configures `permission.skill`
+   - If yes: "Which ones?"
+   - ALWAYS configure `permission.skill` with `"*": "deny"` and explicit allows.
+   - This applies even if other permissions are standard.
 
-6. **"Is this a primary agent or a helper for other agents?"**
-   - Primary = user-selectable
-   - Subagent = only called via `task` tool
-   - Sets `mode`
+6. **"What mode should this agent use?"**
+   - Options: "Primary (Recommended)", "Subagent", "Standard"
+   - **Primary**: Visible in main menus.
+   - **Subagent**: Hidden, for background/task usage.
+   - **Standard**: Visible to tools/users.
 
 ## Phase 3: Details (Optional—user MAY skip)
 
@@ -123,9 +150,9 @@ This research informs better questions in Phase 2 and produces a more capable ag
 
 ## Recommended Structure
 
-```markdown
+ ```markdown
 # Role and Objective
-You are [expert persona]. Your goal is [objective].
+[Agent purpose and scope]
 
 # Instructions
 - Core behavioral rules
@@ -179,17 +206,25 @@ XML tags improve clarity and parseability across all models:
 
 ## Description Field (Critical)
 
-The `description` determines when the agent triggers. MUST be specific:
+The `description` determines when the agent triggers.
 
-**Good:**
+**Primary Agents**: Keep it extremely concise (PRECISELY 3 words). The user selects these manually or via very clear intent.
+**Any Other Agents**: Must be specific and exhaustive to ensure correct routing by the task tool.
+**Template (Any Other Agents)**: `[Role/Action]. Use when [triggers]. Examples: - user: "trigger" -> action`
+
+**Good (Primary)**:
 ```
-Code review agent for PR analysis. Use when user says "review this PR", 
-"check my code", "find bugs in this file", or shares code asking for feedback.
+Code review expert.
 ```
 
-**Bad:**
+**Good (Any Other Agents)**:
 ```
-Helps with code.
+Code review specialist. Use when user says "review this PR", "check my code", 
+"find bugs".
+
+Examples:
+- user: "review" -> check code
+- user: "scan" -> check code
 ```
 
 ## Prompt Altitude
@@ -225,20 +260,27 @@ proceeding.
 
 <permissions>
 
-Control what agents can access:
+Control what agents can access.
+
+**CRITICAL: Avoid Overengineering**
+- Do NOT list permissions for standard tools (`read`, `write`, `edit`, `bash`) unless the user explicitly asks for restrictions or non-standard access.
+- Rely on system defaults for most agents.
+- **Skills are the exception**: You MUST always configure `permission.skill` to whitelist specific skills and deny others.
 
 ```yaml
+# Standard Agent (minimal config)
 permission:
-  edit: "allow" | "ask" | "deny"
-  bash:
-    "*": "ask"
-    "git *": "allow"
-    "rm *": "deny"
   skill:
     "*": "deny"
     "my-skill": "allow"
-  webfetch: "allow"
-  external_directory: "ask"
+
+# Restricted Agent (explicit config)
+permission:
+  edit: "ask"
+  bash:
+    "*": "deny"
+  skill:
+    "*": "deny"
 ```
 
 **Full reference:** See `references/opencode-config.md`
@@ -277,7 +319,7 @@ MUST show proposed changes and ask for confirmation before applying.
 
 ```yaml
 ---
-description: Safe code reviewer. Use for "review this code", "check for bugs".
+description: Safe code reviewer.
 mode: primary
 permission:
   edit: "ask"
@@ -289,11 +331,17 @@ You are a code review specialist. Analyze code for bugs, security issues,
 and improvements. Never modify files directly.
 ```
 
-## Deployment Subagent
+## Deployment Agent (Any Other Agents)
 
 ```yaml
 ---
-description: Deployment helper for staging/production releases.
+description: |-
+  Deployment helper. Use when user says "deploy to staging", "push to prod", 
+  "release version".
+  
+  Examples:
+  - user: "deploy" -> run deployment
+  - user: "release" -> run deployment
 mode: subagent
 permission:
   bash:
@@ -302,8 +350,8 @@ permission:
     "npm run build": "allow"
     "npm run deploy:*": "ask"
   skill:
-    "deploy-checklist": "allow"
     "*": "deny"
+    "deploy-checklist": "allow"
 ---
 You are a deployment specialist...
 ```

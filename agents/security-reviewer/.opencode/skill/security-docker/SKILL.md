@@ -1,6 +1,13 @@
 ---
 name: security-docker
-description: Docker/container security audit patterns. Load when Dockerfile or docker-compose.yml present. Covers secrets in layers, port exposure, non-root users, multi-stage builds, and compose security.
+description: |-
+  Review Docker and container security audit patterns. Use for auditing secrets in layers, port exposure, and non-root users. Use proactively when Dockerfile or docker-compose.yml is present.
+  Examples:
+  - user: "Audit this Dockerfile" → check for secrets in ENV/ARG and non-root USER
+  - user: "Review docker-compose ports" → find accidentally exposed databases
+  - user: "Check for secrets in image history" → audit layers and build artifacts
+  - user: "Optimize Docker security" → implement multi-stage builds and minimal base images
+  - user: "Audit container privileges" → check for privileged: true or docker.sock mounts
 ---
 
 <overview>

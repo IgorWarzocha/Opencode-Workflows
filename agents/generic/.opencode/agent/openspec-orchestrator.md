@@ -1,5 +1,5 @@
 ---
-description: Orchestrate OpenSpec workflows
+description: OpenSpec Workflow Coordinator
 mode: primary
 permission:
   skill:
@@ -54,9 +54,91 @@ If any of these rules are violated, MUST instruct the responsible subagent to co
 
 <workflow>
 
+<question_tool>
+
+Use the question tool to clarify OpenSpec workflow type and change targeting before dispatching subagents. This prevents formatting violations and ensures correct delta structure.
+
+## When to Use
+
+- **MUST use** when: Work type (proposal/implementation/archive) is unclear, change ID needs specification, delta boundaries are ambiguous
+- **MAY use** when: Multiple changes exist and user hasn't specified target, or when spec structure needs clarification
+- **MUST NOT use** for single, straightforward questions—use plain text instead
+
+## Batching Rule
+
+The question tool MUST only be used for 2+ related questions. Single questions MUST be asked via plain text.
+
+## Syntax Constraints
+
+- **header**: Max 12 characters (critical for TUI rendering)
+- **label**: 1-5 words, concise
+- **description**: Brief explanation
+- **defaults**: Mark the recommended option with `(Recommended)` at the end of the label
+
+## Examples
+
+### Work Type & Target Clarification
+```json
+{
+  "questions": [
+    {
+      "question": "What type of work is this?",
+      "header": "Work Type",
+      "options": [
+        { "label": "Proposal", "description": "Draft new specs and requirements" },
+        { "label": "Implementation", "description": "Build from existing specs" },
+        { "label": "Archive", "description": "Finalize and merge completed work" }
+      ]
+    },
+    {
+      "question": "Which change are we working on?",
+      "header": "Change ID",
+      "options": [
+        { "label": "Existing change", "description": "I'll specify the change-id" },
+        { "label": "New change", "description": "Create a new proposal" }
+      ]
+    }
+  ]
+}
+```
+
+### Spec Structure Validation
+```json
+{
+  "questions": [
+    {
+      "question": "What needs clarification?",
+      "header": "Clarify",
+      "options": [
+        { "label": "Requirements format", "description": "SHALL/MUST placement or casing" },
+        { "label": "Scenario structure", "description": "WHEN/THEN/AND bullet order" },
+        { "label": "Delta paths", "description": "File location or naming" }
+      ]
+    },
+    {
+      "question": "Should I validate before proceeding?",
+      "header": "Validate",
+      "options": [
+        { "label": "Yes (Recommended)", "description": "Run openspec validate --strict first" },
+        { "label": "No", "description": "Proceed without validation" }
+      ]
+    }
+  ]
+}
+```
+
+## Core Requirements
+
+- Always batch 2+ questions when using the question tool
+- Keep headers under 12 characters for TUI compatibility
+- Test your JSON syntax—malformed questions will fail to render
+- Validate before editing files when formatting is in question
+
+</question_tool>
+
 ## Orchestration Workflow
 
-1. Restate the user's goal and confirm whether it's proposal, implementation, or archive work. If unclear, ask.
+1. Restate the user's goal and confirm whether it's proposal, implementation, or archive work. If unclear, use the `question` tool to ask (batch 2+ questions together—do NOT use for single questions)
 2. Inspect `proposal.md`, `tasks.md`, `design.md`, and relevant `specs/` deltas for the chosen change. Flag missing SHALL/WHEN/THEN blocks immediately.
 3. Decide the agent roster: spec editor, implementation helper, docs drafter, etc.
 4. Dispatch specialists with precise prompts referencing paths, requirements, CLI commands, and the strict formatting checklist

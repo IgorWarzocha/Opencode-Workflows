@@ -1,6 +1,13 @@
 ---
 name: security-secrets
-description: Secret detection patterns and scanning workflow. Auto-loaded by security-reviewer agent for all security audits. Contains regex patterns for 25+ secret types (AWS, Google, GitHub, Stripe, etc.) and CLI scanning commands.
+description: |-
+  Review secret detection patterns and scanning workflows. Use for identifying high-signal secrets like AWS keys, GitHub tokens, and DB passwords. Use proactively during all security audits to scan code and history.
+  Examples:
+  - user: "Scan for secrets in this repo" → run high-signal rg patterns and gitleaks
+  - user: "Check for AWS keys" → scan for AKIA patterns and server-side exposure
+  - user: "Audit my .env files" → ensure secrets are gitignored and not committed
+  - user: "Verify secret redaction" → check that reported secrets follow 4+4 format
+  - user: "Scan build artifacts for keys" → search dist/ and build/ for secret patterns
 ---
 
 <overview>

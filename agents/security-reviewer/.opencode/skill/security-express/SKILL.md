@@ -1,6 +1,13 @@
 ---
 name: security-express
-description: Express.js security audit patterns. Load when reviewing Express apps. Covers Helmet.js, CORS, body-parser limits, auth middleware, and common Express security mistakes.
+description: |-
+  Review Express.js security audit patterns for middleware and routes. Use for auditing Helmet.js, CORS, body-parser limits, and auth middleware. Use proactively when reviewing Express.js apps.
+  Examples:
+  - user: "Secure my Express app" → add Helmet.js and disable x-powered-by
+  - user: "Check Express CORS config" → verify origin allowlists and credentials
+  - user: "Review Express auth middleware" → check route order and coverage
+  - user: "Scan for Express path traversal" → verify path normalization and validation
+  - user: "Audit Express session config" → check secure, httpOnly, and sameSite flags
 ---
 
 <overview>

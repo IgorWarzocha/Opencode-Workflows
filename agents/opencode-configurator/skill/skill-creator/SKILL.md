@@ -1,6 +1,13 @@
 ---
 name: skill-creator
-description: Guide for creating effective opencode skills. Use when users want to create a new skill (or update an existing skill) that extends agent capabilities with specialized knowledge, workflows, or tool integrations.
+description: |-
+  Guide for creating effective opencode skills. Use for creating or updating skills that extend agent capabilities with specialized knowledge, workflows, or tool integrations.
+  Examples:
+  - user: "Create a skill for git workflows" → define SKILL.md with instructions and examples
+  - user: "Add examples to my skill" → follow the user: "query" → action pattern
+  - user: "Update skill description" → use literal block scalar and trigger contexts
+  - user: "Structure a complex skill" → organize with scripts/ and references/ directories
+  - user: "Validate my skill" → check structure, frontmatter, and discovery triggers
 ---
 
 # Skill Creator
@@ -47,17 +54,96 @@ skill-name/
 ```yaml
 ---
 name: skill-name
-description: What it does + when to trigger it. Be comprehensive.
+description: [Self-contained workflow summary — see guidelines below]
 ---
 # Instructions here (markdown body)
 ```
 
-**Critical**: The `description` field determines when the skill triggers. MUST include:
-- What the skill does
-- Specific trigger phrases and contexts
-- File types or domains it handles
+**Name**: Short, hyphen-case identifier. Should be descriptive but concise (max 64 chars).
 
-Example: `"Document creation and editing for .docx files. Use for: creating documents, modifying content, tracked changes, adding comments."`
+**Description**: Agent sees this + the name before loading. Must be self-contained with:
+- What workflow/capabilities it provides
+- "Use proactively when" trigger contexts
+- 3-5 concrete examples
+
+
+**CRITICAL: The `description` field is the primary trigger mechanism.**
+
+Skills are **SOPs/workflows**, NOT agents. DO NOT use role descriptions like "You are a..." or "[Role] expert."
+
+Before loading, the agent sees only the **name** and **description** in `<available_skills>`:
+
+```
+<available_skills>
+  <skill>
+    <name>skill-name</name>
+    <description>...</description>
+  </skill>
+</available_skills>
+```
+
+The description must be self-contained — agents won't load a skill just to "see what it does."
+
+**Name + description should work together:**
+- **Name**: Short, hyphen-case identifier (e.g., `typescript-advanced`)
+- **Description**: Self-contained workflow summary with capabilities, triggers, and examples
+
+**Description pattern (LLM-optimized):**
+```yaml
+---
+name: skill-name
+description: |-
+  [Action verb/capabilities]. Use for [specific cases]. Use proactively when [contexts].
+  
+  Examples:
+  - user: "query" → action
+  - user: "query" → action
+---
+```
+
+Dense, machine-parseable, specific. Avoid prose.
+
+**CRITICAL YAML SYNTAX:** Multi-line descriptions with examples MUST use literal block scalar (`|-`). The hyphen strips the trailing newline. Do NOT use plain YAML with unquoted colons or lists:
+
+```yaml
+# ❌ WRONG - breaks YAML parsing
+description: Handle plugins. Examples:
+- user: "..." → action
+
+# ✅ CORRECT - use |- for multi-line
+description: |-
+  Handle plugins.
+  
+  Examples:
+  - user: "..." → action
+```
+
+**Example:**
+```yaml
+---
+name: typescript-advanced
+description: |-
+  Handle TypeScript 5.9 advanced typing, generics, strict configs, type errors, migrations,
+  erasable syntax compliance, and test writing. Use proactively for complex generics,
+  conditional types, utility types, TS compiler config, or test authoring.
+  
+  Examples:
+  - user: "Create a type-safe event emitter" → implement with generics and mapped types
+  - user: "Migrate to strict TypeScript" → add discriminated unions, exhaustive checks
+  - user: "Build typed API client from OpenAPI" → generate request/response types with inference
+  - user: "Write unit tests" → create strict, typed tests with realistic fixtures
+---
+```
+
+**Requirements:**
+- Start with action verb (NOT "You are" or "[Role] expert")
+- List specific capabilities (vague "helps with X" = ignored)
+- Include "Use proactively when" trigger contexts
+- Provide 3-5 concrete `user: "..." → ...` examples
+- Use `|-` literal block scalar for multi-line descriptions (plain YAML with lists/colons breaks parsing)
+- Dense, LLM-parseable — description alone must justify loading
+
+**Reduce redundancy:** Don't repeat description content in SKILL.md body.
 
 ### Bundled Resources
 
@@ -94,8 +180,16 @@ The context window is shared. Only add info the agent doesn't already have.
 ### Progressive Disclosure
 
 1. **Metadata** (name + description) - Always loaded (~100 words)
+   - The `description` is the PRIMARY discovery mechanism
+   - Agents see this and decide whether to load the skill
+   - If description is vague, the skill will never be used
+
 2. **SKILL.md body** - Loaded when skill triggers
+   - Core workflow and detailed instructions
+   - Keep focused on what the agent needs to do the work
+
 3. **Bundled resources** - Loaded on-demand by agent
+   - Move variant-specific details to `references/`
 
 Keep core workflow in SKILL.md. Move variant-specific details to `references/`.
 
@@ -118,9 +212,9 @@ Agent loads only the relevant provider file.
 
 1. **Understand** → Gather concrete usage examples
 2. **Plan** → Identify reusable scripts/references/assets
-3. **Initialize** → `scripts/init_skill.py <name> --path <dir>`
-4. **Edit** → Write SKILL.md, add resources, delete unused examples
-5. **Package** → `scripts/package_skill.py <skill-folder>`
+3. **Initialize** → Create directory and SKILL.md manually
+4. **Edit** → Write SKILL.md frontmatter + body, add resources
+5. **Validate** → Verify the skill loads and triggers correctly
 6. **Iterate** → Test, improve, repeat
 
 ### Step 1: Understand
@@ -149,14 +243,55 @@ For each use case, identify reusable resources:
 
 ### Step 3: Initialize
 
+Create the skill directory and SKILL.md manually:
+
 ```bash
-scripts/init_skill.py my-skill --path .opencode/skill
+# Global skill (personal tools)
+mkdir -p ~/.config/opencode/skill/my-skill
+
+# Project skill (team-specific)
+mkdir -p .opencode/skill/my-skill
 ```
 
-Creates:
-- `SKILL.md` template with frontmatter
-- Example `scripts/`, `references/`, `assets/` directories
-- Example files (delete unused ones)
+Create `SKILL.md` with frontmatter:
+
+```yaml
+---
+name: my-skill
+description: |-
+  [Workflow/capabilities]. Use for [specific cases]. Use proactively when [contexts].
+  
+  Examples:
+  - user: "query" → action
+  - user: "query" → action
+---
+# [Skill Name]
+
+[Instructions start here]
+```
+
+**Description template example:**
+```yaml
+---
+name: typescript-advanced
+description: |-
+  Handle TypeScript 5.9 advanced typing, generics, strict configs, type errors, migrations,
+  and test writing. Use proactively for complex generics, conditional types, utility types, TS compiler
+config, or test authoring.
+
+Examples:
+- user: "Create a type-safe event emitter" → implement with generics and mapped types
+- user: "Migrate to strict TypeScript" → add discriminated unions, exhaustive checks
+- user: "Build typed API client from OpenAPI" → generate request/response types with inference
+- user: "Write unit tests" → create strict, typed tests with realistic fixtures
+---
+```
+
+Add optional directories as needed:
+```bash
+cd my-skill
+mkdir scripts references assets  # only create what you'll actually use
+```
 
 ### Step 4: Edit
 
@@ -166,33 +301,36 @@ Creates:
 - SHOULD link to references for detailed info
 - MUST test all scripts before including
 
-**Design pattern references:**
-- `references/workflows.md` - Sequential and conditional workflows
-- `references/output-patterns.md` - Template and example patterns
+**Frontmatter requirements:**
+- `name`: lowercase-hyphen format, must match directory name exactly
+- `description`: CRITICAL — follow the format specified in <structure> above. This is how agents discover your skill.
 
-**Frontmatter tips:**
-- `name`: lowercase-hyphen format
-- `description`: Primary trigger mechanism. Be comprehensive. All "when to use" info goes here, not in body.
+### Step 5: Validate
 
-### Step 5: Package
+Verify the skill is discoverable:
 
-```bash
-scripts/package_skill.py <skill-folder>
-```
+1. **Check structure:**
+   - `SKILL.md` exists in skill directory
+   - Directory name matches `name:` in frontmatter exactly
+   - YAML frontmatter is valid
 
-Validates:
-- YAML frontmatter format
-- Required fields present
-- Directory structure correct
+2. **Test discovery:**
+   - The skill should appear in agent's `<available_skills>` section
+   - Description should be specific enough to match relevant queries
 
-Creates `.skill` file (zip with .skill extension).
+3. **Verify triggers:**
+   - Read your description — would you know when to use this skill based solely on it?
+   - Do the examples cover the main use cases?
+
+**Note:** Skills are used directly from their directories. No packaging or installation step required.
 
 ### Step 6: Iterate
 
 After real usage:
-1. Notice struggles or inefficiencies
-2. Update SKILL.md or resources
-3. Re-package and test
+1. Notice where the skill fails to trigger or provides unclear guidance
+2. Update the `description` to include missing trigger contexts
+3. Add more examples to the description or SKILL.md body
+4. Re-validate discovery and triggers
 
 </workflow>
 
@@ -205,7 +343,7 @@ Control skill access per-agent in agent config:
 ```json
 {
   "permission": {
-    "skill": { "my-skill": "allow", "*": "deny" }
+    "skill": { "*": "deny", "my-skill": "allow" }
   }
 }
 ```
@@ -213,3 +351,13 @@ Control skill access per-agent in agent config:
 Values: `"allow"`, `"deny"`, `"ask"`. Use `"*"` as wildcard default.
 
 </permissions>
+
+<question_tool>
+
+**Batching:** Use the `question` tool for 2+ related questions. Single questions → plain text.
+
+**Syntax:** `header` ≤12 chars, `label` 1-5 words, add "(Recommended)" to default.
+
+When to ask: Ambiguous request, multiple skill patterns apply, or scope unclear.
+
+</question_tool>

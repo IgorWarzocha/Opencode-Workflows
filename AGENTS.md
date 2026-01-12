@@ -1,7 +1,3 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Repository Overview
 
 This is the **Opencode Workflows** repository - a collection of Opencode-based command templates and workflow patterns for building sophisticated command-based projects. The repository contains multiple workflow examples and templates that demonstrate different approaches to command architecture and tool integration.
@@ -17,6 +13,7 @@ A universal template for creating Opencode-based projects with structured comman
 
 ### Agent Templates Catalog
 A focused collection of reusable agent prompts and orchestration patterns:
+- **repo-maintainer**: Repository health custodian (audits, doc sync). **NOTE: This root agent is specific to the Opencode-Workflows repo.**
 - **repo-navigator-creator**: Produces lean AGENTS.md navigation guides
 - **subagent-orchestrator**: Dispatches specialized agents and manages execution plans
 - **openspec-orchestrator**: Enforces strict OpenSpec formatting/validation and orchestrates subagents
@@ -72,6 +69,16 @@ Commands.md is injected at session start, requiring models with strong:
 ```
 at/                          # Universal engineering guidelines (@coding-ts)
 ├── CODING-TS.MD             # Core development principles and standards
+
+.opencode/                   # Root-level maintenance tools
+├── agent/
+│   └── repo-maintainer.md   # Health custodian
+├── command/
+│   ├── audit-repo.md        # Quality audit
+│   ├── maintain-repo.md     # Full maintenance cycle
+│   └── sync-docs.md         # Doc synchronization
+└── skill/
+    └── repo-maintenance/    # Maintenance logic & scripts
 
 commands2skills/              # Template for command-based projects
 ├── COMMANDS.md              # Command index and LLM usage instructions

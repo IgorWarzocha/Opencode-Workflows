@@ -1,6 +1,13 @@
 ---
 name: security-nextjs
-description: Next.js security audit patterns. Load when reviewing Next.js apps (next.config.js present). Covers NEXT_PUBLIC_* exposure, Server Actions, middleware auth, API routes, and App Router security.
+description: |-
+  Review Next.js security audit patterns for App Router and Server Actions. Use for auditing NEXT_PUBLIC_* exposure, Server Action auth, and middleware matchers. Use proactively when reviewing Next.js apps.
+  Examples:
+  - user: "Scan Next.js env vars" → find leaked secrets with NEXT_PUBLIC_ prefix
+  - user: "Audit Server Actions" → check for missing auth and input validation
+  - user: "Review Next.js middleware" → verify matcher coverage for protected routes
+  - user: "Check Next.js API routes" → verify auth in app/api and pages/api
+  - user: "Secure Next.js headers" → audit next.config.js for security headers
 ---
 
 <overview>

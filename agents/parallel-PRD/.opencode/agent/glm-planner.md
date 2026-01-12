@@ -1,5 +1,10 @@
 ---
-description: GLM-4.7 PRD planner. Use for parallel PRD generation. MUST NOT call unless user explicitly requests parallel PRD generation.
+description: |-
+  PRD Planning Specialist using GLM-4.7. Use for parallel PRD generation. Use proactively when the user explicitly requests parallel PRD generation or GLM-specific analysis.
+  Examples:
+  - user: "Generate parallel PRDs for user auth" → produce comprehensive GLM-specific PRD at `/prd/feature-glm.md`
+  - user: "Run parallel planning for the payment system" → analyze requirements and output PRD with technical depth
+  - user: "GLM plan for my database schema" → define requirements and architecture for Convex/SQL backends
 
 mode: subagent
 model: zai-coding-plan/glm-4.7

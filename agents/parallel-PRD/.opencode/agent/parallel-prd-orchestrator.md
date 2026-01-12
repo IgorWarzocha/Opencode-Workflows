@@ -1,5 +1,5 @@
 ---
-description: Orchestrate parallel PRD generation
+description: Orchestrate parallel PRD
 mode: primary
 permission:
   edit:

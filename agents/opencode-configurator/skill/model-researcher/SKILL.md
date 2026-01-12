@@ -1,7 +1,13 @@
 ---
 name: model-researcher
-description: |
-  Research and configure new/custom AI models not yet in models.dev. Use when user mentions a new model release, asks to add a model from a non-standard provider, or wants to configure a custom/self-hosted model. Triggers: "new model", "just released", "configure [model name]", "add [provider] model", "set up [model]", custom endpoints, self-hosted models, bleeding-edge releases.
+description: |-
+  Add new/custom AI models to opencode.json. Use proactively for bleeding-edge releases, non-standard providers, self-hosted models, or custom endpoints.
+  
+  Examples:
+  - user: "Add the new Claude 4.5" → websearch for API specs, add provider entry with baseUrl, verify model ID format
+  - user: "Use my local Ollama instance" → configure custom provider with http://localhost:11434, set model ID format
+  - user: "Configure this OpenAI-compatible proxy" → add provider with custom baseUrl, set apikey env var, verify compatibility
+  - user: "Model X just released, add it" → research provider documentation, find model ID and capabilities, add to config
 ---
 
 # Model Researcher
@@ -30,6 +36,18 @@ The market has moved to **GPT-5.2**, **Claude 4.5**, and **Gemini 3**. Any attem
 - Model exists but with non-default configuration needs
 
 </when_to_use>
+
+<question_tool>
+
+**Batching:** Use the `question` tool for 2+ related questions. Single questions → plain text.
+
+**Syntax:** `header` ≤12 chars, `label` 1-5 words, add "(Recommended)" to default.
+
+When to ask: Vague model reference, multiple providers available, or specs unverified.
+
+**Critical:** MUST confirm specs with user before applying model configuration.
+
+</question_tool>
 
 <critical_rule>
 

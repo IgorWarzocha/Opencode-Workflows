@@ -1,6 +1,13 @@
 ---
 name: security-fastapi
-description: FastAPI security audit patterns. Use when reviewing FastAPI apps (fastapi imports, main.py/app.py, requirements/pyproject with fastapi, uvicorn). Covers auth dependencies, CORS configuration, TrustedHost/HTTPS middleware, and common FastAPI/Starlette security footguns.
+description: |-
+  Review FastAPI security audit patterns for dependencies and middleware. Use for auditing auth dependencies, CORS configuration, and TrustedHost middleware. Use proactively when reviewing FastAPI apps.
+  Examples:
+  - user: "Audit FastAPI route security" → check for Depends() and Security() usage
+  - user: "Check FastAPI CORS setup" → verify origins when allow_credentials=True
+  - user: "Review FastAPI middleware" → check TrustedHost and HTTPSRedirect config
+  - user: "Secure FastAPI API keys" → move from query params to header schemes
+  - user: "Scan for FastAPI footguns" → check starlette integration and dependency order
 ---
 
 <overview>

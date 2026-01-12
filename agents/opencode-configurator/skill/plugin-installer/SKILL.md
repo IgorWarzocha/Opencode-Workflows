@@ -1,6 +1,13 @@
 ---
 name: plugin-installer
-description: Help users find and install OpenCode plugins. Use when user asks "is there a plugin for X?", "how do I install Y plugin?", "what plugins are available?", or needs help configuring plugins in opencode.json.
+description: |-
+  Find, install, and configure OpenCode plugins from the catalog or community. Use proactively when user asks about plugins, requests new capabilities, or mentions extending OpenCode functionality.
+  
+  Examples:
+  - user: "Is there a plugin for Tailwind CSS?" → list catalog, read tailwind plugin details, install if available
+  - user: "How do I add a custom slash command?" → suggest command-creator skill or guide through opencode.json setup
+  - user: "What plugins are available for database work?" → list catalog, filter for database-related plugins
+  - user: "Install the playwright plugin" → read plugin file, add to opencode.json, verify installation
 ---
 
 # OpenCode Plugin Installer
@@ -41,6 +48,16 @@ Show the user:
 - Any setup steps (OAuth, config files, etc.)
 
 </workflow>
+
+<question_tool>
+
+**Batching:** Use the `question` tool for 2+ related questions. Single questions → plain text.
+
+**Syntax:** `header` ≤12 chars, `label` 1-5 words, add "(Recommended)" to default.
+
+When to ask: Multiple plugins match the need, or plugin has complex setup.
+
+</question_tool>
 
 <installation>
 

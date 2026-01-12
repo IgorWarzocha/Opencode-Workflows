@@ -1,6 +1,12 @@
 ---
 name: component-engineering
-description: Complete specification-driven knowledge for React component engineering.
+description: |-
+  Apply the formal standard for React component engineering focusing on accessibility, composition, and styling. Use for building professional, composable React artifacts. Use proactively when creating or reviewing React components.
+  Examples:
+  - user: "/component-create Button trigger" → build accessible button with asChild and keyboard map
+  - user: "/component-review src/components/Input.tsx" → audit for accessibility and composition compliance
+  - user: "Build a responsive slider" → select taxonomy type and implement with data attributes
+  - user: "Review my layout component" → check for monolithic patterns vs composition
 ---
 
 # Component Engineering Specification

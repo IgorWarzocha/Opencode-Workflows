@@ -1,6 +1,13 @@
 ---
 name: security-vite
-description: Vite security audit patterns. Load when reviewing Vite apps (vite.config.ts present). Covers VITE_* exposure, build-time secrets, dev server security, and SPA-specific issues.
+description: |-
+  Review Vite security audit patterns for SPA and dev server security. Use for auditing VITE_* exposure, build-time secrets, and proxy configs. Use proactively when reviewing Vite apps (vite.config.ts present).
+  Examples:
+  - user: "Audit Vite env vars" → check for secrets with VITE_ prefix
+  - user: "Check Vite build config" → verify define block and source maps
+  - user: "Review Vite dev server" → check host binding and proxy security
+  - user: "Scan Vite bundles" → search dist/ for leaked API keys or secrets
+  - user: "Audit Vite SPA auth" → verify server-side auth vs client route guards
 ---
 
 <overview>

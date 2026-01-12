@@ -1,5 +1,10 @@
 ---
-description: PRD planner for parallel PRD generation. MUST NOT call unless user explicitly requests parallel PRD generation.
+description: |-
+  PRD Planning Specialist. Use for parallel PRD generation when the user wants multiple architectural perspectives. Use proactively when the user requests "parallel planning" or "multiple PRDs".
+  Examples:
+  - user: "Generate parallel PRDs for user auth" → produce comprehensive PRD document from a specific model perspective
+  - user: "I need 3 architectural views for my API" → analyze requirements and output a PRD at `/prd/feature-suffix.md`
+  - user: "Plan implementation phases for the mobile app" → define requirements, architecture, and task lists
 
 mode: subagent
 # Fill in with your model of choice. Use precise output from `opencode models`.

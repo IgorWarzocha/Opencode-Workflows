@@ -127,6 +127,7 @@ Agents are organized under `agents/`:
   - **react-19-master** – React 19.2 implementation reviewer focused on Server Components, Actions, and the Component Engineering Specification (via `component-engineering` skill).
   - **tailwind-41-architect** – Tailwind CSS 4.1 designer that enforces the CSS-first workflow.
   - **typescript-59-engineer** – Strict TS 5.9 engineer who guards erasable syntax and configuration hygiene.
+  - **vite-shadcn-tailwind4** – Specialist skill for building accessible UI components with Shadcn/UI and Tailwind 4.
 
 
 See `agents/README.md` for full tables, usage details, and the complete directory tree.
@@ -148,6 +149,10 @@ Currently available:
 - **`/loop`** (`commands/.opencode/command/loop.md`): The "Ralph Wiggum" loop. An autonomous, multi-stage orchestrator that uses stateful task tool subagent sessions and dynamic checklist evolution to achieve 100% verified completion through sheer persistence.
 - **`/component-review`** (`agents/component-engineer/.opencode/command/component-review.md`): Performs a rigorous, spec-aligned audit of a React component for a11y, composition, and professional patterns.
 - **`/component-create`** (`agents/component-engineer/.opencode/command/component-create.md`): Generates a professional, spec-compliant React component or block based on high-level intent.
+- **`/improve`** (`commands/.opencode/command/improve.md`): The unified optimized prompt execution command. Enhances your request using research-backed prompt engineering patterns and executes it immediately.
+- **`/rmslop`** (`commands/.opencode/command/rmslop.md`): Removes "AI slop" (emojis, chatty preambles, excessive comments) from the current file or specific files.
+- **`/npm`** (`commands/.opencode/command/npm.md`): Optimized npm command executor that handles common package management tasks with proper error recovery.
+- **`/create-pack`** (`commands/.opencode/command/create-pack.md`): Bundles related agents, commands, and skills into a shareable Opencode pack.
 
 ### Scripts Catalog
 
@@ -287,3 +292,8 @@ This eliminates ambiguity. "You should validate input" is vague. "The agent SHOU
 ### Style Guide
 
 See `RFC-XML-STYLE-GUIDE.md` for the complete reference, including tag catalogs, keyword definitions, and before/after examples. Use `/refactor-rfc-xml` to convert existing files.
+
+---
+
+> [!CAUTION]
+> **INTERNAL USE ONLY**: The root `.opencode/` directory contains maintenance tools (`repo-maintainer`, `repo-maintenance` skill, and `/audit-repo`, `/sync-docs`, `/maintain-repo` commands) that are for **internal repository management only**. These tools are hard-coded for this repository's specific structure and metadata rules. If you wish to use them in your own project, you MUST copy and customize them to match your own file structure and validation standards. **Do not install the root tools globally.**

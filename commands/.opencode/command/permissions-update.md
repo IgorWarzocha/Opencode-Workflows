@@ -1,5 +1,5 @@
 ---
-description: Update permissions config to v1.1.1
+description: Modernize resource permissions configuration
 ---
 
 <objective>

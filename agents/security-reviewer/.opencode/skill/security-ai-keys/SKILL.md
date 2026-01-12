@@ -1,6 +1,13 @@
 ---
 name: security-ai-keys
-description: AI API key leakage review patterns. Use when code integrates AI providers (OpenAI, OpenRouter, Anthropic, Google/Gemini/Vertex, AWS Bedrock, Azure OpenAI, Mistral, Cohere, Groq, Replicate, Together, Perplexity, Fireworks, Hugging Face) or when env vars/keys are present. Focuses on client-side exposure, logging/redaction, and build artifacts.
+description: |-
+  Review AI API key leakage patterns and redaction strategies. Use for identifying exposed keys for OpenAI, Anthropic, Gemini, and 10+ other providers. Use proactively when code integrates AI providers or when environment variables/keys are present.
+  Examples:
+  - user: "Check for leaked OpenAI keys" → scan for `sk-` patterns and client-side exposure
+  - user: "Is my Gemini integration secure?" → audit vertex AI config and key redaction
+  - user: "Review AI provider logging" → ensure secrets are redacted from logs
+  - user: "Scan for Anthropic secrets" → check for `ant-` keys in code and configs
+  - user: "Audit Vertex AI integration" → verify proper IAM roles and service account usage
 ---
 
 <overview>

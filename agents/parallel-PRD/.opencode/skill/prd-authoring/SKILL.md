@@ -1,6 +1,12 @@
 ---
 name: prd-authoring
-description: "Comprehensive Product Requirement Document (PRD) authoring. Use when: creating PRDs, writing technical specifications, designing system architecture, defining product requirements, planning implementation phases, creating task lists from requirements, or generating code snippets for API designs and schemas."
+description: |-
+  Guide for authoring comprehensive PRDs with parallel planning support. Use for drafting technical specifications, defining requirements, and synthesizing planner outputs. Use proactively when creating PRDs, architecture designs, or implementation plans.
+  Examples:
+  - user: "Draft a PRD for user auth" → create PRD with purpose, requirements, and scenarios
+  - user: "Analyze these PRD requirements" → verify SHALL/MUST usage and scenario structure
+  - user: "Synthesize planner outputs" → merge the strongest parts of multiple generated PRDs
+  - user: "Create a PRD template" → setup standard sections and placeholder content
 ---
 
 # PRD Authoring

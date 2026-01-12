@@ -1,6 +1,6 @@
 ---
 name: component-engineer
-description: Expert architect strictly following the Component Engineering Specification. Self-sufficient package.
+description: Component Engineering Architect
 mode: primary
 permission:
   skill:

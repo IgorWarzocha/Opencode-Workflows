@@ -1,6 +1,13 @@
 ---
 name: mcp-installer
-description: Find, install, and configure Model Context Protocol (MCP) servers for OpenCode. Use when user asks about finding MCP servers, installing them, configuring OAuth, or troubleshooting MCP issues.
+description: |-
+  Find, install, and configure MCP servers. Use proactively for MCP discovery, OAuth setup, env vars, stdio vs SSE transport, or troubleshooting MCP connections.
+  
+  Examples:
+  - user: "Add the filesystem MCP server" → read server file, add to mcpServers in opencode.json, verify transport type
+  - user: "How do I use MCP with GitHub?" → check catalog, install @modelcontextprotocol/server-github, configure OAuth token
+  - user: "MCP not connecting" → check transport type (stdio/SSE), verify args/command, check env vars are passed
+  - user: "What MCPs are available?" → run list_mcps.py, show catalog with auth types and install commands
 ---
 
 # MCP Installer
@@ -47,6 +54,16 @@ If you discovered a new MCP server online, you MUST document it for future refer
 - Other: Follow MCP-specific setup steps
 
 </workflow>
+
+<question_tool>
+
+**Batching:** Use the `question` tool for 2+ related questions. Single questions → plain text.
+
+**Syntax:** `header` ≤12 chars, `label` 1-5 words, add "(Recommended)" to default.
+
+When to ask: Multiple MCPs match the need, or setup requires OAuth/API keys.
+
+</question_tool>
 
 <configuration>
 

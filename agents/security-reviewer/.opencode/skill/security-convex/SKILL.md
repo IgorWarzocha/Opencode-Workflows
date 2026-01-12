@@ -1,6 +1,13 @@
 ---
 name: security-convex
-description: Convex security audit patterns. Load when reviewing Convex apps (convex/ directory present). Covers query/mutation auth, row-level security, public vs authenticated functions, validators, and Convex-specific issues.
+description: |-
+  Review Convex security audit patterns for authentication and authorization. Use for auditing query/mutation auth, row-level security, and validators. Use proactively when reviewing Convex apps (convex/ directory present).
+  Examples:
+  - user: "Audit these Convex mutations" → check for missing ctx.auth and input validators
+  - user: "Check for IDOR in Convex queries" → verify ownership checks on document access
+  - user: "Review Convex HTTP actions" → check for signature verification on webhooks
+  - user: "Secure these Convex queries" → implement custom functions for enforced auth
+  - user: "Check for data leaks in subscriptions" → verify filtered result sets
 ---
 
 <overview>

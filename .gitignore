@@ -1,2 +1,5 @@
-# Ignore root .opencode folder only
-/.opencode
+node_modules
+package.json
+bun.lock
+.gitignore
+remember.jsonc

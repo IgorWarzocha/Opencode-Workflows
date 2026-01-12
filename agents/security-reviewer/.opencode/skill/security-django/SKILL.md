@@ -1,6 +1,13 @@
 ---
 name: security-django
-description: Django security audit patterns. Load when reviewing Django apps (settings.py or manage.py present). Covers SECRET_KEY, ALLOWED_HOSTS, DEBUG, CSRF, SecurityMiddleware, and Django-specific issues.
+description: |-
+  Review Django security audit patterns for settings and middleware. Use for auditing SECRET_KEY, DEBUG, CSRF, and auth decorators. Use proactively when reviewing Django apps (settings.py or manage.py present).
+  Examples:
+  - user: "Audit my Django settings.py" → check SECRET_KEY, DEBUG, and ALLOWED_HOSTS
+  - user: "Check Django views for auth" → verify @login_required and permission classes
+  - user: "Review Django CSRF config" → check middleware and @csrf_exempt usage
+  - user: "Scan for SQL injection in Django" → find raw SQL usage instead of ORM
+  - user: "Audit Django REST framework config" → check default permissions and auth
 ---
 
 <overview>

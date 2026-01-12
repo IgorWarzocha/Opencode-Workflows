@@ -1,6 +1,13 @@
 ---
 name: security-bun
-description: Bun runtime security audit patterns. Load when reviewing Bun apps (bun.lockb, bunfig.toml, or bun:* imports present). Covers Bun shell injection, bun:sqlite SQL injection, Bun.serve, Bun.spawn, file operations, and Bun-specific footguns.
+description: |-
+  Review Bun runtime security audit patterns. Use for auditing Bun-specific vulnerabilities including shell injection, SQL injection, server security, and process spawning. Use proactively when reviewing Bun apps (bun.lockb, bunfig.toml, or bun:* imports present).
+  Examples:
+  - user: "Review this Bun shell script" → audit `$` usage and argument injection
+  - user: "Check my bun:sqlite queries" → verify `sql` tagged template usage
+  - user: "Audit my Bun.serve() setup" → check path traversal and request limits
+  - user: "Is my Bun.spawn() usage safe?" → audit command injection and input validation
+  - user: "Review WebSocket security in Bun" → check authentication before upgrade
 ---
 
 <overview>

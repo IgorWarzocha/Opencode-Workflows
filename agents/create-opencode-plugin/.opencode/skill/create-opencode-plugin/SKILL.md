@@ -1,6 +1,13 @@
 ---
 name: create-opencode-plugin
-description: Create OpenCode plugins using @opencode-ai/plugin SDK. Use when user wants to BUILD a plugin in .opencode/plugin/ or ~/.config/opencode/plugin/ - for custom tools, event hooks, LLM parameter control, auth providers, or tool execution interception. DO NOT use when modifying OpenCode source code (packages/plugin, packages/opencode, etc.) or working on OC internals - those are core development, not plugin creation.
+description: |-
+  Create OpenCode plugins using the @opencode-ai/plugin SDK. Use for building custom tools, event hooks, auth providers, or tool execution interception. Use proactively when developing new plugins in .opencode/plugin/ or ~/.config/opencode/plugin/.
+  Examples:
+  - user: "Create a plugin to block dangerous commands" → implement tool execution before hook with blocking logic
+  - user: "Add a custom tool for jira" → design tool schema and implementation using SDK context
+  - user: "Show toast on file edit" → react to file edit events and display status message
+  - user: "Build a custom auth provider" → implement auth flow for new model provider
+  - user: "Intercept git commits" → add hook to validate commit messages before execution
 ---
 
 # Creating OpenCode Plugins
