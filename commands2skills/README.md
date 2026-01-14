@@ -77,7 +77,6 @@ The `calculate.js` example demonstrates how commands can serve as structured int
    {
      "$schema": "https://opencode.ai/config.json",
      "instructions": [
-       "AGENTS.md",
        "COMMANDS.md"
      ]
    }
