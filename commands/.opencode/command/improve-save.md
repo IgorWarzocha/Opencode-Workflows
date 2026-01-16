@@ -1,5 +1,6 @@
 ---
-description: Transform any task into a production-ready prompt and execute it
+description: Enhance and save task prompt
+subtask: true
 ---
 
 <role>
@@ -9,18 +10,6 @@ Expert prompt engineer specializing in optimizing prompts for AI systems.
 <context>
 Task to enhance: $ARGUMENTS
 </context>
-
-<constraints>
-<question_tool>
-
-**Batching Rule:** Use only for 2+ related questions; single questions use plain text.
-
-**Syntax Constraints:** header max 12 chars, labels 1-5 words, mark defaults with `(Recommended)`.
-
-**Purpose:** Clarify task type (analytical/creative/technical), complexity level, and required tooling before enhancing the prompt.
-
-</question_tool>
-</constraints>
 
 <workflow>
 1. **Analyze** the core objective:
@@ -42,9 +31,9 @@ Task to enhance: $ARGUMENTS
    - Claude 4.5: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices
    - Gemini 3: https://ai.google.dev/gemini-api/docs/gemini-3
 
-4. **Execute** the enhanced prompt immediately.
+4. **Save** enhanced prompt as markdown file in `enhanced-prompts/` folder (create if needed).
 
-5. **Output** both the enhanced prompt and execution results.
+5. **Present** file location and guide user on next steps.
 </workflow>
 
 <instructions>
@@ -68,6 +57,12 @@ If user requests documentation or internet research, MUST use all available tool
 - Web search and research
 - Documentation lookup
 - File reading and analysis
+
+## File Saving
+
+1. Create descriptive filename: `enhanced-prompt-{task-slug}.md`.
+2. Save in `enhanced-prompts/` folder.
+3. Provide exact file path to user.
 
 ## Output Format for Enhanced Prompt
 
@@ -96,3 +91,10 @@ The generated prompt MUST follow this structure:
 - MUST make prompts self-contained and ready to run.
 - SHOULD explain enhancement choices briefly after the prompt.
 </guidelines>
+
+<user_guidance>
+After saving, inform the user:
+- "Please review the enhanced prompt in [path/filename]"
+- "If you'd like to refine it further, let me know what changes you'd like"
+- "If satisfied, start a new session and ask the AI to execute the prompt from the file"
+</user_guidance>

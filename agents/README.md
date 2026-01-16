@@ -6,7 +6,15 @@ All agent files use **RFC 2119 keywords** (MUST, SHOULD, MAY) and **XML tags** (
 
 ## Architecture Overview
 
-The `agents/` directory contains specialized agent collections, complemented by universal engineering guidelines in the root `at/` directory.
+The `agents/` directory contains specialized agent collections. To optimize model usage, **MUST** disable the generic `general` subagent in favor of the `fast`/`smart` split in your `opencode.json`:
+
+```json
+"subagents": {
+  "general": {
+    "disable": true
+  }
+}
+```
 
 - **generic/** – Canonical, globally useful agents that pair well with any Opencode repo. Install these into `~/.config/opencode/agent/` to make them universally available.
 - **parallel-PRD/** – Parallel PRD planners plus an orchestrator and PRD authoring skill for best-of synthesis.
@@ -20,6 +28,8 @@ Each collection demonstrates how to scope agents for a domain, define guardrails
 
 | Agent | Description |
 | --- | --- |
+| `fast` | High-speed workhorse. Use for trivial edits, running known commands, and simple file lookups. Part of the `fast`/`smart` split to replace the generic `general` agent. |
+| `smart` | Senior developer and architect. Use for complex bug hunting, codebase refactoring, and verified implementation. Part of the `fast`/`smart` split to replace the generic `general` agent. |
 | `repo-navigator-creator` | Produces lean AGENTS.md navigation guides so LLMs can traverse repositories without context overload. |
 | `subagent-orchestrator` | Dispatches specialized agents, partitions scopes, and manages parallel/sequential execution plans. |
 | `openspec-orchestrator` | Enforces strict OpenSpec formatting, runs validations, and coordinates specialists across proposal, implementation, and archive workflows. Requires [OpenSpec](https://openspec.dev/) plus `openspec init`. |
@@ -81,10 +91,12 @@ Mix and match as needed: commands launch processes, agents keep the reasoning sh
     ├── README.md
     ├── generic/
     │   └── .opencode/
-    │       └── agent/
-    │           ├── repo-navigator-creator.md
-    │           ├── subagent-orchestrator.md
-    │           └── openspec-orchestrator.md
+│       └── agent/
+│           ├── fast.md
+│           ├── smart.md
+│           ├── repo-navigator-creator.md
+│           ├── subagent-orchestrator.md
+│           └── openspec-orchestrator.md
     ├── parallel-PRD/
     │   └── .opencode/
     │       ├── agent/

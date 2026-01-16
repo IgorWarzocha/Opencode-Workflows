@@ -1,6 +1,13 @@
 ---
 name: skill-creator
-description: Guide for creating effective opencode skills. Use when users want to create a new skill (or update an existing skill) that extends agent capabilities with specialized knowledge, workflows, or tool integrations.
+description: |-
+  Architect and refine OpenCode skills to extend agent capabilities. Handles directory scaffolding, SKILL.md authoring, frontmatter optimization, and resource organization (scripts/references/assets). Use proactively for creating new skills, updating existing workflows, or fixing skill discovery issues.
+
+  Examples:
+  - user: "Create a new skill for database management" → scaffold directory and initial SKILL.md
+  - user: "My skill isn't triggering correctly" → analyze and refine frontmatter description
+  - user: "Add a python script to the image-processing skill" → structure scripts/ directory
+  - user: "How should I structure a skill for API docs?" → design references/ layout
 ---
 
 # Skill Creator

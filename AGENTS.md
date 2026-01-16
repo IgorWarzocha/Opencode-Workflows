@@ -7,6 +7,8 @@ This is the **Opencode Workflows** repository - a collection of Opencode-based c
 ### Agent Templates Catalog
 A focused collection of reusable agent prompts and orchestration patterns:
 - **repo-maintainer**: Repository health custodian (audits, doc sync). **NOTE: This root agent is specific to the Opencode-Workflows repo.**
+- **fast**: High-speed workhorse for trivial edits, running known commands, and simple file lookups.
+- **smart**: Senior developer and architect for complex bug hunting, codebase refactoring, and verified implementation.
 - **repo-navigator-creator**: Produces lean AGENTS.md navigation guides
 - **subagent-orchestrator**: Dispatches specialized agents and manages execution plans
 - **openspec-orchestrator**: Enforces strict OpenSpec formatting/validation and orchestrates subagents
@@ -42,7 +44,14 @@ Agents follow Opencode's agent patterns with YAML frontmatter:
 - **Global Installation**: Designed for reuse across projects via `~/.config/opencode/agent/`
 
 ### Configuration System
-- `example-opencode.json` templates for Opencode configuration
+- `example-opencode.json` templates for Opencode configuration. Demonstrates disabling the legacy `general` subagent in favor of `fast`/`smart` splitting to optimize model usage:
+  ```json
+  "subagents": {
+    "general": {
+      "disable": true
+    }
+  }
+  ```
 - References to `AGENTS.md` in instructions arrays
 - `package.json` in `.opencode/` for Opencode plugin dependencies
 - Follows Opencode schema standards
@@ -81,6 +90,8 @@ agents/                      # Agent templates catalog
 ├── generic/                # Globally useful agents
 │   └── .opencode/
 │       └── agent/
+│           ├── fast.md                     # High-speed workhorse
+│           ├── smart.md                    # Complex architecture expert
 │           ├── repo-navigator-creator.md   # AGENTS.md generation
 │           ├── subagent-orchestrator.md    # Multi-agent coordination
 │           └── openspec-orchestrator.md    # OpenSpec workflow enforcement

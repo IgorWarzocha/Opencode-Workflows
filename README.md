@@ -75,13 +75,25 @@ See `agents/security-reviewer/README.md` for full details.
 
 ---
 
-## Included Packs
+## included Packs
 
 ### Agent Catalog
+
+To optimize model usage, we recommend disabling the legacy generic `general` subagent in your `opencode.json` and using the `fast`/`smart` split instead:
+
+```json
+"subagents": {
+  "general": {
+    "disable": true
+  }
+}
+```
 
 Agents are organized under `agents/`:
 
 - **generic/** – Reusable global agents that belong in `~/.config/opencode/agent/`:
+  - **fast** – High-speed workhorse for trivial edits and file lookups.
+  - **smart** – Senior developer for complex bug hunting and refactoring.
   - **repo-navigator-creator** – Builds lean AGENTS.md navigation guides.
   - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation.
   - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents.
@@ -99,8 +111,8 @@ See `agents/README.md` for full tables, usage details, and the complete director
 The `commands/` directory provides shareable command files for Opencode users.
 Currently available:
 - **`/howto`**: Scans the cloned repository and generates a user-focused `AGENTS.md`.
-- **`/improve:run`**: Transforms any task into a production-ready prompt and executes it immediately.
-- **`/improve:save`**: Transforms any task into a production-ready prompt and saves it as a markdown file.
+- **`/improve-run`**: Transforms any task into a production-ready prompt and executes it immediately.
+- **`/improve-save`**: Transforms any task into a production-ready prompt and saves it as a markdown file.
 - **`/refactor`**: Refactors code with strict modularity, file headers, and cleanup.
 - **`/init`**: Creates or enhances AGENTS.md documentation while preserving human-crafted content.
 - **`/refactor-rfc-xml`**: Converts markdown files to RFC 2119 + XML tag structure.

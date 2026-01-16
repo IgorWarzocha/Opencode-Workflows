@@ -30,30 +30,6 @@ def parse_frontmatter(content):
         return None, "Missing or malformed YAML frontmatter (no --- delimiters)"
     
     yaml_text = match.group(1)
-    
-    # Basic YAML validation
-    errors = []
-    
-    # Check for common YAML errors
-    lines = yaml_text.split('\n')
-    for i, line in enumerate(lines):
-        # Check for tabs (YAML requires spaces)
-        if '\t' in line:
-            errors.append(f"Tab character found on line {i+1} (use spaces)")
-        
-        # Check for unquoted colons in values (common error)
-        if ':' in line and not line.strip().startswith('#'):
-            parts = line.split(':', 1)
-            if len(parts) > 1:
-                value = parts[1].strip()
-                # If value starts with a letter and contains unquoted colon, warn
-                if value and not value.startswith(('"', "'", '|', '>', '-', '[', '{')):
-                    if ':' in value and not any(value.startswith(x) for x in ['http', 'https']):
-                        errors.append(f"Possible unquoted colon in value on line {i+1}")
-    
-    if errors:
-        return None, "; ".join(errors)
-    
     return {'_raw': yaml_text}, None
 
 
@@ -65,13 +41,17 @@ def get_field(parsed, field):
     raw = parsed['_raw']
     
     # Handle multi-line (|-) values
-    multiline_match = re.search(rf'^{field}:\s*\|-\s*\n((?:[ \t]+.+\n?)*)', raw, re.MULTILINE)
+    # match field followed by |- then capture all indented lines
+    multiline_match = re.search(rf'^{field}:\s*\|-.*?\n((?:(?:[ \t]+.*\n?)|(?:\n))*)', raw, re.MULTILINE)
     if multiline_match:
         lines = multiline_match.group(1).split('\n')
         # Strip common leading whitespace
         if lines:
-            min_indent = min(len(line) - len(line.lstrip()) for line in lines if line.strip())
-            cleaned = '\n'.join(line[min_indent:] if len(line) > min_indent else line for line in lines)
+            non_empty_lines = [line for line in lines if line.strip()]
+            if not non_empty_lines:
+                return ""
+            min_indent = min(len(line) - len(line.lstrip()) for line in non_empty_lines)
+            cleaned = '\n'.join(line[min_indent:] if line.strip() else line for line in lines)
             return cleaned.strip()
     
     # Handle single-line values
@@ -165,14 +145,17 @@ def validate_agent(file_path, content, parsed):
         has_use_when = 'use when' in desc_lower or 'use for' in desc_lower
         has_examples = '→' in description or '->' in description or 'example' in desc_lower
         
+        # Count examples (user: "..." → pattern)
+        example_count = len(re.findall(r'user:\s*["\'].+?["\']\s*(?:→|->)', description, re.IGNORECASE))
+        
         if not has_use_when:
             warnings.append(
                 "Non-primary agent SHOULD include 'Use when...' trigger contexts"
             )
         
-        if not has_examples:
+        if example_count < 2:
             warnings.append(
-                "Non-primary agent SHOULD include trigger examples (user: \"...\" → action)"
+                f"Non-primary agent SHOULD include trigger examples (user: \"...\" → action) (found {example_count})"
             )
     
     # Mode validation
@@ -246,7 +229,8 @@ def validate_skill(file_path, content, parsed):
                       'use proactively' in desc_lower)
     
     # Count examples (user: "..." → pattern)
-    example_count = len(re.findall(r'user:\s*["\']', description, re.IGNORECASE))
+    example_count = len(re.findall(r'user:\s*.+?\s*(?:→|->)', description, re.IGNORECASE))
+    # print(f"DEBUG: {file_path} example_count={example_count}")
     
     if not has_use_clause:
         warnings.append(
