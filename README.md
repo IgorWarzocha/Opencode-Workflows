@@ -91,12 +91,12 @@ To optimize model usage, we recommend disabling the legacy generic `general` sub
 
 Agents are organized under `agents/`:
 
-- **generic/** – Reusable global agents that belong in `~/.config/opencode/agent/`:
-  - **fast** – High-speed workhorse for trivial edits and file lookups.
-  - **smart** – Senior developer for complex bug hunting and refactoring.
-  - **repo-navigator-creator** – Builds lean AGENTS.md navigation guides.
-  - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation.
-  - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents.
+ - **generic/** – Reusable global agents that belong in `~/.config/opencode/agent/`:
+   - **fast** – High-speed workhorse for trivial edits and file lookups.
+   - **smart** – Senior developer for complex bug hunting and refactoring.
+   - **repo-navigator** – Supports dual workflows (`/init` for AI navigation, `/howto` for user assistance). Recommended to pair with the two mentioned commands.
+   - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation.
+   - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents.
 - **parallel-PRD/** – Parallel PRD planning kit with planner subagents and an orchestrator.
 - **component-engineer/** – Expert architecture package for professional React components.
 - **opencode-configurator/** – Meta-configuration system for OpenCode.
