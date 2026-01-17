@@ -1,10 +1,13 @@
-# Workflow Component (Extensive)
+# Workflow Component
 
-Sources:
+<reference>
 - https://convex.dev/components/workflow
 - https://www.npmjs.com/package/@convex-dev/workflow
+</reference>
 
-## Install and Configure
+<workflow>
+
+### Install and Configure
 
 ```bash
 npm install @convex-dev/workflow
@@ -32,7 +35,7 @@ export const workflow = new WorkflowManager(components.workflow, {
 });
 ```
 
-## Define Workflows
+### Define Workflows
 
 ```ts
 export const userOnboarding = workflow.define({
@@ -49,7 +52,7 @@ export const userOnboarding = workflow.define({
 });
 ```
 
-## Start / Status / Cancel
+### Start / Status / Cancel
 
 ```ts
 const workflowId = await workflow.start(ctx, internal.userOnboarding, { userId });
@@ -57,7 +60,7 @@ const status = await workflow.status(ctx, workflowId);
 await workflow.cancel(ctx, workflowId);
 ```
 
-## Events
+### Events
 
 ```ts
 const approvalEvent = defineEvent({
@@ -80,7 +83,7 @@ await step.awaitEvent({ id: eventId });
 await workflow.sendEvent(ctx, { id: eventId, value: { ok: true } });
 ```
 
-## onComplete Handling
+### onComplete Handling
 
 ```ts
 import { vWorkflowId } from "@convex-dev/workflow";
@@ -105,13 +108,16 @@ export const onComplete = mutation({
 });
 ```
 
-## Retry Policies
+</workflow>
 
-- Configure defaults in WorkflowManager `workpoolOptions`.
+<rules>
+
+### Retry Policies
+- You SHOULD configure defaults in WorkflowManager `workpoolOptions`.
 - Per-step override: `{ retry: true | false | { maxAttempts, initialBackoffMs, base } }`.
 
-## Parallel Steps
-
+### Parallel Steps
+You MAY use `Promise.all` for parallel execution:
 ```ts
 await Promise.all([
   step.runAction(internal.jobs.a, args),
@@ -119,8 +125,9 @@ await Promise.all([
 ]);
 ```
 
-## Limits and Caveats
-
+### Limits and Caveats
 - Workflow data limit ~1 MiB; journal limit ~8 MiB.
-- Workflow body must be deterministic; use steps for side effects.
-- Changing step order mid-flight can cause determinism violations.
+- Workflow body MUST be deterministic; You MUST use steps for side effects.
+- Changing step order mid-flight MUST NOT be done (causes determinism violations).
+
+</rules>

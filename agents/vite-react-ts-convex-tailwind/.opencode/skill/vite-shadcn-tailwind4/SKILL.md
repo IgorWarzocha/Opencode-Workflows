@@ -10,50 +10,43 @@ description: |-
   - user: "Create Vite + React + shadcn project" → scaffold Vite, install shadcn, configure theme, add sample components
 ---
 
-# Vite + Shadcn + Tailwind v4 Setup
+<overview>
+Protocol for initializing shadcn/ui with Tailwind CSS v4 in a **Vite** project.
+</overview>
 
 <instructions>
-
-Protocol for initializing shadcn/ui with Tailwind CSS v4 in a **Vite** project. This skill is Vite-specific due to:
-
+This skill is Vite-specific due to:
 - Vite's solution-style `tsconfig.json` (references pattern)
 - `@tailwindcss/vite` plugin requirement
 - CSS entry file conventions (`src/index.css`)
 
-For Next.js, Remix, or other frameworks, use their respective shadcn installation guides.
+For Next.js, Remix, or other frameworks, You MUST use their respective shadcn installation guides.
 
 <question_tool>
-
-**Batching Rule:** Use only for 2+ related questions; single questions use plain text.
-
-**Syntax Constraints:** header max 12 chars, labels 1-5 words, mark defaults with `(Recommended)`.
-
-**Purpose:** Clarify component selection, style preferences, and optional AI elements before running shadcn CLI.
-
+- **Batching Rule**: You MUST use only for 2+ related questions; single questions use plain text.
+- **Syntax Constraints**: header max 12 chars, labels 1-5 words, mark defaults with `(Recommended)`.
+- **Purpose**: Clarify component selection, style preferences, and optional AI elements before running shadcn CLI.
 </question_tool>
 
 </instructions>
 
 <workflow>
 
-## Step 1: Verify Prerequisites [AGENT]
-
-
+<phase name="verify-prerequisites">
+## Step 1: Verify Prerequisites
 Check that the project is ready:
+- `vite.config.ts` MUST exist.
+- `package.json` MUST contain `tailwindcss` (v4+) and `@tailwindcss/vite`.
+- TypeScript MUST be configured.
 
-- `vite.config.ts` exists
-- `package.json` contains `tailwindcss` (v4+) and `@tailwindcss/vite`
-- TypeScript is configured
+If prerequisites are missing, You MUST help the user set up Tailwind v4 first.
+</phase>
 
-If prerequisites are missing, help the user set up Tailwind v4 first.
-
----
-
-## Step 2: Fix TypeScript Aliases [AGENT]
-
+<phase name="fix-typescript-aliases">
+## Step 2: Fix TypeScript Aliases
 The shadcn CLI fails if paths aren't in the root `tsconfig.json`. Vite uses a solution-style config with references, but shadcn doesn't parse those.
 
-**Action:** Update `tsconfig.json` to include `compilerOptions`:
+**Action**: You MUST update `tsconfig.json` to include `compilerOptions`:
 
 ```json
 {
@@ -70,12 +63,11 @@ The shadcn CLI fails if paths aren't in the root `tsconfig.json`. Vite uses a so
   }
 }
 ```
+</phase>
 
----
-
-## Step 3: Verify Vite Config [AGENT]
-
-Confirm `vite.config.ts` has the Tailwind plugin and path alias:
+<phase name="verify-vite-config">
+## Step 3: Verify Vite Config
+You MUST confirm `vite.config.ts` has the Tailwind plugin and path alias:
 
 ```ts
 import tailwindcss from "@tailwindcss/vite";
@@ -90,78 +82,67 @@ export default defineConfig({
   },
 });
 ```
+</phase>
 
----
-
-## Step 4: Initialize Shadcn [USER]
-
-**Tell the user to run:**
-
+<phase name="initialize-shadcn">
+## Step 4: Initialize Shadcn
+You MUST instruct the user to run:
 ```bash
 npx shadcn@latest init
 ```
 
-Recommend these settings:
-
+You SHOULD recommend these settings:
 - Style: New York
 - Base Color: Neutral or Zinc
 - CSS Variables: Yes
 
-**Wait for user confirmation before continuing.**
+**You MUST wait for user confirmation before continuing.**
+</phase>
 
----
-
-## Step 5: Add Components [USER]
-
-**Tell the user to run:**
-
+<phase name="add-components">
+## Step 5: Add Components
+You MUST instruct the user to run:
 ```bash
 npx shadcn@latest add
 ```
 
-Instruct them to select all components (`a` then Enter).
+You SHOULD instruct them to select all components (`a` then Enter).
 
-**Wait for user confirmation before continuing.**
+**You MUST wait for user confirmation before continuing.**
+</phase>
 
----
-
-## Step 6: Add Extensions (Optional) [USER]
-
-If user wants AI elements, **tell them to run:**
-
+<phase name="add-extensions">
+## Step 6: Add Extensions (Optional)
+If user wants AI elements, You MUST instruct them to run:
 ```bash
 npx shadcn@latest add @ai-elements/all
 ```
 
-Instruct them to answer **NO** to all overwrite prompts.
+You SHOULD instruct them to answer **NO** to all overwrite prompts.
 
-**Wait for user confirmation before continuing.**
+**You MUST wait for user confirmation before continuing.**
+</phase>
 
----
+<phase name="install-missing-dependencies">
+## Step 7: Install Missing Dependencies
+The CLI MAY miss dependencies. You MUST check `package.json` and install any missing.
 
-## Step 7: Install Missing Dependencies [AGENT]
-
-The CLI may miss dependencies. Check `package.json` and install any missing:
-
-**Required packages:**
-
+**Required packages**:
 - `tw-animate-css` (devDep) - v4 replacement for `tailwindcss-animate`
 - `tailwind-merge` (dep) - used by `cn()` utility
 - `clsx` (dep) - used by `cn()` utility
 - `class-variance-authority` (dep) - used by shadcn components
 
-**Run if any are missing:**
-
+**You MUST run if any are missing**:
 ```bash
 npm install tailwind-merge clsx class-variance-authority
 npm install -D tw-animate-css
 ```
+</phase>
 
----
-
-## Step 8: Clean CSS for v4 Compliance [AGENT]
-
-Rewrite `src/index.css` to match strict v4 structure:
+<phase name="clean-css">
+## Step 8: Clean CSS for v4 Compliance
+You MUST rewrite `src/index.css` to match strict v4 structure:
 
 ```css
 @import "tailwindcss";
@@ -191,22 +172,20 @@ Rewrite `src/index.css` to match strict v4 structure:
 }
 ```
 
-**Remove these if present:**
-
+You MUST remove these if present:
 - `@media (prefers-color-scheme)` blocks
 - Duplicate `@theme` blocks (keep only `@theme inline`)
 - `@config` directives
+</phase>
 
----
-
-## Step 9: Verify Setup [AGENT]
-
-Run typecheck to catch any issues:
-
+<phase name="verify-setup">
+## Step 9: Verify Setup
+You MUST run typecheck to catch any issues:
 ```bash
 npm run lint
 ```
 
-Fix any TypeScript errors before marking setup complete.
+You MUST fix any TypeScript errors before marking setup complete.
+</phase>
 
 </workflow>

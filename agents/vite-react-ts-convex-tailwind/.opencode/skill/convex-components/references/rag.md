@@ -1,10 +1,13 @@
-# RAG Component (Extensive)
+# RAG Component
 
-Sources:
+<reference>
 - https://convex.dev/components/rag
 - https://docs.convex.dev/agents/rag
+</reference>
 
-## Install and Configure
+<workflow>
+
+### Install and Configure
 
 ```bash
 npm install @convex-dev/rag
@@ -35,17 +38,7 @@ const rag = new RAG(components.rag, {
 });
 ```
 
-## Core Features
-
-- Namespaces for per-user/team isolation.
-- Add/replace content with automatic embeddings.
-- Semantic search with vector similarity.
-- Custom filters with indexed fields.
-- Importance weighting (0–1).
-- Chunk context for surrounding text.
-- Graceful migrations for entries/namespaces.
-
-## Add Content
+### Add Content
 
 ```ts
 await rag.add(ctx, {
@@ -58,7 +51,7 @@ await rag.add(ctx, {
 });
 ```
 
-## Search
+### Search
 
 ```ts
 const { results, text, entries, usage } = await rag.search(ctx, {
@@ -70,7 +63,7 @@ const { results, text, entries, usage } = await rag.search(ctx, {
 });
 ```
 
-## Generate Text
+### Generate Text
 
 ```ts
 const { text, context } = await rag.generateText(ctx, {
@@ -80,19 +73,31 @@ const { text, context } = await rag.generateText(ctx, {
 });
 ```
 
-## RAG Strategies
+</workflow>
 
+<rules>
+
+### Core Features
+- Namespaces for per-user/team isolation.
+- Add/replace content with automatic embeddings.
+- Semantic search with vector similarity.
+- Custom filters with indexed fields.
+- Importance weighting (0–1).
+- Chunk context for surrounding text.
+- Graceful migrations for entries/namespaces.
+
+### RAG Strategies
 - Prompt-based RAG: always search and inject context.
 - Tool-based RAG: LLM decides when to search; tool returns context.
 
-## Ingestion Tips
+### Ingestion Tips
+- PDFs: You SHOULD prefer client-side parsing (pdf.js).
+- Images: You SHOULD use LLM to extract text/description.
+- Text: You SHOULD chunk or normalize for better embeddings.
 
-- PDFs: prefer client-side parsing (pdf.js).
-- Images: use LLM to extract text/description.
-- Text: chunk or normalize for better embeddings.
+### Best Practices
+- You MUST keep namespaces scoped to users/teams.
+- You SHOULD use filters to limit search to relevant subsets.
+- You SHOULD set `vectorScoreThreshold` to avoid low-signal context.
 
-## Best Practices
-
-- Keep namespaces scoped to users/teams.
-- Use filters to limit search to relevant subsets.
-- Set vectorScoreThreshold to avoid low-signal context.
+</rules>

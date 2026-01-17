@@ -11,74 +11,83 @@ description: |-
   - user: "Optimize query" → add index and withIndex range expression
   - user: "Use useQuery" → show generated hook usage
 ---
-# Convex Core
 
-## Scope
+<overview>
+Core Convex modeling and function authoring patterns. This skill is the default baseline for Convex work.
+</overview>
 
-Core Convex modeling and function authoring patterns. Use as the default baseline for Convex work.
+<reference>
+- **Schemas**: https://docs.convex.dev/database/schemas
+- **Reading data + indexes**: https://docs.convex.dev/database/reading-data/indexes
+- **Validation**: https://docs.convex.dev/functions/validation
+- **Functions**: https://docs.convex.dev/functions
+- **Pagination**: https://docs.convex.dev/database/pagination
+- **System tables**: https://docs.convex.dev/database/advanced/system-tables
+</reference>
 
-## Authoritative Sources
-
-- Schemas: https://docs.convex.dev/database/schemas
-- Reading data + indexes: https://docs.convex.dev/database/reading-data/indexes
-- Validation: https://docs.convex.dev/functions/validation
-- Functions: https://docs.convex.dev/functions
-- Pagination: https://docs.convex.dev/database/pagination
-- System tables: https://docs.convex.dev/database/advanced/system-tables
-
-## Core Concepts
-
+<context name="Core Concepts">
 - Schema: `defineSchema`/`defineTable` in `convex/schema.ts`; use `v` validators.
 - Options: `schemaValidation: false` disables runtime validation; `strictTableNameTypes: false` allows undeclared tables in TS types.
-- Validation: `args`/`returns` validators for queries/mutations/actions; objects reject extra props; `undefined` invalid (use `null`).
+- Validation: `args`/`returns` validators for queries/mutations/actions; objects reject extra props; `undefined` is invalid (use `null`).
+- Discriminated Unions: Use `v.union` and `v.literal` with `as const` for type-safe state/kind definitions.
+- Types: Use `v.int64()` for 64-bit integers (not `v.bigint()`); `v.null()` for explicit null returns.
+- IDs: Use `Id<"table">` and `v.id("table")` instead of raw strings.
+- Records: `v.record(keys, values)` keys MUST be ASCII, non-empty, and NOT start with `_` or `$`.
 - Validator composition: `Infer`, `.pick`, `.omit`, `.extend`, `.partial` on object validators.
-- Function types: `query` (reactive reads), `mutation` (atomic writes), `action` (external/long-running, no `ctx.db`).
-- Internal functions are private; call via `internal.*` references.
+</context>
 
-## Core Operations
+<rules>
 
-- Indexing: `.index(name, [fields...])`; `_creationTime` appended; 16 fields per index, 32 indexes per table; staged indexes for large tables.
-- Querying: prefer `.withIndex` over `.filter` for large tables; range-less `withIndex` must pair with `take/first/unique/paginate`.
-- Limits: `collect()` throws if >1024 docs; use `take` or pagination.
-- Pagination: `paginationOptsValidator`, `.paginate()` returns `{ page, isDone, continueCursor }`, pages are reactive; avoid strict `returns` on the full paginate object.
-- System tables: `_storage` and `_scheduled_functions` via `db.system.get/query`, reactive + paginatable.
-
-## Schema Rules
-
-- Define all tables in `convex/schema.ts` with `defineSchema` / `defineTable`.
-- Use `v.*` validators for every field; avoid `v.any()` unless necessary.
+### Schema Rules
+- You MUST define all tables in `convex/schema.ts` with `defineSchema` / `defineTable`.
+- System Fields: `_id` (`v.id(tableName)`) and `_creationTime` (`v.number()`) are added automatically.
+- You MUST use `v.*` validators for every field; SHOULD avoid `v.any()` unless necessary.
+- Index naming: include all fields in the name, e.g., `"by_field1_and_field2"`.
+</rules>
 - Index rules:
-  - Use `.index(name, [fields...])`.
-  - Field order matters; range expressions must follow index order.
+  - You MUST use `.index(name, [fields...])`.
+  - Field order matters; range expressions MUST follow index order.
   - Limits: 16 fields per index, 32 indexes per table.
 
-## Function Rules
+### Function Rules
+- You MUST use new function syntax with `args`, `returns`, and `handler`.
+- You MUST always validate `args` and `returns` (HTTP actions excluded).
+- Use `query` for reads, `mutation` for writes, and `action` for external/long-running.
+- Actions MUST NOT access `ctx.db`; You MUST use `ctx.runQuery` / `ctx.runMutation`.
+- Circular Dependencies: When calling a function in the same file via `ctx.run*`, You MUST add explicit return type annotations to the receiver variable.
 
-- Use new function syntax with `args`, `returns`, `handler`.
-- Always validate `args` and `returns` (HTTP actions excluded).
-- Use `query` for reads, `mutation` for writes, `action` for external/long-running.
-- Actions cannot access `ctx.db`; use `ctx.runQuery` / `ctx.runMutation`.
+### Database Operations
+- You MUST provide the explicit table name as the first argument to `ctx.db.get`, `ctx.db.patch`, `ctx.db.replace`, and `ctx.db.delete`.
+- Replacement: Use `ctx.db.replace` for full document replacement (throws if missing).
+- Patching: Use `ctx.db.patch` for shallow merge updates (throws if missing).
+- Deletion: Convex queries do NOT support `.delete()`. You MUST `.collect()` results and iterate to call `ctx.db.delete(id)`.
+- Unique: Use `.unique()` for single document results; it MUST throw if multiple documents match.
+- You MUST NOT use `filter` in production queries; use indexes and `.withIndex`.
 
-## Query Performance
+### TypeScript Best Practices
+- You MUST use `as const` for string literals in discriminated unions.
+- You MUST define arrays as `const array: Array<T> = [...]` and records as `const record: Record<K, V> = {...}`.
+- You MUST prefer `Id<"table">` over `string` for all document identifiers.
 
-- Prefer `.withIndex` over `.filter` on large tables.
-- If using `.withIndex` without a range, always pair with `take`, `first`, `unique`, or `paginate`.
-- `collect()` throws if more than 1024 docs; prefer `take` or pagination.
+### Query Performance
+- You SHOULD prefer `.withIndex` over `.filter` on large tables.
+- If using `.withIndex` without a range, You MUST pair it with `take`, `first`, `unique`, or `paginate`.
+- Search limits: `collect()` throws if >1024 docs; You SHOULD use `take(n)`, `paginate()`, or `for await` iteration for large sets.
+- Async iteration: Use `for await (const row of query)` instead of `.collect()` for streaming large result sets.
 
-## Pagination
-
-- Use `paginationOptsValidator` in args.
+### Pagination
+- You MUST use `paginationOptsValidator` in args.
 - `.paginate()` returns `{ page, isDone, continueCursor }`.
-- Pages are reactive; size can change.
-- Avoid strict `returns` validators for full paginate result.
+- Pages are reactive; size MAY change.
+- You SHOULD avoid strict `returns` validators for the full `.paginate()` result object; validate `page` or use `v.any()`.
 
-## Client Patterns
-
-- Use `api.*` references from `convex/_generated/api`.
+### Client Patterns
+- You MUST use `api.*` references from `convex/_generated/api`.
 - React hooks: `useQuery`, `useMutation`, `useAction`, `usePaginatedQuery`.
-- Never call mutations in render paths.
+- You MUST NOT call mutations or actions during render.
 
-## Safety
+### Safety
+- You MUST enforce auth per function; check identity via `ctx.auth` helpers.
+- You MUST NOT expose sensitive logic in public functions; MUST use internal ones.
 
-- Enforce auth per function; check identity via `ctx.auth` helpers.
-- Do not expose sensitive logic in public functions; use internal ones.
+</rules>

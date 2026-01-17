@@ -47,7 +47,7 @@ function Button({ asChild, ...props }) {
 ### Pillar 3: Single Element Wrapping
 Each exported component SHOULD wrap exactly **one** HTML or JSX element.
 - **Why**: Allows direct prop spreading, easy styling overrides, and predictable DOM structure.
-- **Rule**: If you need to style a nested part, you MUST export it as a separate component (e.g., `CardHeader`).
+- **Rule**: If You need to style a nested part, You MUST export it as a separate component (e.g., `CardHeader`).
 
 ### Pillar 4: Polymorphism (The 'as' prop)
 Allows the consumer to specify the HTML element.

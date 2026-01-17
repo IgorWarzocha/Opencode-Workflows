@@ -1,10 +1,13 @@
-# Workpool Component (Extensive)
+# Workpool Component
 
-Sources:
+<reference>
 - https://convex.dev/components/workpool
 - https://www.npmjs.com/package/@convex-dev/workpool
+</reference>
 
-## Install and Configure
+<workflow>
+
+### Install and Configure
 
 ```bash
 npm install @convex-dev/workpool
@@ -35,7 +38,7 @@ const emailPool = new Workpool(components.emailWorkpool, {
 });
 ```
 
-## Enqueue Work
+### Enqueue Work
 
 ```ts
 await emailPool.enqueueAction(ctx, internal.email.send, args, {
@@ -54,13 +57,7 @@ await emailPool.enqueueActionBatch(ctx, internal.weather.scrape, [
 ]);
 ```
 
-## Retry Semantics
-
-- Exponential backoff with jitter.
-- Only enable retries for idempotent actions.
-- Per-call override with `retry: true/false/custom`.
-
-## Completion Handling
+### Completion Handling
 
 ```ts
 export const onComplete = emailPool.defineOnComplete<DataModel>({
@@ -73,7 +70,16 @@ export const onComplete = emailPool.defineOnComplete<DataModel>({
 });
 ```
 
-## Status and Monitoring
+</workflow>
+
+<rules>
+
+### Retry Semantics
+- Exponential backoff with jitter.
+- You SHOULD ONLY enable retries for idempotent actions.
+- Per-call override with `retry: true/false/custom`.
+
+### Status and Monitoring
 
 ```ts
 import { vWorkIdValidator } from "@convex-dev/workpool";
@@ -87,11 +93,11 @@ export const getStatus = query({
 - `statusTtl` controls retention (use `Infinity` for permanent).
 - Status kinds: `pending`, `running`, `finished`.
 
-## Parallelism Guidance
+### Parallelism Guidance
+- You SHOULD avoid >20 on free tier, >100 on Pro across workpools/workflows.
+- You SHOULD use low parallelism to reduce OCC conflicts.
 
-- Avoid >20 on free tier, >100 on Pro across workpools/workflows.
-- Use low parallelism to reduce OCC conflicts.
-
-## Cancellation
-
+### Cancellation
 - `pool.cancel(id)` or `pool.cancelAll()` stops queued/retry work.
+
+</rules>

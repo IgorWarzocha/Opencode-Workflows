@@ -24,12 +24,12 @@ const handleKeyDown = (e: React.KeyboardEvent) => {
 - **Role**: Define what it is (`role="menu"`, `role="dialog"`).
 - **State**: Describe dynamic status (`aria-expanded`, `aria-invalid`, `aria-checked`).
 - **Properties**: Define relationships (`aria-controls="id"`, `aria-labelledby="id"`).
-- **Live Regions**: Use `aria-live="polite"` for dynamic content updates (e.g., "3 results found").
+- **Live Regions**: You SHOULD use `aria-live="polite"` for dynamic content updates (e.g., "3 results found").
 
 ### 3. Focus Management
-- **Focus Trapping**: You MUST use for Modals/Dialogs to keep focus inside while open.
+- **Focus Trapping**: You MUST use focus trapping for Modals/Dialogs to keep focus inside while open.
 - **Focus Restoration**: You MUST return focus to the trigger element when a component closes.
-- **Focus Visible**: Use `:focus-visible` in CSS to show focus indicators only for keyboard users.
+- **Focus Visible**: You SHOULD use `:focus-visible` in CSS to show focus indicators only for keyboard users.
 
 ### 4. Color & Contrast
 - **WCAG Ratios**: 4.5:1 for normal text, 3:1 for large text.
@@ -39,7 +39,7 @@ const handleKeyDown = (e: React.KeyboardEvent) => {
 Professional components SHOULD support both modes.
 - **Controlled**: Parent owns state via `value` and `onChange`.
 - **Uncontrolled**: Component owns state via `defaultValue`.
-- **Implementation**: Use `useControllableState` (from Radix UI or similar) to merge both paths seamlessly.
+- **Implementation**: You SHOULD use `useControllableState` (from Radix UI or similar) to merge both paths seamlessly.
 
 ```tsx
 const [value, setValue] = useControllableState({

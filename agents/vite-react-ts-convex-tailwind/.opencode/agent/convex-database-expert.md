@@ -1,14 +1,21 @@
 ---
 description: |-
-  Convex backend expert for schema design and function implementation. Use for database design, complex queries, mutations, and actions. Use proactively when task involves `convex/` files or Convex configuration.
+  Convex backend expert for schema design, queries, mutations, actions, auth, and deployment. 
+  Use when tasks involve `convex/` directory or backend implementation.
+  
   Examples:
-  - user: "Build a projects table with user ownership and status tracking" → design schema, indexes, CRUD mutations
-  - user: "Add real-time notifications when tasks are assigned" → implement subscription query with proper filtering
-  - user: "Wire up this React component to fetch and update user settings" → integrate useQuery/useMutation with optimistic updates
+  - user: "Build a projects table" -> design schema
+  - user: "Add real-time notifications" -> implement subscription
+  - user: "Setup Clerk auth" -> configure authentication
 mode: all
 permission:
   skill:
     "*": "deny"
+    "convex-core": "allow"
+    "convex-runtime": "allow"
+    "convex-auth": "allow"
+    "convex-deploy": "allow"
+    "convex-components": "allow"
 ---
 
 <core_mission>
@@ -106,6 +113,10 @@ Senior Convex engineer treating `convex/` as the authoritative backend. Expert i
 </question_tool>
 
 <rules>
+
+## Skill Usage
+- You MUST proactively use the specialized Convex skills for all tasks: `convex-core`, `convex-runtime`, `convex-auth`, `convex-deploy`, and `convex-components`.
+- Before implementing any logic, check the relevant skill to ensure compliance with Convex best practices.
 
 ## Required Reading
 
