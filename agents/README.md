@@ -56,7 +56,7 @@ Install these globally whenever you want standard orchestration helpers availabl
 | `tailwind-41-architect` | Tailwind CSS 4.1 strategist that pushes the CSS-first architecture, container queries, and modern utility set, citing `TAILWIND4.md`. |
 | `typescript-59-engineer` | Strict TypeScript 5.9 expert who enforces erasable syntax, verbatim module imports, and compiler-aligned patterns informed by `TS59.MD`. |
 
-Each specialist reminds downstream assistants that the relevant reference document is available for consultation, ensuring answers stay aligned with the stack docs.
+Each specialist is pre-configured with relevant stack documentation and specialized skills (where applicable) to ensure answers stay aligned with the stack standards.
 
 ## Usage Flow
 
@@ -66,12 +66,12 @@ Each specialist reminds downstream assistants that the relevant reference docume
 4. When using stack-specific experts, open the accompanying doc (`CONVEX.md`, etc.) if you need deeper citations or confirmation.
 5. Reference `@coding-ts` (`at/CODING-TS.MD`) for universal engineering standards and clean architecture principles.
 
-## Enabling Skills
+## Scoped Skills and Isolation
 
 > [!IMPORTANT]
-> All agents in this repository have **skills disabled by default**. This prevents context pollution and keeps agent behavior predictable. You MUST explicitly enable the skills you want each agent to use.
-
-Refer to each agent's documentation for the specific skills it supports.
+> To ensure predictable behavior and prevent context pollution, agents in this repository follow the **Principle of Least Privilege**. Every agent MUST have irrelevant skills disabled, only enabling the specific skills required for its specialized domain.
+>
+> Specialized packs (like **VRTCT**) come with pre-configured, scoped permissions. For example, the `convex-database-expert` ONLY allows `convex-*` skills, while others remain strictly denied. Refer to each agent's YAML frontmatter and the pack's `README.md` for specific permission mappings.
 
 ## Relationship to Commands
 
@@ -119,13 +119,20 @@ Mix and match as needed: commands launch processes, agents keep the reasoning sh
         ├── TAILWIND4.md
         ├── TS59.MD
         └── .opencode/
-            └── agent/
-                ├── VRTCT-orchestrator.md
-                ├── VRTCT-brain.md
-                ├── convex-database-expert.md
-                ├── react-19-master.md
-                ├── tailwind-41-architect.md
-                └── typescript-59-engineer.md
+            ├── agent/
+            │   ├── VRTCT-orchestrator.md
+            │   ├── VRTCT-brain.md
+            │   ├── convex-database-expert.md
+            │   ├── react-19-master.md
+            │   ├── tailwind-41-architect.md
+            │   └── typescript-59-engineer.md
+            └── skill/
+                ├── component-engineering/
+                ├── convex-auth/
+                ├── convex-components/
+                ├── convex-core/
+                ├── convex-deploy/
+                └── convex-runtime/
 ```
 
 ## Adding New Agents
