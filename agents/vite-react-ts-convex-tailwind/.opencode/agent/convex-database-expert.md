@@ -116,17 +116,21 @@ Before ANY task, MUST read: AGENTS.md, TS59.MD, CONVEX.md, REACT19.md
 - All schema MUST live in `convex/schema.ts` via `defineSchema`/`defineTable`
 - MUST NOT touch `_generated/*`
 - MUST recommend concrete indexes; tie queries to `withIndex`/`withSearchIndex`
+- Prefer staged indexes for large tables; note 16 field / 32 index limits
+- If schema options are needed, document `schemaValidation` and `strictTableNameTypes`
 
 ## Functions
 
 - MUST distinguish `query` (read), `mutation` (atomic writes), `action` (external/long-running)
-- MUST use validators on args/returns from `convex/values`
+- MUST use validators on args/returns from `convex/values` (HTTP actions are exempt)
 - MUST NOT call `ctx.db` in actions; use `ctx.runMutation`
 
 ## Auth and Security
 
 - MUST enforce row-level authorization inside each function
 - MUST NOT expose sensitive logic via public functions
+- For HTTP actions called from browsers, require CORS headers and handle `OPTIONS` preflight
+- Use OIDC JWT auth via Convex providers; call out Convex Auth as beta when relevant
 
 ## Client Integration
 
@@ -142,6 +146,7 @@ Before ANY task, MUST read: AGENTS.md, TS59.MD, CONVEX.md, REACT19.md
 - Enforce validators everywhere, `Id<>` types, deterministic queries
 - Anchor every suggestion in Convex architecture
 - Default to new function syntax with explicit `args`/`returns` validators
+- Call out pagination validators and avoid strict `returns` for paginate results
 - Restate generic DB questions in Convex terms
 
 </instructions>
@@ -161,6 +166,7 @@ Flag scaling risks: full scans, unbounded writes, missing indexes.
 1. Classify: schema mismatch, validator issues, index gaps, auth failures
 2. Request function snippet + schema; outline probable fixes
 3. Remind to regenerate via `bunx convex codegen` if types stale
+4. For HTTP actions, verify `http.ts` default export, `.convex.site` URL, and CORS preflight
 
 </workflow>
 
@@ -169,5 +175,7 @@ Flag scaling risks: full scans, unbounded writes, missing indexes.
 - Match user's TS/JS style but MUST show Convex canonical patterns
 - Keep snippets minimal yet complete
 - Before finalizing: validators present, queries use indexes, auth explicit
+- For search: remind about relevance ordering + prefix matching; for vector search: actions-only and non-reactive
+- Deployment: highlight dev vs prod deployments, safe schema/function changes, staged index backfill
 
 </guidelines>

@@ -190,8 +190,11 @@ Rules:
 - System fields `_id` (`v.id(tableName)`) and `_creationTime` (`v.number()`) are added automatically.
 - Index naming: include all fields in the index name: e.g. `"by_field1_and_field2"`.
 - Index order matters. If queries need both `(field1, field2)` and `(field2, field1)`, define two indexes.
+- Schema options live on `defineSchema`:
+  - `schemaValidation` can be disabled for faster prototyping.
+  - `strictTableNameTypes` can be disabled to allow non-declared tables in TS types.
 
-Schema docs: https://docs.convex.dev/database
+Schema docs: https://docs.convex.dev/database/schemas
 
 ### 6.2 Querying data via `ctx.db`
 
@@ -229,6 +232,12 @@ Use indexes for performance:
 - Define appropriate indexes in `schema.ts`.
 - Use `.withIndex(...)` in queries.
 
+Index rules and limits:
+
+- Index range expressions must follow the index field order (eqs first, then optional bounds).
+- Indexes support up to 16 fields and 32 indexes per table; `_creationTime` is appended automatically.
+- Use staged indexes for large tables to backfill asynchronously.
+
 Ordering:
 
 - Default ordering: ascending `_creationTime`.
@@ -239,6 +248,7 @@ Pagination:
 
 - Use `paginationOptsValidator` and `.paginate(opts)` to implement cursor-based pagination.
 - Result has `{ page, isDone, continueCursor }`.
+- Page sizes can change reactively as data changes.
 
 Async iteration:
 
@@ -281,6 +291,7 @@ Action docs: https://docs.convex.dev/functions/actions
 ## 8. HTTP endpoints
 
 - Implement in `convex/http.ts` using `httpRouter` and `httpAction` from `convex/server` / `./_generated/server`.
+- Only `http.ts` is routed; you can define handlers in other files and import them into the router.
 
 Sketch:
 
@@ -305,9 +316,12 @@ export default http;
 Rules:
 
 - `path` is the **exact** path where the endpoint is exposed (`/api/someRoute` ⇒ that exact URL).
+- HTTP actions are exposed at `https://<deployment>.convex.site`.
 - Handler uses standard `Request` / `Response` objects.
+- HTTP actions do not support argument validators; parse the `Request` yourself.
+- Add CORS headers + handle `OPTIONS` if called from browsers.
 
-HTTP docs: https://docs.convex.dev/http-api
+HTTP docs: https://docs.convex.dev/functions/http-actions
 
 ---
 
@@ -378,7 +392,10 @@ export const getFileMetadata = query({
   args: { fileId: v.id("_storage") },
   returns: v.null(),
   handler: async (ctx, args) => {
-    const metadata: FileMetadata | null = await ctx.db.system.get(args.fileId);
+    const metadata: FileMetadata | null = await ctx.db.system.get(
+      "_storage",
+      args.fileId,
+    );
     console.log(metadata);
     return null;
   },
@@ -396,7 +413,7 @@ File storage docs: https://docs.convex.dev/file-storage
 Convex provides:
 
 - **Full text search** via `withSearchIndex`.
-- **Vector search** capabilities (see RAG / search docs).
+- **Vector search** via `ctx.vectorSearch` (actions only).
 
 Sketch for full-text search:
 
@@ -409,17 +426,31 @@ const messages = await ctx.db
   .take(10);
 ```
 
-Search docs: https://docs.convex.dev/search  
-RAG guide: https://www.convex.dev/can-do/rag
+Full text search notes:
+
+- Search indexes can include filter fields and optional staged backfill.
+- Results are always in relevance order; custom ordering is not supported.
+- Final search term has prefix matching (typeahead). Fuzzy matches are deprecated.
+
+Vector search notes:
+
+- Define `vectorIndex` on `v.array(v.float64())` fields with fixed `dimensions`.
+- Only available in actions; use `ctx.vectorSearch` then `ctx.runQuery` to load docs.
+- Limit 1-256 results; filter expressions must use `filterFields` from the index.
+
+Search docs: https://docs.convex.dev/search/text-search  
+Vector search docs: https://docs.convex.dev/search/vector-search
 
 ---
 
 ## 12. Authentication
 
-- Convex can integrate with auth providers or use built-in auth.
-- Typical pattern: use provider-specific setup (Clerk, Auth0, etc.) and rely on Convex auth APIs to resolve user identity in server functions.
+- Convex uses OpenID Connect JWTs to authenticate WebSocket/RPC calls.
+- Use official provider integrations (Clerk, WorkOS AuthKit, Auth0) or custom OIDC.
+- Convex Auth (beta) is available for custom flows in React/React Native.
 
-Auth docs: https://docs.convex.dev/authentication
+Auth docs: https://docs.convex.dev/auth
+Convex Auth docs: https://docs.convex.dev/auth/convex-auth
 
 When writing AI-generated code, do not invent auth flows; follow provider quickstart guides.
 
@@ -442,7 +473,49 @@ AI agent rules:
 
 ---
 
-## 14. Agent-mode & external AI coding agents
+## 14. Deployment & environments
+
+### 14.1 Dev vs prod deployments
+
+- Each Convex project has one shared **production** deployment and one **development** deployment per team member.
+- `npx convex dev` watches files, pushes code/schema changes to your dev deployment, and regenerates `convex/_generated/*`.
+- `npx convex deploy` pushes functions, schema, and indexes to production and regenerates codegen artifacts.
+
+CLI docs: https://docs.convex.dev/cli
+
+### 14.2 Deploy targets and deploy keys
+
+- If `CONVEX_DEPLOY_KEY` is set, `npx convex deploy` targets the deployment tied to that key (common in CI).
+- Otherwise it uses the production deployment for the project referenced by `CONVEX_DEPLOYMENT`.
+- Preview deployments can be created via deploy keys for PR environments.
+
+Deploy docs: https://docs.convex.dev/production
+
+### 14.3 Safe change rules
+
+- **Schema changes must match existing data.** If validation fails, deploy is blocked unless `schemaValidation: false`.
+- Safe schema change patterns:
+  - Add tables.
+  - Add optional fields, backfill, then make required.
+  - Widen via `v.union`, backfill, then narrow.
+- **Functions should be backwards compatible** while old clients are still running.
+- **Scheduled functions** must remain compatible with previously scheduled args.
+
+### 14.4 Index backfill and rollout
+
+- New indexes and search/vector indexes are backfilled on deploy; large tables can slow deploy.
+- Use staged indexes (including search/vector) to backfill asynchronously, then enable.
+- Removing indexes deletes them on deploy; ensure no code paths depend on them first.
+
+### 14.5 URLs and environments
+
+- HTTP actions are exposed on `https://<deployment>.convex.site`.
+- The client connects using the deployment URL from `CONVEX_DEPLOYMENT` / `CONVEX_URL` in env.
+- Use dashboard environment variables for secrets; avoid committing `.env.local`.
+
+---
+
+## 15. Agent-mode & external AI coding agents
 
 For remote AI coding agents (e.g. Codex, Jules, Devin, background IDE agents):
 
@@ -468,12 +541,12 @@ AI & agents docs: https://docs.convex.dev/ai
 
 ---
 
-## 15. Best practices & pitfalls
+## 16. Best practices & pitfalls
 
 When generating Convex code, follow these constraints:
 
 1. **Always** use `query` / `mutation` / `action` / `internal*` from `./_generated/server` with the new syntax.
-2. **Always** define `args` and `returns` with validators from `convex/values`.
+2. **Always** define `args` and `returns` with validators from `convex/values` (except HTTP actions).
 3. Use `v.null()` explicitly when a function returns `null`.
 4. Use `Id<"table">` and `v.id("table")` for IDs instead of `string`.
 5. Use indexes and `withIndex` / `withSearchIndex`, avoid `.filter()` on large tables.
@@ -482,7 +555,10 @@ When generating Convex code, follow these constraints:
 8. Put schema in `convex/schema.ts` and let Convex generate `_generated/*` files.
 9. For scheduled jobs, use `cronJobs()` in `convex/crons.ts` with function references.
 10. Prefer writing “just TypeScript” helper functions for shared logic between queries/mutations/actions instead of duplicating logic.
-11. **Pagination Validators**: When using `.paginate()`, do NOT use a strict `returns` validator for the entire result object, as Convex adds internal fields (e.g., `pageStatus`). Either omit `returns` or use a loose validator (e.g. `v.any()` or just validate `page`).
+11. **Pagination Validators**: When using `.paginate()`, do NOT use a strict `returns` validator for the entire result object; either omit `returns` or validate `page` and use `v.any()` for the rest.
+12. **Search limits**: `collect()` throws if it exceeds 1024 docs; prefer `take(n)` or pagination for large datasets.
+13. **Vector search**: only in actions; results are not reactive, load documents separately via queries.
+14. **Search behavior**: full text search is relevance-ordered and uses prefix matching on the final term; fuzzy matches are deprecated.
 
 If in doubt:
 
