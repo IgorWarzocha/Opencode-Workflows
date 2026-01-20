@@ -124,12 +124,6 @@ Currently available:
 - **`/create-pack`**: Bundles related agents, commands, and skills into a shareable Opencode pack.
 - **`/permissions-update`**: Modernizes resource permissions configuration from legacy syntax.
 
-### Scripts Catalog
-
-The `scripts/` directory contains utilities that commands or agents can reuse.
-- **`perplexica-cli.js`** – Node-based CLI wrapper for Perplexica’s search API.
-- **`/perplexica-search`** – A specialized command for research with smart mode selection.
-
 ### @At Reference Files
 
 Use everything inside `at/` as prefix instructions during development sessions:
