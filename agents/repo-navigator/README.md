@@ -1,14 +1,16 @@
 # Repo Navigator Pack
 
-Repository documentation specialist that generates AGENTS.md files for AI agent navigation or end-user assistance.
+Repository documentation specialist that generates AGENTS.md files for AI agent navigation or end-user assistance. The init command replaces the built-in /init and supercharges it.
 
 ## Contents
 
 - `agent/repo-navigator.md` – Primary agent (3-word description per primary agent rules)
-- `command/init.md` – Unified command with argument routing
+- `command/init.md` – Unified command with argument routing, with 3 modes activated depending on the state of AGENTS.md
 - `skill/agent-navigation-sop/` – AI navigation workflow (build/test, conventions, routing)
 - `skill/user-onboarding-sop/` – User assistance workflow (setup, install, troubleshoot)
 - `skill/skill-creator/` – Bundled for creating custom skills during workflows
+
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/32ccccb6-bc7a-428a-b1ff-c8e83bd5084c" />
 
 ## Usage
 
