@@ -36,6 +36,18 @@ Each collection demonstrates how to scope agents for a domain, define guardrails
 
 Install these globally whenever you want standard orchestration helpers available in every session.
 
+### Repo Navigator Pack (`agents/repo-navigator/`)
+
+| Component | Description |
+| --- | --- |
+| `agent/repo-navigator.md` | Primary agent for repository documentation. Whitelists 3 skills for controlled workflows. |
+| `command/init.md` | Unified command with argument routing: no arg = full, `basic` = minimal, `user` = user assistance. |
+| `skill/agent-navigation-sop/` | AI navigation SOP: build/test commands, coding conventions, task routing. |
+| `skill/user-onboarding-sop/` | User assistance SOP: setup, installation, troubleshooting with web search for official docs. |
+| `skill/skill-creator/` | Bundled for creating custom skills during full workflow. |
+
+See `agents/repo-navigator/README.md` for workflow diagrams and installation instructions.
+
 ### Parallel PRD Pack (`agents/parallel-PRD/.opencode/agent/`)
 
 | Agent | Description |
@@ -91,12 +103,26 @@ Mix and match as needed: commands launch processes, agents keep the reasoning sh
     ├── README.md
     ├── generic/
     │   └── .opencode/
-│       └── agent/
-│           ├── fast.md
-│           ├── smart.md
-│           ├── repo-navigator-creator.md
-│           ├── subagent-orchestrator.md
-│           └── openspec-orchestrator.md
+    │       └── agent/
+    │           ├── fast.md
+    │           ├── smart.md
+    │           ├── repo-navigator-creator.md
+    │           ├── subagent-orchestrator.md
+    │           └── openspec-orchestrator.md
+    ├── repo-navigator/
+    │   ├── README.md
+    │   ├── agent/
+    │   │   └── repo-navigator.md
+    │   ├── command/
+    │   │   └── init.md
+    │   └── skill/
+    │       ├── agent-navigation-sop/
+    │       │   └── SKILL.md
+    │       ├── user-onboarding-sop/
+    │       │   └── SKILL.md
+    │       └── skill-creator/
+    │           ├── SKILL.md
+    │           └── references/
     ├── parallel-PRD/
     │   └── .opencode/
     │       ├── agent/

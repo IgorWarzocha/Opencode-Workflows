@@ -94,9 +94,12 @@ Agents are organized under `agents/`:
  - **generic/** – Reusable global agents that belong in `~/.config/opencode/agent/`:
    - **fast** – High-speed workhorse for trivial edits and file lookups.
    - **smart** – Senior developer for complex bug hunting and refactoring.
-   - **repo-navigator** – Supports dual workflows (`/init` for AI navigation, `/howto` for user assistance). Recommended to pair with the two mentioned commands.
    - **subagent-orchestrator** – Dispatches specialists and enforces scope isolation.
    - **openspec-orchestrator** – Enforces strict OpenSpec formatting/validation and orchestrates subagents.
+- **repo-navigator/** – Full pack for repository documentation. Unified `/init` command with argument routing:
+   - `/init` – Full AI navigation AGENTS.md + skill recommendations
+   - `/init basic` – Minimal AGENTS.md structure only
+   - `/init user` – User assistance docs (setup, install, troubleshoot)
 - **parallel-PRD/** – Parallel PRD planning kit with planner subagents and an orchestrator.
 - **component-engineer/** – Expert architecture package for professional React components.
 - **opencode-configurator/** – Meta-configuration system for OpenCode.

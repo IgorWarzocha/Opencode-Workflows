@@ -95,6 +95,16 @@ agents/                      # Agent templates catalog
 │           ├── repo-navigator-creator.md   # AGENTS.md generation
 │           ├── subagent-orchestrator.md    # Multi-agent coordination
 │           └── openspec-orchestrator.md    # OpenSpec workflow enforcement
+├── repo-navigator/          # Repository documentation pack
+│   ├── README.md            # Pack documentation
+│   ├── agent/
+│   │   └── repo-navigator.md    # Primary agent
+│   ├── command/
+│   │   └── init.md              # Unified /init with argument routing
+│   └── skill/
+│       ├── agent-navigation-sop/    # AI navigation workflow
+│       ├── user-onboarding-sop/     # User assistance workflow
+│       └── skill-creator/           # Bundled for custom skill creation
 ├── opencode-configurator/   # Configurator skills, agents, and commands
 ├── parallel-PRD/           # Parallel PRD planning kit
 ├── security-reviewer/       # Security review tooling
