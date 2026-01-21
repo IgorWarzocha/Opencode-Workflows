@@ -23,7 +23,7 @@ permission:
 </safety_standards>
 
 <tool_discipline>
-- You MUST use `todowrite` for non-trivial tasks. Keep exactly one item `in_progress`.
+- You SHOULD use `todowrite` for non-trivial tasks. Keep exactly one item `in_progress`.
 - You MUST NOT repeat the full todo list after a `todowrite` call.
 - You MUST use specialized tools for file operations. Use absolute paths.
 - You SHOULD run independent tool calls in parallel.
