@@ -2,6 +2,30 @@
 
 This is the **Opencode Workflows** repository - a collection of Opencode-based command templates and workflow patterns for building sophisticated command-based projects. The repository contains multiple workflow examples and templates that demonstrate different approaches to command architecture and tool integration.
 
+<instructions>
+## Verification Commands
+This is a **workflow repository**, not a traditional application. Verification focuses on repository integrity and structural validity.
+
+- **Audit Repository**: `/audit-repo` (Validates structure and configs via `audit_repo.py`)
+- **Sync Documentation**: `/sync-docs` (Reports inventory and suggests doc updates via `sync_docs.py`)
+- **Full Maintenance**: `/maintain-repo` (Runs full audit and sync cycle)
+
+**Note**: There are no traditional `npm test`, `cargo build`, or `tsc` commands at the root level.
+</instructions>
+
+<rules>
+## Process Constraints
+- MUST NOT run long-running/blocking processes (dev servers, watch modes)
+- Dev servers/background processes are USER's responsibility
+- MUST use one-shot commands for verification (audit, sync, scripts)
+
+## Coding Conventions
+- **RFC 2119**: MUST use uppercase keywords (MUST, SHOULD, MAY) for requirements in agents and commands.
+- **XML Structure**: MUST use XML tags (`<instructions>`, `<rules>`, etc.) to wrap logic blocks.
+- **Modularity**: Files SHOULD NOT exceed 200 lines; functions SHOULD NOT exceed 40 lines.
+- **Barrel Files**: Every module directory MUST have an `index.ts` (per `@coding-ts` guidelines).
+</rules>
+
 ## Current Workflows
 
 ### Agent Templates Catalog
@@ -16,9 +40,8 @@ A focused collection of reusable agent prompts and orchestration patterns:
 Agents are designed for global installation in `~/.config/opencode/agent/` for reuse across projects.
 
 ### AI Research Tools
-- `scripts/perplexica-cli.js` - External tool for AI search integration with proper timeout handling
-- `scripts/.opencode/command/perplexica-search.md` - Command for AI search with smart mode selection
-- Demonstrates integration with external AI services and APIs
+- AI search integration tools and patterns are demonstrated within the specialized agent packs (see `agents/opencode-configurator/`).
+- Integrates with external AI services (e.g., Perplexica, OpenAI) via specialized skills.
 
 ## Architecture Patterns
 
@@ -42,6 +65,17 @@ Agents follow Opencode's agent patterns with YAML frontmatter:
 - **Mode**: Operation mode and tool constraints (read-only vs write)
 - **Instruction Blocks**: LLM-optimized checklists and workflows
 - **Global Installation**: Designed for reuse across projects via `~/.config/opencode/agent/`
+
+<routing>
+## Task Navigation
+| Task | Entry Point | Key Files |
+|------|-------------|-----------|
+| Create AGENTS.md | /init | `agents/repo-navigator/` |
+| Security Review | /security-review | `agents/security-reviewer/` |
+| PRD Planning | /prd | `agents/parallel-PRD/` |
+| Maintain Repo | /maintain-repo | `.opencode/command/` |
+| Create Plugin | /create-plugin | `agents/create-opencode-plugin/` |
+</routing>
 
 ### Configuration System
 - `example-opencode.json` templates for Opencode configuration. Demonstrates disabling the legacy `general` subagent in favor of `fast`/`smart` splitting to optimize model usage:
@@ -69,7 +103,7 @@ Repository intelligence requires models with strong:
 
 ```
 at/                          # Universal engineering guidelines (@coding-ts)
-├── CODING-TS.MD             # Core development principles and standards
+└── CODING-TS.MD             # Core development principles and standards
 
 .opencode/                   # Root-level maintenance tools
 ├── agent/
@@ -82,11 +116,27 @@ at/                          # Universal engineering guidelines (@coding-ts)
     └── repo-maintenance/    # Maintenance logic & scripts
 
 thinking-variants config/    # Thinking-level configurations
+└── thinking-levels-opencode.json
 
 agents/                      # Agent templates catalog
 ├── README.md               # Agent overview and usage guidance
 ├── component-engineer/      # Expert architecture package
+│   └── .opencode/
+│       ├── agent/
+│       │   └── component-engineer.md
+│       ├── command/
+│       │   ├── component-create.md
+│       │   └── component-review.md
+│       └── skill/
+│           └── component-engineering/
 ├── create-opencode-plugin/  # Plugin creation workflow
+│   └── .opencode/
+│       ├── agent/
+│       │   └── plugin-creator.md
+│       ├── command/
+│       │   └── create-plugin.md
+│       └── skill/
+│           └── create-opencode-plugin/
 ├── generic/                # Globally useful agents
 │   └── .opencode/
 │       └── agent/
@@ -106,29 +156,109 @@ agents/                      # Agent templates catalog
 │       ├── user-onboarding-sop/     # User assistance workflow
 │       └── skill-creator/           # Bundled for custom skill creation
 ├── opencode-configurator/   # Configurator skills, agents, and commands
+│   ├── agent/
+│   │   └── opencode-configurator.md
+│   ├── skill/
+│   │   ├── agent-architect/
+│   │   ├── command-creator/
+│   │   ├── opencode-config/
+│   │   ├── plugin-installer/
+│   │   ├── skill-creator/
+│   │   ├── model-researcher/
+│   │   └── mcp-installer/
+│   └── command/
+│       ├── refactor-rfc-xml.md
+│       └── permissions-update.md
 ├── parallel-PRD/           # Parallel PRD planning kit
+│   └── .opencode/
+│       ├── agent/
+│       │   ├── TEMPLATE-planner.md
+│       │   ├── glm-planner.md
+│       │   └── parallel-prd-orchestrator.md
+│       ├── command/
+│       │   └── parallel-prd.md
+│       └── skill/
+│           └── prd-authoring/
 ├── security-reviewer/       # Security review tooling
+│   └── .opencode/
+│       ├── agent/
+│       │   └── security-reviewer.md
+│       └── skill/
+│           ├── security-ai-keys/
+│           ├── security-bun/
+│           ├── security-convex/
+│           ├── security-django/
+│           ├── security-docker/
+│           ├── security-express/
+│           ├── security-fastapi/
+│           ├── security-nextjs/
+│           ├── security-secrets/
+│           └── security-vite/
 └── vite-react-ts-convex-tailwind/ # Stack-specific expert pack
-    ├── CONVEX.md           # Convex documentation
-    ├── REACT19.md          # React 19 documentation
-    ├── TAILWIND4.md        # Tailwind 4 documentation
-    ├── TS59.MD             # TypeScript 5.9 documentation
+    ├── CODING-TS.md
+    ├── CONVEX.md
+    ├── REACT19.md
+    ├── TAILWIND4.md
+    ├── TS59.MD
     └── .opencode/
-        └── agent/
-            ├── VRTCT-orchestrator.md       # Stack orchestrator
-            ├── VRTCT-brain.md              # Stack knowledge base
-            ├── convex-database-expert.md   # Backend/DB specialist
-            ├── react-19-master.md          # RSC/Actions expert
-            ├── tailwind-41-architect.md    # Utility-first designer
-            └── typescript-59-engineer.md   # Strict TS 5.9 engineer
+        ├── agent/
+        │   ├── VRTCT-orchestrator.md       # Stack orchestrator
+        │   ├── VRTCT-brain.md              # Stack knowledge base
+        │   ├── convex-database-expert.md   # Backend/DB specialist
+        │   ├── react-19-master.md          # RSC/Actions expert
+        │   ├── tailwind-41-architect.md    # Utility-first designer
+        │   └── typescript-59-engineer.md   # Strict TS 5.9 engineer
+        ├── command/
+        │   ├── component-create.md
+        │   └── component-review.md
+        └── skill/
+            ├── component-engineering/      # shadcn/ui components
+            ├── convex-auth/                # Auth logic
+            ├── convex-components/          # RAG & Workflows
+            ├── convex-core/                # Backend patterns
+            ├── convex-deploy/              # Deployment SOP
+            ├── convex-runtime/             # Concurrent execution
+            └── vite-shadcn-tailwind4/       # Modern frontend setup
+
+cowork/                      # Multi-agent orchestration system
+├── README.md               # Cowork system overview
+├── AGENTS.md               # Cowork-specific agent navigation
+├── opencode.json           # Cowork configuration
+├── LESSONS-LEARNED.md      # Workflow optimization insights
+├── .opencode/               # Cowork internal agents and skills
+│   ├── agent/
+│   │   ├── admin-assistant.md
+│   │   ├── cowork-orchestrator.md
+│   │   ├── data-analyst.md
+│   │   ├── document-specialist.md
+│   │   ├── presentation-expert.md
+│   │   ├── cowork-configurator.md
+│   │   └── research-specialist.md
+│   ├── command/
+│   │   └── cowork.md
+│   └── skill/
+│       ├── branding/
+│       ├── comms/
+│       ├── cowork/
+│       ├── excel/
+│       ├── pdf/
+│       ├── powerpoint/
+│       ├── themes/
+│       ├── word/
+│       └── writing/
+└── vault/                  # Structured repository (Vault)
+    ├── 01-Core-Identity/   # Bio.md, MASTER-STYLE-GUIDE.md
+    ├── 02-Active-Work/     # 2026-01/, TEMPLATE.md
+    ├── 03-Research-Intel/  # Research logs
+    ├── 05-Output-Staging/  # DELIVERY-NOTES.md
+    └── 06-Archive/         # Historic data
 
 commands/                    # Additional command examples
 
-scripts/                     # External utility tools
-├── perplexica-cli.js       # AI search integration tool
-└── .opencode/
-    └── command/
-        └── perplexica-search.md # Search workflow with citations
+commands2skills/             # Command→Skill migration patterns
+├── COMMANDS.md
+├── calculate.js
+└── example-opencode.json
 ```
 
 ## Working with This Repository

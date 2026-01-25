@@ -17,6 +17,7 @@
     "task": "allow",
     // Allows all subagents to ask questions via question tool.
     // Less automatic but will yield better results.
+    // For true hands-off or automation, comment this one out.
     "question": "allow"
     // Question is enabled by default for the primary orchestrator agent.
     // Opencode disables the question tool for custom-defined agents by default.
