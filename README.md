@@ -132,6 +132,15 @@ Currently available:
 Use everything inside `at/` as prefix instructions during development sessions:
 - **`@coding-ts`** (`at/CODING-TS.MD`): Universal engineering guidelines.
 
+### Co-Work System (cowork/)
+
+The **Co-Work System** is a multi-agent orchestration framework for collaborative project management. It includes:
+- **Orchestrator**: Manages plans, timelines, and file routing.
+- **Specialists**: Domain-specific agents (Research, Data, Document, Presentation).
+- **Admin Assistant**: Handles hygiene and coordination follow-ups.
+
+See `cowork/AGENTS.md` for the full operating guide.
+
 ### MCP Configurations
 
 - **Authenticated Chrome DevTools MCP** (`mcp-configs/authenticated-chrome-dev-tools-mcp/`) – Enables Chrome DevTools MCP with authenticated sessions via "shadow profiles".

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "cowork-orchestrator",
+  "instructions": ["LESSONS-LEARNED.md"],
+  // Add any other files you want included in every agent instruction, but don't overload them with context.
+
+  "mcp": {
+    "playwriter": {
+      // For browser control.
+      "type": "local",
+      "command": ["npx", "playwriter@latest"]
+    }
+  },
+
+  "permission": {
+    // Allows subagents to spawn their own nested subagents.
+    "task": "allow",
+    // Allows all subagents to ask questions via question tool.
+    // Less automatic but will yield better results.
+    "question": "allow"
+    // Question is enabled by default for the primary orchestrator agent.
+    // Opencode disables the question tool for custom-defined agents by default.
+  },
+
+  "experimental": {
+    // Fire multiple tools at once for higher efficiency.
+    "batch_tool": true
+  },
+
+  "plugin": [
+    // Automatically format markdown tables in opencode.
+    "@franlol/opencode-md-table-formatter@latest"
+  ],
+
+  "agent": {
+    // Disable specialist coding agents to prevent trigger noise in Cowork environment by setting `disable` to `true`.
+    // Use: opencode agent list | grep -v '^[[:space:]]' | awk '{print $1}'
+    "plan": {
+      "disable": false
+    }
+  }
+}

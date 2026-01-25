@@ -6,17 +6,17 @@ from pathlib import Path
 
 def get_frontmatter_field(content, field):
     """Extract a field from YAML frontmatter."""
-    match = re.search(rf'^{field}:\s*(.+)$', content, re.MULTILINE)
+    match = re.search(rf"^{field}:\s*(.+)$", content, re.MULTILINE)
     if match:
         value = match.group(1).strip()
         # Handle quoted strings
         if value.startswith(('"', "'")):
             value = value[1:-1] if value.endswith(value[0]) else value[1:]
         # Handle multiline (|-) by just returning first line
-        if value == '|-':
-            lines = content.split('\n')
+        if value == "|-":
+            lines = content.split("\n")
             for i, line in enumerate(lines):
-                if line.strip().startswith(f'{field}:'):
+                if line.strip().startswith(f"{field}:"):
                     if i + 1 < len(lines):
                         return lines[i + 1].strip()
         return value
@@ -33,81 +33,94 @@ def walk_all(root):
 
 def scan_resources():
     """Scan for agents, commands, and skills in the repo."""
-    root = Path('.')
+    root = Path(".")
     agents = []
     commands = []
     skills = []
 
-    for path in walk_all(root):
+    for path in root.rglob("*"):
         if not path.is_file():
             continue
 
         path_str = str(path)
 
         # Skip common non-relevant paths
-        if '.git/' in path_str or 'node_modules/' in path_str:
+        if (
+            ".git/" in path_str
+            or "node_modules/" in path_str
+            or ".opencode/skill/repo-maintenance/" in path_str
+        ):
             continue
 
-        # Agents: .opencode/agent/*.md
-        if path.suffix == '.md' and '/agent/' in path_str and '.opencode/agent' in path_str:
-            content = path.read_text(encoding='utf-8', errors='ignore')
-            desc = get_frontmatter_field(content, 'description') or 'No description'
-            agents.append({'path': path_str, 'name': path.stem, 'desc': desc})
+        # Agents: any .md file inside an 'agent' or 'agents' directory
+        if path.suffix == ".md" and ("/agent/" in path_str or "/agents/" in path_str):
+            content = path.read_text(encoding="utf-8", errors="ignore")
+            # Only count if it has YAML frontmatter with a description
+            if content.startswith("---") and "description:" in content:
+                desc = get_frontmatter_field(content, "description") or "No description"
+                agents.append({"path": path_str, "name": path.stem, "desc": desc})
 
-        # Commands: .opencode/command/*.md
-        elif path.suffix == '.md' and '/command/' in path_str and '.opencode/command' in path_str:
-            content = path.read_text(encoding='utf-8', errors='ignore')
-            desc = get_frontmatter_field(content, 'description') or 'No description'
-            commands.append({'path': path_str, 'name': path.stem, 'desc': desc})
+        # Commands: any .md file inside a 'command' or 'commands' directory
+        elif path.suffix == ".md" and (
+            "/command/" in path_str or "/commands/" in path_str
+        ):
+            content = path.read_text(encoding="utf-8", errors="ignore")
+            # Only count if it has YAML frontmatter with a description
+            if content.startswith("---") and "description:" in content:
+                desc = get_frontmatter_field(content, "description") or "No description"
+                commands.append({"path": path_str, "name": path.stem, "desc": desc})
 
         # Skills: */skill/*/SKILL.md or .opencode/skill/*/SKILL.md
-        elif path.name == 'SKILL.md' and '/skill/' in path_str:
-            content = path.read_text(encoding='utf-8', errors='ignore')
-            name = get_frontmatter_field(content, 'name') or path.parent.name
-            desc = get_frontmatter_field(content, 'description') or 'No description'
+        elif (
+            path.name == "SKILL.md" or path.name.startswith("SKILL.")
+        ) and "/skill/" in path_str:
+            content = path.read_text(encoding="utf-8", errors="ignore")
+            name = get_frontmatter_field(content, "name") or path.parent.name
+            desc = get_frontmatter_field(content, "description") or "No description"
             # Truncate long descriptions
             if len(desc) > 80:
-                desc = desc[:77] + '...'
-            skills.append({'path': path_str, 'name': name, 'desc': desc})
+                desc = desc[:77] + "..."
+            skills.append({"path": path_str, "name": name, "desc": desc})
 
     return agents, commands, skills
 
 
 def get_git_diff_files():
     """Get files changed vs origin/master with their status."""
-    files = {'added': [], 'modified': [], 'deleted': []}
+    files = {"added": [], "modified": [], "deleted": []}
     try:
         # Get diff with status indicators
         result = subprocess.run(
-            ['git', 'diff', '--name-status', 'origin/master...HEAD'],
-            capture_output=True, text=True, timeout=10
+            ["git", "diff", "--name-status", "origin/master...HEAD"],
+            capture_output=True,
+            text=True,
+            timeout=10,
         )
         if result.returncode == 0 and result.stdout.strip():
-            for line in result.stdout.strip().split('\n'):
-                if '\t' in line:
-                    status, filepath = line.split('\t', 1)
-                    if status.startswith('A'):
-                        files['added'].append(filepath)
-                    elif status.startswith('M'):
-                        files['modified'].append(filepath)
-                    elif status.startswith('D'):
-                        files['deleted'].append(filepath)
+            for line in result.stdout.strip().split("\n"):
+                if "\t" in line:
+                    status, filepath = line.split("\t", 1)
+                    if status.startswith("A"):
+                        files["added"].append(filepath)
+                    elif status.startswith("M"):
+                        files["modified"].append(filepath)
+                    elif status.startswith("D"):
+                        files["deleted"].append(filepath)
 
         # Also check for untracked files (new, not yet committed)
         result = subprocess.run(
-            ['git', 'status', '--porcelain'],
-            capture_output=True, text=True, timeout=10
+            ["git", "status", "--porcelain"], capture_output=True, text=True, timeout=10
         )
         if result.returncode == 0 and result.stdout.strip():
-            for line in result.stdout.strip().split('\n'):
-                if line.startswith('??'):
+            for line in result.stdout.strip().split("\n"):
+                if line.startswith("??"):
                     filepath = line[3:].strip()
-                    if filepath not in files['added']:
-                        files['added'].append(filepath)
-                elif line.startswith('A ') or line.startswith('A'):
-                    filepath = line[2:].strip() if line[1] == ' ' else line[1:].strip()
-                    if filepath not in files['added']:
-                        files['added'].append(filepath)
+                    if filepath not in files["added"]:
+                        files["added"].append(filepath)
+                elif line.startswith("A ") or line.startswith("A"):
+                    filepath = line[2:].strip() if line[1] == " " else line[1:].strip()
+                    if filepath not in files["added"]:
+                        files["added"].append(filepath)
 
     except Exception:
         pass
@@ -116,12 +129,26 @@ def get_git_diff_files():
 
 def classify_resource(filepath):
     """Classify a file as agent, command, skill, or other."""
-    if '.opencode/agent/' in filepath and filepath.endswith('.md'):
-        return 'agent'
-    elif '.opencode/command/' in filepath and filepath.endswith('.md'):
-        return 'command'
-    elif '/skill/' in filepath and filepath.endswith('SKILL.md'):
-        return 'skill'
+    if ("/agent/" in filepath or "/agents/" in filepath) and filepath.endswith(".md"):
+        try:
+            content = Path(filepath).read_text(encoding="utf-8", errors="ignore")
+            if content.startswith("---") and "description:" in content:
+                return "agent"
+        except:
+            pass
+    elif ("/command/" in filepath or "/commands/" in filepath) and filepath.endswith(
+        ".md"
+    ):
+        try:
+            content = Path(filepath).read_text(encoding="utf-8", errors="ignore")
+            if content.startswith("---") and "description:" in content:
+                return "command"
+        except:
+            pass
+    elif ("/skill/" in filepath) and (
+        filepath.endswith("SKILL.md") or Path(filepath).name.startswith("SKILL.")
+    ):
+        return "skill"
     return None
 
 
@@ -129,12 +156,12 @@ def get_parent_readme(filepath):
     """Get the parent directory that should have a README."""
     path = Path(filepath)
     # For agents in agents/<category>/.opencode/agent/, the category needs README
-    if 'agents/' in filepath:
-        parts = filepath.split('/')
-        if 'agents' in parts:
-            idx = parts.index('agents')
+    if "agents/" in filepath:
+        parts = filepath.split("/")
+        if "agents" in parts:
+            idx = parts.index("agents")
             if idx + 1 < len(parts):
-                category_dir = '/'.join(parts[:idx + 2])
+                category_dir = "/".join(parts[: idx + 2])
                 return category_dir
     return None
 
@@ -149,13 +176,29 @@ def report_inventory(agents, commands, skills):
 
     # Analyze git diff
     diff_files = get_git_diff_files()
-    new_agents = [f for f in diff_files['added'] if classify_resource(f) == 'agent']
-    new_commands = [f for f in diff_files['added'] if classify_resource(f) == 'command']
-    new_skills = [f for f in diff_files['added'] if classify_resource(f) == 'skill']
+    new_agents = [f for f in diff_files["added"] if classify_resource(f) == "agent"]
+    new_commands = [f for f in diff_files["added"] if classify_resource(f) == "command"]
+    new_skills = [f for f in diff_files["added"] if classify_resource(f) == "skill"]
 
     has_new_resources = new_agents or new_commands or new_skills
 
     if has_new_resources:
+        # Check if the README already mentions the new directories
+        root_readme = Path("README.md").read_text(encoding="utf-8", errors="ignore")
+        unmentioned_resources = []
+        for f in new_agents + new_commands + new_skills:
+            parent_dir = f.split("/")[0]
+            if parent_dir not in root_readme:
+                unmentioned_resources.append(f)
+
+        if not unmentioned_resources:
+            print("\n" + "=" * 50)
+            print(
+                "No new agents/commands/skills detected. Documentation likely up to date."
+            )
+            print("Run `git diff origin/master` for full change details.")
+            return
+
         print("\n" + "-" * 50)
         print("NEW RESOURCES DETECTED")
         print("-" * 50)
@@ -180,7 +223,7 @@ def report_inventory(agents, commands, skills):
         for f in new_agents + new_commands + new_skills:
             parent = get_parent_readme(f)
             if parent:
-                readme_path = Path(parent) / 'README.md'
+                readme_path = Path(parent) / "README.md"
                 if not readme_path.exists():
                     readme_needed.add(parent)
 
@@ -203,8 +246,10 @@ def report_inventory(agents, commands, skills):
                 print(f"  - {len(new_skills)} new skill(s)")
 
     # Show other changed docs
-    all_changed = diff_files['added'] + diff_files['modified']
-    doc_changes = [f for f in all_changed if f.endswith('.md') and classify_resource(f) is None]
+    all_changed = diff_files["added"] + diff_files["modified"]
+    doc_changes = [
+        f for f in all_changed if f.endswith(".md") and classify_resource(f) is None
+    ]
     if doc_changes:
         print(f"\n📋 Other documentation changes ({len(doc_changes)}):")
         for f in doc_changes[:5]:
@@ -216,7 +261,9 @@ def report_inventory(agents, commands, skills):
     if has_new_resources:
         print("ACTION: Update documentation for new resources listed above.")
     else:
-        print("No new agents/commands/skills detected. Documentation likely up to date.")
+        print(
+            "No new agents/commands/skills detected. Documentation likely up to date."
+        )
     print("Run `git diff origin/master` for full change details.")
 
 

@@ -1,5 +1,5 @@
 ---
-description: repo-navigator
+description: Repository navigation specialist
 mode: primary
 permission:
   skill:
