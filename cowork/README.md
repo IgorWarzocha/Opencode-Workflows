@@ -12,7 +12,7 @@ The **Co-Work System** automates research, data, and document workflows. It hand
 - **Visual Verification**: Checks layouts and formatting via image rendering for PDF and PPTX.
 - **Continuous Improvement**: Learns from previous sessions via `LESSONS-LEARNED.md`.
 - **Organized Storage**: Every file is staged and verified before being archived in the vault.
-- **Concurrent Execution**: Executes multiple operations in parallel to save time.
+- **Nested Subagents**: Subagents are allowed to spawn their own subagents for complex operations.
 
 <img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/83b36882-2a83-4964-a309-d1000e702523" />
 
