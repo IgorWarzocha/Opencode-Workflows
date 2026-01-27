@@ -2,7 +2,7 @@
 name: command-creator
 description: |-
   Create custom /slash commands for repetitive tasks. Use proactively for command creation, prompt automation, or workflow shortcuts.
-  
+
   Examples:
   - user: "Make a /test command that runs pytest" → create command in opencode.json, set prompt to run tests with bash tool
   - user: "Add a /review command for PRs" → design prompt to fetch diff, analyze changes, generate review comments
@@ -38,57 +38,93 @@ When to ask: Vague request ("make a command"), or multiple implementation approa
 
 ## Command Locations
 
-| Scope | Path |
-|-------|------|
-| Project | `.opencode/command/<name>.md` |
-| Global | `~/.config/opencode/command/<name>.md` |
+| Scope   | Path                                   |
+| ------- | -------------------------------------- |
+| Project | `.opencode/command/<name>.md`          |
+| Global  | `~/.config/opencode/command/<name>.md` |
+
+## Template Placeholders (CRITICAL)
+
+- **Single Insertion**: Each placeholder (`$ARGUMENTS`, `$1`, `@filename`, etc.) MUST be inserted ONLY ONCE in the command body.
+- **Dedicated Blocks**: Use dedicated XML blocks for user inputs and file contents to keep the objective and instructions clean.
+- **Preference**: Prefer using a single argument (`$ARGUMENTS`) over complex positional ones unless strictly necessary.
+
+BAD: "Do $ARGUMENTS and then check $ARGUMENTS for errors."
+
+GOOD:
+```markdown
+<user_guidelines>
+$ARGUMENTS
+</user_guidelines>
+
+<context>
+@src/schema.ts
+</context>
+
+<objective>
+Analyze findings based on user guidelines and the provided schema.
+</objective>
+```
+
+| Placeholder      | Description            | Example                             |
+| ---------------- | ---------------------- | ----------------------------------- |
+| `$ARGUMENTS`     | All arguments passed   | `/cmd foo bar` → "foo bar"          |
+| `$1`, `$2`, `$3` | Positional arguments   | `/cmd foo bar` → $1="foo", $2="bar" |
+| `!command`       | Shell output injection | `!ls -F`                            |
+| `@filename`      | Include file content   | `@src/index.ts`                     |
+
+## Terminology Standard
+
+- **Direct Address**: You MUST use "you" (referring to the agent executing the command) instead of "the agent" or "opencode".
 
 ## Command File Format
 
 ```markdown
 ---
-description: What this command does (shown in /help)
-agent: build              # Optional: build, plan, or custom agent
-model: provider/model-id  # Optional: override model
-subtask: true             # Optional: run as subagent
+description: 3-word command summary
+agent: build # Optional: build, plan, or custom agent
+model: provider/model-id # Optional: override model
+subtask: true # Optional: run as subagent
 ---
+
+<summary>
+Line 1: You MUST [purpose].
+Line 2: You SHOULD [inputs].
+Line 3: You MUST [outcome].
+</summary>
+
+<user_guidelines>
+$ARGUMENTS
+</user_guidelines>
 
 Template body goes here.
 ```
 
 ## Frontmatter Options
 
-| Field | Purpose | Required |
-|-------|---------|----------|
-| `description` | Shown in command list | RECOMMENDED |
-| `agent` | Route to specific agent | No |
-| `model` | Override model | No |
-| `subtask` | Force subagent invocation | No |
+| Field         | Purpose                   | Required    |
+| ------------- | ------------------------- | ----------- |
+| `description` | Shown in command list     | RECOMMENDED |
+| `agent`       | Route to specific agent   | No          |
+| `model`       | Override model            | No          |
+| `subtask`     | Force subagent invocation | No          |
 
 ## Conceptual Boundary (CRITICAL)
 
-- **Commands are for USERS**: They are keyboard shortcuts for humans.
-- **Agents use TOOLS**: Agents cannot "type" or "invoke" slash commands (e.g., an agent cannot call `/test`).
-- **One-Way Street**: User → Command → Agent. Never Agent → Command.
+- **Commands are for USERS**: They are high-level shortcuts for humans to trigger an agent with specific context.
+- **Agents CANNOT use commands**: Agents lack a terminal interface to "type" commands. They execute the *template body* provided by the command.
+- **One-Way Street**: User -> Command -> Agent.
+- **NEVER** tell an agent to use a command "proactively"—they literally cannot.
 - If logic needs to be shared, put it in a **Skill** (script/instruction), not a Command.
-
-## Template Placeholders
-
-| Placeholder | Description | Example |
-|-------------|-------------|---------|
-| `$ARGUMENTS` | All arguments passed | `/cmd foo bar` → "foo bar" |
-| `$1`, `$2`, `$3` | Positional arguments | `/cmd foo bar` → $1="foo", $2="bar" |
-| `` `!command` `` | Shell output (runs bash) | `` `!git status` `` |
-| `@filename` | Include file content | `@src/index.ts` |
 
 ## Shell Commands in Templates
 
-Use backticks with `!` to run shell commands and include output:
+Use the !`command` syntax to inject bash output into your prompt. The shell execution is triggered by an exclamation mark followed by the command wrapped in backticks:
 
 ```markdown
-Review the current changes:
+Review recent changes:
 
-`!git diff --staged`
+!`git log --oneline -10`
 
 Suggest improvements.
 ```
@@ -100,15 +136,6 @@ Use `@` to include file content:
 ```markdown
 Given the schema in @prisma/schema.prisma, generate a migration for $ARGUMENTS.
 ```
-
-## Built-in Commands
-
-| Command | Description | Subtask |
-|---------|-------------|---------|
-| `/init` | Create/update AGENTS.md | No |
-| `/review` | Review git changes (defaults to uncommitted) | Yes |
-
-</reference>
 
 <workflow>
 
@@ -159,9 +186,18 @@ Given the schema in @prisma/schema.prisma, generate a migration for $ARGUMENTS.
 description: Run tests and fix failures
 ---
 
-Run the full test suite. For any failures:
+<summary>
+You MUST run the full test suite.
+You SHOULD identify and fix failures.
+You MUST re-verify fixes.
+</summary>
+
+<objective>
+You MUST run the full test suite, find the root cause of any failures, and fix the issue.
+</objective>
+
 1. Show the failing test
-2. Identify the root cause  
+2. Identify the root cause
 3. Fix the issue
 4. Re-run to verify
 ```
@@ -174,12 +210,19 @@ description: Review code for issues
 agent: plan
 ---
 
-Review $ARGUMENTS for:
+<summary>
+You MUST review $ARGUMENTS for issues.
+You SHOULD check for bugs, security, and performance.
+You MUST provide actionable feedback.
+</summary>
+
+<objective>
+You MUST review $ARGUMENTS for bugs, security, and performance issues and provide actionable feedback without making changes.
+</objective>
+
 - Bugs and edge cases
 - Security issues
 - Performance problems
-
-Provide actionable feedback without making changes.
 ```
 
 ## /commit - Smart Commit with Prefixes
@@ -189,11 +232,25 @@ Provide actionable feedback without making changes.
 description: Stage and commit with conventional prefix
 ---
 
-1. Run `git status` and `git diff`
-2. Analyze all changes
-3. Choose appropriate prefix: docs:, feat:, fix:, refactor:, test:, ci:
-4. Write concise commit message (imperative mood)
-5. Stage relevant files and commit
+<summary>
+You MUST analyze changes and stage files.
+You SHOULD choose a conventional commit prefix.
+You MUST commit with a concise message.
+</summary>
+
+<context>
+!`git status`
+!`git diff`
+</context>
+
+<objective>
+You MUST analyze changes, stage relevant files, and commit with a concise message.
+</objective>
+
+1. Analyze all changes
+2. Choose appropriate prefix: docs:, feat:, fix:, refactor:, test:, ci:
+3. Write concise commit message (imperative mood)
+4. Stage relevant files and commit
 ```
 
 ## /spellcheck - Check Spelling
@@ -204,11 +261,21 @@ description: Check spelling in markdown files
 subtask: true
 ---
 
+<summary>
+You MUST find unstaged markdown files.
+You SHOULD check them for spelling errors.
+You MUST report any found errors.
+</summary>
+
 Check spelling in all unstaged markdown files:
 
-`!git diff --name-only | grep -E '\.md$'`
+<context>
+!`git diff --name-only | grep -E '\.md$'`
+</context>
 
-Report any spelling errors found.
+<objective>
+You MUST check for and report any spelling errors found in unstaged markdown files.
+</objective>
 ```
 
 ## /issues - Search GitHub Issues
@@ -220,11 +287,21 @@ model: anthropic/claude-3-5-haiku-20241022
 subtask: true
 ---
 
+<summary>
+You MUST search GitHub issues for $ARGUMENTS.
+You SHOULD limit results to the top 10.
+You MUST summarize the relevant issues.
+</summary>
+
 Search GitHub issues matching: $ARGUMENTS
 
-`!gh issue list --search "$ARGUMENTS" --limit 10`
+<context>
+!`gh issue list --search "$ARGUMENTS" --limit 10`
+</context>
 
-Summarize the relevant issues.
+<objective>
+You MUST summarize the top 10 relevant GitHub issues found for $ARGUMENTS.
+</objective>
 ```
 
 ## /component - Create Component
@@ -234,7 +311,18 @@ Summarize the relevant issues.
 description: Create a new React component
 ---
 
+<summary>
+You MUST create a React component named $1.
+You SHOULD include TypeScript props and basic styling.
+You MUST provide a unit test file.
+</summary>
+
 Create a React component named $1 in $2 with:
+
+<objective>
+You MUST create a React component with TypeScript props and basic styling, and provide a corresponding unit test file.
+</objective>
+
 - TypeScript props interface
 - Basic styling
 - Unit test file
@@ -249,9 +337,21 @@ Usage: `/component UserProfile src/components`
 description: Generate database migration
 ---
 
+<summary>
+You MUST read the Prisma schema.
+You SHOULD generate a migration for $ARGUMENTS.
+You MUST ensure the migration matches the schema.
+</summary>
+
 Given the schema in @prisma/schema.prisma:
 
-Generate a migration for: $ARGUMENTS
+<context>
+@prisma/schema.prisma
+</context>
+
+<objective>
+You MUST generate a Prisma migration for $ARGUMENTS that matches the provided schema.
+</objective>
 ```
 
 </examples>
@@ -272,13 +372,13 @@ Before delivering:
 
 <best_practices>
 
-| Do | Don't |
-|----|-------|
-| Keep templates focused | Cram multiple tasks in one |
-| Use `$1`, `$2` for structured args | Rely only on $ARGUMENTS for multi-arg |
-| Use `` `!cmd` `` to gather context | Hardcode dynamic values |
-| Use `@file` for config/schema refs | Copy-paste file contents |
-| Set `agent: plan` for read-only | Forget agent for reviews |
-| Set `subtask: true` for parallel work | Block main session unnecessarily |
+| Do                                    | Don't                                 |
+| ------------------------------------- | ------------------------------------- |
+| Keep templates focused                | Cram multiple tasks in one            |
+| Use `$1`, `$2` for structured args    | Rely only on $ARGUMENTS for multi-arg |
+| Use !`cmd` to gather context          | Hardcode dynamic values               |
+| Use `@file` for config/schema refs    | Copy-paste file contents              |
+| Set `agent: plan` for read-only       | Forget agent for reviews              |
+| Set `subtask: true` for parallel work | Block main session unnecessarily      |
 
 </best_practices>
