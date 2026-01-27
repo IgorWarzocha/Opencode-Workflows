@@ -5,7 +5,7 @@ Repository documentation specialist that generates AGENTS.md files for AI agent 
 ## Contents
 
 - `agent/repo-navigator.md` – Primary agent (3-word description per primary agent rules)
-- `command/init.md` – Unified command with argument routing, with 3 modes activated depending on the state of AGENTS.md
+- `command/init.md` – Unified command with argument routing for 3 modes (basic/full/user)
 - `skill/agent-navigation-sop/` – AI navigation workflow (build/test, conventions, routing)
 - `skill/user-onboarding-sop/` – User assistance workflow (setup, install, troubleshoot)
 - `skill/skill-creator/` – Bundled for creating custom skills during workflows
@@ -18,8 +18,8 @@ Drop into your project or global `~/.config/opencode/` folder. Select the `repo-
 
 | Command | Workflow |
 |---------|----------|
-| `/init` | Full: AI navigation AGENTS.md + skill recommendations |
-| `/init basic` | Minimal: AGENTS.md structure only |
+| `/init` | Basic: High-density AI navigation AGENTS.md (~50 lines) |
+| `/init full` | Full: AI navigation AGENTS.md + skill recommendations |
 | `/init user` | User assistance: setup, installation, troubleshooting |
 
 ## Workflow Architecture
@@ -31,17 +31,17 @@ Drop into your project or global `~/.config/opencode/` folder. Select the `repo-
     │
     ├── $1 = (empty) ──► Load agent-navigation-sop
     │                    ├── CREATE/ENHANCE/PRESERVE mode detection
-    │                    ├── Generate AI navigation AGENTS.md
+    │                    └── Generate high-density AGENTS.md (~50 lines)
+    │
+    ├── $1 = "full" ────► Load agent-navigation-sop
+    │                    ├── CREATE/ENHANCE/PRESERVE mode detection
+    │                    ├── Generate high-density AGENTS.md (~50 lines)
     │                    └── Recommend skills, offer to create with skill-creator
     │
-    ├── $1 = "basic" ──► Load agent-navigation-sop
-    │                    ├── CREATE/ENHANCE/PRESERVE mode detection
-    │                    └── Generate minimal AGENTS.md (skip skill recommendations)
-    │
     └── $1 = "user" ───► Load user-onboarding-sop
-                         ├── Web search for official documentation
-                         ├── Analyze installation/usage patterns
-                         └── Generate user-focused AGENTS.md
+                          ├── Web search for official documentation
+                          ├── Analyze installation/usage patterns
+                          └── Generate user-focused AGENTS.md (~100 lines)
 ```
 
 ## Key Features
@@ -50,8 +50,10 @@ Drop into your project or global `~/.config/opencode/` folder. Select the `repo-
 The init command intelligently handles existing AGENTS.md:
 
 - **CREATE**: No AGENTS.md or empty file → full creative freedom
-- **ENHANCE**: Exists but <150 lines, appears auto-generated → restructure freely
-- **PRESERVE**: >150 lines or human authorship detected → Edit tool only, touch only outdated facts
+- **ENHANCE**: Exists but <50 lines, appears auto-generated → restructure freely
+- **PRESERVE**: >50 lines or human authorship detected → Edit tool only, touch only outdated facts
+
+**Philosophy**: ENHANCEMENT over REPLACEMENT. Human-crafted content is sacred unless explicitly told otherwise.
 
 ### Mandatory Complexity Check
 Before any workflow, the agent MUST assess:
@@ -67,6 +69,12 @@ Workflows are encapsulated in skills for:
 - Reusability across different commands
 - Clear separation of concerns
 - Easier maintenance and updates
+
+### High-Density Output
+All workflows prioritize concise, actionable documentation:
+- **AI navigation**: ~50 lines, focused on technical facts and task routing
+- **User assistance**: ~100 lines, focused on setup and troubleshooting
+- **Excludes**: Environment boilerplate, generic navigation, redundant information
 
 ## Installation
 
