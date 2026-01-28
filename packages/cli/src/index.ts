@@ -62,6 +62,7 @@ class TreeSelector {
   private selectedItems = new Set<RegistryItem>()
   private visibleItems: any[] = []
   private initialSelection = new Set<RegistryItem>()
+  private lastRenderHeight = 0
 
   constructor(registry: Registry) {
     this.registry = registry
@@ -83,7 +84,6 @@ class TreeSelector {
   private buildVisibleItems() {
     const items: any[] = []
 
-    // 1. Packs Category
     const packsExpanded = this.expandedCategory === "packs"
     items.push({ type: "category", id: "packs", title: "Packs", expanded: packsExpanded })
     
@@ -99,7 +99,6 @@ class TreeSelector {
       }
     }
 
-    // 2. Agents Category
     const agentsExpanded = this.expandedCategory === "agents"
     items.push({ type: "category", id: "agents", title: "Standalone Agents", expanded: agentsExpanded })
     if (agentsExpanded) {
@@ -109,7 +108,6 @@ class TreeSelector {
       }
     }
 
-    // 3. Commands Category
     const commandsExpanded = this.expandedCategory === "commands"
     items.push({ type: "category", id: "commands", title: "Standalone Commands", expanded: commandsExpanded })
     if (commandsExpanded) {
@@ -120,20 +118,26 @@ class TreeSelector {
     }
 
     this.visibleItems = items
-    
     const newIndex = items.findIndex(i => i.id === this.cursorId)
-    if (newIndex !== -1) {
-      this.cursor = newIndex
-    } else {
+    if (newIndex !== -1) this.cursor = newIndex
+    else {
       this.cursor = Math.min(this.cursor, items.length - 1)
       this.cursorId = items[this.cursor].id
     }
   }
 
   private render() {
-    process.stdout.write("\x1Bc") 
-    console.log(chalk.bold.cyan("Opencode Workflow Selector"))
-    console.log(chalk.gray("↑/↓: Navigate | →/←: Expand | Space: Toggle | Enter: Sync\n"))
+    // MOVE CURSOR TO START INSTEAD OF CLEARING BUFFER
+    if (this.lastRenderHeight > 0) {
+      readline.cursorTo(process.stdout, 0, 0)
+      readline.clearScreenDown(process.stdout)
+    } else {
+      process.stdout.write("\x1Bc") // First render clear
+    }
+
+    let output = ""
+    output += chalk.bold.cyan("Opencode Workflow Selector") + "\n"
+    output += chalk.gray("↑/↓: Navigate | →/←: Expand | Space: Toggle | Enter: Sync") + "\n\n"
 
     this.visibleItems.forEach((item, index) => {
       const isCursor = index === this.cursor
@@ -153,10 +157,9 @@ class TreeSelector {
         line = `${prefix}${indent}${checkbox}${item.title} ${chalk.dim(`(${item.item.type})`)}`
       }
 
-      console.log(isCursor ? chalk.bgWhite.black(line) : line)
+      output += (isCursor ? chalk.bgWhite.black(line) : line) + "\n"
     })
 
-    // --- Footer Help / Description ---
     const current = this.visibleItems[this.cursor]
     let desc = ""
     if (current.type === "pack") desc = current.pack.description
@@ -167,11 +170,12 @@ class TreeSelector {
       else if (current.id === "commands") desc = "Common repository utility commands"
     }
 
-    console.log(chalk.dim("\n" + "─".repeat(50)))
-    if (desc) {
-      console.log(chalk.italic.yellow(" Info: ") + chalk.white(desc))
-    }
-    console.log(chalk.dim(" Selected: ") + chalk.bold.green(this.selectedItems.size) + chalk.dim(" items"))
+    output += chalk.dim("\n" + "─".repeat(50)) + "\n"
+    if (desc) output += chalk.italic.yellow(" Info: ") + chalk.white(desc) + "\n"
+    output += chalk.dim(" Selected: ") + chalk.bold.green(this.selectedItems.size) + chalk.dim(" items") + "\n"
+
+    process.stdout.write(output)
+    this.lastRenderHeight = output.split("\n").length
   }
 
   private isPackSelected(pack: Pack) {
@@ -216,11 +220,8 @@ class TreeSelector {
           if (item.type === "category") {
             this.expandedCategory = null
           } else if (item.type === "pack") {
-            if (this.expandedPack === item.pack.name) {
-              this.expandedPack = null
-            } else {
-              this.cursorId = "packs"
-            }
+            if (this.expandedPack === item.pack.name) this.expandedPack = null
+            else this.cursorId = "packs"
           } else if (item.type === "item") {
             this.cursorId = item.parent
           }
@@ -234,11 +235,9 @@ class TreeSelector {
         } else if (key.name === "return") {
           if (process.stdin.isTTY) process.stdin.setRawMode(false)
           process.stdin.pause()
-          
           const currentSelection = Array.from(this.selectedItems)
           const toInstall = currentSelection.filter(i => !this.initialSelection.has(i))
           const toRemove = Array.from(this.initialSelection).filter(i => !this.selectedItems.has(i))
-          
           resolve({ install: toInstall, remove: toRemove })
           return
         } else if (key.ctrl && key.name === "c") {
@@ -253,7 +252,6 @@ class TreeSelector {
   }
 }
 
-// --- Main CLI ---
 const program = new Command()
 program.name("opencode").version("0.1.0")
 
@@ -291,28 +289,22 @@ program
     }
 
     if (remove.length > 0) {
-      console.log(chalk.blue(`\nUninstalling items...`))
       for (const item of remove) {
         const dest = resolveTargetPath(item)
-        if (options.dryRun) console.log(chalk.gray(`[DRY] rm ${dest}`))
-        else {
-          await fs.remove(dest)
-          console.log(chalk.red(`✓ Removed ${item.name}`))
-        }
+        if (!options.dryRun) await fs.remove(dest)
+        console.log(chalk.red(`✓ Removed ${item.name}`))
       }
     }
 
     if (install.length > 0) {
-      console.log(chalk.blue(`\nInstalling items...`))
       for (const item of install) {
         const source = path.join("/home/igorw/Work/Opencode-Workflows", item.path)
         const dest = resolveTargetPath(item)
-        if (options.dryRun) console.log(chalk.gray(`[DRY] ${item.name} -> ${path.relative(process.cwd(), dest)}`))
-        else {
+        if (!options.dryRun) {
           await fs.ensureDir(path.dirname(dest))
           await fs.copy(source, dest)
-          console.log(chalk.green(`✓ Installed ${item.name}`))
         }
+        console.log(chalk.green(`✓ Installed ${item.name}`))
       }
     }
   })

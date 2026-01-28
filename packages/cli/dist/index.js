@@ -33,6 +33,7 @@ var TreeSelector = class {
   selectedItems = /* @__PURE__ */ new Set();
   visibleItems = [];
   initialSelection = /* @__PURE__ */ new Set();
+  lastRenderHeight = 0;
   constructor(registry) {
     this.registry = registry;
   }
@@ -81,17 +82,22 @@ var TreeSelector = class {
     }
     this.visibleItems = items;
     const newIndex = items.findIndex((i) => i.id === this.cursorId);
-    if (newIndex !== -1) {
-      this.cursor = newIndex;
-    } else {
+    if (newIndex !== -1) this.cursor = newIndex;
+    else {
       this.cursor = Math.min(this.cursor, items.length - 1);
       this.cursorId = items[this.cursor].id;
     }
   }
   render() {
-    process.stdout.write("\x1Bc");
-    console.log(chalk.bold.cyan("Opencode Workflow Selector"));
-    console.log(chalk.gray("\u2191/\u2193: Navigate | \u2192/\u2190: Expand | Space: Toggle | Enter: Sync\n"));
+    if (this.lastRenderHeight > 0) {
+      readline.cursorTo(process.stdout, 0, 0);
+      readline.clearScreenDown(process.stdout);
+    } else {
+      process.stdout.write("\x1Bc");
+    }
+    let output = "";
+    output += chalk.bold.cyan("Opencode Workflow Selector") + "\n";
+    output += chalk.gray("\u2191/\u2193: Navigate | \u2192/\u2190: Expand | Space: Toggle | Enter: Sync") + "\n\n";
     this.visibleItems.forEach((item, index) => {
       const isCursor = index === this.cursor;
       const prefix = isCursor ? chalk.blue("\u276F ") : "  ";
@@ -108,7 +114,7 @@ var TreeSelector = class {
         const indent = item.parent === "agents" || item.parent === "commands" ? "    " : "      ";
         line = `${prefix}${indent}${checkbox}${item.title} ${chalk.dim(`(${item.item.type})`)}`;
       }
-      console.log(isCursor ? chalk.bgWhite.black(line) : line);
+      output += (isCursor ? chalk.bgWhite.black(line) : line) + "\n";
     });
     const current = this.visibleItems[this.cursor];
     let desc = "";
@@ -119,11 +125,11 @@ var TreeSelector = class {
       else if (current.id === "agents") desc = "Individual global orchestration agents";
       else if (current.id === "commands") desc = "Common repository utility commands";
     }
-    console.log(chalk.dim("\n" + "\u2500".repeat(50)));
-    if (desc) {
-      console.log(chalk.italic.yellow(" Info: ") + chalk.white(desc));
-    }
-    console.log(chalk.dim(" Selected: ") + chalk.bold.green(this.selectedItems.size) + chalk.dim(" items"));
+    output += chalk.dim("\n" + "\u2500".repeat(50)) + "\n";
+    if (desc) output += chalk.italic.yellow(" Info: ") + chalk.white(desc) + "\n";
+    output += chalk.dim(" Selected: ") + chalk.bold.green(this.selectedItems.size) + chalk.dim(" items") + "\n";
+    process.stdout.write(output);
+    this.lastRenderHeight = output.split("\n").length;
   }
   isPackSelected(pack) {
     return pack.items.every((i) => this.selectedItems.has(i));
@@ -162,11 +168,8 @@ var TreeSelector = class {
           if (item.type === "category") {
             this.expandedCategory = null;
           } else if (item.type === "pack") {
-            if (this.expandedPack === item.pack.name) {
-              this.expandedPack = null;
-            } else {
-              this.cursorId = "packs";
-            }
+            if (this.expandedPack === item.pack.name) this.expandedPack = null;
+            else this.cursorId = "packs";
           } else if (item.type === "item") {
             this.cursorId = item.parent;
           }
@@ -223,29 +226,21 @@ program.command("add").option("-d, --dry-run").action(async (options) => {
     return;
   }
   if (remove.length > 0) {
-    console.log(chalk.blue(`
-Uninstalling items...`));
     for (const item of remove) {
       const dest = resolveTargetPath(item);
-      if (options.dryRun) console.log(chalk.gray(`[DRY] rm ${dest}`));
-      else {
-        await fs.remove(dest);
-        console.log(chalk.red(`\u2713 Removed ${item.name}`));
-      }
+      if (!options.dryRun) await fs.remove(dest);
+      console.log(chalk.red(`\u2713 Removed ${item.name}`));
     }
   }
   if (install.length > 0) {
-    console.log(chalk.blue(`
-Installing items...`));
     for (const item of install) {
       const source = path.join("/home/igorw/Work/Opencode-Workflows", item.path);
       const dest = resolveTargetPath(item);
-      if (options.dryRun) console.log(chalk.gray(`[DRY] ${item.name} -> ${path.relative(process.cwd(), dest)}`));
-      else {
+      if (!options.dryRun) {
         await fs.ensureDir(path.dirname(dest));
         await fs.copy(source, dest);
-        console.log(chalk.green(`\u2713 Installed ${item.name}`));
       }
+      console.log(chalk.green(`\u2713 Installed ${item.name}`));
     }
   }
 });
