@@ -1,0 +1,638 @@
+{
+  "name": "opencode-workflows",
+  "version": "1.0.0",
+  "packs": [
+    {
+      "name": "vite-react-ts-convex-tailwind",
+      "description": "Expert VRTCT stack toolkit pack. Designed to modernise outdated models & stacks.",
+      "path": "agents/vite-react-ts-convex-tailwind",
+      "items": [
+        {
+          "name": "VRTCT-orchestrator",
+          "description": "Master coordinator for VRTCT with no file-creation capabilities.",
+          "type": "agent",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/VRTCT-orchestrator.md",
+          "target": "agent/VRTCT-orchestrator.md"
+        },
+        {
+          "name": "VRTCT-brain",
+          "description": "Stack implementation and knowledge.",
+          "type": "agent",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/VRTCT-brain.md",
+          "target": "agent/VRTCT-brain.md"
+        },
+        {
+          "name": "convex-database-expert",
+          "description": "Senior Convex database engineer.",
+          "type": "agent",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/convex-database-expert.md",
+          "target": "agent/convex-database-expert.md"
+        },
+        {
+          "name": "react-19-master",
+          "description": "Deep React 19.2 mastery.",
+          "type": "agent",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/react-19-master.md",
+          "target": "agent/react-19-master.md"
+        },
+        {
+          "name": "tailwind-41-architect",
+          "description": "Tailwind 4.1 maestro.",
+          "type": "agent",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/tailwind-41-architect.md",
+          "target": "agent/tailwind-41-architect.md"
+        },
+        {
+          "name": "typescript-59-engineer",
+          "description": "Strict TypeScript 5.9 expert.",
+          "type": "agent",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/typescript-59-engineer.md",
+          "target": "agent/typescript-59-engineer.md"
+        },
+        {
+          "name": "component-create",
+          "description": "Generate spec-compliant components.",
+          "type": "command",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/command/component-create.md",
+          "target": "command/component-create.md"
+        },
+        {
+          "name": "component-review",
+          "description": "Audit components against spec.",
+          "type": "command",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/command/component-review.md",
+          "target": "command/component-review.md"
+        },
+        {
+          "name": "CODING-TS",
+          "description": "Universal engineering guidelines.",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/CODING-TS.md",
+          "target": "CODING-TS.md"
+        },
+        {
+          "name": "CONVEX",
+          "description": "Convex best practices guide.",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/CONVEX.md",
+          "target": "CONVEX.md"
+        },
+        {
+          "name": "REACT19",
+          "description": "React 19 reference patterns.",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/REACT19.md",
+          "target": "REACT19.md"
+        },
+        {
+          "name": "TAILWIND4",
+          "description": "Tailwind 4.1 migration guide.",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/TAILWIND4.md",
+          "target": "TAILWIND4.md"
+        },
+        {
+          "name": "TS59",
+          "description": "TypeScript 5.9 language reference.",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/TS59.md",
+          "target": "TS59.md"
+        }
+      ]
+    },
+    {
+      "name": "parallel-PRD",
+      "description": "Parallel PRD planning and Best-of-N synthesis pack.",
+      "path": "agents/parallel-PRD",
+      "items": [
+        {
+          "name": "parallel-prd-orchestrator",
+          "description": "Orchestrates parallel PRD planners.",
+          "type": "agent",
+          "path": "agents/parallel-PRD/.opencode/agent/parallel-prd-orchestrator.md",
+          "target": "agent/parallel-prd-orchestrator.md"
+        },
+        {
+          "name": "glm-planner",
+          "description": "GLM-based PRD planner subagent example.",
+          "type": "agent",
+          "path": "agents/parallel-PRD/.opencode/agent/glm-planner.md",
+          "target": "agent/glm-planner.md"
+        },
+        {
+          "name": "TEMPLATE-planner",
+          "description": "Standard PRD planner template agent. Copy, rename, set your own model",
+          "type": "agent",
+          "path": "agents/parallel-PRD/.opencode/agent/TEMPLATE-planner.md",
+          "target": "agent/TEMPLATE-planner.md"
+        },
+        {
+          "name": "parallel-prd",
+          "description": "Generate parallel PRD architecture views.",
+          "type": "command",
+          "path": "agents/parallel-PRD/.opencode/command/parallel-prd.md",
+          "target": "command/parallel-prd.md"
+        },
+        {
+          "name": "prd-authoring",
+          "description": "Skill for drafting technical PRDs.",
+          "type": "skill",
+          "path": "agents/parallel-PRD/.opencode/skill/prd-authoring",
+          "target": "skill/prd-authoring"
+        }
+      ]
+    },
+    {
+      "name": "component-engineer",
+      "description": "Professional React component engineering and audit pack.",
+      "path": "agents/component-engineer",
+      "items": [
+        {
+          "name": "component-engineer",
+          "description": "Expert React architecture specialist.",
+          "type": "agent",
+          "path": "agents/component-engineer/.opencode/agent/component-engineer.md",
+          "target": "agent/component-engineer.md"
+        },
+        {
+          "name": "component-create",
+          "description": "Create spec-compliant React components.",
+          "type": "command",
+          "path": "agents/component-engineer/.opencode/command/component-create.md",
+          "target": "command/component-create.md"
+        },
+        {
+          "name": "component-review",
+          "description": "Audit components against engineering spec.",
+          "type": "command",
+          "path": "agents/component-engineer/.opencode/command/component-review.md",
+          "target": "command/component-review.md"
+        },
+        {
+          "name": "component-engineering",
+          "description": "Component engineering specification skill.",
+          "type": "skill",
+          "path": "agents/component-engineer/.opencode/skill/component-engineering",
+          "target": "skill/component-engineering"
+        }
+      ]
+    },
+    {
+      "name": "create-opencode-plugin",
+      "description": "Opencode plugin development and scaffolding pack. Works best when installed in opencode repository.",
+      "path": "agents/create-opencode-plugin",
+      "items": [
+        {
+          "name": "plugin-creator",
+          "description": "Specialist for building opencode plugins.",
+          "type": "agent",
+          "path": "agents/create-opencode-plugin/.opencode/agent/plugin-creator.md",
+          "target": "agent/plugin-creator.md"
+        },
+        {
+          "name": "create-plugin",
+          "description": "Scaffold a new opencode plugin based on description.",
+          "type": "command",
+          "path": "agents/create-opencode-plugin/.opencode/command/create-plugin.md",
+          "target": "command/create-plugin.md"
+        },
+        {
+          "name": "create-opencode-plugin",
+          "description": "Plugin development workflow skill.",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin",
+          "target": "skill/create-opencode-plugin"
+        }
+      ]
+    },
+    {
+      "name": "opencode-configurator",
+      "description": "Meta-configuration management system pack.",
+      "path": "agents/opencode-configurator",
+      "items": [
+        {
+          "name": "opencode-configurator",
+          "description": "Opencode configuration agent.",
+          "type": "agent",
+          "path": "agents/opencode-configurator/agent/opencode-configurator.md",
+          "target": "agent/opencode-configurator.md"
+        },
+        {
+          "name": "refactor-rfc-xml",
+          "description": "Structure markdown files with RFC/XML for better agent adherence.",
+          "type": "command",
+          "path": "agents/opencode-configurator/command/refactor-rfc-xml.md",
+          "target": "command/refactor-rfc-xml.md"
+        },
+        {
+          "name": "permissions-update",
+          "description": "Modernize configuration schema fields.",
+          "type": "command",
+          "path": "agents/opencode-configurator/command/permissions-update.md",
+          "target": "command/permissions-update.md"
+        },
+        {
+          "name": "agent-architect",
+          "description": "Design and refine agents.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/agent-architect",
+          "target": "skill/agent-architect"
+        },
+        {
+          "name": "command-creator",
+          "description": "Build custom slash commands.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/command-creator",
+          "target": "skill/command-creator"
+        },
+        {
+          "name": "mcp-installer",
+          "description": "Configure MCP server connections.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer",
+          "target": "skill/mcp-installer"
+        },
+        {
+          "name": "model-researcher",
+          "description": "Add verified AI models.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/model-researcher",
+          "target": "skill/model-researcher"
+        },
+        {
+          "name": "opencode-config",
+          "description": "Guided opencode.json setup.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/opencode-config",
+          "target": "skill/opencode-config"
+        },
+        {
+          "name": "plugin-installer",
+          "description": "Install and document community ecosystem plugins.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer",
+          "target": "skill/plugin-installer"
+        },
+        {
+          "name": "skill-creator",
+          "description": "Guide for creating skills.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/skill-creator",
+          "target": "skill/skill-creator"
+        }
+      ]
+    },
+    {
+      "name": "security-reviewer",
+      "description": "Vibecoding security audit and secret scanning pack.",
+      "path": "agents/security-reviewer",
+      "items": [
+        {
+          "name": "security-reviewer",
+          "description": "Security auditor for vibecoding vulnerabilities.",
+          "type": "agent",
+          "path": "agents/security-reviewer/.opencode/agent/security-reviewer.md",
+          "target": "agent/security-reviewer.md"
+        },
+        {
+          "name": "security-ai-keys",
+          "description": "Scan for exposed AI API keys.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-ai-keys",
+          "target": "skill/security-ai-keys"
+        },
+        {
+          "name": "security-bun",
+          "description": "Bun-specific security audit skill.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-bun",
+          "target": "skill/security-bun"
+        },
+        {
+          "name": "security-convex",
+          "description": "Convex-specific security audit skill.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-convex",
+          "target": "skill/security-convex"
+        },
+        {
+          "name": "security-django",
+          "description": "Django-specific security audit skill.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-django",
+          "target": "skill/security-django"
+        },
+        {
+          "name": "security-docker",
+          "description": "Docker-specific security audit skill.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-docker",
+          "target": "skill/security-docker"
+        },
+        {
+          "name": "security-express",
+          "description": "Express-specific security audit skill.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-express",
+          "target": "skill/security-express"
+        },
+        {
+          "name": "security-fastapi",
+          "description": "FastAPI-specific security audit skill.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-fastapi",
+          "target": "skill/security-fastapi"
+        },
+        {
+          "name": "security-nextjs",
+          "description": "Next.js-specific security audit skill.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-nextjs",
+          "target": "skill/security-nextjs"
+        },
+        {
+          "name": "security-secrets",
+          "description": "Generic secret and credential scanner.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-secrets",
+          "target": "skill/security-secrets"
+        },
+        {
+          "name": "security-vite",
+          "description": "Vite-specific security audit skill.",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-vite",
+          "target": "skill/security-vite"
+        }
+      ]
+    },
+    {
+      "name": "repo-navigator",
+      "description": "Repository documentation specialist pack for enhanced /init.",
+      "path": "agents/repo-navigator",
+      "items": [
+        {
+          "name": "repo-navigator",
+          "description": "Generate AGENTS.md documentation.",
+          "type": "agent",
+          "path": "agents/repo-navigator/agent/repo-navigator.md",
+          "target": "agent/repo-navigator.md"
+        },
+        {
+          "name": "init",
+          "description": "Init command replacement. Supports vanilla `/init`, `/init user` for user-assistance agent-guidance & `/init full` with AGENTS.md + skills generation.",
+          "type": "command",
+          "path": "agents/repo-navigator/command/init.md",
+          "target": "command/init.md"
+        },
+        {
+          "name": "learn",
+          "description": "A version of learn command hyperfocussed on minimal nested AGENTS.md creation.",
+          "type": "command",
+          "path": "agents/repo-navigator/command/learn.md",
+          "target": "command/learn.md"
+        },
+        {
+          "name": "agent-navigation-sop",
+          "description": "AI-focused navigation SOP.",
+          "type": "skill",
+          "path": "agents/repo-navigator/skill/agent-navigation-sop",
+          "target": "skill/agent-navigation-sop"
+        },
+        {
+          "name": "user-onboarding-sop",
+          "description": "User-focused onboarding SOP.",
+          "type": "skill",
+          "path": "agents/repo-navigator/skill/user-onboarding-sop",
+          "target": "skill/user-onboarding-sop"
+        },
+        {
+          "name": "skill-creator",
+          "description": "Architect and refine skills.",
+          "type": "skill",
+          "path": "agents/repo-navigator/skill/skill-creator",
+          "target": "skill/skill-creator"
+        }
+      ]
+    },
+    {
+      "name": "cowork",
+      "description": "Multi-agent orchestration system for complex collaborative tasks.",
+      "path": "cowork",
+      "items": [
+        {
+          "name": "cowork-orchestrator",
+          "description": "Master coordinator for cowork sessions.",
+          "type": "agent",
+          "path": "cowork/.opencode/agent/cowork-orchestrator.md",
+          "target": "agent/cowork-orchestrator.md"
+        },
+        {
+          "name": "admin-assistant",
+          "description": "Task management and administrative support.",
+          "type": "agent",
+          "path": "cowork/.opencode/agent/admin-assistant.md",
+          "target": "agent/admin-assistant.md"
+        },
+        {
+          "name": "research-specialist",
+          "description": "Deep research and information synthesis.",
+          "type": "agent",
+          "path": "cowork/.opencode/agent/research-specialist.md",
+          "target": "agent/research-specialist.md"
+        },
+        {
+          "name": "data-analyst",
+          "description": "Data processing and pattern analysis.",
+          "type": "agent",
+          "path": "cowork/.opencode/agent/data-analyst.md",
+          "target": "agent/data-analyst.md"
+        },
+        {
+          "name": "document-specialist",
+          "description": "Professional documentation and report authoring.",
+          "type": "agent",
+          "path": "cowork/.opencode/agent/document-specialist.md",
+          "target": "agent/document-specialist.md"
+        },
+        {
+          "name": "presentation-expert",
+          "description": "Visual communication and slide design.",
+          "type": "agent",
+          "path": "cowork/.opencode/agent/presentation-expert.md",
+          "target": "agent/presentation-expert.md"
+        },
+        {
+          "name": "cowork-configurator",
+          "description": "Configuration expert for cowork environment.",
+          "type": "agent",
+          "path": "cowork/.opencode/agent/cowork-configurator.md",
+          "target": "agent/cowork-configurator.md"
+        },
+        {
+          "name": "cowork-cmd",
+          "description": "Launch a collaborative cowork session.",
+          "type": "command",
+          "path": "cowork/.opencode/command/cowork.md",
+          "target": "command/cowork.md"
+        },
+        {
+          "name": "cowork-skill",
+          "description": "Core cowork orchestration logic.",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/cowork",
+          "target": "skill/cowork"
+        },
+        {
+          "name": "branding",
+          "description": "Visual identity and branding guidelines.",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/branding",
+          "target": "skill/branding"
+        },
+        {
+          "name": "comms",
+          "description": "Communication templates and strategies.",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/comms",
+          "target": "skill/comms"
+        },
+        {
+          "name": "excel",
+          "description": "Advanced spreadsheet automation and analysis.",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel",
+          "target": "skill/excel"
+        },
+        {
+          "name": "pdf",
+          "description": "PDF manipulation and form processing.",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf",
+          "target": "skill/pdf"
+        },
+        {
+          "name": "powerpoint",
+          "description": "Presentation generation and OOXML tools.",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint",
+          "target": "skill/powerpoint"
+        },
+        {
+          "name": "themes",
+          "description": "Document themes and visual styles.",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes",
+          "target": "skill/themes"
+        },
+        {
+          "name": "word",
+          "description": "Word document automation and OOXML tools.",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word",
+          "target": "skill/word"
+        },
+        {
+          "name": "writing",
+          "description": "Professional writing and editing workflow.",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/writing",
+          "target": "skill/writing"
+        }
+      ]
+    }
+  ],
+  "standalone": [
+    {
+      "name": "fast",
+      "description": "High-speed atomic task workhorse. Configure to a model like Haiku. Pair with `smart`.",
+      "type": "agent",
+      "path": "agents/generic/.opencode/agent/fast.md",
+      "target": "agent/fast.md"
+    },
+    {
+      "name": "smart",
+      "description": "Senior architect for complex refactoring. Configure to a model like Opus. Pair with `fast`.",
+      "type": "agent",
+      "path": "agents/generic/.opencode/agent/smart.md",
+      "target": "agent/smart.md"
+    },
+    {
+      "name": "subagent-orchestrator",
+      "description": "Disciplined subagent dispatcher and coordinator.",
+      "type": "agent",
+      "path": "agents/generic/.opencode/agent/subagent-orchestrator.md",
+      "target": "agent/subagent-orchestrator.md"
+    },
+    {
+      "name": "openspec-orchestrator",
+      "description": "Enforce strict OpenSpec formatting/validation. For use with Openspec only.",
+      "type": "agent",
+      "path": "agents/generic/.opencode/agent/openspec-orchestrator.md",
+      "target": "agent/openspec-orchestrator.md"
+    },
+    {
+      "name": "learn",
+      "description": "A version of learn command hyperfocussed on minimal nested AGENTS.md creation.",
+      "type": "command",
+      "path": "commands/.opencode/command/learn.md",
+      "target": "command/learn.md"
+    },
+    {
+      "name": "rmslop",
+      "description": "Remove AI-generated boilerplate/slop. Adjusted from OC repo command.",
+      "type": "command",
+      "path": "commands/.opencode/command/rmslop.md",
+      "target": "command/rmslop.md"
+    },
+    {
+      "name": "loop",
+      "description": "Run autonomous development loops. Kinda Ralph, but via subagents.",
+      "type": "command",
+      "path": "commands/.opencode/command/loop.md",
+      "target": "command/loop.md"
+    },
+    {
+      "name": "howto",
+      "description": "Generate AGENTS.md tailored towards teaching the user how to use a repo.",
+      "type": "command",
+      "path": "commands/.opencode/command/howto.md",
+      "target": "command/howto.md"
+    },
+    {
+      "name": "create-pack",
+      "description": "Scaffold a new agent pack. Similar to you're looking at here.",
+      "type": "command",
+      "path": "commands/.opencode/command/create-pack.md",
+      "target": "command/create-pack.md"
+    },
+    {
+      "name": "refactor",
+      "description": "Refactor code according to best practices.",
+      "type": "command",
+      "path": "commands/.opencode/command/refactor.md",
+      "target": "command/refactor.md"
+    },
+    {
+      "name": "npm",
+      "description": "Helper for npm package management.",
+      "type": "command",
+      "path": "commands/.opencode/command/npm.md",
+      "target": "command/npm.md"
+    },
+    {
+      "name": "improve-run",
+      "description": "Run and improve prompts.",
+      "type": "command",
+      "path": "commands/.opencode/command/improve-run.md",
+      "target": "command/improve-run.md"
+    },
+    {
+      "name": "improve-save",
+      "description": "Improve and save a prompt.",
+      "type": "command",
+      "path": "commands/.opencode/command/improve-save.md",
+      "target": "command/improve-save.md"
+    }
+  ]
+}
