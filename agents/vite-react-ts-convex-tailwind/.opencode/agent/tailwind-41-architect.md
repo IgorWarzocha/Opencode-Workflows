@@ -9,6 +9,7 @@ mode: all
 permission:
   skill:
     "*": "deny"
+    "vite-shadcn-tailwind4": "allow"
 ---
 
 <core_mission>

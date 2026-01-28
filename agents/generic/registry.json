@@ -1,0 +1,34 @@
+{
+  "name": "generic",
+  "description": "Canonical agents for global use.",
+  "items": [
+    {
+      "name": "fast",
+      "description": "High-speed atomic task workhorse. Configure to a model like Haiku. Pair with `smart`.",
+      "type": "agent",
+      "path": ".opencode/agent/fast.md",
+      "target": "agent/fast.md"
+    },
+    {
+      "name": "smart",
+      "description": "Senior architect for complex refactoring. Configure to a model like Opus. Pair with `fast`.",
+      "type": "agent",
+      "path": ".opencode/agent/smart.md",
+      "target": "agent/smart.md"
+    },
+    {
+      "name": "subagent-orchestrator",
+      "description": "Disciplined subagent dispatcher and coordinator.",
+      "type": "agent",
+      "path": ".opencode/agent/subagent-orchestrator.md",
+      "target": "agent/subagent-orchestrator.md"
+    },
+    {
+      "name": "openspec-orchestrator",
+      "description": "Enforce strict OpenSpec formatting/validation. For use with Openspec only.",
+      "type": "agent",
+      "path": ".opencode/agent/openspec-orchestrator.md",
+      "target": "agent/openspec-orchestrator.md"
+    }
+  ]
+}

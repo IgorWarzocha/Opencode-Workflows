@@ -1,0 +1,97 @@
+{
+  "name": "vite-react-ts-convex-tailwind",
+  "description": "Expert VRTCT stack toolkit pack. Designed to modernise outdated models & stacks.",
+  "items": [
+    {
+      "name": "VRTCT-orchestrator",
+      "description": "Master coordinator for VRTCT with no file-creation capabilities.",
+      "type": "agent",
+      "path": ".opencode/agent/VRTCT-orchestrator.md",
+      "target": "agent/VRTCT-orchestrator.md"
+    },
+    {
+      "name": "VRTCT-brain",
+      "description": "Stack implementation and knowledge.",
+      "type": "agent",
+      "path": ".opencode/agent/VRTCT-brain.md",
+      "target": "agent/VRTCT-brain.md"
+    },
+    {
+      "name": "convex-database-expert",
+      "description": "Senior Convex database engineer.",
+      "type": "agent",
+      "path": ".opencode/agent/convex-database-expert.md",
+      "target": "agent/convex-database-expert.md"
+    },
+    {
+      "name": "react-19-master",
+      "description": "Deep React 19.2 mastery.",
+      "type": "agent",
+      "path": ".opencode/agent/react-19-master.md",
+      "target": "agent/react-19-master.md"
+    },
+    {
+      "name": "tailwind-41-architect",
+      "description": "Tailwind 4.1 maestro.",
+      "type": "agent",
+      "path": ".opencode/agent/tailwind-41-architect.md",
+      "target": "agent/tailwind-41-architect.md"
+    },
+    {
+      "name": "typescript-59-engineer",
+      "description": "Strict TypeScript 5.9 expert.",
+      "type": "agent",
+      "path": ".opencode/agent/typescript-59-engineer.md",
+      "target": "agent/typescript-59-engineer.md"
+    },
+    {
+      "name": "component-create",
+      "description": "Generate spec-compliant components.",
+      "type": "command",
+      "path": ".opencode/command/component-create.md",
+      "target": "command/component-create.md"
+    },
+    {
+      "name": "component-review",
+      "description": "Audit components against spec.",
+      "type": "command",
+      "path": ".opencode/command/component-review.md",
+      "target": "command/component-review.md"
+    },
+    {
+      "name": "CODING-TS",
+      "description": "Universal engineering guidelines.",
+      "type": "doc",
+      "path": "CODING-TS.md",
+      "target": "CODING-TS.md"
+    },
+    {
+      "name": "CONVEX",
+      "description": "Convex best practices guide.",
+      "type": "doc",
+      "path": "CONVEX.md",
+      "target": "CONVEX.md"
+    },
+    {
+      "name": "REACT19",
+      "description": "React 19 reference patterns.",
+      "type": "doc",
+      "path": "REACT19.md",
+      "target": "REACT19.md"
+    },
+    {
+      "name": "TAILWIND4",
+      "description": "Tailwind 4.1 migration guide.",
+      "type": "doc",
+      "path": "TAILWIND4.md",
+      "target": "TAILWIND4.md"
+    },
+    {
+      "name": "TS59",
+      "description": "TypeScript 5.9 language reference.",
+      "type": "doc",
+      "path": "TS59.md",
+      "target": "TS59.md"
+    }
+  ]
+}

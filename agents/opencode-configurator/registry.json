@@ -1,0 +1,76 @@
+{
+  "name": "opencode-configurator",
+  "description": "Meta-configuration management system pack.",
+  "items": [
+    {
+      "name": "opencode-configurator",
+      "description": "Opencode configuration agent.",
+      "type": "agent",
+      "path": "agent/opencode-configurator.md",
+      "target": "agent/opencode-configurator.md"
+    },
+    {
+      "name": "refactor-rfc-xml",
+      "description": "Structure markdown files with RFC/XML for better agent adherence.",
+      "type": "command",
+      "path": "command/refactor-rfc-xml.md",
+      "target": "command/refactor-rfc-xml.md"
+    },
+    {
+      "name": "permissions-update",
+      "description": "Modernize configuration schema fields.",
+      "type": "command",
+      "path": "command/permissions-update.md",
+      "target": "command/permissions-update.md"
+    },
+    {
+      "name": "agent-architect",
+      "description": "Design and refine agents.",
+      "type": "skill",
+      "path": "skill/agent-architect",
+      "target": "skill/agent-architect"
+    },
+    {
+      "name": "command-creator",
+      "description": "Build custom slash commands.",
+      "type": "skill",
+      "path": "skill/command-creator",
+      "target": "skill/command-creator"
+    },
+    {
+      "name": "mcp-installer",
+      "description": "Configure MCP server connections.",
+      "type": "skill",
+      "path": "skill/mcp-installer",
+      "target": "skill/mcp-installer"
+    },
+    {
+      "name": "model-researcher",
+      "description": "Add verified AI models.",
+      "type": "skill",
+      "path": "skill/model-researcher",
+      "target": "skill/model-researcher"
+    },
+    {
+      "name": "opencode-config",
+      "description": "Guided opencode.json setup.",
+      "type": "skill",
+      "path": "skill/opencode-config",
+      "target": "skill/opencode-config"
+    },
+    {
+      "name": "plugin-installer",
+      "description": "Install and document community ecosystem plugins.",
+      "type": "skill",
+      "path": "skill/plugin-installer",
+      "target": "skill/plugin-installer"
+    },
+    {
+      "name": "skill-creator",
+      "description": "Guide for creating skills.",
+      "type": "skill",
+      "path": "skill/skill-creator",
+      "target": "skill/skill-creator"
+    }
+  ]
+}

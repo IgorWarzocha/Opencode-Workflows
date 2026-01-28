@@ -3,6 +3,9 @@
 > [!NOTE]
 > **Partially Deprecated**: OpenCode now supports [Skills](https://opencode.ai/docs/skills/) natively, which provide a more powerful way to extend agent capabilities. This template remains useful if you want agents to discover and execute your `/commands` agentically via a COMMANDS.md index file. For new projects, consider using Skills instead.
 
+> [!NOTE]
+> **Highly recommended**: [opencode-snippets by JosXa](https://github.com/JosXa/opencode-snippets) - this plugin allows you to put in composable commands directly into your prompts. This effectively replaces custom commands so you could just replace `commands` with `snippets` and get `snippets2skills`!
+
 A universal template for creating Opencode-based projects with structured commands, tool integration, and automated documentation maintenance.
 
 ## Architecture Overview
@@ -127,10 +130,6 @@ project/
 
 Commands.md is injected at the beginning of the session, so models need strong context management and instruction following capabilities.
 
-### Future Enhancement
-
-Currently Opencode only supports context injection at session start. A potential future enhancement would be if Opencode adds the ability to inject context into every user prompt. This would allow COMMANDS.md to be included in every prompt, not just at the start of the session, significantly improving command reliability and reducing context management requirements for models.
-
 *Please let me know if you test this template on different models.*
 
 ### Tested Models
@@ -144,7 +143,7 @@ Currently Opencode only supports context injection at session start. A potential
 ### Model Requirements
 
 For optimal performance, models should excel at:
-- **Context Management**: Maintaining COMMANDS.md throughout the session
+- **Context Attention**: "Seeing" COMMANDS.md throughout the session
 - **Instruction Following**: Precise execution of multi-step workflows
 - **Agentic Capabilities**: Understanding when and how to use available commands
 

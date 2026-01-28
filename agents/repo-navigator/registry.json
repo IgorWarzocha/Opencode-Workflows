@@ -1,0 +1,48 @@
+{
+  "name": "repo-navigator",
+  "description": "Repository documentation specialist pack for enhanced /init.",
+  "items": [
+    {
+      "name": "repo-navigator",
+      "description": "Generate AGENTS.md documentation.",
+      "type": "agent",
+      "path": "agent/repo-navigator.md",
+      "target": "agent/repo-navigator.md"
+    },
+    {
+      "name": "init",
+      "description": "Init command replacement. Supports vanilla `/init`, `/init user` for user-assistance agent-guidance & `/init full` with AGENTS.md + skills generation.",
+      "type": "command",
+      "path": "command/init.md",
+      "target": "command/init.md"
+    },
+    {
+      "name": "learn",
+      "description": "A version of learn command hyperfocussed on minimal nested AGENTS.md creation.",
+      "type": "command",
+      "path": "command/learn.md",
+      "target": "command/learn.md"
+    },
+    {
+      "name": "agent-navigation-sop",
+      "description": "AI-focused navigation SOP.",
+      "type": "skill",
+      "path": "skill/agent-navigation-sop",
+      "target": "skill/agent-navigation-sop"
+    },
+    {
+      "name": "user-onboarding-sop",
+      "description": "User-focused onboarding SOP.",
+      "type": "skill",
+      "path": "skill/user-onboarding-sop",
+      "target": "skill/user-onboarding-sop"
+    },
+    {
+      "name": "skill-creator",
+      "description": "Architect and refine skills.",
+      "type": "skill",
+      "path": "skill/skill-creator",
+      "target": "skill/skill-creator"
+    }
+  ]
+}
