@@ -56,14 +56,28 @@ function resolveTargetPath(item: RegistryItem): string {
 class TreeSelector {
   private registry: Registry
   private cursor = 0
-  private cursorId: string = "packs" // ID-based cursor for stability
+  private cursorId: string = "packs" 
   private expandedCategory: string | null = null
   private expandedPack: string | null = null
   private selectedItems = new Set<RegistryItem>()
   private visibleItems: any[] = []
+  private initialSelection = new Set<RegistryItem>()
 
   constructor(registry: Registry) {
     this.registry = registry
+  }
+
+  public async init() {
+    const allItems = [
+      ...this.registry.packs.flatMap(p => p.items),
+      ...this.registry.standalone
+    ]
+    for (const item of allItems) {
+      if (await fs.pathExists(resolveTargetPath(item))) {
+        this.selectedItems.add(item)
+        this.initialSelection.add(item)
+      }
+    }
   }
 
   private buildVisibleItems() {
@@ -107,12 +121,10 @@ class TreeSelector {
 
     this.visibleItems = items
     
-    // Stabilize numerical cursor based on cursorId
     const newIndex = items.findIndex(i => i.id === this.cursorId)
     if (newIndex !== -1) {
       this.cursor = newIndex
     } else {
-      // If the tracked ID is gone, snap to parent or nearest neighbor
       this.cursor = Math.min(this.cursor, items.length - 1)
       this.cursorId = items[this.cursor].id
     }
@@ -121,7 +133,7 @@ class TreeSelector {
   private render() {
     process.stdout.write("\x1Bc") 
     console.log(chalk.bold.cyan("Opencode Workflow Selector"))
-    console.log(chalk.gray("↑/↓: Navigate | →/←: Expand/Collapse | Space: Toggle | Enter: Install\n"))
+    console.log(chalk.gray("↑/↓: Navigate | →/←: Expand | Space: Toggle | Enter: Sync\n"))
 
     this.visibleItems.forEach((item, index) => {
       const isCursor = index === this.cursor
@@ -144,7 +156,22 @@ class TreeSelector {
       console.log(isCursor ? chalk.bgWhite.black(line) : line)
     })
 
-    console.log(`\nSelected: ${this.selectedItems.size} items`)
+    // --- Footer Help / Description ---
+    const current = this.visibleItems[this.cursor]
+    let desc = ""
+    if (current.type === "pack") desc = current.pack.description
+    else if (current.type === "item") desc = current.item.description
+    else if (current.type === "category") {
+      if (current.id === "packs") desc = "Collection of specialized agents and tools"
+      else if (current.id === "agents") desc = "Individual global orchestration agents"
+      else if (current.id === "commands") desc = "Common repository utility commands"
+    }
+
+    console.log(chalk.dim("\n" + "─".repeat(50)))
+    if (desc) {
+      console.log(chalk.italic.yellow(" Info: ") + chalk.white(desc))
+    }
+    console.log(chalk.dim(" Selected: ") + chalk.bold.green(this.selectedItems.size) + chalk.dim(" items"))
   }
 
   private isPackSelected(pack: Pack) {
@@ -156,7 +183,7 @@ class TreeSelector {
     else pack.items.forEach(i => this.selectedItems.add(i))
   }
 
-  public select(): Promise<RegistryItem[]> {
+  public select(): Promise<{ install: RegistryItem[], remove: RegistryItem[] }> {
     return new Promise((resolve) => {
       readline.emitKeypressEvents(process.stdin)
       if (process.stdin.isTTY) {
@@ -207,7 +234,12 @@ class TreeSelector {
         } else if (key.name === "return") {
           if (process.stdin.isTTY) process.stdin.setRawMode(false)
           process.stdin.pause()
-          resolve(Array.from(this.selectedItems))
+          
+          const currentSelection = Array.from(this.selectedItems)
+          const toInstall = currentSelection.filter(i => !this.initialSelection.has(i))
+          const toRemove = Array.from(this.initialSelection).filter(i => !this.selectedItems.has(i))
+          
+          resolve({ install: toInstall, remove: toRemove })
           return
         } else if (key.ctrl && key.name === "c") {
           if (process.stdin.isTTY) process.stdin.setRawMode(false)
@@ -231,22 +263,56 @@ program
   .action(async (options) => {
     const registry = await getRegistry()
     const selector = new TreeSelector(registry)
-    const selection = await selector.select()
+    await selector.init()
+    const { install, remove } = await selector.select()
 
-    if (selection.length === 0) {
-      console.log(chalk.yellow("\nNo items selected."))
+    if (install.length === 0 && remove.length === 0) {
+      console.log(chalk.yellow("\nNo changes to apply."))
       return
     }
 
-    console.log(chalk.blue(`\nInstalling ${selection.length} items...`))
-    for (const item of selection) {
-      const source = path.join("/home/igorw/Work/Opencode-Workflows", item.path)
-      const dest = resolveTargetPath(item)
-      if (options.dryRun) console.log(chalk.gray(`[DRY] ${item.name} -> ${path.relative(process.cwd(), dest)}`))
-      else {
-        await fs.ensureDir(path.dirname(dest))
-        await fs.copy(source, dest)
-        console.log(chalk.green(`✓ ${item.name}`))
+    console.log(chalk.bold.blue("\nChanges Summary:"))
+    if (install.length > 0) {
+      console.log(chalk.green(`  Install (${install.length}):`))
+      install.forEach(i => console.log(`    + ${i.name}`))
+    }
+    if (remove.length > 0) {
+      console.log(chalk.red(`  Remove (${remove.length}):`))
+      remove.forEach(i => console.log(`    - ${i.name}`))
+    }
+
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+    const confirm = await new Promise(r => rl.question(chalk.bold("\nProceed with changes? (y/N): "), r))
+    rl.close()
+
+    if (String(confirm).toLowerCase() !== 'y') {
+      console.log(chalk.yellow("Aborted."))
+      return
+    }
+
+    if (remove.length > 0) {
+      console.log(chalk.blue(`\nUninstalling items...`))
+      for (const item of remove) {
+        const dest = resolveTargetPath(item)
+        if (options.dryRun) console.log(chalk.gray(`[DRY] rm ${dest}`))
+        else {
+          await fs.remove(dest)
+          console.log(chalk.red(`✓ Removed ${item.name}`))
+        }
+      }
+    }
+
+    if (install.length > 0) {
+      console.log(chalk.blue(`\nInstalling items...`))
+      for (const item of install) {
+        const source = path.join("/home/igorw/Work/Opencode-Workflows", item.path)
+        const dest = resolveTargetPath(item)
+        if (options.dryRun) console.log(chalk.gray(`[DRY] ${item.name} -> ${path.relative(process.cwd(), dest)}`))
+        else {
+          await fs.ensureDir(path.dirname(dest))
+          await fs.copy(source, dest)
+          console.log(chalk.green(`✓ Installed ${item.name}`))
+        }
       }
     }
   })

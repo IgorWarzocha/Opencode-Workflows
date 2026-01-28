@@ -28,13 +28,25 @@ var TreeSelector = class {
   registry;
   cursor = 0;
   cursorId = "packs";
-  // ID-based cursor for stability
   expandedCategory = null;
   expandedPack = null;
   selectedItems = /* @__PURE__ */ new Set();
   visibleItems = [];
+  initialSelection = /* @__PURE__ */ new Set();
   constructor(registry) {
     this.registry = registry;
+  }
+  async init() {
+    const allItems = [
+      ...this.registry.packs.flatMap((p) => p.items),
+      ...this.registry.standalone
+    ];
+    for (const item of allItems) {
+      if (await fs.pathExists(resolveTargetPath(item))) {
+        this.selectedItems.add(item);
+        this.initialSelection.add(item);
+      }
+    }
   }
   buildVisibleItems() {
     const items = [];
@@ -79,7 +91,7 @@ var TreeSelector = class {
   render() {
     process.stdout.write("\x1Bc");
     console.log(chalk.bold.cyan("Opencode Workflow Selector"));
-    console.log(chalk.gray("\u2191/\u2193: Navigate | \u2192/\u2190: Expand/Collapse | Space: Toggle | Enter: Install\n"));
+    console.log(chalk.gray("\u2191/\u2193: Navigate | \u2192/\u2190: Expand | Space: Toggle | Enter: Sync\n"));
     this.visibleItems.forEach((item, index) => {
       const isCursor = index === this.cursor;
       const prefix = isCursor ? chalk.blue("\u276F ") : "  ";
@@ -98,8 +110,20 @@ var TreeSelector = class {
       }
       console.log(isCursor ? chalk.bgWhite.black(line) : line);
     });
-    console.log(`
-Selected: ${this.selectedItems.size} items`);
+    const current = this.visibleItems[this.cursor];
+    let desc = "";
+    if (current.type === "pack") desc = current.pack.description;
+    else if (current.type === "item") desc = current.item.description;
+    else if (current.type === "category") {
+      if (current.id === "packs") desc = "Collection of specialized agents and tools";
+      else if (current.id === "agents") desc = "Individual global orchestration agents";
+      else if (current.id === "commands") desc = "Common repository utility commands";
+    }
+    console.log(chalk.dim("\n" + "\u2500".repeat(50)));
+    if (desc) {
+      console.log(chalk.italic.yellow(" Info: ") + chalk.white(desc));
+    }
+    console.log(chalk.dim(" Selected: ") + chalk.bold.green(this.selectedItems.size) + chalk.dim(" items"));
   }
   isPackSelected(pack) {
     return pack.items.every((i) => this.selectedItems.has(i));
@@ -156,7 +180,10 @@ Selected: ${this.selectedItems.size} items`);
         } else if (key.name === "return") {
           if (process.stdin.isTTY) process.stdin.setRawMode(false);
           process.stdin.pause();
-          resolve(Array.from(this.selectedItems));
+          const currentSelection = Array.from(this.selectedItems);
+          const toInstall = currentSelection.filter((i) => !this.initialSelection.has(i));
+          const toRemove = Array.from(this.initialSelection).filter((i) => !this.selectedItems.has(i));
+          resolve({ install: toInstall, remove: toRemove });
           return;
         } else if (key.ctrl && key.name === "c") {
           if (process.stdin.isTTY) process.stdin.setRawMode(false);
@@ -173,21 +200,52 @@ program.name("opencode").version("0.1.0");
 program.command("add").option("-d, --dry-run").action(async (options) => {
   const registry = await getRegistry();
   const selector = new TreeSelector(registry);
-  const selection = await selector.select();
-  if (selection.length === 0) {
-    console.log(chalk.yellow("\nNo items selected."));
+  await selector.init();
+  const { install, remove } = await selector.select();
+  if (install.length === 0 && remove.length === 0) {
+    console.log(chalk.yellow("\nNo changes to apply."));
     return;
   }
-  console.log(chalk.blue(`
-Installing ${selection.length} items...`));
-  for (const item of selection) {
-    const source = path.join("/home/igorw/Work/Opencode-Workflows", item.path);
-    const dest = resolveTargetPath(item);
-    if (options.dryRun) console.log(chalk.gray(`[DRY] ${item.name} -> ${path.relative(process.cwd(), dest)}`));
-    else {
-      await fs.ensureDir(path.dirname(dest));
-      await fs.copy(source, dest);
-      console.log(chalk.green(`\u2713 ${item.name}`));
+  console.log(chalk.bold.blue("\nChanges Summary:"));
+  if (install.length > 0) {
+    console.log(chalk.green(`  Install (${install.length}):`));
+    install.forEach((i) => console.log(`    + ${i.name}`));
+  }
+  if (remove.length > 0) {
+    console.log(chalk.red(`  Remove (${remove.length}):`));
+    remove.forEach((i) => console.log(`    - ${i.name}`));
+  }
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const confirm = await new Promise((r) => rl.question(chalk.bold("\nProceed with changes? (y/N): "), r));
+  rl.close();
+  if (String(confirm).toLowerCase() !== "y") {
+    console.log(chalk.yellow("Aborted."));
+    return;
+  }
+  if (remove.length > 0) {
+    console.log(chalk.blue(`
+Uninstalling items...`));
+    for (const item of remove) {
+      const dest = resolveTargetPath(item);
+      if (options.dryRun) console.log(chalk.gray(`[DRY] rm ${dest}`));
+      else {
+        await fs.remove(dest);
+        console.log(chalk.red(`\u2713 Removed ${item.name}`));
+      }
+    }
+  }
+  if (install.length > 0) {
+    console.log(chalk.blue(`
+Installing items...`));
+    for (const item of install) {
+      const source = path.join("/home/igorw/Work/Opencode-Workflows", item.path);
+      const dest = resolveTargetPath(item);
+      if (options.dryRun) console.log(chalk.gray(`[DRY] ${item.name} -> ${path.relative(process.cwd(), dest)}`));
+      else {
+        await fs.ensureDir(path.dirname(dest));
+        await fs.copy(source, dest);
+        console.log(chalk.green(`\u2713 Installed ${item.name}`));
+      }
     }
   }
 });
