@@ -1,0 +1,34 @@
+{
+  "name": "component-engineer",
+  "description": "Professional React component engineering and audit pack.",
+  "items": [
+    {
+      "name": "component-engineer",
+      "description": "Expert React architecture specialist.",
+      "type": "agent",
+      "path": ".opencode/agent/component-engineer.md",
+      "target": "agent/component-engineer.md"
+    },
+    {
+      "name": "component-create",
+      "description": "Create spec-compliant React components.",
+      "type": "command",
+      "path": ".opencode/command/component-create.md",
+      "target": "command/component-create.md"
+    },
+    {
+      "name": "component-review",
+      "description": "Audit components against engineering spec.",
+      "type": "command",
+      "path": ".opencode/command/component-review.md",
+      "target": "command/component-review.md"
+    },
+    {
+      "name": "component-engineering",
+      "description": "Component engineering specification skill.",
+      "type": "skill",
+      "path": ".opencode/skill/component-engineering",
+      "target": "skill/component-engineering"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "parallel-PRD",
+  "description": "Parallel PRD planning and Best-of-N synthesis pack.",
+  "items": [
+    {
+      "name": "parallel-prd-orchestrator",
+      "description": "Orchestrates parallel PRD planners.",
+      "type": "agent",
+      "path": ".opencode/agent/parallel-prd-orchestrator.md",
+      "target": "agent/parallel-prd-orchestrator.md"
+    },
+    {
+      "name": "glm-planner",
+      "description": "GLM-based PRD planner subagent example.",
+      "type": "agent",
+      "path": ".opencode/agent/glm-planner.md",
+      "target": "agent/glm-planner.md"
+    },
+    {
+      "name": "TEMPLATE-planner",
+      "description": "Standard PRD planner template agent. Copy, rename, set your own model",
+      "type": "agent",
+      "path": ".opencode/agent/TEMPLATE-planner.md",
+      "target": "agent/TEMPLATE-planner.md"
+    },
+    {
+      "name": "parallel-prd",
+      "description": "Generate parallel PRD architecture views.",
+      "type": "command",
+      "path": ".opencode/command/parallel-prd.md",
+      "target": "command/parallel-prd.md"
+    },
+    {
+      "name": "prd-authoring",
+      "description": "Skill for drafting technical PRDs.",
+      "type": "skill",
+      "path": ".opencode/skill/prd-authoring",
+      "target": "skill/prd-authoring"
+    }
+  ]
+}

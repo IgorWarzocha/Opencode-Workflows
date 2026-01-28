@@ -1,0 +1,83 @@
+{
+  "name": "security-reviewer",
+  "description": "Vibecoding security audit and secret scanning pack.",
+  "items": [
+    {
+      "name": "security-reviewer",
+      "description": "Security auditor for vibecoding vulnerabilities.",
+      "type": "agent",
+      "path": ".opencode/agent/security-reviewer.md",
+      "target": "agent/security-reviewer.md"
+    },
+    {
+      "name": "security-ai-keys",
+      "description": "Scan for exposed AI API keys.",
+      "type": "skill",
+      "path": ".opencode/skill/security-ai-keys",
+      "target": "skill/security-ai-keys"
+    },
+    {
+      "name": "security-bun",
+      "description": "Bun-specific security audit skill.",
+      "type": "skill",
+      "path": ".opencode/skill/security-bun",
+      "target": "skill/security-bun"
+    },
+    {
+      "name": "security-convex",
+      "description": "Convex-specific security audit skill.",
+      "type": "skill",
+      "path": ".opencode/skill/security-convex",
+      "target": "skill/security-convex"
+    },
+    {
+      "name": "security-django",
+      "description": "Django-specific security audit skill.",
+      "type": "skill",
+      "path": ".opencode/skill/security-django",
+      "target": "skill/security-django"
+    },
+    {
+      "name": "security-docker",
+      "description": "Docker-specific security audit skill.",
+      "type": "skill",
+      "path": ".opencode/skill/security-docker",
+      "target": "skill/security-docker"
+    },
+    {
+      "name": "security-express",
+      "description": "Express-specific security audit skill.",
+      "type": "skill",
+      "path": ".opencode/skill/security-express",
+      "target": "skill/security-express"
+    },
+    {
+      "name": "security-fastapi",
+      "description": "FastAPI-specific security audit skill.",
+      "type": "skill",
+      "path": ".opencode/skill/security-fastapi",
+      "target": "skill/security-fastapi"
+    },
+    {
+      "name": "security-nextjs",
+      "description": "Next.js-specific security audit skill.",
+      "type": "skill",
+      "path": ".opencode/skill/security-nextjs",
+      "target": "skill/security-nextjs"
+    },
+    {
+      "name": "security-secrets",
+      "description": "Generic secret and credential scanner.",
+      "type": "skill",
+      "path": ".opencode/skill/security-secrets",
+      "target": "skill/security-secrets"
+    },
+    {
+      "name": "security-vite",
+      "description": "Vite-specific security audit skill.",
+      "type": "skill",
+      "path": ".opencode/skill/security-vite",
+      "target": "skill/security-vite"
+    }
+  ]
+}

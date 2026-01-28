@@ -1,0 +1,27 @@
+{
+  "name": "create-opencode-plugin",
+  "description": "Opencode plugin development and scaffolding pack. Works best when installed in opencode repository.",
+  "items": [
+    {
+      "name": "plugin-creator",
+      "description": "Specialist for building opencode plugins.",
+      "type": "agent",
+      "path": ".opencode/agent/plugin-creator.md",
+      "target": "agent/plugin-creator.md"
+    },
+    {
+      "name": "create-plugin",
+      "description": "Scaffold a new opencode plugin based on description.",
+      "type": "command",
+      "path": ".opencode/command/create-plugin.md",
+      "target": "command/create-plugin.md"
+    },
+    {
+      "name": "create-opencode-plugin",
+      "description": "Plugin development workflow skill.",
+      "type": "skill",
+      "path": ".opencode/skill/create-opencode-plugin",
+      "target": "skill/create-opencode-plugin"
+    }
+  ]
+}

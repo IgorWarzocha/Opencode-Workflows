@@ -1,0 +1,69 @@
+{
+  "name": "additional-commands",
+  "description": "Extended utility commands for various workflows.",
+  "items": [
+    {
+      "name": "learn",
+      "description": "A version of learn command hyperfocussed on minimal nested AGENTS.md creation.",
+      "type": "command",
+      "path": ".opencode/command/learn.md",
+      "target": "command/learn.md"
+    },
+    {
+      "name": "rmslop",
+      "description": "Remove AI-generated boilerplate/slop. Adjusted from OC repo command.",
+      "type": "command",
+      "path": ".opencode/command/rmslop.md",
+      "target": "command/rmslop.md"
+    },
+    {
+      "name": "loop",
+      "description": "Run autonomous development loops. Kinda Ralph, but via subagents.",
+      "type": "command",
+      "path": ".opencode/command/loop.md",
+      "target": "command/loop.md"
+    },
+    {
+      "name": "howto",
+      "description": "Generate AGENTS.md tailored towards teaching the user how to use a repo.",
+      "type": "command",
+      "path": ".opencode/command/howto.md",
+      "target": "command/howto.md"
+    },
+    {
+      "name": "create-pack",
+      "description": "Scaffold a new agent pack. Similar to you're looking at here.",
+      "type": "command",
+      "path": ".opencode/command/create-pack.md",
+      "target": "command/create-pack.md"
+    },
+    {
+      "name": "refactor",
+      "description": "Refactor code according to best practices.",
+      "type": "command",
+      "path": ".opencode/command/refactor.md",
+      "target": "command/refactor.md"
+    },
+    {
+      "name": "npm",
+      "description": "Helper for npm package management.",
+      "type": "command",
+      "path": ".opencode/command/npm.md",
+      "target": "command/npm.md"
+    },
+    {
+      "name": "improve-run",
+      "description": "Run and improve prompts.",
+      "type": "command",
+      "path": ".opencode/command/improve-run.md",
+      "target": "command/improve-run.md"
+    },
+    {
+      "name": "improve-save",
+      "description": "Improve and save a prompt.",
+      "type": "command",
+      "path": ".opencode/command/improve-save.md",
+      "target": "command/improve-save.md"
+    }
+  ]
+}

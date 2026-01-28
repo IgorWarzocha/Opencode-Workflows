@@ -1,0 +1,125 @@
+{
+  "name": "cowork",
+  "description": "Multi-agent orchestration system for complex collaborative tasks.",
+  "items": [
+    {
+      "name": "cowork-orchestrator",
+      "description": "Master coordinator for cowork sessions.",
+      "type": "agent",
+      "path": ".opencode/agent/cowork-orchestrator.md",
+      "target": "agent/cowork-orchestrator.md"
+    },
+    {
+      "name": "admin-assistant",
+      "description": "Task management and administrative support.",
+      "type": "agent",
+      "path": ".opencode/agent/admin-assistant.md",
+      "target": "agent/admin-assistant.md"
+    },
+    {
+      "name": "research-specialist",
+      "description": "Deep research and information synthesis.",
+      "type": "agent",
+      "path": ".opencode/agent/research-specialist.md",
+      "target": "agent/research-specialist.md"
+    },
+    {
+      "name": "data-analyst",
+      "description": "Data processing and pattern analysis.",
+      "type": "agent",
+      "path": ".opencode/agent/data-analyst.md",
+      "target": "agent/data-analyst.md"
+    },
+    {
+      "name": "document-specialist",
+      "description": "Professional documentation and report authoring.",
+      "type": "agent",
+      "path": ".opencode/agent/document-specialist.md",
+      "target": "agent/document-specialist.md"
+    },
+    {
+      "name": "presentation-expert",
+      "description": "Visual communication and slide design.",
+      "type": "agent",
+      "path": ".opencode/agent/presentation-expert.md",
+      "target": "agent/presentation-expert.md"
+    },
+    {
+      "name": "cowork-configurator",
+      "description": "Configuration expert for cowork environment.",
+      "type": "agent",
+      "path": ".opencode/agent/cowork-configurator.md",
+      "target": "agent/cowork-configurator.md"
+    },
+    {
+      "name": "cowork-cmd",
+      "description": "Launch a collaborative cowork session.",
+      "type": "command",
+      "path": ".opencode/command/cowork.md",
+      "target": "command/cowork.md"
+    },
+    {
+      "name": "cowork-skill",
+      "description": "Core cowork orchestration logic.",
+      "type": "skill",
+      "path": ".opencode/skill/cowork",
+      "target": "skill/cowork"
+    },
+    {
+      "name": "branding",
+      "description": "Visual identity and branding guidelines.",
+      "type": "skill",
+      "path": ".opencode/skill/branding",
+      "target": "skill/branding"
+    },
+    {
+      "name": "comms",
+      "description": "Communication templates and strategies.",
+      "type": "skill",
+      "path": ".opencode/skill/comms",
+      "target": "skill/comms"
+    },
+    {
+      "name": "excel",
+      "description": "Advanced spreadsheet automation and analysis.",
+      "type": "skill",
+      "path": ".opencode/skill/excel",
+      "target": "skill/excel"
+    },
+    {
+      "name": "pdf",
+      "description": "PDF manipulation and form processing.",
+      "type": "skill",
+      "path": ".opencode/skill/pdf",
+      "target": "skill/pdf"
+    },
+    {
+      "name": "powerpoint",
+      "description": "Presentation generation and OOXML tools.",
+      "type": "skill",
+      "path": ".opencode/skill/powerpoint",
+      "target": "skill/powerpoint"
+    },
+    {
+      "name": "themes",
+      "description": "Document themes and visual styles.",
+      "type": "skill",
+      "path": ".opencode/skill/themes",
+      "target": "skill/themes"
+    },
+    {
+      "name": "word",
+      "description": "Word document automation and OOXML tools.",
+      "type": "skill",
+      "path": ".opencode/skill/word",
+      "target": "skill/word"
+    },
+    {
+      "name": "writing",
+      "description": "Professional writing and editing workflow.",
+      "type": "skill",
+      "path": ".opencode/skill/writing",
+      "target": "skill/writing"
+    }
+  ]
+}
