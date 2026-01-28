@@ -3,3 +3,4 @@ package.json
 bun.lock
 .gitignore
 remember.jsonc
+@howaboua-cli/
