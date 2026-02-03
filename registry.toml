@@ -1,0 +1,18 @@
+[ui]
+brand = "Howaboua"
+product = "Opencode Workflows"
+help = "up/down navigate | left/right expand | space select | tab mode | enter sync | a about"
+[ui.about]
+lines = [
+  "We've all seen massive repositories full of skills and agents that nobody ever uses... But I bet you haven't seen any like these. I treat prompts like code. RFC 2119 keywords everywhere along with XML tags make for much more controlled experience with unwieldy models.",
+  "I actually update these because I use them every day. For 10 hours a day. I'm an automation freak. Coding is a byproduct. Something fails more than once? It will get updated.",
+  "It's not the fish, it's the fishing rod (I swear I wrote it by hand). These packs enable you to one-shot a plugin, or... create a repo like this for yourself.",
+]
+emphasis = "Markdown Is All You Need"
+link = "https://github.com/IgorWarzocha/opencode-workflows-manager"
+linkNote = "I couldn't get the link to be clickable, lol. Sorry."
+footer = "Press any key to return..."
+[install]
+globalDir = "~/.config/opencode"
+localDir = ".opencode"
+prefixTypes = ["agent", "skill", "command"]

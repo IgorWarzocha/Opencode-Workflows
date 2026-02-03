@@ -8,18 +8,18 @@
       "path": "agents/vite-react-ts-convex-tailwind",
       "items": [
         {
-          "name": "VRTCT-orchestrator",
-          "description": "Master coordinator for VRTCT with no file-creation capabilities.",
-          "type": "agent",
-          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/VRTCT-orchestrator.md",
-          "target": "agent/VRTCT-orchestrator.md"
-        },
-        {
           "name": "VRTCT-brain",
           "description": "Stack implementation and knowledge.",
           "type": "agent",
           "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/VRTCT-brain.md",
           "target": "agent/VRTCT-brain.md"
+        },
+        {
+          "name": "VRTCT-orchestrator",
+          "description": "Master coordinator for VRTCT with no file-creation capabilities.",
+          "type": "agent",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/VRTCT-orchestrator.md",
+          "target": "agent/VRTCT-orchestrator.md"
         },
         {
           "name": "convex-database-expert",
@@ -36,18 +36,18 @@
           "target": "agent/react-19-master.md"
         },
         {
-          "name": "tailwind-41-architect",
-          "description": "Tailwind 4.1 maestro.",
-          "type": "agent",
-          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/tailwind-41-architect.md",
-          "target": "agent/tailwind-41-architect.md"
-        },
-        {
           "name": "typescript-59-engineer",
           "description": "Strict TypeScript 5.9 expert.",
           "type": "agent",
           "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/typescript-59-engineer.md",
           "target": "agent/typescript-59-engineer.md"
+        },
+        {
+          "name": "tailwind-41-architect",
+          "description": "Tailwind 4.1 maestro.",
+          "type": "agent",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/agent/tailwind-41-architect.md",
+          "target": "agent/tailwind-41-architect.md"
         },
         {
           "name": "component-create",
@@ -64,18 +64,144 @@
           "target": "command/component-review.md"
         },
         {
-          "name": "CODING-TS",
-          "description": "Universal engineering guidelines.",
-          "type": "doc",
-          "path": "agents/vite-react-ts-convex-tailwind/CODING-TS.md",
-          "target": "CODING-TS.md"
+          "name": "patterns",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/component-engineering/references/patterns.md",
+          "target": "skill/component-engineering/references/patterns.md"
         },
         {
-          "name": "CONVEX",
-          "description": "Convex best practices guide.",
+          "name": "styling",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/component-engineering/references/styling.md",
+          "target": "skill/component-engineering/references/styling.md"
+        },
+        {
+          "name": "taxonomy",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/component-engineering/references/taxonomy.md",
+          "target": "skill/component-engineering/references/taxonomy.md"
+        },
+        {
+          "name": "accessibility",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/component-engineering/references/accessibility.md",
+          "target": "skill/component-engineering/references/accessibility.md"
+        },
+        {
+          "name": "composition",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/component-engineering/references/composition.md",
+          "target": "skill/component-engineering/references/composition.md"
+        },
+        {
+          "name": "distribution",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/component-engineering/references/distribution.md",
+          "target": "skill/component-engineering/references/distribution.md"
+        },
+        {
+          "name": "component-engineering",
+          "description": "Apply the formal standard for ",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/component-engineering/SKILL.md",
+          "target": "skill/component-engineering/SKILL.md"
+        },
+        {
+          "name": "vite-shadcn-tailwind4",
+          "description": "Initialize shadcn/ui + Tailwin",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/vite-shadcn-tailwind4/SKILL.md",
+          "target": "skill/vite-shadcn-tailwind4/SKILL.md"
+        },
+        {
+          "name": "convex-auth",
+          "description": "Implement Convex authenticatio",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/convex-auth/SKILL.md",
+          "target": "skill/convex-auth/SKILL.md"
+        },
+        {
+          "name": "convex-components",
+          "description": "Use Convex Components to add i",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/convex-components/SKILL.md",
+          "target": "skill/convex-components/SKILL.md"
+        },
+        {
+          "name": "agent",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/convex-components/references/agent.md",
+          "target": "skill/convex-components/references/agent.md"
+        },
+        {
+          "name": "rag",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/convex-components/references/rag.md",
+          "target": "skill/convex-components/references/rag.md"
+        },
+        {
+          "name": "workflow",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/convex-components/references/workflow.md",
+          "target": "skill/convex-components/references/workflow.md"
+        },
+        {
+          "name": "workpool",
+          "description": "",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/convex-components/references/workpool.md",
+          "target": "skill/convex-components/references/workpool.md"
+        },
+        {
+          "name": "convex-core",
+          "description": "Build Convex schemas, queries,",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/convex-core/SKILL.md",
+          "target": "skill/convex-core/SKILL.md"
+        },
+        {
+          "name": "convex-deploy",
+          "description": "Implement Convex deployment wo",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/convex-deploy/SKILL.md",
+          "target": "skill/convex-deploy/SKILL.md"
+        },
+        {
+          "name": "convex-runtime",
+          "description": "Implement Convex runtime featu",
+          "type": "skill",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/skill/convex-runtime/SKILL.md",
+          "target": "skill/convex-runtime/SKILL.md"
+        },
+        {
+          "name": "package.json",
+          "description": "",
           "type": "doc",
-          "path": "agents/vite-react-ts-convex-tailwind/CONVEX.md",
-          "target": "CONVEX.md"
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/package.json",
+          "target": "package.json"
+        },
+        {
+          "name": ".gitignore",
+          "description": "",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/.gitignore",
+          "target": ".gitignore"
+        },
+        {
+          "name": "bun.lock",
+          "description": "",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/.opencode/bun.lock",
+          "target": "bun.lock"
         },
         {
           "name": "REACT19",
@@ -95,87 +221,32 @@
           "name": "TS59",
           "description": "TypeScript 5.9 language reference.",
           "type": "doc",
-          "path": "agents/vite-react-ts-convex-tailwind/TS59.md",
-          "target": "TS59.md"
+          "path": "agents/vite-react-ts-convex-tailwind/TS59.MD",
+          "target": "TS59.MD"
+        },
+        {
+          "name": "VRTCT.jpg",
+          "description": "",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/VRTCT.jpg",
+          "target": "VRTCT.jpg"
+        },
+        {
+          "name": "CODING-TS",
+          "description": "Universal engineering guidelines.",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/CODING-TS.md",
+          "target": "CODING-TS.md"
+        },
+        {
+          "name": "CONVEX",
+          "description": "Convex best practices guide.",
+          "type": "doc",
+          "path": "agents/vite-react-ts-convex-tailwind/CONVEX.md",
+          "target": "CONVEX.md"
         }
-      ]
-    },
-    {
-      "name": "parallel-PRD",
-      "description": "Parallel PRD planning and Best-of-N synthesis pack.",
-      "path": "agents/parallel-PRD",
-      "items": [
-        {
-          "name": "parallel-prd-orchestrator",
-          "description": "Orchestrates parallel PRD planners.",
-          "type": "agent",
-          "path": "agents/parallel-PRD/.opencode/agent/parallel-prd-orchestrator.md",
-          "target": "agent/parallel-prd-orchestrator.md"
-        },
-        {
-          "name": "glm-planner",
-          "description": "GLM-based PRD planner subagent example.",
-          "type": "agent",
-          "path": "agents/parallel-PRD/.opencode/agent/glm-planner.md",
-          "target": "agent/glm-planner.md"
-        },
-        {
-          "name": "TEMPLATE-planner",
-          "description": "Standard PRD planner template agent. Copy, rename, set your own model",
-          "type": "agent",
-          "path": "agents/parallel-PRD/.opencode/agent/TEMPLATE-planner.md",
-          "target": "agent/TEMPLATE-planner.md"
-        },
-        {
-          "name": "parallel-prd",
-          "description": "Generate parallel PRD architecture views.",
-          "type": "command",
-          "path": "agents/parallel-PRD/.opencode/command/parallel-prd.md",
-          "target": "command/parallel-prd.md"
-        },
-        {
-          "name": "prd-authoring",
-          "description": "Skill for drafting technical PRDs.",
-          "type": "skill",
-          "path": "agents/parallel-PRD/.opencode/skill/prd-authoring",
-          "target": "skill/prd-authoring"
-        }
-      ]
-    },
-    {
-      "name": "component-engineer",
-      "description": "Professional React component engineering and audit pack.",
-      "path": "agents/component-engineer",
-      "items": [
-        {
-          "name": "component-engineer",
-          "description": "Expert React architecture specialist.",
-          "type": "agent",
-          "path": "agents/component-engineer/.opencode/agent/component-engineer.md",
-          "target": "agent/component-engineer.md"
-        },
-        {
-          "name": "component-create",
-          "description": "Create spec-compliant React components.",
-          "type": "command",
-          "path": "agents/component-engineer/.opencode/command/component-create.md",
-          "target": "command/component-create.md"
-        },
-        {
-          "name": "component-review",
-          "description": "Audit components against engineering spec.",
-          "type": "command",
-          "path": "agents/component-engineer/.opencode/command/component-review.md",
-          "target": "command/component-review.md"
-        },
-        {
-          "name": "component-engineering",
-          "description": "Component engineering specification skill.",
-          "type": "skill",
-          "path": "agents/component-engineer/.opencode/skill/component-engineering",
-          "target": "skill/component-engineering"
-        }
-      ]
+      ],
+      "kind": "structure"
     },
     {
       "name": "create-opencode-plugin",
@@ -200,10 +271,95 @@
           "name": "create-opencode-plugin",
           "description": "Plugin development workflow skill.",
           "type": "skill",
-          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin",
-          "target": "skill/create-opencode-plugin"
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/SKILL.md",
+          "target": "skill/create-opencode-plugin/SKILL.md"
+        },
+        {
+          "name": "CODING-TS",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/CODING-TS.MD",
+          "target": "skill/create-opencode-plugin/references/CODING-TS.MD"
+        },
+        {
+          "name": "events",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/events.md",
+          "target": "skill/create-opencode-plugin/references/events.md"
+        },
+        {
+          "name": "examples",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/examples.md",
+          "target": "skill/create-opencode-plugin/references/examples.md"
+        },
+        {
+          "name": "hook-patterns",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/hook-patterns.md",
+          "target": "skill/create-opencode-plugin/references/hook-patterns.md"
+        },
+        {
+          "name": "hooks",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/hooks.md",
+          "target": "skill/create-opencode-plugin/references/hooks.md"
+        },
+        {
+          "name": "publishing",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/publishing.md",
+          "target": "skill/create-opencode-plugin/references/publishing.md"
+        },
+        {
+          "name": "testing",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/testing.md",
+          "target": "skill/create-opencode-plugin/references/testing.md"
+        },
+        {
+          "name": "toast-notifications",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/toast-notifications.md",
+          "target": "skill/create-opencode-plugin/references/toast-notifications.md"
+        },
+        {
+          "name": "tool-helper",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/tool-helper.md",
+          "target": "skill/create-opencode-plugin/references/tool-helper.md"
+        },
+        {
+          "name": "ui-feedback",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/ui-feedback.md",
+          "target": "skill/create-opencode-plugin/references/ui-feedback.md"
+        },
+        {
+          "name": "update-notifications",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/references/update-notifications.md",
+          "target": "skill/create-opencode-plugin/references/update-notifications.md"
+        },
+        {
+          "name": "extract-plugin-api.ts",
+          "description": "",
+          "type": "skill",
+          "path": "agents/create-opencode-plugin/.opencode/skill/create-opencode-plugin/scripts/extract-plugin-api.ts",
+          "target": "skill/create-opencode-plugin/scripts/extract-plugin-api.ts"
         }
-      ]
+      ],
+      "kind": "structure"
     },
     {
       "name": "opencode-configurator",
@@ -218,6 +374,342 @@
           "target": "agent/opencode-configurator.md"
         },
         {
+          "name": "agent-patterns",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/agent-architect/references/agent-patterns.md",
+          "target": "skill/agent-architect/references/agent-patterns.md"
+        },
+        {
+          "name": "opencode-config",
+          "description": "Guided opencode.json setup.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/agent-architect/references/opencode-config.md",
+          "target": "skill/agent-architect/references/opencode-config.md"
+        },
+        {
+          "name": "agent-architect",
+          "description": "Design and refine agents.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/agent-architect/SKILL.md",
+          "target": "skill/agent-architect/SKILL.md"
+        },
+        {
+          "name": "command-creator",
+          "description": "Build custom slash commands.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/command-creator/SKILL.md",
+          "target": "skill/command-creator/SKILL.md"
+        },
+        {
+          "name": "config-schema",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/opencode-config/references/config-schema.md",
+          "target": "skill/opencode-config/references/config-schema.md"
+        },
+        {
+          "name": "opencode-config",
+          "description": "Guided opencode.json setup.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/opencode-config/SKILL.sync-conflict-20251228-180025-EZMUYIT.md",
+          "target": "skill/opencode-config/SKILL.sync-conflict-20251228-180025-EZMUYIT.md"
+        },
+        {
+          "name": "opencode-config",
+          "description": "Guided opencode.json setup.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/opencode-config/SKILL.md",
+          "target": "skill/opencode-config/SKILL.md"
+        },
+        {
+          "name": "LLM-API-Key-Proxy",
+          "description": "Universal LLM gateway with Ant",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/references/plugins/llm-api-key-proxy.md",
+          "target": "skill/plugin-installer/references/plugins/llm-api-key-proxy.md"
+        },
+        {
+          "name": "@tarquinen/opencode-dcp",
+          "description": "Dynamic Context Pruning - redu",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/references/plugins/opencode-dcp.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-dcp.md"
+        },
+        {
+          "name": "opencode-gemini-auth",
+          "description": "Google OAuth for Gemini models",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/references/plugins/opencode-gemini-auth.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-gemini-auth.md"
+        },
+        {
+          "name": "@franlol/opencode-md-table-formatter",
+          "description": "Auto-format markdown tables wi",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/references/plugins/opencode-md-table-formatter.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-md-table-formatter.md"
+        },
+        {
+          "name": "opencode-openai-codex-auth",
+          "description": "Use ChatGPT Plus/Pro subscript",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/references/plugins/opencode-openai-codex-auth.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-openai-codex-auth.md"
+        },
+        {
+          "name": "@ramtinj95/opencode-tokenscope",
+          "description": "Token usage analytics, cost tr",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/references/plugins/opencode-tokenscope.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-tokenscope.md"
+        },
+        {
+          "name": "@openhax/codex",
+          "description": "Alternative OpenAI Codex OAuth",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/references/plugins/openhax-codex.md",
+          "target": "skill/plugin-installer/references/plugins/openhax-codex.md"
+        },
+        {
+          "name": "@howaboua/pickle-thinker",
+          "description": "Enable thinking mode for GLM-4",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/references/plugins/pickle-thinker.md",
+          "target": "skill/plugin-installer/references/plugins/pickle-thinker.md"
+        },
+        {
+          "name": "list_plugins.py",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/scripts/list_plugins.py",
+          "target": "skill/plugin-installer/scripts/list_plugins.py"
+        },
+        {
+          "name": "plugin-installer",
+          "description": "Install and document community ecosystem plugins.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/plugin-installer/SKILL.md",
+          "target": "skill/plugin-installer/SKILL.md"
+        },
+        {
+          "name": "output-patterns",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/skill-creator/references/output-patterns.md",
+          "target": "skill/skill-creator/references/output-patterns.md"
+        },
+        {
+          "name": "workflows",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/skill-creator/references/workflows.md",
+          "target": "skill/skill-creator/references/workflows.md"
+        },
+        {
+          "name": "init_skill.py",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/skill-creator/scripts/init_skill.py",
+          "target": "skill/skill-creator/scripts/init_skill.py"
+        },
+        {
+          "name": "package_skill.py",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/skill-creator/scripts/package_skill.py",
+          "target": "skill/skill-creator/scripts/package_skill.py"
+        },
+        {
+          "name": "quick_validate.py",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/skill-creator/scripts/quick_validate.py",
+          "target": "skill/skill-creator/scripts/quick_validate.py"
+        },
+        {
+          "name": "LICENSE.txt",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/skill-creator/LICENSE.txt",
+          "target": "skill/skill-creator/LICENSE.txt"
+        },
+        {
+          "name": "skill-creator",
+          "description": "Guide for creating skills.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/skill-creator/SKILL.md",
+          "target": "skill/skill-creator/SKILL.md"
+        },
+        {
+          "name": "provider-patterns",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/model-researcher/references/provider-patterns.md",
+          "target": "skill/model-researcher/references/provider-patterns.md"
+        },
+        {
+          "name": "model-researcher",
+          "description": "Add verified AI models.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/model-researcher/SKILL.md",
+          "target": "skill/model-researcher/SKILL.md"
+        },
+        {
+          "name": "list_mcps.py",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/scripts/list_mcps.py",
+          "target": "skill/mcp-installer/scripts/list_mcps.py"
+        },
+        {
+          "name": "supabase",
+          "description": "Supabase database and project ",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/supabase.md",
+          "target": "skill/mcp-installer/references/mcps/supabase.md"
+        },
+        {
+          "name": "hubspot",
+          "description": "HubSpot CRM integration (beta)",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/hubspot.md",
+          "target": "skill/mcp-installer/references/mcps/hubspot.md"
+        },
+        {
+          "name": "stripe",
+          "description": "Stripe payment integration",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/stripe.md",
+          "target": "skill/mcp-installer/references/mcps/stripe.md"
+        },
+        {
+          "name": "figma",
+          "description": "Design-to-code workflow and de",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/figma.md",
+          "target": "skill/mcp-installer/references/mcps/figma.md"
+        },
+        {
+          "name": "slack",
+          "description": "Slack workspace integration (l",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/slack.md",
+          "target": "skill/mcp-installer/references/mcps/slack.md"
+        },
+        {
+          "name": "linear",
+          "description": "Linear issue tracking (archive",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/linear.md",
+          "target": "skill/mcp-installer/references/mcps/linear.md"
+        },
+        {
+          "name": "postgres",
+          "description": "PostgreSQL database access",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/postgres.md",
+          "target": "skill/mcp-installer/references/mcps/postgres.md"
+        },
+        {
+          "name": "notion",
+          "description": "Notion workspace integration",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/notion.md",
+          "target": "skill/mcp-installer/references/mcps/notion.md"
+        },
+        {
+          "name": "redis",
+          "description": "Redis database access and mana",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/redis.md",
+          "target": "skill/mcp-installer/references/mcps/redis.md"
+        },
+        {
+          "name": "context7",
+          "description": "AI-powered documentation searc",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/context7.md",
+          "target": "skill/mcp-installer/references/mcps/context7.md"
+        },
+        {
+          "name": "chrome-devtools",
+          "description": "Chrome DevTools with performan",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/chrome-devtools.md",
+          "target": "skill/mcp-installer/references/mcps/chrome-devtools.md"
+        },
+        {
+          "name": "sqlite",
+          "description": "SQLite database access",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/sqlite.md",
+          "target": "skill/mcp-installer/references/mcps/sqlite.md"
+        },
+        {
+          "name": "brave-search",
+          "description": "Web search using Brave Search ",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/brave-search.md",
+          "target": "skill/mcp-installer/references/mcps/brave-search.md"
+        },
+        {
+          "name": "playwright",
+          "description": "Browser automation with Playwr",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/playwright.md",
+          "target": "skill/mcp-installer/references/mcps/playwright.md"
+        },
+        {
+          "name": "github",
+          "description": "GitHub API access",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/github.md",
+          "target": "skill/mcp-installer/references/mcps/github.md"
+        },
+        {
+          "name": "sentry",
+          "description": "Sentry error tracking and issu",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/sentry.md",
+          "target": "skill/mcp-installer/references/mcps/sentry.md"
+        },
+        {
+          "name": "gh_grep",
+          "description": "Search GitHub code snippets",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/mcps/gh_grep.md",
+          "target": "skill/mcp-installer/references/mcps/gh_grep.md"
+        },
+        {
+          "name": "troubleshooting",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/troubleshooting.md",
+          "target": "skill/mcp-installer/references/troubleshooting.md"
+        },
+        {
+          "name": "configuration",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/configuration.md",
+          "target": "skill/mcp-installer/references/configuration.md"
+        },
+        {
+          "name": "examples",
+          "description": "",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/references/examples.md",
+          "target": "skill/mcp-installer/references/examples.md"
+        },
+        {
+          "name": "mcp-installer",
+          "description": "Configure MCP server connections.",
+          "type": "skill",
+          "path": "agents/opencode-configurator/skill/mcp-installer/SKILL.md",
+          "target": "skill/mcp-installer/SKILL.md"
+        },
+        {
           "name": "refactor-rfc-xml",
           "description": "Structure markdown files with RFC/XML for better agent adherence.",
           "type": "command",
@@ -230,57 +722,87 @@
           "type": "command",
           "path": "agents/opencode-configurator/command/permissions-update.md",
           "target": "command/permissions-update.md"
-        },
-        {
-          "name": "agent-architect",
-          "description": "Design and refine agents.",
-          "type": "skill",
-          "path": "agents/opencode-configurator/skill/agent-architect",
-          "target": "skill/agent-architect"
-        },
-        {
-          "name": "command-creator",
-          "description": "Build custom slash commands.",
-          "type": "skill",
-          "path": "agents/opencode-configurator/skill/command-creator",
-          "target": "skill/command-creator"
-        },
-        {
-          "name": "mcp-installer",
-          "description": "Configure MCP server connections.",
-          "type": "skill",
-          "path": "agents/opencode-configurator/skill/mcp-installer",
-          "target": "skill/mcp-installer"
-        },
-        {
-          "name": "model-researcher",
-          "description": "Add verified AI models.",
-          "type": "skill",
-          "path": "agents/opencode-configurator/skill/model-researcher",
-          "target": "skill/model-researcher"
-        },
-        {
-          "name": "opencode-config",
-          "description": "Guided opencode.json setup.",
-          "type": "skill",
-          "path": "agents/opencode-configurator/skill/opencode-config",
-          "target": "skill/opencode-config"
-        },
-        {
-          "name": "plugin-installer",
-          "description": "Install and document community ecosystem plugins.",
-          "type": "skill",
-          "path": "agents/opencode-configurator/skill/plugin-installer",
-          "target": "skill/plugin-installer"
-        },
-        {
-          "name": "skill-creator",
-          "description": "Guide for creating skills.",
-          "type": "skill",
-          "path": "agents/opencode-configurator/skill/skill-creator",
-          "target": "skill/skill-creator"
         }
-      ]
+      ],
+      "kind": "structure"
+    },
+    {
+      "name": "component-engineer",
+      "description": "Professional React component engineering and audit pack.",
+      "path": "agents/component-engineer",
+      "items": [
+        {
+          "name": "patterns",
+          "description": "",
+          "type": "skill",
+          "path": "agents/component-engineer/.opencode/skill/component-engineering/references/patterns.md",
+          "target": "skill/component-engineering/references/patterns.md"
+        },
+        {
+          "name": "accessibility",
+          "description": "",
+          "type": "skill",
+          "path": "agents/component-engineer/.opencode/skill/component-engineering/references/accessibility.md",
+          "target": "skill/component-engineering/references/accessibility.md"
+        },
+        {
+          "name": "composition",
+          "description": "",
+          "type": "skill",
+          "path": "agents/component-engineer/.opencode/skill/component-engineering/references/composition.md",
+          "target": "skill/component-engineering/references/composition.md"
+        },
+        {
+          "name": "styling",
+          "description": "",
+          "type": "skill",
+          "path": "agents/component-engineer/.opencode/skill/component-engineering/references/styling.md",
+          "target": "skill/component-engineering/references/styling.md"
+        },
+        {
+          "name": "taxonomy",
+          "description": "",
+          "type": "skill",
+          "path": "agents/component-engineer/.opencode/skill/component-engineering/references/taxonomy.md",
+          "target": "skill/component-engineering/references/taxonomy.md"
+        },
+        {
+          "name": "distribution",
+          "description": "",
+          "type": "skill",
+          "path": "agents/component-engineer/.opencode/skill/component-engineering/references/distribution.md",
+          "target": "skill/component-engineering/references/distribution.md"
+        },
+        {
+          "name": "component-engineering",
+          "description": "Component engineering specification skill.",
+          "type": "skill",
+          "path": "agents/component-engineer/.opencode/skill/component-engineering/SKILL.md",
+          "target": "skill/component-engineering/SKILL.md"
+        },
+        {
+          "name": "component-engineer",
+          "description": "Expert React architecture specialist.",
+          "type": "agent",
+          "path": "agents/component-engineer/.opencode/agent/component-engineer.md",
+          "target": "agent/component-engineer.md"
+        },
+        {
+          "name": "component-review",
+          "description": "Audit components against engineering spec.",
+          "type": "command",
+          "path": "agents/component-engineer/.opencode/command/component-review.md",
+          "target": "command/component-review.md"
+        },
+        {
+          "name": "component-create",
+          "description": "Create spec-compliant React components.",
+          "type": "command",
+          "path": "agents/component-engineer/.opencode/command/component-create.md",
+          "target": "command/component-create.md"
+        }
+      ],
+      "kind": "structure"
     },
     {
       "name": "security-reviewer",
@@ -295,76 +817,154 @@
           "target": "agent/security-reviewer.md"
         },
         {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-ai-keys/scripts/scan.sh",
+          "target": "skill/security-ai-keys/scripts/scan.sh"
+        },
+        {
           "name": "security-ai-keys",
           "description": "Scan for exposed AI API keys.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-ai-keys",
-          "target": "skill/security-ai-keys"
+          "path": "agents/security-reviewer/.opencode/skill/security-ai-keys/SKILL.md",
+          "target": "skill/security-ai-keys/SKILL.md"
+        },
+        {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-bun/scripts/scan.sh",
+          "target": "skill/security-bun/scripts/scan.sh"
         },
         {
           "name": "security-bun",
           "description": "Bun-specific security audit skill.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-bun",
-          "target": "skill/security-bun"
+          "path": "agents/security-reviewer/.opencode/skill/security-bun/SKILL.md",
+          "target": "skill/security-bun/SKILL.md"
+        },
+        {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-convex/scripts/scan.sh",
+          "target": "skill/security-convex/scripts/scan.sh"
         },
         {
           "name": "security-convex",
           "description": "Convex-specific security audit skill.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-convex",
-          "target": "skill/security-convex"
+          "path": "agents/security-reviewer/.opencode/skill/security-convex/SKILL.md",
+          "target": "skill/security-convex/SKILL.md"
+        },
+        {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-django/scripts/scan.sh",
+          "target": "skill/security-django/scripts/scan.sh"
         },
         {
           "name": "security-django",
           "description": "Django-specific security audit skill.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-django",
-          "target": "skill/security-django"
+          "path": "agents/security-reviewer/.opencode/skill/security-django/SKILL.md",
+          "target": "skill/security-django/SKILL.md"
+        },
+        {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-docker/scripts/scan.sh",
+          "target": "skill/security-docker/scripts/scan.sh"
         },
         {
           "name": "security-docker",
           "description": "Docker-specific security audit skill.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-docker",
-          "target": "skill/security-docker"
+          "path": "agents/security-reviewer/.opencode/skill/security-docker/SKILL.md",
+          "target": "skill/security-docker/SKILL.md"
+        },
+        {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-express/scripts/scan.sh",
+          "target": "skill/security-express/scripts/scan.sh"
         },
         {
           "name": "security-express",
           "description": "Express-specific security audit skill.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-express",
-          "target": "skill/security-express"
+          "path": "agents/security-reviewer/.opencode/skill/security-express/SKILL.md",
+          "target": "skill/security-express/SKILL.md"
+        },
+        {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-fastapi/scripts/scan.sh",
+          "target": "skill/security-fastapi/scripts/scan.sh"
         },
         {
           "name": "security-fastapi",
           "description": "FastAPI-specific security audit skill.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-fastapi",
-          "target": "skill/security-fastapi"
+          "path": "agents/security-reviewer/.opencode/skill/security-fastapi/SKILL.md",
+          "target": "skill/security-fastapi/SKILL.md"
+        },
+        {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-nextjs/scripts/scan.sh",
+          "target": "skill/security-nextjs/scripts/scan.sh"
         },
         {
           "name": "security-nextjs",
           "description": "Next.js-specific security audit skill.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-nextjs",
-          "target": "skill/security-nextjs"
+          "path": "agents/security-reviewer/.opencode/skill/security-nextjs/SKILL.md",
+          "target": "skill/security-nextjs/SKILL.md"
+        },
+        {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-secrets/scripts/scan.sh",
+          "target": "skill/security-secrets/scripts/scan.sh"
+        },
+        {
+          "name": "scan-all.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-secrets/scripts/scan-all.sh",
+          "target": "skill/security-secrets/scripts/scan-all.sh"
         },
         {
           "name": "security-secrets",
           "description": "Generic secret and credential scanner.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-secrets",
-          "target": "skill/security-secrets"
+          "path": "agents/security-reviewer/.opencode/skill/security-secrets/SKILL.md",
+          "target": "skill/security-secrets/SKILL.md"
+        },
+        {
+          "name": "scan.sh",
+          "description": "",
+          "type": "skill",
+          "path": "agents/security-reviewer/.opencode/skill/security-vite/scripts/scan.sh",
+          "target": "skill/security-vite/scripts/scan.sh"
         },
         {
           "name": "security-vite",
           "description": "Vite-specific security audit skill.",
           "type": "skill",
-          "path": "agents/security-reviewer/.opencode/skill/security-vite",
-          "target": "skill/security-vite"
+          "path": "agents/security-reviewer/.opencode/skill/security-vite/SKILL.md",
+          "target": "skill/security-vite/SKILL.md"
         }
-      ]
+      ],
+      "kind": "structure"
     },
     {
       "name": "repo-navigator",
@@ -396,24 +996,89 @@
           "name": "agent-navigation-sop",
           "description": "AI-focused navigation SOP.",
           "type": "skill",
-          "path": "agents/repo-navigator/skill/agent-navigation-sop",
-          "target": "skill/agent-navigation-sop"
-        },
-        {
-          "name": "user-onboarding-sop",
-          "description": "User-focused onboarding SOP.",
-          "type": "skill",
-          "path": "agents/repo-navigator/skill/user-onboarding-sop",
-          "target": "skill/user-onboarding-sop"
+          "path": "agents/repo-navigator/skill/agent-navigation-sop/SKILL.md",
+          "target": "skill/agent-navigation-sop/SKILL.md"
         },
         {
           "name": "skill-creator",
           "description": "Architect and refine skills.",
           "type": "skill",
-          "path": "agents/repo-navigator/skill/skill-creator",
-          "target": "skill/skill-creator"
+          "path": "agents/repo-navigator/skill/skill-creator/SKILL.md",
+          "target": "skill/skill-creator/SKILL.md"
+        },
+        {
+          "name": "output-patterns",
+          "description": "",
+          "type": "skill",
+          "path": "agents/repo-navigator/skill/skill-creator/references/output-patterns.md",
+          "target": "skill/skill-creator/references/output-patterns.md"
+        },
+        {
+          "name": "workflows",
+          "description": "",
+          "type": "skill",
+          "path": "agents/repo-navigator/skill/skill-creator/references/workflows.md",
+          "target": "skill/skill-creator/references/workflows.md"
+        },
+        {
+          "name": "user-onboarding-sop",
+          "description": "User-focused onboarding SOP.",
+          "type": "skill",
+          "path": "agents/repo-navigator/skill/user-onboarding-sop/SKILL.md",
+          "target": "skill/user-onboarding-sop/SKILL.md"
         }
-      ]
+      ],
+      "kind": "structure"
+    },
+    {
+      "name": "parallel-PRD",
+      "description": "Parallel PRD planning and Best-of-N synthesis pack.",
+      "path": "agents/parallel-PRD",
+      "items": [
+        {
+          "name": "TEMPLATE-planner",
+          "description": "Standard PRD planner template agent. Copy, rename, set your own model",
+          "type": "agent",
+          "path": "agents/parallel-PRD/.opencode/agent/TEMPLATE-planner.md",
+          "target": "agent/TEMPLATE-planner.md"
+        },
+        {
+          "name": "glm-planner",
+          "description": "GLM-based PRD planner subagent example.",
+          "type": "agent",
+          "path": "agents/parallel-PRD/.opencode/agent/glm-planner.md",
+          "target": "agent/glm-planner.md"
+        },
+        {
+          "name": "parallel-prd-orchestrator",
+          "description": "Orchestrates parallel PRD planners.",
+          "type": "agent",
+          "path": "agents/parallel-PRD/.opencode/agent/parallel-prd-orchestrator.md",
+          "target": "agent/parallel-prd-orchestrator.md"
+        },
+        {
+          "name": "parallel-prd",
+          "description": "Generate parallel PRD architecture views.",
+          "type": "command",
+          "path": "agents/parallel-PRD/.opencode/command/parallel-prd.md",
+          "target": "command/parallel-prd.md"
+        },
+        {
+          "name": "prd-authoring",
+          "description": "Skill for drafting technical PRDs.",
+          "type": "skill",
+          "path": "agents/parallel-PRD/.opencode/skill/prd-authoring/SKILL.md",
+          "target": "skill/prd-authoring/SKILL.md"
+        },
+        {
+          "name": "examples",
+          "description": "",
+          "type": "skill",
+          "path": "agents/parallel-PRD/.opencode/skill/prd-authoring/references/examples.md",
+          "target": "skill/prd-authoring/references/examples.md"
+        }
+      ],
+      "kind": "structure"
     },
     {
       "name": "cowork",
@@ -421,11 +1086,53 @@
       "path": "cowork",
       "items": [
         {
-          "name": "cowork-orchestrator",
-          "description": "Master coordinator for cowork sessions.",
-          "type": "agent",
-          "path": "cowork/.opencode/agent/cowork-orchestrator.md",
-          "target": "agent/cowork-orchestrator.md"
+          "name": "Bio",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/vault/01-Core-Identity/Bio.md",
+          "target": "Bio.md"
+        },
+        {
+          "name": "MASTER-STYLE-GUIDE",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/vault/01-Core-Identity/MASTER-STYLE-GUIDE.md",
+          "target": "MASTER-STYLE-GUIDE.md"
+        },
+        {
+          "name": "NOTES",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/vault/02-Active-Work/2026-01/Example-Project/NOTES.md",
+          "target": "NOTES.md"
+        },
+        {
+          "name": "PROJECT-BRIEF",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/vault/02-Active-Work/2026-01/Example-Project/PROJECT-BRIEF.md",
+          "target": "PROJECT-BRIEF.md"
+        },
+        {
+          "name": "TEMPLATE",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/vault/02-Active-Work/TEMPLATE.md",
+          "target": "TEMPLATE.md"
+        },
+        {
+          "name": "TEMPLATE",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/vault/03-Research-Intel/TEMPLATE.md",
+          "target": "TEMPLATE.md"
+        },
+        {
+          "name": "DELIVERY-NOTES",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/vault/05-Output-Staging/DELIVERY-NOTES.md",
+          "target": "DELIVERY-NOTES.md"
         },
         {
           "name": "admin-assistant",
@@ -435,11 +1142,11 @@
           "target": "agent/admin-assistant.md"
         },
         {
-          "name": "research-specialist",
-          "description": "Deep research and information synthesis.",
+          "name": "cowork-orchestrator",
+          "description": "Master coordinator for cowork sessions.",
           "type": "agent",
-          "path": "cowork/.opencode/agent/research-specialist.md",
-          "target": "agent/research-specialist.md"
+          "path": "cowork/.opencode/agent/cowork-orchestrator.md",
+          "target": "agent/cowork-orchestrator.md"
         },
         {
           "name": "data-analyst",
@@ -470,76 +1177,1596 @@
           "target": "agent/cowork-configurator.md"
         },
         {
-          "name": "cowork-cmd",
-          "description": "Launch a collaborative cowork session.",
+          "name": "research-specialist",
+          "description": "Deep research and information synthesis.",
+          "type": "agent",
+          "path": "cowork/.opencode/agent/research-specialist.md",
+          "target": "agent/research-specialist.md"
+        },
+        {
+          "name": "cowork",
+          "description": "Run cowork workflows.",
           "type": "command",
           "path": "cowork/.opencode/command/cowork.md",
           "target": "command/cowork.md"
         },
         {
-          "name": "cowork-skill",
-          "description": "Core cowork orchestration logic.",
-          "type": "skill",
-          "path": "cowork/.opencode/skill/cowork",
-          "target": "skill/cowork"
-        },
-        {
           "name": "branding",
           "description": "Visual identity and branding guidelines.",
           "type": "skill",
-          "path": "cowork/.opencode/skill/branding",
-          "target": "skill/branding"
+          "path": "cowork/.opencode/skill/branding/SKILL.md",
+          "target": "skill/branding/SKILL.md"
         },
         {
           "name": "comms",
           "description": "Communication templates and strategies.",
           "type": "skill",
-          "path": "cowork/.opencode/skill/comms",
-          "target": "skill/comms"
+          "path": "cowork/.opencode/skill/comms/SKILL.md",
+          "target": "skill/comms/SKILL.md"
+        },
+        {
+          "name": "3p-updates",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/comms/assets/examples/3p-updates.md",
+          "target": "skill/comms/assets/examples/3p-updates.md"
+        },
+        {
+          "name": "company-newsletter",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/comms/assets/examples/company-newsletter.md",
+          "target": "skill/comms/assets/examples/company-newsletter.md"
+        },
+        {
+          "name": "faq-answers",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/comms/assets/examples/faq-answers.md",
+          "target": "skill/comms/assets/examples/faq-answers.md"
+        },
+        {
+          "name": "general-comms",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/comms/assets/examples/general-comms.md",
+          "target": "skill/comms/assets/examples/general-comms.md"
+        },
+        {
+          "name": "cowork",
+          "description": "Principles and patterns for ef",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/cowork/SKILL.md",
+          "target": "skill/cowork/SKILL.md"
         },
         {
           "name": "excel",
           "description": "Advanced spreadsheet automation and analysis.",
           "type": "skill",
-          "path": "cowork/.opencode/skill/excel",
-          "target": "skill/excel"
+          "path": "cowork/.opencode/skill/excel/SKILL.md",
+          "target": "skill/excel/SKILL.md"
+        },
+        {
+          "name": "artifact_tool_spreadsheet_formulas",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/artifact_tool_spreadsheet_formulas.md",
+          "target": "skill/excel/references/artifact_tool_spreadsheet_formulas.md"
+        },
+        {
+          "name": "artifact_tool_spreadsheets_api",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/artifact_tool_spreadsheets_api.md",
+          "target": "skill/excel/references/artifact_tool_spreadsheets_api.md"
+        },
+        {
+          "name": "create_basic_spreadsheet.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/create_basic_spreadsheet.py",
+          "target": "skill/excel/references/examples/create_basic_spreadsheet.py"
+        },
+        {
+          "name": "create_spreadsheet_with_styling.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/create_spreadsheet_with_styling.py",
+          "target": "skill/excel/references/examples/create_spreadsheet_with_styling.py"
+        },
+        {
+          "name": "set_cell_borders.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/set_cell_borders.py",
+          "target": "skill/excel/references/examples/features/set_cell_borders.py"
+        },
+        {
+          "name": "set_wrap_text_styles.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/set_wrap_text_styles.py",
+          "target": "skill/excel/references/examples/features/set_wrap_text_styles.py"
+        },
+        {
+          "name": "set_text_alignment.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/set_text_alignment.py",
+          "target": "skill/excel/references/examples/features/set_text_alignment.py"
+        },
+        {
+          "name": "set_number_formats.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/set_number_formats.py",
+          "target": "skill/excel/references/examples/features/set_number_formats.py"
+        },
+        {
+          "name": "set_merge_cells.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/set_merge_cells.py",
+          "target": "skill/excel/references/examples/features/set_merge_cells.py"
+        },
+        {
+          "name": "set_font_styles.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/set_font_styles.py",
+          "target": "skill/excel/references/examples/features/set_font_styles.py"
+        },
+        {
+          "name": "set_conditional_formatting.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/set_conditional_formatting.py",
+          "target": "skill/excel/references/examples/features/set_conditional_formatting.py"
+        },
+        {
+          "name": "set_cell_width_height.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/set_cell_width_height.py",
+          "target": "skill/excel/references/examples/features/set_cell_width_height.py"
+        },
+        {
+          "name": "set_cell_fills.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/set_cell_fills.py",
+          "target": "skill/excel/references/examples/features/set_cell_fills.py"
+        },
+        {
+          "name": "change_existing_charts.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/change_existing_charts.py",
+          "target": "skill/excel/references/examples/features/change_existing_charts.py"
+        },
+        {
+          "name": "create_tables.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/create_tables.py",
+          "target": "skill/excel/references/examples/features/create_tables.py"
+        },
+        {
+          "name": "create_pie_chart.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/create_pie_chart.py",
+          "target": "skill/excel/references/examples/features/create_pie_chart.py"
+        },
+        {
+          "name": "create_line_chart.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/create_line_chart.py",
+          "target": "skill/excel/references/examples/features/create_line_chart.py"
+        },
+        {
+          "name": "create_doughnut_chart.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/create_doughnut_chart.py",
+          "target": "skill/excel/references/examples/features/create_doughnut_chart.py"
+        },
+        {
+          "name": "create_bar_chart.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/create_bar_chart.py",
+          "target": "skill/excel/references/examples/features/create_bar_chart.py"
+        },
+        {
+          "name": "create_area_chart.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/create_area_chart.py",
+          "target": "skill/excel/references/examples/features/create_area_chart.py"
+        },
+        {
+          "name": "cite_cells.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/features/cite_cells.py",
+          "target": "skill/excel/references/examples/features/cite_cells.py"
+        },
+        {
+          "name": "read_existing_spreadsheet.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/read_existing_spreadsheet.py",
+          "target": "skill/excel/references/examples/read_existing_spreadsheet.py"
+        },
+        {
+          "name": "styling_spreadsheet.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/examples/styling_spreadsheet.py",
+          "target": "skill/excel/references/examples/styling_spreadsheet.py"
+        },
+        {
+          "name": "spreadsheet",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/references/spreadsheet.md",
+          "target": "skill/excel/references/spreadsheet.md"
+        },
+        {
+          "name": "recalc.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/excel/scripts/recalc.py",
+          "target": "skill/excel/scripts/recalc.py"
         },
         {
           "name": "pdf",
           "description": "PDF manipulation and form processing.",
           "type": "skill",
-          "path": "cowork/.opencode/skill/pdf",
-          "target": "skill/pdf"
+          "path": "cowork/.opencode/skill/pdf/SKILL.md",
+          "target": "skill/pdf/SKILL.md"
+        },
+        {
+          "name": "forms",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/references/forms.md",
+          "target": "skill/pdf/references/forms.md"
+        },
+        {
+          "name": "reference",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/references/reference.md",
+          "target": "skill/pdf/references/reference.md"
+        },
+        {
+          "name": "check_bounding_boxes.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/scripts/check_bounding_boxes.py",
+          "target": "skill/pdf/scripts/check_bounding_boxes.py"
+        },
+        {
+          "name": "check_bounding_boxes_test.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/scripts/check_bounding_boxes_test.py",
+          "target": "skill/pdf/scripts/check_bounding_boxes_test.py"
+        },
+        {
+          "name": "check_fillable_fields.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/scripts/check_fillable_fields.py",
+          "target": "skill/pdf/scripts/check_fillable_fields.py"
+        },
+        {
+          "name": "convert_pdf_to_images.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/scripts/convert_pdf_to_images.py",
+          "target": "skill/pdf/scripts/convert_pdf_to_images.py"
+        },
+        {
+          "name": "create_validation_image.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/scripts/create_validation_image.py",
+          "target": "skill/pdf/scripts/create_validation_image.py"
+        },
+        {
+          "name": "extract_form_field_info.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/scripts/extract_form_field_info.py",
+          "target": "skill/pdf/scripts/extract_form_field_info.py"
+        },
+        {
+          "name": "fill_fillable_fields.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/scripts/fill_fillable_fields.py",
+          "target": "skill/pdf/scripts/fill_fillable_fields.py"
+        },
+        {
+          "name": "fill_pdf_form_with_annotations.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/pdf/scripts/fill_pdf_form_with_annotations.py",
+          "target": "skill/pdf/scripts/fill_pdf_form_with_annotations.py"
         },
         {
           "name": "powerpoint",
           "description": "Presentation generation and OOXML tools.",
           "type": "skill",
-          "path": "cowork/.opencode/skill/powerpoint",
-          "target": "skill/powerpoint"
+          "path": "cowork/.opencode/skill/powerpoint/SKILL.md",
+          "target": "skill/powerpoint/SKILL.md"
+        },
+        {
+          "name": "html2pptx",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/html2pptx.md",
+          "target": "skill/powerpoint/references/html2pptx.md"
+        },
+        {
+          "name": "ooxml",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml.md",
+          "target": "skill/powerpoint/references/ooxml.md"
+        },
+        {
+          "name": "shared-customXmlSchemaProperties.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd"
+        },
+        {
+          "name": "xml.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/xml.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/xml.xsd"
+        },
+        {
+          "name": "wml.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/wml.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/wml.xsd"
+        },
+        {
+          "name": "vml-wordprocessingDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd"
+        },
+        {
+          "name": "vml-spreadsheetDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd"
+        },
+        {
+          "name": "vml-presentationDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd"
+        },
+        {
+          "name": "vml-officeDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd"
+        },
+        {
+          "name": "vml-main.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-main.xsd"
+        },
+        {
+          "name": "sml.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/sml.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/sml.xsd"
+        },
+        {
+          "name": "shared-relationshipReference.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd"
+        },
+        {
+          "name": "shared-math.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-math.xsd"
+        },
+        {
+          "name": "shared-documentPropertiesVariantTypes.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd"
+        },
+        {
+          "name": "shared-documentPropertiesExtended.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd"
+        },
+        {
+          "name": "shared-documentPropertiesCustom.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd"
+        },
+        {
+          "name": "dml-chart.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-chart.xsd"
+        },
+        {
+          "name": "shared-customXmlDataProperties.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd"
+        },
+        {
+          "name": "shared-commonSimpleTypes.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd"
+        },
+        {
+          "name": "shared-bibliography.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd"
+        },
+        {
+          "name": "shared-additionalCharacteristics.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd"
+        },
+        {
+          "name": "pml.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/pml.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/pml.xsd"
+        },
+        {
+          "name": "dml-wordprocessingDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd"
+        },
+        {
+          "name": "dml-spreadsheetDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd"
+        },
+        {
+          "name": "dml-picture.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-picture.xsd"
+        },
+        {
+          "name": "dml-main.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd"
+        },
+        {
+          "name": "dml-lockedCanvas.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd"
+        },
+        {
+          "name": "dml-diagram.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd"
+        },
+        {
+          "name": "dml-chartDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd"
+        },
+        {
+          "name": "opc-contentTypes.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ecma/fouth-edition/opc-contentTypes.xsd"
+        },
+        {
+          "name": "opc-coreProperties.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ecma/fouth-edition/opc-coreProperties.xsd"
+        },
+        {
+          "name": "opc-digSig.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ecma/fouth-edition/opc-digSig.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ecma/fouth-edition/opc-digSig.xsd"
+        },
+        {
+          "name": "opc-relationships.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/ecma/fouth-edition/opc-relationships.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/ecma/fouth-edition/opc-relationships.xsd"
+        },
+        {
+          "name": "mc.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/mce/mc.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/mce/mc.xsd"
+        },
+        {
+          "name": "wml-2010.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/microsoft/wml-2010.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/microsoft/wml-2010.xsd"
+        },
+        {
+          "name": "wml-2012.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/microsoft/wml-2012.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/microsoft/wml-2012.xsd"
+        },
+        {
+          "name": "wml-2018.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/microsoft/wml-2018.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/microsoft/wml-2018.xsd"
+        },
+        {
+          "name": "wml-cex-2018.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/microsoft/wml-cex-2018.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/microsoft/wml-cex-2018.xsd"
+        },
+        {
+          "name": "wml-cid-2016.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/microsoft/wml-cid-2016.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/microsoft/wml-cid-2016.xsd"
+        },
+        {
+          "name": "wml-sdtdatahash-2020.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/microsoft/wml-sdtdatahash-2020.xsd"
+        },
+        {
+          "name": "wml-symex-2015.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/schemas/microsoft/wml-symex-2015.xsd",
+          "target": "skill/powerpoint/references/ooxml/schemas/microsoft/wml-symex-2015.xsd"
+        },
+        {
+          "name": "pack.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/scripts/pack.py",
+          "target": "skill/powerpoint/references/ooxml/scripts/pack.py"
+        },
+        {
+          "name": "unpack.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/scripts/unpack.py",
+          "target": "skill/powerpoint/references/ooxml/scripts/unpack.py"
+        },
+        {
+          "name": "validate.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/scripts/validate.py",
+          "target": "skill/powerpoint/references/ooxml/scripts/validate.py"
+        },
+        {
+          "name": "__init__.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/scripts/validation/__init__.py",
+          "target": "skill/powerpoint/references/ooxml/scripts/validation/__init__.py"
+        },
+        {
+          "name": "base.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/scripts/validation/base.py",
+          "target": "skill/powerpoint/references/ooxml/scripts/validation/base.py"
+        },
+        {
+          "name": "docx.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/scripts/validation/docx.py",
+          "target": "skill/powerpoint/references/ooxml/scripts/validation/docx.py"
+        },
+        {
+          "name": "pptx.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/scripts/validation/pptx.py",
+          "target": "skill/powerpoint/references/ooxml/scripts/validation/pptx.py"
+        },
+        {
+          "name": "redlining.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/references/ooxml/scripts/validation/redlining.py",
+          "target": "skill/powerpoint/references/ooxml/scripts/validation/redlining.py"
+        },
+        {
+          "name": "html2pptx.js",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/scripts/html2pptx.js",
+          "target": "skill/powerpoint/scripts/html2pptx.js"
+        },
+        {
+          "name": "inventory.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/scripts/inventory.py",
+          "target": "skill/powerpoint/scripts/inventory.py"
+        },
+        {
+          "name": "rearrange.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/scripts/rearrange.py",
+          "target": "skill/powerpoint/scripts/rearrange.py"
+        },
+        {
+          "name": "replace.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/scripts/replace.py",
+          "target": "skill/powerpoint/scripts/replace.py"
+        },
+        {
+          "name": "thumbnail.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/powerpoint/scripts/thumbnail.py",
+          "target": "skill/powerpoint/scripts/thumbnail.py"
         },
         {
           "name": "themes",
           "description": "Document themes and visual styles.",
           "type": "skill",
-          "path": "cowork/.opencode/skill/themes",
-          "target": "skill/themes"
+          "path": "cowork/.opencode/skill/themes/SKILL.md",
+          "target": "skill/themes/SKILL.md"
+        },
+        {
+          "name": "theme-showcase.pdf",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/theme-showcase.pdf",
+          "target": "skill/themes/assets/theme-showcase.pdf"
+        },
+        {
+          "name": "arctic-frost",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/arctic-frost.md",
+          "target": "skill/themes/assets/themes/arctic-frost.md"
+        },
+        {
+          "name": "botanical-garden",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/botanical-garden.md",
+          "target": "skill/themes/assets/themes/botanical-garden.md"
+        },
+        {
+          "name": "desert-rose",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/desert-rose.md",
+          "target": "skill/themes/assets/themes/desert-rose.md"
+        },
+        {
+          "name": "forest-canopy",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/forest-canopy.md",
+          "target": "skill/themes/assets/themes/forest-canopy.md"
+        },
+        {
+          "name": "golden-hour",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/golden-hour.md",
+          "target": "skill/themes/assets/themes/golden-hour.md"
+        },
+        {
+          "name": "midnight-galaxy",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/midnight-galaxy.md",
+          "target": "skill/themes/assets/themes/midnight-galaxy.md"
+        },
+        {
+          "name": "modern-minimalist",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/modern-minimalist.md",
+          "target": "skill/themes/assets/themes/modern-minimalist.md"
+        },
+        {
+          "name": "ocean-depths",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/ocean-depths.md",
+          "target": "skill/themes/assets/themes/ocean-depths.md"
+        },
+        {
+          "name": "sunset-boulevard",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/sunset-boulevard.md",
+          "target": "skill/themes/assets/themes/sunset-boulevard.md"
+        },
+        {
+          "name": "tech-innovation",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/themes/assets/themes/tech-innovation.md",
+          "target": "skill/themes/assets/themes/tech-innovation.md"
         },
         {
           "name": "word",
           "description": "Word document automation and OOXML tools.",
           "type": "skill",
-          "path": "cowork/.opencode/skill/word",
-          "target": "skill/word"
+          "path": "cowork/.opencode/skill/word/SKILL.md",
+          "target": "skill/word/SKILL.md"
+        },
+        {
+          "name": "docx-js",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/docx-js.md",
+          "target": "skill/word/references/docx-js.md"
+        },
+        {
+          "name": "ooxml",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml.md",
+          "target": "skill/word/references/ooxml.md"
+        },
+        {
+          "name": "shared-customXmlSchemaProperties.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd"
+        },
+        {
+          "name": "xml.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/xml.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/xml.xsd"
+        },
+        {
+          "name": "wml.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/wml.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/wml.xsd"
+        },
+        {
+          "name": "vml-wordprocessingDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd"
+        },
+        {
+          "name": "vml-spreadsheetDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd"
+        },
+        {
+          "name": "vml-presentationDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd"
+        },
+        {
+          "name": "vml-officeDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd"
+        },
+        {
+          "name": "vml-main.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/vml-main.xsd"
+        },
+        {
+          "name": "sml.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/sml.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/sml.xsd"
+        },
+        {
+          "name": "shared-relationshipReference.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd"
+        },
+        {
+          "name": "shared-math.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-math.xsd"
+        },
+        {
+          "name": "shared-documentPropertiesVariantTypes.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd"
+        },
+        {
+          "name": "shared-documentPropertiesExtended.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd"
+        },
+        {
+          "name": "shared-documentPropertiesCustom.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd"
+        },
+        {
+          "name": "dml-chart.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-chart.xsd"
+        },
+        {
+          "name": "shared-customXmlDataProperties.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd"
+        },
+        {
+          "name": "shared-commonSimpleTypes.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd"
+        },
+        {
+          "name": "shared-bibliography.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd"
+        },
+        {
+          "name": "shared-additionalCharacteristics.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd"
+        },
+        {
+          "name": "pml.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/pml.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/pml.xsd"
+        },
+        {
+          "name": "dml-wordprocessingDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd"
+        },
+        {
+          "name": "dml-spreadsheetDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd"
+        },
+        {
+          "name": "dml-picture.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-picture.xsd"
+        },
+        {
+          "name": "dml-main.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd"
+        },
+        {
+          "name": "dml-lockedCanvas.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd"
+        },
+        {
+          "name": "dml-diagram.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd"
+        },
+        {
+          "name": "dml-chartDrawing.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+          "target": "skill/word/references/ooxml/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd"
+        },
+        {
+          "name": "opc-contentTypes.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+          "target": "skill/word/references/ooxml/schemas/ecma/fouth-edition/opc-contentTypes.xsd"
+        },
+        {
+          "name": "opc-coreProperties.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+          "target": "skill/word/references/ooxml/schemas/ecma/fouth-edition/opc-coreProperties.xsd"
+        },
+        {
+          "name": "opc-digSig.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ecma/fouth-edition/opc-digSig.xsd",
+          "target": "skill/word/references/ooxml/schemas/ecma/fouth-edition/opc-digSig.xsd"
+        },
+        {
+          "name": "opc-relationships.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/ecma/fouth-edition/opc-relationships.xsd",
+          "target": "skill/word/references/ooxml/schemas/ecma/fouth-edition/opc-relationships.xsd"
+        },
+        {
+          "name": "mc.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/mce/mc.xsd",
+          "target": "skill/word/references/ooxml/schemas/mce/mc.xsd"
+        },
+        {
+          "name": "wml-2010.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/microsoft/wml-2010.xsd",
+          "target": "skill/word/references/ooxml/schemas/microsoft/wml-2010.xsd"
+        },
+        {
+          "name": "wml-2012.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/microsoft/wml-2012.xsd",
+          "target": "skill/word/references/ooxml/schemas/microsoft/wml-2012.xsd"
+        },
+        {
+          "name": "wml-2018.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/microsoft/wml-2018.xsd",
+          "target": "skill/word/references/ooxml/schemas/microsoft/wml-2018.xsd"
+        },
+        {
+          "name": "wml-cex-2018.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/microsoft/wml-cex-2018.xsd",
+          "target": "skill/word/references/ooxml/schemas/microsoft/wml-cex-2018.xsd"
+        },
+        {
+          "name": "wml-cid-2016.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/microsoft/wml-cid-2016.xsd",
+          "target": "skill/word/references/ooxml/schemas/microsoft/wml-cid-2016.xsd"
+        },
+        {
+          "name": "wml-sdtdatahash-2020.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+          "target": "skill/word/references/ooxml/schemas/microsoft/wml-sdtdatahash-2020.xsd"
+        },
+        {
+          "name": "wml-symex-2015.xsd",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/schemas/microsoft/wml-symex-2015.xsd",
+          "target": "skill/word/references/ooxml/schemas/microsoft/wml-symex-2015.xsd"
+        },
+        {
+          "name": "pack.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/scripts/pack.py",
+          "target": "skill/word/references/ooxml/scripts/pack.py"
+        },
+        {
+          "name": "unpack.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/scripts/unpack.py",
+          "target": "skill/word/references/ooxml/scripts/unpack.py"
+        },
+        {
+          "name": "validate.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/scripts/validate.py",
+          "target": "skill/word/references/ooxml/scripts/validate.py"
+        },
+        {
+          "name": "__init__.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/scripts/validation/__init__.py",
+          "target": "skill/word/references/ooxml/scripts/validation/__init__.py"
+        },
+        {
+          "name": "base.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/scripts/validation/base.py",
+          "target": "skill/word/references/ooxml/scripts/validation/base.py"
+        },
+        {
+          "name": "docx.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/scripts/validation/docx.py",
+          "target": "skill/word/references/ooxml/scripts/validation/docx.py"
+        },
+        {
+          "name": "pptx.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/scripts/validation/pptx.py",
+          "target": "skill/word/references/ooxml/scripts/validation/pptx.py"
+        },
+        {
+          "name": "redlining.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/references/ooxml/scripts/validation/redlining.py",
+          "target": "skill/word/references/ooxml/scripts/validation/redlining.py"
+        },
+        {
+          "name": "__init__.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/scripts/__init__.py",
+          "target": "skill/word/scripts/__init__.py"
+        },
+        {
+          "name": "document.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/scripts/document.py",
+          "target": "skill/word/scripts/document.py"
+        },
+        {
+          "name": "render_docx.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/scripts/render_docx.py",
+          "target": "skill/word/scripts/render_docx.py"
+        },
+        {
+          "name": "comments.xml",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/scripts/templates/comments.xml",
+          "target": "skill/word/scripts/templates/comments.xml"
+        },
+        {
+          "name": "commentsExtended.xml",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/scripts/templates/commentsExtended.xml",
+          "target": "skill/word/scripts/templates/commentsExtended.xml"
+        },
+        {
+          "name": "commentsExtensible.xml",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/scripts/templates/commentsExtensible.xml",
+          "target": "skill/word/scripts/templates/commentsExtensible.xml"
+        },
+        {
+          "name": "commentsIds.xml",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/scripts/templates/commentsIds.xml",
+          "target": "skill/word/scripts/templates/commentsIds.xml"
+        },
+        {
+          "name": "people.xml",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/scripts/templates/people.xml",
+          "target": "skill/word/scripts/templates/people.xml"
+        },
+        {
+          "name": "utilities.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/word/scripts/utilities.py",
+          "target": "skill/word/scripts/utilities.py"
         },
         {
           "name": "writing",
           "description": "Professional writing and editing workflow.",
           "type": "skill",
-          "path": "cowork/.opencode/skill/writing",
-          "target": "skill/writing"
+          "path": "cowork/.opencode/skill/writing/SKILL.md",
+          "target": "skill/writing/SKILL.md"
+        },
+        {
+          "name": "agent-patterns",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/agent-architect/references/agent-patterns.md",
+          "target": "skill/agent-architect/references/agent-patterns.md"
+        },
+        {
+          "name": "opencode-config",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/agent-architect/references/opencode-config.md",
+          "target": "skill/agent-architect/references/opencode-config.md"
+        },
+        {
+          "name": "agent-architect",
+          "description": "Create and refine OpenCode age",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/agent-architect/SKILL.md",
+          "target": "skill/agent-architect/SKILL.md"
+        },
+        {
+          "name": "command-creator",
+          "description": "Create custom /slash commands ",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/command-creator/SKILL.md",
+          "target": "skill/command-creator/SKILL.md"
+        },
+        {
+          "name": "list_mcps.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/scripts/list_mcps.py",
+          "target": "skill/mcp-installer/scripts/list_mcps.py"
+        },
+        {
+          "name": "supabase",
+          "description": "Supabase database and project ",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/supabase.md",
+          "target": "skill/mcp-installer/references/mcps/supabase.md"
+        },
+        {
+          "name": "hubspot",
+          "description": "HubSpot CRM integration (beta)",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/hubspot.md",
+          "target": "skill/mcp-installer/references/mcps/hubspot.md"
+        },
+        {
+          "name": "stripe",
+          "description": "Stripe payment integration",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/stripe.md",
+          "target": "skill/mcp-installer/references/mcps/stripe.md"
+        },
+        {
+          "name": "figma",
+          "description": "Design-to-code workflow and de",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/figma.md",
+          "target": "skill/mcp-installer/references/mcps/figma.md"
+        },
+        {
+          "name": "slack",
+          "description": "Slack workspace integration (l",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/slack.md",
+          "target": "skill/mcp-installer/references/mcps/slack.md"
+        },
+        {
+          "name": "linear",
+          "description": "Linear issue tracking (archive",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/linear.md",
+          "target": "skill/mcp-installer/references/mcps/linear.md"
+        },
+        {
+          "name": "postgres",
+          "description": "PostgreSQL database access",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/postgres.md",
+          "target": "skill/mcp-installer/references/mcps/postgres.md"
+        },
+        {
+          "name": "notion",
+          "description": "Notion workspace integration",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/notion.md",
+          "target": "skill/mcp-installer/references/mcps/notion.md"
+        },
+        {
+          "name": "redis",
+          "description": "Redis database access and mana",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/redis.md",
+          "target": "skill/mcp-installer/references/mcps/redis.md"
+        },
+        {
+          "name": "context7",
+          "description": "AI-powered documentation searc",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/context7.md",
+          "target": "skill/mcp-installer/references/mcps/context7.md"
+        },
+        {
+          "name": "chrome-devtools",
+          "description": "Chrome DevTools with performan",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/chrome-devtools.md",
+          "target": "skill/mcp-installer/references/mcps/chrome-devtools.md"
+        },
+        {
+          "name": "sqlite",
+          "description": "SQLite database access",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/sqlite.md",
+          "target": "skill/mcp-installer/references/mcps/sqlite.md"
+        },
+        {
+          "name": "brave-search",
+          "description": "Web search using Brave Search ",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/brave-search.md",
+          "target": "skill/mcp-installer/references/mcps/brave-search.md"
+        },
+        {
+          "name": "playwright",
+          "description": "Browser automation with Playwr",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/playwright.md",
+          "target": "skill/mcp-installer/references/mcps/playwright.md"
+        },
+        {
+          "name": "github",
+          "description": "GitHub API access",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/github.md",
+          "target": "skill/mcp-installer/references/mcps/github.md"
+        },
+        {
+          "name": "sentry",
+          "description": "Sentry error tracking and issu",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/sentry.md",
+          "target": "skill/mcp-installer/references/mcps/sentry.md"
+        },
+        {
+          "name": "gh_grep",
+          "description": "Search GitHub code snippets",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/mcps/gh_grep.md",
+          "target": "skill/mcp-installer/references/mcps/gh_grep.md"
+        },
+        {
+          "name": "troubleshooting",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/troubleshooting.md",
+          "target": "skill/mcp-installer/references/troubleshooting.md"
+        },
+        {
+          "name": "configuration",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/configuration.md",
+          "target": "skill/mcp-installer/references/configuration.md"
+        },
+        {
+          "name": "examples",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/references/examples.md",
+          "target": "skill/mcp-installer/references/examples.md"
+        },
+        {
+          "name": "mcp-installer",
+          "description": "Find, install, and configure M",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/mcp-installer/SKILL.md",
+          "target": "skill/mcp-installer/SKILL.md"
+        },
+        {
+          "name": "provider-patterns",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/model-researcher/references/provider-patterns.md",
+          "target": "skill/model-researcher/references/provider-patterns.md"
+        },
+        {
+          "name": "model-researcher",
+          "description": "Add new/custom AI models to op",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/model-researcher/SKILL.md",
+          "target": "skill/model-researcher/SKILL.md"
+        },
+        {
+          "name": "config-schema",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/opencode-config/references/config-schema.md",
+          "target": "skill/opencode-config/references/config-schema.md"
+        },
+        {
+          "name": "opencode-config",
+          "description": "Configure OpenCode settings an",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/opencode-config/SKILL.sync-conflict-20251228-180025-EZMUYIT.md",
+          "target": "skill/opencode-config/SKILL.sync-conflict-20251228-180025-EZMUYIT.md"
+        },
+        {
+          "name": "opencode-config",
+          "description": "Edit opencode.json, AGENTS.md,",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/opencode-config/SKILL.md",
+          "target": "skill/opencode-config/SKILL.md"
+        },
+        {
+          "name": "LLM-API-Key-Proxy",
+          "description": "Universal LLM gateway with Ant",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/references/plugins/llm-api-key-proxy.md",
+          "target": "skill/plugin-installer/references/plugins/llm-api-key-proxy.md"
+        },
+        {
+          "name": "@tarquinen/opencode-dcp",
+          "description": "Dynamic Context Pruning - redu",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/references/plugins/opencode-dcp.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-dcp.md"
+        },
+        {
+          "name": "opencode-gemini-auth",
+          "description": "Google OAuth for Gemini models",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/references/plugins/opencode-gemini-auth.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-gemini-auth.md"
+        },
+        {
+          "name": "@franlol/opencode-md-table-formatter",
+          "description": "Auto-format markdown tables wi",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/references/plugins/opencode-md-table-formatter.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-md-table-formatter.md"
+        },
+        {
+          "name": "opencode-openai-codex-auth",
+          "description": "Use ChatGPT Plus/Pro subscript",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/references/plugins/opencode-openai-codex-auth.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-openai-codex-auth.md"
+        },
+        {
+          "name": "@ramtinj95/opencode-tokenscope",
+          "description": "Token usage analytics, cost tr",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/references/plugins/opencode-tokenscope.md",
+          "target": "skill/plugin-installer/references/plugins/opencode-tokenscope.md"
+        },
+        {
+          "name": "@openhax/codex",
+          "description": "Alternative OpenAI Codex OAuth",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/references/plugins/openhax-codex.md",
+          "target": "skill/plugin-installer/references/plugins/openhax-codex.md"
+        },
+        {
+          "name": "@howaboua/pickle-thinker",
+          "description": "Enable thinking mode for GLM-4",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/references/plugins/pickle-thinker.md",
+          "target": "skill/plugin-installer/references/plugins/pickle-thinker.md"
+        },
+        {
+          "name": "list_plugins.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/scripts/list_plugins.py",
+          "target": "skill/plugin-installer/scripts/list_plugins.py"
+        },
+        {
+          "name": "plugin-installer",
+          "description": "Find, install, and configure O",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/plugin-installer/SKILL.md",
+          "target": "skill/plugin-installer/SKILL.md"
+        },
+        {
+          "name": "output-patterns",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/skill-creator/references/output-patterns.md",
+          "target": "skill/skill-creator/references/output-patterns.md"
+        },
+        {
+          "name": "workflows",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/skill-creator/references/workflows.md",
+          "target": "skill/skill-creator/references/workflows.md"
+        },
+        {
+          "name": "init_skill.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/skill-creator/scripts/init_skill.py",
+          "target": "skill/skill-creator/scripts/init_skill.py"
+        },
+        {
+          "name": "package_skill.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/skill-creator/scripts/package_skill.py",
+          "target": "skill/skill-creator/scripts/package_skill.py"
+        },
+        {
+          "name": "quick_validate.py",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/skill-creator/scripts/quick_validate.py",
+          "target": "skill/skill-creator/scripts/quick_validate.py"
+        },
+        {
+          "name": "LICENSE.txt",
+          "description": "",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/skill-creator/LICENSE.txt",
+          "target": "skill/skill-creator/LICENSE.txt"
+        },
+        {
+          "name": "skill-creator",
+          "description": "Guide for creating effective o",
+          "type": "skill",
+          "path": "cowork/.opencode/skill/skill-creator/SKILL.md",
+          "target": "skill/skill-creator/SKILL.md"
+        },
+        {
+          "name": "package.json",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/.opencode/package.json",
+          "target": "package.json"
+        },
+        {
+          "name": ".gitignore",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/.opencode/.gitignore",
+          "target": ".gitignore"
+        },
+        {
+          "name": "bun.lock",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/.opencode/bun.lock",
+          "target": "bun.lock"
+        },
+        {
+          "name": "LESSONS-LEARNED",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/LESSONS-LEARNED.md",
+          "target": "LESSONS-LEARNED.md"
+        },
+        {
+          "name": "opencode.json",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/opencode.json",
+          "target": "opencode.json"
+        },
+        {
+          "name": "AGENTS",
+          "description": "",
+          "type": "doc",
+          "path": "cowork/AGENTS.md",
+          "target": "AGENTS.md"
         }
-      ]
+      ],
+      "kind": "structure"
     }
   ],
   "standalone": [
@@ -549,6 +2776,20 @@
       "type": "agent",
       "path": "agents/generic/.opencode/agent/fast.md",
       "target": "agent/fast.md"
+    },
+    {
+      "name": "openspec-orchestrator",
+      "description": "Enforce strict OpenSpec formatting/validation. For use with Openspec only.",
+      "type": "agent",
+      "path": "agents/generic/.opencode/agent/openspec-orchestrator.md",
+      "target": "agent/openspec-orchestrator.md"
+    },
+    {
+      "name": "repo-navigator",
+      "description": "Repository navigation speciali",
+      "type": "agent",
+      "path": "agents/generic/.opencode/agent/repo-navigator.md",
+      "target": "agent/repo-navigator.md"
     },
     {
       "name": "smart",
@@ -565,46 +2806,11 @@
       "target": "agent/subagent-orchestrator.md"
     },
     {
-      "name": "openspec-orchestrator",
-      "description": "Enforce strict OpenSpec formatting/validation. For use with Openspec only.",
-      "type": "agent",
-      "path": "agents/generic/.opencode/agent/openspec-orchestrator.md",
-      "target": "agent/openspec-orchestrator.md"
-    },
-    {
-      "name": "learn",
-      "description": "A version of learn command hyperfocussed on minimal nested AGENTS.md creation.",
-      "type": "command",
-      "path": "commands/.opencode/command/learn.md",
-      "target": "command/learn.md"
-    },
-    {
-      "name": "rmslop",
-      "description": "Remove AI-generated boilerplate/slop. Adjusted from OC repo command.",
-      "type": "command",
-      "path": "commands/.opencode/command/rmslop.md",
-      "target": "command/rmslop.md"
-    },
-    {
-      "name": "loop",
-      "description": "Run autonomous development loops. Kinda Ralph, but via subagents.",
-      "type": "command",
-      "path": "commands/.opencode/command/loop.md",
-      "target": "command/loop.md"
-    },
-    {
       "name": "howto",
       "description": "Generate AGENTS.md tailored towards teaching the user how to use a repo.",
       "type": "command",
       "path": "commands/.opencode/command/howto.md",
       "target": "command/howto.md"
-    },
-    {
-      "name": "create-pack",
-      "description": "Scaffold a new agent pack. Similar to you're looking at here.",
-      "type": "command",
-      "path": "commands/.opencode/command/create-pack.md",
-      "target": "command/create-pack.md"
     },
     {
       "name": "refactor",
@@ -614,11 +2820,46 @@
       "target": "command/refactor.md"
     },
     {
+      "name": "refactor-rfc-xml",
+      "description": "Refactor files to RFC/XML stru",
+      "type": "command",
+      "path": "commands/.opencode/command/refactor-rfc-xml.md",
+      "target": "command/refactor-rfc-xml.md"
+    },
+    {
+      "name": "permissions-update",
+      "description": "Modernize resource permissions",
+      "type": "command",
+      "path": "commands/.opencode/command/permissions-update.md",
+      "target": "command/permissions-update.md"
+    },
+    {
+      "name": "loop",
+      "description": "Run autonomous development loops. Kinda Ralph, but via subagents.",
+      "type": "command",
+      "path": "commands/.opencode/command/loop.md",
+      "target": "command/loop.md"
+    },
+    {
       "name": "npm",
       "description": "Helper for npm package management.",
       "type": "command",
       "path": "commands/.opencode/command/npm.md",
       "target": "command/npm.md"
+    },
+    {
+      "name": "rmslop",
+      "description": "Remove AI-generated boilerplate/slop. Adjusted from OC repo command.",
+      "type": "command",
+      "path": "commands/.opencode/command/rmslop.md",
+      "target": "command/rmslop.md"
+    },
+    {
+      "name": "create-pack",
+      "description": "Scaffold a new agent pack. Similar to you're looking at here.",
+      "type": "command",
+      "path": "commands/.opencode/command/create-pack.md",
+      "target": "command/create-pack.md"
     },
     {
       "name": "improve-run",
@@ -633,6 +2874,20 @@
       "type": "command",
       "path": "commands/.opencode/command/improve-save.md",
       "target": "command/improve-save.md"
+    },
+    {
+      "name": "init",
+      "description": "Init high-density docs",
+      "type": "command",
+      "path": "commands/.opencode/command/init.md",
+      "target": "command/init.md"
+    },
+    {
+      "name": "learn",
+      "description": "A version of learn command hyperfocussed on minimal nested AGENTS.md creation.",
+      "type": "command",
+      "path": "commands/.opencode/command/learn.md",
+      "target": "command/learn.md"
     }
   ]
 }
