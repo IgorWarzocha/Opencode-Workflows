@@ -183,27 +183,6 @@
           "target": "skill/convex-runtime/SKILL.md"
         },
         {
-          "name": "package.json",
-          "description": "",
-          "type": "doc",
-          "path": "agents/vite-react-ts-convex-tailwind/.opencode/package.json",
-          "target": "package.json"
-        },
-        {
-          "name": ".gitignore",
-          "description": "",
-          "type": "doc",
-          "path": "agents/vite-react-ts-convex-tailwind/.opencode/.gitignore",
-          "target": ".gitignore"
-        },
-        {
-          "name": "bun.lock",
-          "description": "",
-          "type": "doc",
-          "path": "agents/vite-react-ts-convex-tailwind/.opencode/bun.lock",
-          "target": "bun.lock"
-        },
-        {
           "name": "REACT19",
           "description": "React 19 reference patterns.",
           "type": "doc",
@@ -223,13 +202,6 @@
           "type": "doc",
           "path": "agents/vite-react-ts-convex-tailwind/TS59.MD",
           "target": "TS59.MD"
-        },
-        {
-          "name": "VRTCT.jpg",
-          "description": "",
-          "type": "doc",
-          "path": "agents/vite-react-ts-convex-tailwind/VRTCT.jpg",
-          "target": "VRTCT.jpg"
         },
         {
           "name": "CODING-TS",
@@ -2724,39 +2696,11 @@
           "target": "skill/skill-creator/SKILL.md"
         },
         {
-          "name": "package.json",
-          "description": "",
-          "type": "doc",
-          "path": "cowork/.opencode/package.json",
-          "target": "package.json"
-        },
-        {
-          "name": ".gitignore",
-          "description": "",
-          "type": "doc",
-          "path": "cowork/.opencode/.gitignore",
-          "target": ".gitignore"
-        },
-        {
-          "name": "bun.lock",
-          "description": "",
-          "type": "doc",
-          "path": "cowork/.opencode/bun.lock",
-          "target": "bun.lock"
-        },
-        {
           "name": "LESSONS-LEARNED",
           "description": "",
           "type": "doc",
           "path": "cowork/LESSONS-LEARNED.md",
           "target": "LESSONS-LEARNED.md"
-        },
-        {
-          "name": "opencode.json",
-          "description": "",
-          "type": "doc",
-          "path": "cowork/opencode.json",
-          "target": "opencode.json"
         },
         {
           "name": "AGENTS",

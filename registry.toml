@@ -12,6 +12,7 @@ emphasis = "Markdown Is All You Need"
 link = "https://github.com/IgorWarzocha/opencode-workflows-manager"
 linkNote = "I couldn't get the link to be clickable, lol. Sorry."
 footer = "Press any key to return..."
+
 [install]
 globalDir = "~/.config/opencode"
 localDir = ".opencode"
